@@ -3,8 +3,8 @@ import { Book } from '@/types/books'
 export const books: Book[] = [
     { 
         id: 1, 
-        title: 'Hábitos AtômicosHábitos AtômicosHábitos AtômicosHábitos AtômicosHábitos AtômicosHábitos AtômicosHábitos Atômicos', 
-        author: 'James ClearHábitos AtômicosHábitos AtômicosHábitos AtômicosHábitos Atômicos', 
+        title: 'Hábitos Atômicos', 
+        author: 'James Clear', 
         publisher: 'Alta Life',
         pages: 320, 
         gotDate: 'dec/2024', 
