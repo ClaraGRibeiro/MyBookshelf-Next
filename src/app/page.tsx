@@ -13,10 +13,10 @@ export default function Home() {
   const [books, setBooks] = useState<Book[]>(initialBooks)
 
   return (
-    <>
+    <div className='bg-[#FFF8EF]'>
       <Header books={books} setBooks={setBooks} />
       <Bookshelf books={books} setBooks={setBooks} />
       <Footer />
-    </>
+    </div>
   );
 }

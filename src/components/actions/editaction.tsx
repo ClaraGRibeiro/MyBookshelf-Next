@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Pencil2Icon } from '@radix-ui/react-icons'
 // components
 import { Book } from '@/types/books'
+import { useState } from 'react'
 
 type EditActionProps = {
     book: Book
@@ -17,6 +18,10 @@ type EditActionProps = {
 }
 
 const EditAction = ({ book, setBooks }: EditActionProps) => {
+
+    const [mode, setMode] = useState(book.mode)
+    const [status, setStatus] = useState(book.status)
+
     const onEdit = (updatedBook: Book) => {
         setBooks((prev) =>
             prev.map((b) =>
@@ -92,7 +97,7 @@ const EditAction = ({ book, setBooks }: EditActionProps) => {
                             <Input type='number' min={0} step={0.01} name='price' placeholder='Price' defaultValue={book.price} />
                         </div>
                         <div className='grid gap-3'>
-                            <Select name='mode'>
+                            <Select name='mode' value={mode} onValueChange={(value) => setMode(value as Book['mode'])}>
                                 <SelectTrigger className='w-full'>
                                     <SelectValue placeholder='Mode' />
                                 </SelectTrigger>
@@ -103,7 +108,7 @@ const EditAction = ({ book, setBooks }: EditActionProps) => {
                             </Select>
                         </div>
                         <div className='grid gap-3'>
-                            <Select name='status'>
+                            <Select name='status' value={status} onValueChange={(value) => setStatus(value as Book['status'])}>
                                 <SelectTrigger className='w-full'>
                                     <SelectValue placeholder='Status' />
                                 </SelectTrigger>
