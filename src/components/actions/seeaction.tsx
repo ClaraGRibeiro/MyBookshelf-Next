@@ -28,11 +28,11 @@ const SeeAction = ({ book, handles, searchMode = false }: SeeActionProps) => {
         <Dialog open={open} onOpenChange={setOpen}>
             {!searchMode && (
                 <DialogTrigger asChild>
-                    <Button variant='ghost' className='p-2 cursor-pointer'>
+                    <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-800 group !duration-400'>
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <span className='text-slate-600'>
-                                    <EyeOpenIcon className='cursor-pointer' />
+                                <span className='text-slate-600 group-hover:text-slate-100'>
+                                    <EyeOpenIcon className='!w-5 !h-5' />
                                 </span>
                             </TooltipTrigger>
                             <TooltipContent>

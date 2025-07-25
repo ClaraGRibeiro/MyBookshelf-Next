@@ -26,11 +26,11 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant='ghost' className='p-2 cursor-pointer'>
+                <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-800 group !duration-400'>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <span className='text-slate-600'>
-                                <Pencil2Icon className='cursor-pointer' />
+                            <span className='text-slate-600 group-hover:text-slate-100'>
+                                <Pencil2Icon className='!w-5 !h-5' />
                             </span>
                         </TooltipTrigger>
                         <TooltipContent>

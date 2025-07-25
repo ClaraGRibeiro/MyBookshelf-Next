@@ -11,14 +11,14 @@ import { Handles } from '@/types/handles';
 
 export default function Home() {
   const [books, setBooks] = useState<Book[]>(initialBooks)
-  
-  // função que reune todas as funções handles
+
+  // function containing all handler logic
   function allHandles(): Handles {
     
-    // pega o que tinha antes no array livros, espalha e junta com o novo
+    // add a new book to the books array by spreading previous books and appending the new one
     const handleAdd = (book: Book): void => { setBooks((prev) => [...prev, book]) }
     
-    // caso o livro seja o editado, coloca ele no lugar do antigo
+    // Edit an existing book by replacing the old book with the updated one in the same position
     const handleEdit = (book: Book): void => {
       setBooks((prev) =>
         prev.map((b) =>
@@ -26,11 +26,11 @@ export default function Home() {
         )
       );
     }
-    
-    // pega tudo que não seja o livro excluído e seta como o array de livros atual
+
+    // Remove the deleted book by filtering it out from the books array
     const handleDelete = (bookId: Book['id']): void => { setBooks((prev) => prev.filter((b) => b.id !== bookId)) }
-    
-    // caso o livro seja o modificado, espalha seus atribudos, redefine o status e coloca ele no lugar do antigo
+
+    // Change the status of a book by copying its properties, updating the status, and replacing the old book
     const handleChangeStatus = (bookId: Book['id'], newStatus: Book['status']): void => {
       setBooks((prev) =>
         prev.map((b) =>
@@ -38,8 +38,8 @@ export default function Home() {
         )
       );
     }
-    
-    // retorna todos os handles
+
+    // return all the handlers functions
     return ({
       onAdd: handleAdd,
       onEdit: handleEdit,
@@ -51,7 +51,7 @@ export default function Home() {
   const handles = allHandles();
 
   return (
-    <div className='bg-[#FFF8EF]'>
+    <div className='bg-[#FFF3E4]/80'>
       <Header books={books} handles={handles} />
       <Bookshelf books={books} handles={handles} />
       <Footer />

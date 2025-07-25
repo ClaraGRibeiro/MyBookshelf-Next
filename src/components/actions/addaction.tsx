@@ -23,11 +23,11 @@ const AddAction = ({ books, onAdd }: AddActionProps) => {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant='ghost' className='p-2 cursor-pointer'>
+                <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-100 hover:text-slate-800 !duration-400'>
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <span>
-                                <PlusCircledIcon className='cursor-pointer' />
+                                <PlusCircledIcon className='cursor-pointer !w-6 !h-6' />
                             </span>
                         </TooltipTrigger>
                         <TooltipContent>
