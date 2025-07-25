@@ -11,14 +11,15 @@ import { Book } from '@/types/books'
 import DeleteAction from './deleteaction'
 import EditAction from './editaction'
 import { useState, useEffect } from 'react'
+import { Handles } from '@/types/handles'
 
 type SeeActionProps = {
     book: Book
-    setBooks: React.Dispatch<React.SetStateAction<Book[]>>
+    handles: Handles
     searchMode?: boolean
 }
 
-const SeeAction = ({ book, setBooks, searchMode = false }: SeeActionProps) => {
+const SeeAction = ({ book, handles, searchMode = false }: SeeActionProps) => {
     const [open, setOpen] = useState(false)
     useEffect(() => {
         if (searchMode && book) { setOpen(true) }
@@ -27,7 +28,7 @@ const SeeAction = ({ book, setBooks, searchMode = false }: SeeActionProps) => {
         <Dialog open={open} onOpenChange={setOpen}>
             {!searchMode && (
                 <DialogTrigger asChild>
-                    <Button variant='ghost' className='p-0 cursor-pointer'>
+                    <Button variant='ghost' className='p-2 cursor-pointer'>
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <span className='text-slate-600'>
@@ -60,8 +61,8 @@ const SeeAction = ({ book, setBooks, searchMode = false }: SeeActionProps) => {
                     <p className='text-slate-800'><strong className='text-slate-600'>Status:</strong> {book.status}</p>
                 </div>
                 <DialogFooter>
-                    <EditAction book={book} setBooks={setBooks} />
-                    <DeleteAction book={book} setBooks={setBooks} closeModal={() => setOpen(false)} />
+                    <EditAction book={book} onEdit={handles.onEdit} />
+                    <DeleteAction book={book} onDelete={handles.onDelete} closeModal={() => setOpen(false)} />
                 </DialogFooter>
             </DialogContent>
         </Dialog>

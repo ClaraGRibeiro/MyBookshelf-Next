@@ -4,13 +4,14 @@
 import Search from './search'
 import AddAction from './actions/addaction'
 import { Book } from '@/types/books'
+import { Handles } from '@/types/handles'
 
 type HeaderProps = {
     books: Book[]
-    setBooks: React.Dispatch<React.SetStateAction<Book[]>>
+    handles: Handles
 }
 
-const Header = ({ books, setBooks }: HeaderProps) => {
+const Header = ({ books, handles }: HeaderProps) => {
     return (
         <header className='h-fill flex-wrap bg-slate-800 flex md:justify-between justify-center items-center py-3 px-12 gap-3'>
             <a className='flex items-center gap-2' href='/'>
@@ -20,10 +21,10 @@ const Header = ({ books, setBooks }: HeaderProps) => {
             <div>
                 <ul className='flex gap-6 items-center text-slate-100'>
                     <li>
-                        <AddAction books={books} setBooks={setBooks}/>
+                        <AddAction books={books} onAdd={handles.onAdd}/>
                     </li>
                     <li>
-                        <Search books={books} setBooks={setBooks}/>
+                        <Search books={books} handles={handles}/>
                     </li>
                 </ul>
             </div>

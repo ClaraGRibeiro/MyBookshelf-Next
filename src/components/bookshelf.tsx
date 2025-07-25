@@ -9,13 +9,14 @@ import EditAction from './actions/editaction'
 import SeeAction from './actions/seeaction'
 import { useState } from 'react'
 import { CaretSortIcon } from '@radix-ui/react-icons'
+import { Handles } from '@/types/handles'
 
 type BookShelfProps = {
     books: Book[]
-    setBooks: React.Dispatch<React.SetStateAction<Book[]>>
+    handles: Handles
 }
 
-const Bookshelf = ({ books, setBooks }: BookShelfProps) => {
+const Bookshelf = ({ books, handles }: BookShelfProps) => {
     const [sortBy, setSortBy] = useState<keyof Book | null>(null)
     const [sortAsc, setSortAsc] = useState(true)
 
@@ -60,11 +61,7 @@ const Bookshelf = ({ books, setBooks }: BookShelfProps) => {
         let newStatus: Book['status']
         num === 1 ? num = -1 : num++
         num === -1 ? newStatus = "Unread" : num === 0 ? newStatus = "Reading" : newStatus = "Read"
-        setBooks((prev) =>
-            prev.map((b) =>
-                b.id === book.id ? { ...b, status: newStatus } : b
-            )
-        );
+        handles.onChangeStatus(book.id, newStatus)
     }
 
     return (
@@ -127,20 +124,20 @@ const Bookshelf = ({ books, setBooks }: BookShelfProps) => {
                                         (b.status == 'Read' ? 'bg-[#02A9F4] hover:bg-[#006AB3]' :
                                             b.status == 'Unread' ? 'bg-[#FF6666] hover:bg-[#E63431]' :
                                                 'bg-[#f4d177] text-slate-800 hover:bg-[#FBAC0F] hover:text-slate-100')
-                                        + ' text-slate-100 rounded-3xl px-2 py-1 cursor-pointer flex justify-center items-stretch duration-200'
+                                        + ' text-slate-100 rounded-3xl px-2 py-1 cursor-pointer flex justify-center items-stretch duration-200 select-none'
                                     }
                                 >
                                     {b.status}
                                 </span>
                             </TableCell>
                             <TableCell className='w-8'>
-                                <SeeAction book={b} setBooks={setBooks} />
+                                <SeeAction book={b} handles={handles} />
                             </TableCell>
                             <TableCell className='w-8'>
-                                <EditAction book={b} setBooks={setBooks} />
+                                <EditAction book={b} onEdit={handles.onEdit}  />
                             </TableCell>
                             <TableCell className='w-8'>
-                                <DeleteAction book={b} setBooks={setBooks} />
+                                <DeleteAction book={b} onDelete={handles.onDelete} />
                             </TableCell>
                         </TableRow>
                     ))}

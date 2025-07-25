@@ -8,22 +8,19 @@ import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, Di
 import { TrashIcon } from '@radix-ui/react-icons'
 // components
 import { Book } from '@/types/books'
+import { Handles } from '@/types/handles'
 
 type DeleteActionProps = {
     book: Book
-    setBooks: React.Dispatch<React.SetStateAction<Book[]>>
+    onDelete: Handles['onDelete']
     closeModal?: () => void
 }
 
-const DeleteAction = ({ book, setBooks, closeModal }: DeleteActionProps) => {
-    const onDelete = (id: number) => {
-        setBooks((prev) => prev.filter((b) => b.id !== id))
-        closeModal && closeModal()
-    }
+const DeleteAction = ({ book, onDelete, closeModal }: DeleteActionProps) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant='ghost' className='p-0 cursor-pointer'>
+                <Button variant='ghost' className='p-2 cursor-pointer'>
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <span className='text-[#FF6666]'>
@@ -48,7 +45,10 @@ const DeleteAction = ({ book, setBooks, closeModal }: DeleteActionProps) => {
                         <Button variant='outline' className='cursor-pointer text-slate-800'>Cancel</Button>
                     </DialogClose>
                     <DialogClose asChild>
-                        <Button variant='destructive' className='cursor-pointer text-slate-100' onClick={() => onDelete(book.id)}>Delete</Button>
+                        <Button variant='destructive' className='cursor-pointer text-slate-100' onClick={() => {
+                            onDelete(book.id)
+                            closeModal && closeModal()
+                        }}>Delete</Button>
                     </DialogClose>
                 </DialogFooter>
             </DialogContent>

@@ -11,18 +11,19 @@ import { PlusCircledIcon } from '@radix-ui/react-icons'
 // components
 import { Book } from '@/types/books'
 import { useState } from 'react'
+import { Handles } from '@/types/handles'
 
 type AddActionProps = {
     books: Book[]
-    setBooks: React.Dispatch<React.SetStateAction<Book[]>>
+    onAdd: Handles['onAdd']
 }
 
-const AddAction = ({ books, setBooks }: AddActionProps) => {
+const AddAction = ({ books, onAdd }: AddActionProps) => {
     const [open, setOpen] = useState(false)
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant='ghost' className='p-0 cursor-pointer'>
+                <Button variant='ghost' className='p-2 cursor-pointer'>
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <span>
@@ -53,7 +54,7 @@ const AddAction = ({ books, setBooks }: AddActionProps) => {
                             mode: (data.get('mode')?.toString() as Book['mode']) || 'Book',
                             status: (data.get('status')?.toString() as Book['status']) || 'Unread',
                         }
-                        setBooks((prev) => [...prev, newBook])
+                        onAdd(newBook)
                         setOpen(false)
                     }}
                 >

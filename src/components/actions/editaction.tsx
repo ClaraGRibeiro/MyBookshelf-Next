@@ -11,29 +11,22 @@ import { Pencil2Icon } from '@radix-ui/react-icons'
 // components
 import { Book } from '@/types/books'
 import { useState } from 'react'
+import { Handles } from '@/types/handles'
 
 type EditActionProps = {
     book: Book
-    setBooks: React.Dispatch<React.SetStateAction<Book[]>>
+    onEdit: Handles['onEdit']
 }
 
-const EditAction = ({ book, setBooks }: EditActionProps) => {
+const EditAction = ({ book, onEdit }: EditActionProps) => {
 
     const [mode, setMode] = useState(book.mode)
     const [status, setStatus] = useState(book.status)
 
-    const onEdit = (updatedBook: Book) => {
-        setBooks((prev) =>
-            prev.map((b) =>
-                b.id === updatedBook.id ? updatedBook : b
-            )
-        );
-    }
-
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant='ghost' className='p-0 cursor-pointer'>
+                <Button variant='ghost' className='p-2 cursor-pointer'>
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <span className='text-slate-600'>
