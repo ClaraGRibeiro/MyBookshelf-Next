@@ -42,8 +42,9 @@ const AddAction = ({ books, onAdd }: AddActionProps) => {
                         e.preventDefault()
                         const form = e.currentTarget
                         const data = new FormData(form)
+                        const maxId = books.reduce((max, book) => Math.max(max, book.id), 0)
                         const newBook: Book = {
-                            id: books.length + 1,
+                            id: maxId + 1,
                             title: data.get('title')?.toString() || '-',
                             author: data.get('author')?.toString() || '-',
                             publisher: data.get('publisher')?.toString() || '-',
