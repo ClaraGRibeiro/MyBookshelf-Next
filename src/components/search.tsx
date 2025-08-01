@@ -79,7 +79,7 @@ const Search = ({ books, handles }: SearchProps) => {
                                 <p className='border border-b border-slate-800 hover:bg-slate-800 p-2 hover:cursor-pointer' key={b.id} onClick={() => handleSelectBook(b)}>{b.title}</p>
                             ))
                         ) : ( // if no books were find, show a message
-                            <p className='border border-b border-slate-800 hover:bg-slate-800 p-2 select-none' onClick={() => handleSelectBook(null)}>No books found</p>
+                            <p className='border border-b border-slate-800 hover:bg-slate-800 p-2 select-none cursor-not-allowed' onClick={() => handleSelectBook(null)}>No books found</p>
                         )}
                     </div>
                 )}

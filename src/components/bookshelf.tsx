@@ -99,36 +99,36 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                     </TooltipContent>
                 </Tooltip>
             </Button>
-            <h1 className='text-center mb-6 text-3xl font-bold'>My BookShelf</h1>
+            <h1 className='text-center mb-12 text-3xl font-bold'>My BookShelf</h1>
             <Table className='text-lg'>
                 <TableCaption>{books.filter((b) => b.status === 'Read').length}/{books.length} books read</TableCaption>
                 <TableHeader>
                     <TableRow className='text-base'>
-                        <TableHead onClick={() => handleSort('title')} className='text-slate-600 cursor-pointer hover:text-slate-800 group max-w-36'>
+                        <TableHead onClick={() => handleSort('title')} className='text-slate-600 cursor-pointer hover:text-slate-800 group sm:max-w-36'>
                             <span className='flex items-center flex-row gap-1'>
                                 Book Title
                                 <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
                             </span>
                         </TableHead>
-                        <TableHead onClick={() => handleSort('author')} className='text-slate-600 cursor-pointer hover:text-slate-800 group max-w-36'>
+                        <TableHead onClick={() => handleSort('author')} className='text-slate-600 cursor-pointer hover:text-slate-800 group sm:max-w-36'>
                             <span className='flex items-center flex-row gap-1'>
                                 Author Name
                                 <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
                             </span>
                         </TableHead>
-                        <TableHead onClick={() => handleSort('publisher')} className='text-slate-600 cursor-pointer hover:text-slate-800 group max-w-26'>
+                        <TableHead onClick={() => handleSort('publisher')} className='text-slate-600 cursor-pointer hover:text-slate-800 group sm:max-w-26'>
                             <span className='flex items-center flex-row gap-1'>
                                 Publisher Name
                                 <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
                             </span>
                         </TableHead>
-                        <TableHead onClick={() => handleSort('pages')} className='text-slate-600 cursor-pointer text-center hover:text-slate-800 group max-w-24'>
+                        <TableHead onClick={() => handleSort('pages')} className='text-slate-600 cursor-pointer text-center hover:text-slate-800 group sm:max-w-24'>
                             <span className='flex items-center justify-center flex-row gap-1'>
                                 Pages
                                 <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
                             </span>
                         </TableHead>
-                        <TableHead onClick={() => handleSort('price')} className='text-slate-600 cursor-pointer text-center hover:text-slate-800 group max-w-24'>
+                        <TableHead onClick={() => handleSort('price')} className='text-slate-600 cursor-pointer text-center hover:text-slate-800 group sm:max-w-24'>
                             <span className='flex items-center justify-center flex-row gap-1'>
                                 Price
                                 <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
