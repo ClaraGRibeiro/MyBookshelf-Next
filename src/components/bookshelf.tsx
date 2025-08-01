@@ -112,13 +112,13 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                         </TableHead>
                         <TableHead onClick={() => handleSort('author')} className='text-slate-600 cursor-pointer hover:text-slate-800 group sm:max-w-36'>
                             <span className='flex items-center flex-row gap-1'>
-                                Author Name
+                                Author
                                 <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
                             </span>
                         </TableHead>
                         <TableHead onClick={() => handleSort('publisher')} className='text-slate-600 cursor-pointer hover:text-slate-800 group sm:max-w-26'>
                             <span className='flex items-center flex-row gap-1'>
-                                Publisher Name
+                                Publisher
                                 <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
                             </span>
                         </TableHead>
