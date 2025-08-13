@@ -212,10 +212,10 @@ export const books: Book[] = [
         publisher: 'Sextante',
         pages: 128, 
         gotDate: 'jul/2025', 
-        // readDate: null,
+        readDate: 'ago/2025',
         price: 16.40, 
         mode: 'Book', 
-        status: 'Unread' 
+        status: 'Read' 
     },
     { 
         id: 19, 
@@ -236,10 +236,10 @@ export const books: Book[] = [
         publisher: 'FTD',
         pages: 125, 
         gotDate: 'jul/2025', 
-        // readDate: null,
+        readDate: 'ago/2025',
         price: 4.00, 
         mode: 'Book', 
-        status: 'Reading' 
+        status: 'Read' 
     },
     { 
         id: 21, 
@@ -275,7 +275,7 @@ export const books: Book[] = [
         // readDate: null,
         price: 4.00, 
         mode: 'Book', 
-        status: 'Unread' 
+        status: 'Reading' 
     },
     { 
         id: 24, 
