@@ -58,14 +58,21 @@ const SeeAction = ({ book, handles, searchMode = false }: SeeActionProps) => {
                     <p className='text-slate-800'><strong className='text-slate-600'>Read Date:</strong> {book.readDate ?? '-'}</p>
                     <p className='text-slate-800'><strong className='text-slate-600'>Price:</strong> {book.price ?? 'Free'}</p>
                     <p className='text-slate-800'><strong className='text-slate-600'>Mode:</strong> {book.mode}</p>
-                    <p className='text-slate-800'><strong className='text-slate-600'>Status:</strong> {book.status}</p>
+                    <p className='text-slate-800'><strong className='text-slate-600'>Status:</strong> <span className={
+                        (book.status == 'Read' ? 'bg-[#02A9F4]' :
+                            book.status == 'Unread' ? 'bg-[#FF6666]' :
+                                'bg-[#f4d177] text-slate-800')
+                        + ' text-sm text-slate-100 rounded-3xl px-2 py-1 select-none'
+                    }>{book.status}</span></p>
                 </div>
+
+
                 <DialogFooter>
                     <EditAction book={book} onEdit={handles.onEdit} />
                     <DeleteAction book={book} onDelete={handles.onDelete} closeModal={() => setOpen(false)} />
                 </DialogFooter>
             </DialogContent>
-        </Dialog>
+        </Dialog >
     )
 }
 

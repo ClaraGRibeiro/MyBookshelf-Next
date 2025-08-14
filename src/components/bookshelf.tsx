@@ -38,23 +38,6 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
             ...[...books] // espalha livros e pega apenas os 'Reading' (em ordem)
                 .filter((b) => b.status === 'Reading') // apenas 'Reading'
                 .sort((a, b) => {
-                if (!sortBy) return 0
-                const aValue = a[sortBy] ?? ''
-                const bValue = b[sortBy] ?? ''
-                if (typeof aValue === 'number' && typeof bValue === 'number') {
-                    return sortAsc ? aValue - bValue : bValue - aValue
-                }
-                return sortAsc
-                    ? aValue.toString().localeCompare(bValue.toString())
-                    : bValue.toString().localeCompare(aValue.toString())
-            })
-        ]
-    }
-        sortedBooks = [ // cria um array com os livros reorganizados juntando os elementos espalhados
-            ...sortedBooks,
-            ...[...books] // cria um array cópia dos livros (espalhando-os), faz os procedimentos e espalha seus elementos
-                .filter((b) => pinReadings ? b.status !== 'Reading' : b.status) // sem ser 'Reading'
-                .sort((a, b) => {
                     if (!sortBy) return 0
                     const aValue = a[sortBy] ?? ''
                     const bValue = b[sortBy] ?? ''
@@ -66,6 +49,23 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                         : bValue.toString().localeCompare(aValue.toString())
                 })
         ]
+    }
+    sortedBooks = [ // cria um array com os livros reorganizados juntando os elementos espalhados
+        ...sortedBooks,
+        ...[...books] // cria um array cópia dos livros (espalhando-os), faz os procedimentos e espalha seus elementos
+            .filter((b) => pinReadings ? b.status !== 'Reading' : b.status) // sem ser 'Reading'
+            .sort((a, b) => {
+                if (!sortBy) return 0
+                const aValue = a[sortBy] ?? ''
+                const bValue = b[sortBy] ?? ''
+                if (typeof aValue === 'number' && typeof bValue === 'number') {
+                    return sortAsc ? aValue - bValue : bValue - aValue
+                }
+                return sortAsc
+                    ? aValue.toString().localeCompare(bValue.toString())
+                    : bValue.toString().localeCompare(aValue.toString())
+            })
+    ]
 
     const toggleStatus = (book: Book) => {
         let num: number = -1
@@ -91,7 +91,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <span>
-                            {pinReadings ? <DrawingPinFilledIcon  className='!w-6 !h-6' /> : <DrawingPinIcon  className='!w-6 !h-6' />}
+                            {pinReadings ? <DrawingPinFilledIcon className='!w-6 !h-6' /> : <DrawingPinIcon className='!w-6 !h-6' />}
                         </span>
                     </TooltipTrigger>
                     <TooltipContent>

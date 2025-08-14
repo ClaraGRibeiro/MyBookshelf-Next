@@ -3,6 +3,7 @@
 // components
 import Search from './search'
 import AddAction from './actions/addaction'
+import ShuffleAction from './actions/shuffleaction'
 import { Book } from '@/types/books'
 import { Handles } from '@/types/handles'
 
@@ -21,10 +22,13 @@ const Header = ({ books, handles }: HeaderProps) => {
             <div>
                 <ul className='flex gap-6 items-center text-slate-100'>
                     <li>
-                        <AddAction books={books} onAdd={handles.onAdd}/>
+                        <AddAction books={books} onAdd={handles.onAdd} />
                     </li>
                     <li>
-                        <Search books={books} handles={handles}/>
+                        <ShuffleAction books={books} handles={handles} />
+                    </li>
+                    <li>
+                        <Search books={books} handles={handles} />
                     </li>
                 </ul>
             </div>
