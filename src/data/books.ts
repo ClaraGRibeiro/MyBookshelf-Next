@@ -142,7 +142,7 @@ export const books: Book[] = [
         // price: null, ,
         mode: 'Book',
         status: 'Read',
-        image: 'https://m.media-amazon.com/images/I/51y-bUK0QML._SY445_SX342_.jpg',
+        image: 'https://m.media-amazon.com/images/I/51u7LhO6iWL._SY466_.jpg',
     },
     {
         id: 12,

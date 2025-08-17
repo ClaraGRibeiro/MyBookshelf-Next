@@ -34,7 +34,7 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
                             (b.status == 'Read' ? 'text-[#02A9F4]' :
                                 b.status == 'Unread' ? 'text-[#FF6666]' :
                                     'text-[#FBAC0F]') + ' absolute top-0 right-0 p-0 m-0 opacity-60 duration-200 h-8 w-8 group-hover:opacity-100'} />
-                        {!b.image && <span className='absolute transform top-1/2 -translate-y-1/2 overflow-hidden text-center p-6 break-words w-[90%] max-h-[90%]'>{b.title}</span>}
+                        {!b.image && <span className='absolute transform top-1/2 -translate-y-1/2 overflow-hidden text-center p-6 break-words w-[90%] max-h-[90%] select-none'>{b.title}</span>}
                     </div>
                 ))}
                 {clickedBook && <SeeAction searchMode={true} book={clickedBook} handles={handles} />}
