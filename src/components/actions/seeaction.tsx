@@ -42,14 +42,14 @@ const SeeAction = ({ book, handles, searchMode = false }: SeeActionProps) => {
                     </Button>
                 </DialogTrigger>
             )}
-            <DialogContent className='sm:max-w-[425px]'>
+            <DialogContent className='sm:max-w-[425px] max-h-[90%] overflow-y-auto'>
                 <DialogHeader>
                     <DialogTitle className='text-slate-600'>See '{book.title}'</DialogTitle>
                     <DialogDescription className='text-slate-800'>
                         More details about this book.
                     </DialogDescription>
                 </DialogHeader>
-                <div className='grid gap-2'>
+                <div className='relative grid gap-2'>
                     <p className='text-slate-800'><strong className='text-slate-600'>Book Title:</strong> {book.title}</p>
                     <p className='text-slate-800'><strong className='text-slate-600'>Author Name:</strong> {book.author}</p>
                     <p className='text-slate-800'><strong className='text-slate-600'>Publisher:</strong> {book.publisher ?? '-'}</p>
@@ -64,10 +64,10 @@ const SeeAction = ({ book, handles, searchMode = false }: SeeActionProps) => {
                                 'bg-[#f4d177] text-slate-800')
                         + ' text-sm text-slate-100 rounded-3xl px-2 py-1 select-none'
                     }>{book.status}</span></p>
+                    <img src={book.image} alt='' className='absolute h-36 md:h-48 m-auto right-0 bottom-0' />
                 </div>
 
-
-                <DialogFooter>
+                <DialogFooter className='flex flex-row w-full justify-end'>
                     <EditAction book={book} onEdit={handles.onEdit} />
                     <DeleteAction book={book} onDelete={handles.onDelete} closeModal={() => setOpen(false)} />
                 </DialogFooter>

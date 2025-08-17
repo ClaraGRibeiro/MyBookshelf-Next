@@ -9,4 +9,5 @@ export type Book = {
     price?: number
     mode: 'Book' | 'PDF'
     status: 'Reading' | 'Read' | 'Unread'
+    image?: string
 }

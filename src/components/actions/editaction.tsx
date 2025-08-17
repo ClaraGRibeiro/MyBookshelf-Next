@@ -118,7 +118,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                             <Button variant='outline' className='cursor-pointer'>Cancel</Button>
                         </DialogClose>
                         <DialogClose asChild>
-                            <Button type='submit' className='cursor-pointer !bg-slate-600 text-slate-100'>Save changes</Button>
+                            <Button type='submit' className='cursor-pointer !bg-slate-600 text-slate-100 hover:!bg-slate-800'>Save changes</Button>
                         </DialogClose>
                     </DialogFooter>
                 </form>
