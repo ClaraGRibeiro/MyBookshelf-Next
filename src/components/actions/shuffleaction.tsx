@@ -10,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { ShuffleIcon } from '@radix-ui/react-icons'
 // components
 import { Book } from '@/types/books'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SeeAction from './seeaction'
 import { Handles } from '@/types/handles'
 
@@ -20,19 +20,16 @@ type ShuffleActionProps = {
 }
 
 const ShuffleAction = ({ books, handles }: ShuffleActionProps) => {
-    const [chosenBook, setChosenBook] = useState<Book | null>(null)
+    const [chosenBookId, setChosenBookId] = useState<number | null>(null)
     const handleShuffleBook = () => {
-        console.log("Start Shuffling books...")
         const unreadBooks = books.filter(b => b?.status === "Unread")
-        console.log("Unread books separated")        
         if (unreadBooks.length === 0) {
             alert("No unread books available to shuffle.")
             return
         }
-        console.log("Choosing a random book from unread books...")
-        setChosenBook(unreadBooks[Math.floor(Math.random() * unreadBooks.length)])
-        console.log("Random book chosen")
+        setChosenBookId(unreadBooks[Math.floor(Math.random() * unreadBooks.length)].id)
     }
+    const chosenBook = books.find(b => b.id === chosenBookId) || null
 
     return (
         <>
@@ -49,8 +46,7 @@ const ShuffleAction = ({ books, handles }: ShuffleActionProps) => {
                 </Tooltip>
             </Button>
             {chosenBook && (
-                console.log(chosenBook.title),
-                <SeeAction searchMode={true} book={chosenBook} handles={handles} />
+                <SeeAction noButtonMode={true} book={chosenBook} handles={handles} />
             )}
         </>
     )

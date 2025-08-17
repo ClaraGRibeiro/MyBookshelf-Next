@@ -3,7 +3,7 @@
 // components shadcn
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 import { Button } from '../ui/button'
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
 // icons radix
 import { EyeOpenIcon } from '@radix-ui/react-icons'
 // components
@@ -16,18 +16,18 @@ import { Handles } from '@/types/handles'
 type SeeActionProps = {
     book: Book
     handles: Handles
-    searchMode?: boolean
+    noButtonMode?: boolean
 }
 
-const SeeAction = ({ book, handles, searchMode = false }: SeeActionProps) => {
-    const [open, setOpen] = useState(false)
+const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
+    const [open, setOpen] = useState(noButtonMode)
     useEffect(() => {
-        if (searchMode && book) { setOpen(true) }
-    }, [book])
+        if(noButtonMode && book) setOpen(true)
+    }, [noButtonMode, book])
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            {!searchMode && (
-                <DialogTrigger asChild>
+            {!noButtonMode &&   
+                (<DialogTrigger asChild>
                     <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-800 group !duration-400'>
                         <Tooltip>
                             <TooltipTrigger asChild>
@@ -40,8 +40,8 @@ const SeeAction = ({ book, handles, searchMode = false }: SeeActionProps) => {
                             </TooltipContent>
                         </Tooltip>
                     </Button>
-                </DialogTrigger>
-            )}
+                </DialogTrigger>)
+            }
             <DialogContent className='sm:max-w-[425px] max-h-[90%] overflow-y-auto'>
                 <DialogHeader>
                     <DialogTitle className='text-slate-600'>See '{book.title}'</DialogTitle>

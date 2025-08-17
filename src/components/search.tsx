@@ -19,7 +19,7 @@ type SearchProps = {
 const Search = ({ books, handles }: SearchProps) => {
     const [search, setSearch] = useState('')
     const [searchFocused, setSearchFocused] = useState(false)
-    const [selectedBook, setSelectedBook] = useState<Book | null>(null)
+    const [selectedBookId, setSelectedBookId] = useState<number | null>(null)
 
     // get only books that contain the letters in the title, author, or publisher, and sort them
     const foundBooks = books.filter((b) =>
@@ -29,11 +29,14 @@ const Search = ({ books, handles }: SearchProps) => {
     ).sort((a, b) => a.title.localeCompare(b.title));
 
     // when a book is selected, the search input is cleared
-    const handleSelectBook = (book: Book | null) => {
-        setSelectedBook(book)
+    const handleSelectBook = (bookId: number | null) => {
+        if (bookId === selectedBookId) {
+            setSelectedBookId(null)
+            setTimeout(() => setSelectedBookId(bookId), 0)
+        } else setSelectedBookId(bookId)
         setSearch('')
     }
-
+    const selectedBook = books.find(b => b.id === selectedBookId) || null
     // refers to the search input
     const inputRef = useRef<HTMLInputElement>(null)
     const containerRef = useRef<HTMLDivElement>(null)
@@ -65,7 +68,7 @@ const Search = ({ books, handles }: SearchProps) => {
                 {search.length > 0 && ( // if there is text typed, show an X button to clear the search
                     <Cross2Icon className='absolute right-3 z-1 cursor-pointer !w-5 !h-5' onClick={() => {
                         setSearch('')
-                        setSelectedBook(null)
+                        setSelectedBookId(null)
                     }} />
                 )}
                 <Input ref={inputRef} className='px-10 relative w-full' placeholder='Search' type='text' value={search} onFocus={() => { setSearchFocused(true) }} 
@@ -76,7 +79,7 @@ const Search = ({ books, handles }: SearchProps) => {
                     <div className='absolute w-full top-full w-screcth z-1 max-h-32 overflow-y-auto bg-slate-600 text-slate-100 text-sm'>
                         {foundBooks.length > 0 ? ( // if books were find, show them
                             foundBooks.map((b) => (
-                                <p className='border border-b border-slate-800 hover:bg-slate-800 p-2 hover:cursor-pointer' key={b.id} onClick={() => handleSelectBook(b)}>{b.title}</p>
+                                <p className='border border-b border-slate-800 hover:bg-slate-800 p-2 hover:cursor-pointer' key={b.id} onClick={() => handleSelectBook(b.id)}>{b.title}</p>
                             ))
                         ) : ( // if no books were find, show a message
                             <p className='border border-b border-slate-800 hover:bg-slate-800 p-2 select-none cursor-not-allowed' onClick={() => handleSelectBook(null)}>No books found</p>
@@ -86,7 +89,7 @@ const Search = ({ books, handles }: SearchProps) => {
             </div>
 
             {selectedBook && ( // if a book was clicked, open the modal
-                <SeeAction searchMode={true} book={selectedBook} handles={handles} />
+                <SeeAction noButtonMode={true} book={selectedBook} handles={handles} />
             )}
         </>
     )

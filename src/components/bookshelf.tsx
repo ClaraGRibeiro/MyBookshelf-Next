@@ -18,7 +18,7 @@ type BookShelfProps = {
 
 const Bookshelf = ({ books, handles }: BookShelfProps) => {
     const [pinReadings, setPinReadings] = useState(false)
-    const [grid, setGrid] = useState(false)
+    const [grid, setGrid] = useState(true)
 
     return (
         <main className='p-12 text-slate-800'>
