@@ -11,15 +11,24 @@ import { BookmarkFilledIcon } from '@radix-ui/react-icons'
 type GridBooksProps = {
     books: Book[]
     handles: Handles
+    pinReadings: Boolean
 }
 
-const GridBooks = ({ books, handles }: GridBooksProps) => {
+const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
+    let sortedBooks: Book[] = []
+    if (pinReadings) {
+        sortedBooks = [
+            ...[...books] // espalha livros e pega apenas os 'Reading' (em ordem)
+                .filter((b) => b.status === 'Reading'), // apenas 'Reading')
+            ...[...books].filter((b)=>b.status !== 'Reading')
+        ]
+    } else sortedBooks = books
     const [clickedBook, setClickedBook] = useState<Book | null>(null)
     return (
         <>
             <div className='grid grid-cols-3 md:grid-cols-6 gap-8 justify-items-center'>
-                {books.map((b) => (
-                    <div key={b.id} className='relative hover:scale-110 duration-200 cursor-pointer group' onClick={() => setClickedBook(b)}>
+                {sortedBooks.map((b) => (
+                    <div key={b.id} className={(b.status === 'Reading' ? 'shadow-[0_0_10px_#f4d177,0_0_15px_#f4d177,0_0_35px_#f4d177]' : "") + ' relative hover:scale-110 duration-200 cursor-pointer group'} onClick={() => setClickedBook(b)}>
                         <img className='max-h-48' src={b.image || 'https://cdn.creazilla.com/cliparts/3164704/book-clipart-md.png'} alt={b.title} title={b.status + " ~ " + b.title} />
                         <BookmarkFilledIcon className={
                             (b.status == 'Read' ? 'text-[#02A9F4]' :

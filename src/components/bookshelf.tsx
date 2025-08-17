@@ -17,79 +17,21 @@ type BookShelfProps = {
 }
 
 const Bookshelf = ({ books, handles }: BookShelfProps) => {
-    const [sortBy, setSortBy] = useState<keyof Book | null>(null)
-    const [sortAsc, setSortAsc] = useState(true)
     const [pinReadings, setPinReadings] = useState(false)
-    const [grid, setGrid] = useState(true)
-
-    const handleSort = (key: keyof Book) => {
-        if (sortBy === key) {
-            setSortAsc(!sortAsc)
-        } else {
-            setSortBy(key)
-            setSortAsc(true)
-        }
-    }
-
-    let sortedBooks: Book[] = []
-    if (pinReadings) {
-        sortedBooks = [
-            ...[...books] // espalha livros e pega apenas os 'Reading' (em ordem)
-                .filter((b) => b.status === 'Reading') // apenas 'Reading'
-                .sort((a, b) => {
-                    if (!sortBy) return 0
-                    const aValue = a[sortBy] ?? ''
-                    const bValue = b[sortBy] ?? ''
-                    if (typeof aValue === 'number' && typeof bValue === 'number') {
-                        return sortAsc ? aValue - bValue : bValue - aValue
-                    }
-                    return sortAsc
-                        ? aValue.toString().localeCompare(bValue.toString())
-                        : bValue.toString().localeCompare(aValue.toString())
-                })
-        ]
-    }
-    sortedBooks = [ // cria um array com os livros reorganizados juntando os elementos espalhados
-        ...sortedBooks,
-        ...[...books] // cria um array cópia dos livros (espalhando-os), faz os procedimentos e espalha seus elementos
-            .filter((b) => pinReadings ? b.status !== 'Reading' : b.status) // sem ser 'Reading'
-            .sort((a, b) => {
-                if (!sortBy) return 0
-                const aValue = a[sortBy] ?? ''
-                const bValue = b[sortBy] ?? ''
-                if (typeof aValue === 'number' && typeof bValue === 'number') {
-                    return sortAsc ? aValue - bValue : bValue - aValue
-                }
-                return sortAsc
-                    ? aValue.toString().localeCompare(bValue.toString())
-                    : bValue.toString().localeCompare(aValue.toString())
-            })
-    ]
+    const [grid, setGrid] = useState(false)
 
     return (
         <main className='p-12 text-slate-800'>
             <div className='fixed bottom-8 right-3 flex flex-col gap-2 items-center justify-center'>
-                <Button className='opacity-50 hover:opacity-100 z-2 cursor-pointer duration-200 p-0 hover:bg-transparent' variant={'ghost'} onClick={() => setGrid(false)}>
+                <Button className='opacity-50 hover:opacity-100 z-2 cursor-pointer duration-200 p-0 hover:bg-transparent' variant={'ghost'} onClick={() => setGrid((prev) => !prev)}>
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <span>
-                                <RowsIcon />
+                                {!grid ? <ViewGridIcon className='!w-5 !h-5' /> : <RowsIcon className='!w-5 !h-5' />}
                             </span>
                         </TooltipTrigger>
                         <TooltipContent>
-                            View rows
-                        </TooltipContent>
-                    </Tooltip>
-                </Button>
-                <Button className='opacity-50 hover:opacity-100 z-2 cursor-pointer duration-200 p-0 hover:bg-transparent' variant={'ghost'} onClick={() => setGrid(true)}>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <span>
-                                <ViewGridIcon />
-                            </span>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                            View grid
+                            {!grid ? 'View grid' : 'View rows'}
                         </TooltipContent>
                     </Tooltip>
                 </Button>
@@ -107,7 +49,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                 </Button>
             </div>
             <h1 className='text-center mb-12 text-3xl font-bold'>My BookShelf</h1>
-            {grid ? <GridBooks books={books} handles={handles}/> : <TableBook books={books} handles={handles}/>}
+            {grid ? <GridBooks books={books} handles={handles} pinReadings={pinReadings} /> : <TableBook books={books} handles={handles} pinReadings={pinReadings} />}
         </main >
     )
 }

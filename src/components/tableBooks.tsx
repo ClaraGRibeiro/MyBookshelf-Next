@@ -14,12 +14,12 @@ import { Handles } from '@/types/handles'
 type TableBooksProps = {
     books: Book[]
     handles: Handles
+    pinReadings: Boolean
 }
 
-const TableBook = ({ books, handles }: TableBooksProps) => {
+const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
     const [sortBy, setSortBy] = useState<keyof Book | null>(null)
     const [sortAsc, setSortAsc] = useState(true)
-    const [pinReadings, setPinReadings] = useState(false)
 
     const handleSort = (key: keyof Book) => {
         if (sortBy === key) {
