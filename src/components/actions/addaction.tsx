@@ -52,6 +52,7 @@ const AddAction = ({ books, onAdd }: AddActionProps) => {
                             gotDate: data.get('gotDate')?.toString(),
                             readDate: data.get('readDate')?.toString(),
                             price: Number(data.get('price')),
+                            image: data.get('image')?.toString().trim() || '',
                             mode: (data.get('mode')?.toString() as Book['mode']) || 'Book',
                             status: (data.get('status')?.toString() as Book['status']) || 'Unread',
                         }
@@ -68,25 +69,28 @@ const AddAction = ({ books, onAdd }: AddActionProps) => {
                     </DialogHeader>
                     <div className='grid gap-4 py-4'>
                         <div className='grid gap-3'>
-                            <Input type='text' name='title' placeholder='Book Title' required />
+                            <Input type='text' name='title' placeholder='Book Title *' required />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='text' name='author' placeholder='Author Name' required />
+                            <Input type='text' name='author' placeholder='Author Name *' required />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='text' name='publisher' placeholder='Publisher Name' />
+                            <Input type='text' name='publisher' placeholder='Publisher Name (optional)' />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='number' min={0} step={1} name='pages' placeholder='Pages' />
+                            <Input type='number' min={0} step={1} name='pages' placeholder='Pages (optional)' />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='text' name='gotDate' placeholder='Got Date' />
+                            <Input type='text' name='gotDate' placeholder='Got Date (optional)' />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='text' name='readDate' placeholder='Read Date' />
+                            <Input type='text' name='readDate' placeholder='Read Date (optional)' />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='number' min={0} step={0.01} name='price' placeholder='Price' />
+                            <Input type='number' min={0} step={0.01} name='price' placeholder='Price (optional)' />
+                        </div>
+                        <div className='grid gap-3'>
+                            <Input type='text' name='image' placeholder='Image url (optional)' />
                         </div>
                         <div className='grid gap-3'>
                             <Select name='mode'>

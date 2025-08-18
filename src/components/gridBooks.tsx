@@ -35,15 +35,15 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
     
     return (
         <>
-            <div className='grid grid-cols-2 md:grid-cols-6 gap-8 justify-items-center'>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center'>
                 {sortedBooks.map((b) => (
-                    <div key={b.id} className={(b.status === 'Reading' ? 'shadow-[0_0_10px_#f4d177,0_0_15px_#f4d177,0_0_35px_#f4d177]' : "") + ' relative hover:scale-110 duration-200 cursor-pointer group'} onClick={() => handleClicked(b.id)}>
-                        <img className='max-h-48' src={b.image || 'nocoverbook.png'} alt={b.title} title={b.status + " ~ " + b.title} />
+                    <div key={b.id} className={(b.status === 'Reading' && 'shadow-[0_0_10px_#f4d177,0_0_15px_#f4d177,0_0_35px_#f4d177]') + ' aspect-[2/3] relative hover:scale-110 duration-200 cursor-pointer group'} onClick={() => handleClicked(b.id)}>
+                        <img className='w-full h-full object-cover' src={b.image || 'nobookcover.png'} alt={b.title} title={b.status + " ~ " + b.title} />
                         <BookmarkFilledIcon className={
                             (b.status == 'Read' ? 'text-[#02A9F4]' :
                                 b.status == 'Unread' ? 'text-[#FF6666]' :
-                                    'text-[#FBAC0F]') + ' absolute top-0 right-0 p-0 m-0 opacity-60 duration-200 h-8 w-8 group-hover:opacity-100'} />
-                        {!b.image && <span className='absolute transform top-1/2 -translate-y-1/2 overflow-hidden text-center p-6 break-words w-[90%] max-h-[90%] select-none'>{b.title}</span>}
+                                    'text-[#FBAC0F]') + ' absolute top-0 right-0 p-0 m-0 duration-200 h-8 w-8 group-hover:opacity-100'} />
+                        {!b.image && <span className='absolute transform top-1/3 -translate-y-1/3 right-1/2 translate-x-105/200 text-center line-clamp-2 w-[80%] max-h-[90%] select-none text-xl font-bold text-white'>{b.title}</span>}
                     </div>
                 ))}
                 {clickedBook && <SeeAction noButtonMode={true} book={clickedBook} handles={handles} />}

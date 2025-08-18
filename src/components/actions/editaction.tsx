@@ -54,6 +54,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                             gotDate: data.get('gotDate')?.toString() || book.gotDate,
                             readDate: data.get('readDate')?.toString() || book.readDate,
                             price: Number(data.get('price')) || book.price,
+                            image: data.has('image') ? data.get('image')?.toString() : book.image,
                             mode: (data.get('mode')?.toString() as Book['mode']) || book.mode,
                             status: (data.get('status')?.toString() as Book['status']) || book.status,
                         }
@@ -69,25 +70,28 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                     </DialogHeader>
                     <div className='grid gap-4 py-4 text-slate-600'>
                         <div className='grid gap-3'>
-                            <Input type='text' name='title' placeholder='Book Title' defaultValue={book.title} />
+                            <Input type='text' name='title' placeholder='Book Title *' defaultValue={book.title} />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='text' name='author' placeholder='Author Name' defaultValue={book.author} />
+                            <Input type='text' name='author' placeholder='Author Name *' defaultValue={book.author} />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='text' name='publisher' placeholder='Publisher Name' defaultValue={book.publisher} />
+                            <Input type='text' name='publisher' placeholder='Publisher Name (optional)' defaultValue={book.publisher} />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='number' min={0} step={1} name='pages' placeholder='Pages' defaultValue={book.pages} />
+                            <Input type='number' min={0} step={1} name='pages' placeholder='Pages (optional)' defaultValue={book.pages} />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='text' name='gotDate' placeholder='Got Date' defaultValue={book.gotDate} />
+                            <Input type='text' name='gotDate' placeholder='Got Date (optional)' defaultValue={book.gotDate} />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='text' name='readDate' placeholder='Read Date' defaultValue={book.readDate} />
+                            <Input type='text' name='readDate' placeholder='Read Date (optional)' defaultValue={book.readDate} />
                         </div>
                         <div className='grid gap-3'>
-                            <Input type='number' min={0} step={0.01} name='price' placeholder='Price' defaultValue={book.price} />
+                            <Input type='number' min={0} step={0.01} name='price' placeholder='Price (optional)' defaultValue={book.price} />
+                        </div>
+                        <div className='grid gap-3'>
+                            <Input type='text' name='image' placeholder='Image url (optional)' defaultValue={book.image} />
                         </div>
                         <div className='grid gap-3'>
                             <Select name='mode' value={mode} onValueChange={(value) => setMode(value as Book['mode'])}>

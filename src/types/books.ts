@@ -7,7 +7,7 @@ export type Book = {
     gotDate?: string
     readDate?: string
     price?: number
+    image?: string
     mode: 'Book' | 'PDF'
     status: 'Reading' | 'Read' | 'Unread'
-    image?: string
 }

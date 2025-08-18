@@ -22,11 +22,11 @@ type SeeActionProps = {
 const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
     const [open, setOpen] = useState(noButtonMode)
     useEffect(() => {
-        if(noButtonMode && book) setOpen(true)
+        if (noButtonMode && book) setOpen(true)
     }, [noButtonMode, book])
     return (
         <Dialog open={open} onOpenChange={setOpen}>
-            {!noButtonMode &&   
+            {!noButtonMode &&
                 (<DialogTrigger asChild>
                     <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-800 group !duration-400'>
                         <Tooltip>
@@ -64,7 +64,11 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
                                 'bg-[#f4d177] text-slate-800')
                         + ' text-sm text-slate-100 rounded-3xl px-2 py-1 select-none'
                     }>{book.status}</span></p>
-                    <img src={book.image} alt='' className='absolute h-36 md:h-48 m-auto right-0 bottom-0' />
+                    {book.image &&
+                        (<div className='aspect-[2/3] absolute h-52 m-auto right-0 bottom-0'>
+                            <img src={book.image} alt='' className='w-full h-full object-cover' />
+                        </div>)
+                    }
                 </div>
 
                 <DialogFooter className='flex flex-row w-full justify-end'>
