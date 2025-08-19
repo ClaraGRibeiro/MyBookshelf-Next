@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { DrawingPinIcon, DrawingPinFilledIcon, ViewGridIcon, ListBulletIcon } from '@radix-ui/react-icons'
 import { Handles } from '@/types/handles'
 import GridBooks from './gridBooks'
+import Chart from './chart'
 
 type BookShelfProps = {
     books: Book[]
@@ -25,6 +26,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
     const spent = books.reduce((acc, b) => acc + (b.price || 0), 0)
     const yearNow = new Date().getFullYear()
     const monthNow = new Date().getMonth() + 1
+
     const readingsY = books.filter((b) => b.readDate?.split('/')[2] === yearNow.toString()).length
     const readingsM = books.filter((b) => b.readDate?.split('/')[2] === yearNow.toString() && Number(b.readDate.split('/')[1]) === monthNow).length
 
@@ -56,14 +58,13 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                     </Tooltip>
                 </Button>
             </div>
-            <h1 className='text-center text-3xl mb-12 font-bold'>My BookShelf</h1>
+            <h1 className='text-center text-3xl mb-6 font-bold'>My BookShelf</h1>
+            <div className="flex flex-wrap gap-12 justify-center mb-14">
+                <Chart value={numBooksRead} total={books.length} label="Readings" colors={["#006AB3", "#cad5e2"]} />
+                <Chart value={readingsY} total={numBooksRead} label={'In ' + yearNow} colors={["#E63431", "#cad5e2"]} />
+                <Chart value={readingsM} total={readingsY} label={'In ' + new Date().toLocaleString('en-US', { month: 'long' })} colors={["#FBAC0F", "#cad5e2"]} />
+            </div>
             {grid ? <GridBooks books={books} handles={handles} pinReadings={pinReadings} /> : <TableBook books={books} handles={handles} pinReadings={pinReadings} />}
-            <p className='text-center text-xl mt-12'>
-                {pagesRead} / {totalPages} pages ({(pagesRead * 100 / totalPages).toFixed(0)}%)
-                ~ {numBooksRead} / {books.length} read books ({(numBooksRead * 100 / books.length).toFixed(0)}%)
-                ~ {readingsY} this year ({readingsM} this month)
-                ~ R$ {spent} (R$ {(spent / totalPages).toFixed(2)} per page)
-            </p>
         </main >
     )
 }
