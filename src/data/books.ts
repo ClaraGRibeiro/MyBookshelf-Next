@@ -82,7 +82,7 @@ export const books: Book[] = [
         mode: 'PDF',
         status: 'Read',
         // image: '',
-        // link: 'https://www.amazon.com.br/',
+        // link: '',
     },
     {
         id: 7,
@@ -96,7 +96,7 @@ export const books: Book[] = [
         mode: 'PDF',
         status: 'Read',
         // image: '',
-        // link: 'https://www.amazon.com.br/',
+        // link: '',
     },
     {
         id: 8,
@@ -194,7 +194,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://books.google.com.br/books/publisher/content?id=hT1VCgAAQBAJ&hl=pt-BR&pg=PP1&img=1&zoom=3&bul=1&sig=ACfU3U12LJ6te5K0m9g78NsGruiZlBHGdg&w=1280',
-        // link: 'https://www.amazon.com.br/',
+        // link: '',
     },
     {
         id: 15,
@@ -292,7 +292,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://http2.mlstatic.com/D_NQ_NP_789326-MLU77448558013_072024-O.webp',
-        // link: 'https://www.amazon.com.br/',
+        // link: '',
     },
     {
         id: 22,
@@ -306,7 +306,7 @@ export const books: Book[] = [
         mode: 'PDF',
         status: 'Read',
         // image: '',
-        // link: 'https://www.amazon.com.br/',
+        // link: '',
     },
     {
         id: 23,
@@ -334,7 +334,7 @@ export const books: Book[] = [
         mode: 'PDF',
         status: 'Read',
         // image: '',
-        // link: 'https://www.amazon.com.br/',
+        // link: '',
     },
     {
         id: 25,

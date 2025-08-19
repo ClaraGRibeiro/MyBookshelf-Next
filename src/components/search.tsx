@@ -79,10 +79,10 @@ const Search = ({ books, handles }: SearchProps) => {
                     <div className='absolute w-full top-full w-screcth z-1 max-h-32 overflow-y-auto bg-slate-600 text-slate-100 text-sm'>
                         {foundBooks.length > 0 ? ( // if books were find, show them
                             foundBooks.map((b) => (
-                                <p className='border border-b border-slate-800 hover:bg-slate-800 p-2 hover:cursor-pointer' key={b.id} onClick={() => handleSelectBook(b.id)}>{b.title}</p>
+                                <p className='border border-b border-slate-800 hover:bg-slate-800 active:bg-slate-800 p-2 hover:cursor-pointer active:cursor-pointer' key={b.id} onClick={() => handleSelectBook(b.id)}>{b.title}</p>
                             ))
                         ) : ( // if no books were find, show a message
-                            <p className='border border-b border-slate-800 hover:bg-slate-800 p-2 select-none cursor-not-allowed' onClick={() => handleSelectBook(null)}>No books found</p>
+                            <p className='border border-b border-slate-800 hover:bg-slate-800 active:bg-slate-800 p-2 select-none cursor-not-allowed' onClick={() => handleSelectBook(null)}>No books found</p>
                         )}
                     </div>
                 )}

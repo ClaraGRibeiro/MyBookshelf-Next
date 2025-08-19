@@ -16,18 +16,19 @@ import { Handles } from '@/types/handles'
 type AddActionProps = {
     books: Book[]
     onAdd: Handles['onAdd']
+    style?: string
 }
 
-const AddAction = ({ books, onAdd }: AddActionProps) => {
+const AddAction = ({ books, onAdd, style = '' }: AddActionProps) => {
     const [open, setOpen] = useState(false)
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-100 hover:text-slate-800 !duration-400'>
+                <Button variant='ghost' className={(`${style === 'grid' ? 'hover:bg-slate-800 active:bg-slate-800 hover:text-slate-100 active:text-slate-100 !px-2 !py-8' : 'hover:bg-slate-100 active:bg-slate-100 hover:text-slate-800 active:text-slate-800 !p-2'} ${style === 'dark' ? 'hover:bg-slate-800 active:bg-slate-800 hover:text-slate-100 active:text-slate-100' : ''}`) + ' cursor-pointer !duration-400'}>
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <span>
-                                <PlusCircledIcon className='cursor-pointer !w-6 !h-6' />
+                                <PlusCircledIcon className={(style === "grid" ? '!w-12 !h-12' : '!w-6 !h-6') + ' cursor-pointer'} />
                             </span>
                         </TooltipTrigger>
                         <TooltipContent>

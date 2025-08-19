@@ -26,10 +26,10 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-800 group !duration-400'>
+                <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-800 active:bg-slate-800 group !duration-400'>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <span className='text-slate-600 group-hover:text-slate-100'>
+                            <span className='text-slate-600 group-hover:text-slate-100 group-active:text-slate-100'>
                                 <Pencil2Icon className='!w-5 !h-5' />
                             </span>
                         </TooltipTrigger>
@@ -110,7 +110,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                             <Button variant='outline' className='cursor-pointer'>Cancel</Button>
                         </DialogClose>
                         <DialogClose asChild>
-                            <Button type='submit' className='cursor-pointer !bg-slate-600 text-slate-100 hover:!bg-slate-800'>Save changes</Button>
+                            <Button type='submit' className='cursor-pointer !bg-slate-600 text-slate-100 hover:!bg-slate-800 active:!bg-slate-800'>Save changes</Button>
                         </DialogClose>
                     </DialogFooter>
                 </form>

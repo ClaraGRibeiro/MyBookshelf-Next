@@ -20,10 +20,10 @@ const DeleteAction = ({ book, onDelete, closeModal }: DeleteActionProps) => {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button variant='ghost' className='p-2 cursor-pointer hover:bg-[#E63431] group !duration-400'>
+                <Button variant='ghost' className='p-2 cursor-pointer hover:bg-[#E63431] active:bg-[#E63431] group !duration-400'>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <span className='text-[#FF6666] group-hover:text-slate-100'>
+                            <span className='text-[#FF6666] group-hover:text-slate-100 group-active:text-slate-100'>
                                 <TrashIcon className='!w-5 !h-5' />
                             </span>
                         </TooltipTrigger>
@@ -45,7 +45,7 @@ const DeleteAction = ({ book, onDelete, closeModal }: DeleteActionProps) => {
                         <Button variant='outline' className='cursor-pointer text-slate-800'>Cancel</Button>
                     </DialogClose>
                     <DialogClose asChild>
-                        <Button variant='destructive' className='cursor-pointer text-slate-100 bg-[#FF6666] !duration-400 hover:bg-[#E63431]' onClick={() => {
+                        <Button variant='destructive' className='cursor-pointer text-slate-100 bg-[#FF6666] !duration-400 hover:bg-[#E63431] active:bg-[#E63431]' onClick={() => {
                             onDelete(book.id)
                             closeModal && closeModal()
                         }}>Delete</Button>

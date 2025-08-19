@@ -86,50 +86,50 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
 
     return (
         <Table className='text-lg'>
-            <TableCaption><AddAction books={books} onAdd={handles.onAdd} /></TableCaption>
+            <TableCaption><AddAction books={books} onAdd={handles.onAdd} style='dark' /></TableCaption>
             <TableHeader>
                 <TableRow className='text-base'>
-                    <TableHead onClick={() => handleSort('title')} className='text-slate-600 cursor-pointer hover:text-slate-800 group sm:max-w-36'>
+                    <TableHead onClick={() => handleSort('title')} className='text-slate-600 cursor-pointer hover:text-slate-800 active:text-slate-800 group sm:max-w-36'>
                         <span className='flex items-center flex-row gap-1'>
                             Book Title
-                            <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
                         </span>
                     </TableHead>
-                    <TableHead onClick={() => handleSort('author')} className='text-slate-600 cursor-pointer hover:text-slate-800 group sm:max-w-36'>
+                    <TableHead onClick={() => handleSort('author')} className='text-slate-600 cursor-pointer hover:text-slate-800 active:text-slate-800 group sm:max-w-36'>
                         <span className='flex items-center flex-row gap-1'>
                             Author
-                            <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
                         </span>
                     </TableHead>
-                    <TableHead onClick={() => handleSort('publisher')} className='text-slate-600 cursor-pointer hover:text-slate-800 group sm:max-w-26'>
+                    <TableHead onClick={() => handleSort('publisher')} className='text-slate-600 cursor-pointer hover:text-slate-800 active:text-slate-800 group sm:max-w-26'>
                         <span className='flex items-center flex-row gap-1'>
                             Publisher
-                            <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
                         </span>
                     </TableHead>
-                    <TableHead onClick={() => handleSort('pages')} className='text-slate-600 cursor-pointer text-center hover:text-slate-800 group sm:max-w-24'>
+                    <TableHead onClick={() => handleSort('pages')} className='text-slate-600 cursor-pointer text-center hover:text-slate-800 active:text-slate-800 group sm:max-w-24'>
                         <span className='flex items-center justify-center flex-row gap-1'>
                             Pages
-                            <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
                         </span>
                     </TableHead>
-                    <TableHead onClick={() => handleSort('price')} className='text-slate-600 cursor-pointer text-center hover:text-slate-800 group sm:max-w-24'>
+                    <TableHead onClick={() => handleSort('price')} className='text-slate-600 cursor-pointer text-center hover:text-slate-800 active:text-slate-800 group sm:max-w-24'>
                         <span className='flex items-center justify-center flex-row gap-1'>
                             Price
-                            <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
                         </span>
                     </TableHead>
-                    <TableHead onClick={() => handleSort('status')} className='text-slate-600 cursor-pointer text-center hover:text-slate-800 group w-24'>
+                    <TableHead onClick={() => handleSort('status')} className='text-slate-600 cursor-pointer text-center hover:text-slate-800 active:text-slate-800 group w-24'>
                         <span className='flex items-center justify-center flex-row gap-1'>
                             Status
-                            <CaretSortIcon className='inline group-hover:scale-130 duration-200' />
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
                         </span>
                     </TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
                 {sortedBooks.map((b) => (
-                    <TableRow key={b.id} className={`${b.status === 'Reading' && 'bg-slate-200 hover:bg-slate-300'} ${b.link && ' cursor-pointer'}`} onClick={() => b.link && window.open(b.link, '_blank')}>
+                    <TableRow key={b.id} className={b.status === 'Reading' ? 'bg-slate-200 hover:bg-slate-300 active:bg-slate-300' : ''}>
                         <TableCell className='whitespace-nowrap overflow-hidden truncate max-w-36'>{b.title}</TableCell>
                         <TableCell className='whitespace-nowrap overflow-hidden truncate max-w-36'>{b.author}</TableCell>
                         <TableCell className='whitespace-nowrap overflow-hidden truncate max-w-26'>{b.publisher ?? '-'}</TableCell>
@@ -139,9 +139,9 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
                             <span
                                 onClick={() => toggleStatus(b)}
                                 className={
-                                    (b.status == 'Read' ? 'bg-[#02A9F4] hover:bg-[#006AB3]' :
-                                        b.status == 'Unread' ? 'bg-[#FF6666] hover:bg-[#E63431]' :
-                                            'bg-[#f4d177] text-slate-800 hover:bg-[#FBAC0F] hover:text-slate-100')
+                                    (b.status == 'Read' ? 'bg-[#02A9F4] hover:bg-[#006AB3] active:bg-[#006AB3]' :
+                                        b.status == 'Unread' ? 'bg-[#FF6666] hover:bg-[#E63431] active:bg-[#E63431]' :
+                                            'bg-[#f4d177] text-slate-800 hover:bg-[#FBAC0F] active:bg-[#FBAC0F] hover:text-slate-100 active:text-slate-100')
                                     + ' text-sm text-slate-100 rounded-3xl px-2 py-1 cursor-pointer flex justify-center items-center gap-2 duration-200 select-none'
                                 }
                             >

@@ -14,14 +14,14 @@ type LinkActionProps = {
 
 const LinkAction = ({ bookLink }: LinkActionProps) => {
     return (
-        <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-800 group !duration-400'>
+        <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-800 active:bg-slate-800 group !duration-400'>
             <Tooltip>
                 <TooltipTrigger asChild>
                     <a 
                         href={bookLink} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className='text-slate-600 group-hover:text-slate-100 flex items-center'
+                        className='text-slate-600 group-hover:text-slate-100 group-active:text-slate-100 flex items-center'
                     >
                         <OpenInNewWindowIcon className='!w-5 !h-5' />
                     </a>

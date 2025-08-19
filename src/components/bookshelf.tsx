@@ -31,7 +31,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
     return (
         <main className='p-12 text-slate-800'>
             <div className='fixed bottom-8 right-3 flex flex-col gap-2 items-center justify-center'>
-                <Button className='opacity-50 hover:opacity-100 z-2 cursor-pointer duration-200 p-0 hover:bg-transparent' variant={'ghost'} onClick={() => setGrid((prev) => !prev)}>
+                <Button className='opacity-50 hover:opacity-100 active:opacity-100 z-2 cursor-pointer duration-200 p-0 hover:bg-transparent active:bg-transparent' variant={'ghost'} onClick={() => setGrid((prev) => !prev)}>
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <span>
@@ -43,7 +43,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                         </TooltipContent>
                     </Tooltip>
                 </Button>
-                <Button className='opacity-50 hover:opacity-100 z-2 cursor-pointer duration-200 p-0 hover:bg-transparent' variant={'ghost'} onClick={() => setPinReadings((prev) => !prev)}>
+                <Button className='opacity-50 hover:opacity-100 active:opacity-100 z-2 cursor-pointer duration-200 p-0 hover:bg-transparent active:bg-transparent' variant={'ghost'} onClick={() => setPinReadings((prev) => !prev)}>
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <span>

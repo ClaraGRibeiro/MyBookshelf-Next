@@ -33,7 +33,7 @@ const ShuffleAction = ({ books, handles }: ShuffleActionProps) => {
 
     return (
         <>
-            <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-100 focus:bg-slate-100 hover:text-slate-800 focus:text-slate-800 !duration-400' onClick={() => { handleShuffleBook() }}>
+            <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-100 active:bg-slate-100 focus:bg-slate-100 hover:text-slate-800 active:text-slate-800 focus:text-slate-800 !duration-400' onClick={() => { handleShuffleBook() }}>
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <span>
