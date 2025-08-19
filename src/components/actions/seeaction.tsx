@@ -12,6 +12,7 @@ import DeleteAction from './deleteaction'
 import EditAction from './editaction'
 import { useState, useEffect } from 'react'
 import { Handles } from '@/types/handles'
+import LinkAction from './linkaction'
 
 type SeeActionProps = {
     book: Book
@@ -66,12 +67,15 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
                     }>{book.status}</span></p>
                     {book.image &&
                         (<div className='aspect-[2/3] absolute h-52 m-auto right-0 bottom-0'>
-                            <img src={book.image} alt='' className='w-full h-full object-cover' />
+                            <a href={book.link} target="_blank" rel="noopener noreferrer" >
+                                <img src={book.image} alt='' className='w-full h-full object-cover' />
+                            </a>
                         </div>)
                     }
                 </div>
 
                 <DialogFooter className='flex flex-row w-full justify-end'>
+                    <LinkAction bookLink={book.link} />
                     <EditAction book={book} onEdit={handles.onEdit} />
                     <DeleteAction book={book} onDelete={handles.onDelete} closeModal={() => setOpen(false)} />
                 </DialogFooter>

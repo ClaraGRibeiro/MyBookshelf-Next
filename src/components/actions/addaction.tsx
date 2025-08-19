@@ -57,6 +57,7 @@ const AddAction = ({ books, onAdd }: AddActionProps) => {
                                 : '',
                             price: Number(data.get('price')),
                             image: data.get('image')?.toString().trim() || '',
+                            link: data.get('link')?.toString().trim() || '',
                             mode: (data.get('mode')?.toString() as Book['mode']) || 'Book',
                             status: (data.get('status')?.toString() as Book['status']) || data.get('readDate') && 'Read' || 'Unread',
                         }
@@ -86,6 +87,7 @@ const AddAction = ({ books, onAdd }: AddActionProps) => {
                         </div>
                         <Input type='number' min={0} step={0.01} name='price' placeholder='Price (optional)' />
                         <Input type='text' name='image' placeholder='Image url (optional)' />
+                        <Input type='text' name='link' placeholder='Purchase link (optional)' />
                         <Select name='mode'>
                             <SelectTrigger className='w-full'>
                                 <SelectValue placeholder='Mode' />

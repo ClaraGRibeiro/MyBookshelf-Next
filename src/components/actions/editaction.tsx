@@ -55,6 +55,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                             readDate: data.get('readDate')?.toString().split('-').reverse().join('/') || book.readDate,
                             price: Number(data.get('price')) || book.price,
                             image: data.has('image') ? data.get('image')?.toString() : book.image,
+                            link: data.has('link') ? data.get('link')?.toString() : book.link,
                             mode: (data.get('mode')?.toString() as Book['mode']) || book.mode,
                             status: (data.get('status')?.toString() as Book['status']) || book.status,
                         }
@@ -83,6 +84,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                         </div>
                         <Input type='number' min={0} step={0.01} name='price' placeholder='Price (optional)' defaultValue={book.price} />
                         <Input type='text' name='image' placeholder='Image url (optional)' defaultValue={book.image} />
+                        <Input type='text' name='link' placeholder='Purchase link (optional)' defaultValue={book.link} />
                         <Select name='mode' value={mode} onValueChange={(value) => setMode(value as Book['mode'])}>
                             <SelectTrigger className='w-full'>
                                 <SelectValue placeholder='Mode' />

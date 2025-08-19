@@ -13,6 +13,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://m.media-amazon.com/images/I/81eT2pjx4jL._SY425_.jpg',
+        link: 'https://www.amazon.com.br/H%C3%A1bitos-At%C3%B4micos-M%C3%A9todo-Comprovado-Livrar/dp/8550807567/ref=sr_1_4?crid=34131C47M98FQ&dib=eyJ2IjoiMSJ9.DbPSKvMldkQpix9weLrXkpiTdUALe5KqYobW_qJBzuGfOqcF5oc3GtX3HgvYM2y5T_ptdISBiHu_45iwTZqNDRrrxIoUWs7k5XCdOX87ncDd0f7jhWFMnZotq3KTsvZqpCYARKCGF4500d-VonFi-kMBI8ghHM2p0-kq8o0Ew_m6Sxbo5xkwDg5LhC9wK_Qy5CcXWKj2KBF6PAh8FXlvw3_HwEQmaG6q7PZV5BwiI5VOxC2Cuyfciu73qpFiHCWuCmOqs2bttOXE_34Alj-1DaBcfJ8YXolDXI3UhJYe6r0.VOy9DgxssOCs52j1-OyY8SBUUEhJKzWdiDZQjBZA7eQ&dib_tag=se&keywords=habitos+atomicos&qid=1755426077&sprefix=habito%2Caps%2C318&sr=8-4',
     },
     {
         id: 2,
@@ -26,6 +27,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://m.media-amazon.com/images/I/51dFs0+2ZmL._SY445_SX342_.jpg',
+        link: 'https://www.amazon.com.br/umdiasemreclamar-Descubra-gratid%C3%A3o-pode-mudar/dp/6587885047/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=R1LXQ3TIDKWG&dib=eyJ2IjoiMSJ9.emcZCJuxPkT99fZT48UZp8rsClMwkUkGg1fTs1bcTBLDcnl9RS8bad9rMgUfhCc7pjfdFo3oHkWHlnACOHKzWOWh1w6b8ZjHVeiBhIcQh2wUdYAsYjicK4Tf8PY9vttSPnPZUkPWQ_LQY_MZlhkCcZQ3_IXYBlBAYKGBOOsNfBIyOJApfGZSZ2ZlmpjydWoqnA1jvi5sPtARlvySKkBma62ipLSdm0ggc3D_L6PGEj2akF8G50bYGnCtwROBwIMmEx15OSU5LLTw4R8q3BHxct8k8kHeaBllF6K-gvt4U4o.FVSMmzyWnwFteEKTsEuTWRlEBD_ZbR_9wQ7RhGJMEpI&dib_tag=se&keywords=um+dia+sem&qid=1755426129&sprefix=um+dia+%2Caps%2C290&sr=8-1',
     },
     {
         id: 3,
@@ -39,6 +41,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://m.media-amazon.com/images/I/515ytu+Z2nL._SY342_.jpg',
+        link: 'https://www.amazon.com.br/Pequeno-Pr%C3%ADncipe-Vers%C3%A3o-Filme/dp/8522032092/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2ZM2IGQ3IUVH6&dib=eyJ2IjoiMSJ9.rpBOB3YZ6V1shzv-gAqXu9tjpbRTzjcSwGPAnADMwqWL0JFxSdSwu3GrKkaKF-P-mQKIKX7YGgoadOyevI3bUkD6_Fn9ybTAVnngbGMDO1TaZYn06-mNSZW8IfZWwWunZWhgOK5RXyq5W7BSQHGbQcYyn9lGsELdCSpaXFyvNzdBXeOcbxQvKYJ9ayx6QjKm5shx5m-drMBqwIfGNdmNJDLfH7_YoAQk9Ci8XS0EqDapiNlqcUeFFNtLnkdrTalu32P2QiPYSB6h5AEnqmFjq4rgynlVVmqG3mKl405ltdI.xUA757qgAjPgJLba7oL7Yx97DD_1E5ONl2v2Xlee2Os&dib_tag=se&keywords=pequeno+principe+livro+do+filme&qid=1755426237&sprefix=pequeno+principe+livro+do+fil%2Caps%2C282&sr=8-1',
     },
     {
         id: 4,
@@ -52,6 +55,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Unread',
         image: 'https://m.media-amazon.com/images/I/51AHB+f-0DL._SY445_SX342_.jpg',
+        link: 'https://www.amazon.com.br/Orgulho-Preconceito-especial-marcador-p%C3%A1ginas/dp/6587817149/ref=sr_1_4?crid=2YX83IX74A8AW&dib=eyJ2IjoiMSJ9.k3VedPu1TVYLJ2UY1qUdpqIm6rUjabinPsWbj1e09RXo4_94TGC3TwFP2_c8AAqF6pcZu0nBumF_OZ8b0Fud2rYck_TJTuVrlLItCrx0liepD4nCcDv8hpRJ8bn7SBfCEkAzis9vriMvOYvE6wp5dZ62DIazNQKB-FAb_7JW35tyLVu82CrAwJPT5vVhMNkNclbE-vawJWdbyKl68eCa3tCiRVuidcxRQW7sJkYYuG9l4Npjv6_ZN8FCajfsA7FWioyJAmSPtrXaKZlfydWfuCBpKdBinNaU23m_7voHJIs.NCmqkJRvtEF90YJHHDdmLVZxsIplQCIyzqITHQhmyR0&dib_tag=se&keywords=orgulho+e+preconceito&qid=1755426372&sprefix=orgulho%2Caps%2C415&sr=8-4',
     },
     {
         id: 5,
@@ -65,6 +69,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://m.media-amazon.com/images/I/81eOYoxFp4L._SY425_.jpg',
+        link: 'https://www.amazon.com.br/Nunca-hora-parar-desenvolva-inexplorado/dp/6555647299/ref=sr_1_2?crid=26QKMCPEKHCLR&dib=eyJ2IjoiMSJ9.o4ILeq4hspT2Wixim9HsFyrqOo5FClduQ7n4iuqYHikEODJf0adFKMFfnXQRZZRZXK6iyvkWYIqZtRe7PiBUCrMN8f9oJmCtnE43IQAA7832Zn5XQp6eI_rDRTIZmG-F7HGllaWKmsmI_3Y41WH77cnnHqLnS5NEwpPbNvVQicxBd1KDF94z2Fka92pD2bFkq98hnhUJx9t5NwegLw8QGUmyDS6ERnfAeTBSHVjT-i-_qjy0bPjvw88YsAdrEGpyeb2u8arLGBSRbwo5KZEt1aAjl2D8TJ9zDNkYmjU6EDs.8KIPL1aFnltXlX7mMSnyrwGB3g5AZpyeNA85KGfv5Bg&dib_tag=se&keywords=nunca+%C3%A9+hora+de+parar&qid=1755426399&sprefix=nunca+%C3%A9+ho%2Caps%2C297&sr=8-2&ufe=app_do%3Aamzn1.fos.6d798eae-cadf-45de-946a-f477d47705b9',
     },
     {
         id: 6,
@@ -78,6 +83,7 @@ export const books: Book[] = [
         mode: 'PDF',
         status: 'Read',
         // image: '',
+        link: 'https://www.amazon.com.br/',
     },
     {
         id: 7,
@@ -91,6 +97,7 @@ export const books: Book[] = [
         mode: 'PDF',
         status: 'Read',
         // image: '',
+        link: 'https://www.amazon.com.br/',
     },
     {
         id: 8,
@@ -104,6 +111,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Unread',
         image: 'https://m.media-amazon.com/images/I/41Jxt+ZGIdL._SY445_SX342_.jpg',
+        link: 'https://www.amazon.com.br/monge-executivo-James-C-Hunter/dp/8575421026/ref=sr_1_1_sspa?crid=1QTCK1XC71VU9&dib=eyJ2IjoiMSJ9.5gNme2UYKRtwsab7jhF2F9dB4DQxUlsA7Ke2Ea8Ojayz43Mlax5Srt3ftoNXF6BwZn5FX5khv7wjSUDsn3Mg9A1YREdtDRBre6mGPfiQntbwe9gEK94EoZ8ncjNmdkcwVzEZ7vNhPARhCKYLXZhLR_gjPfaWIUopjyZfhFgtcr2NQcKKH1Jcx_gzrZU1qtz_x22Iema3hREBRz866Z3lgpBK9YMTxxRNwCAQ-Sspz02NseqogDM51zKdsskCrFvK3QqmaMH8XncvfZhPuXozr3vUT1uPXzxJ85wkzGku3y0.46ESjQnDLGTH3byjJ2l_gfRJ3FKSrBO_AyjL0PgX-OI&dib_tag=se&keywords=o+monge+e+o+executivo&qid=1755426444&sprefix=o+mon%2Caps%2C306&sr=8-1-spons&sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&psc=1',
     },
     {
         id: 9,
@@ -117,6 +125,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Unread',
         image: 'https://m.media-amazon.com/images/I/51sz0nn7u9L._SY445_SX342_.jpg',
+        link: 'https://www.amazon.com.br/morro-dos-ventos-uivantes/dp/8594318235/ref=sr_1_2?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=27IZC4L9A0PDO&dib=eyJ2IjoiMSJ9.u-gOrAnu038aveNu7MEkirytoHkU5EF8YEMEWkCrhCI5qMaP3IbNHNqVCnQF0ERJlHZO8mnewst9trzg17MvDdAIu8iUzbjAeRIeJBrWiaJ_setJvQlSCpWdOg9Q58fHz_MsNMNTS8winNRWhyhLpx93DyCS2X8KqGXGcLLH-UHBrMzdtSGePCLboY8eR-Gnu155fqKwxN5JeIwMTgi3UaaUJFguciSxP8TI-7LOuD5LVUBMQFwDJw9Lr_oYFsxKf9yMelnFMVYRSdlAVyx3YJWUpZ7gjiRKChq9N1EaqAA.f8ZSAerpmsQWEjKHoDl02LYIJ-UMzWD5eqr5NV_HAkw&dib_tag=se&keywords=o+morro+dos+ventos+uivantes&qid=1755426474&sprefix=o+morro+dos%2Caps%2C304&sr=8-2',
     },
     {
         id: 10,
@@ -130,6 +139,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Unread',
         image: 'https://m.media-amazon.com/images/I/41IzshO6ddL._SY445_SX342_.jpg',
+        link: 'https://www.amazon.com.br/Melancia-Marian-Keyes-ebook/dp/B07817MSNG/ref=sr_1_5?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=CQKO2V81DB7H&dib=eyJ2IjoiMSJ9.ym6bD9jTmd4886TlTcOLOPxD_bcF6pnKoIx59feLFxe0cjR4IIyI4DGbK5lKi7y8HcbBqmQyBIuRNGBGEdDNub6XYQlZuw5xKsQMRHPZCXOE3KWqF0V-zjhwOEs_OD1fDihwIM6yhdWZR-Kj7Pbdk1zqTGVVdInzZEmuR12WRPqR0-NOmUqGyri2GwKABpzd1bP_57IIqBxgoGtzf9Cvw2bGEmy_KPpjt1Nr9ln694iynYWn10SbXVUFPMqtMpGiu5M6ypVValNZYA3igZUBwLOvwOrWTCeJwV2yLMsZwMs.vVZu4lLc6cyq1Dwl5dLPrMXHCFQDZOk2VAIzunQffJ4&dib_tag=se&keywords=melancia&qid=1755426495&sprefix=melanci%2Caps%2C301&sr=8-5',
     },
     {
         id: 11,
@@ -143,6 +153,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://m.media-amazon.com/images/I/51u7LhO6iWL._SY466_.jpg',
+        link: 'https://www.amazon.com.br/Vantagens-Ser-Invis%C3%ADvel-Stephen-Chbosky/dp/9892342798/ref=sr_1_6?crid=2VEDNMJB6RDNT&dib=eyJ2IjoiMSJ9.UA9bJrZUvOUnSY4qNruznfbvw6ybfEtJUaJL81WelDKGc_n9Ijwh_DLgIBRCtYkvhS8oEiGGNVCF3BmqecmosAN6wQFzDIGIRSlUUFYdZ8V8GMgEQPrSAXH7F78ik5DMvX3eXvFInVbqmPURLlNBnW6CXmkSSRtR9nLcGqk9YTpA8HLj8BiozWJ7zKkO59PHS54P_ZjAxRT-PptH9n5l46f_NXc2J3hTFaS7m4iO0a9uNVr-TgUF6kHevZi-e1jogcRi3VklwXJMwTV5a7Gbqusq3frrr7YbemFbZ4hDEV8.p7uSPCO1Pv1hZTrX9PWPWSDPwZLElXRMt5HhaV-LCzs&dib_tag=se&keywords=as+vantagens+de+ser+invisivel+livro&qid=1755568785&sprefix=as+vant%2Caps%2C291&sr=8-6&ufe=app_do%3Aamzn1.fos.a492fd4a-f54d-4e8d-8c31-35e0a04ce61e',
     },
     {
         id: 12,
@@ -156,6 +167,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://m.media-amazon.com/images/I/41yVUV8vrOL._SY445_SX342_.jpg',
+        link: 'https://www.amazon.com.br/Nada-pode-ferir-David-Goggins/dp/6555646136/ref=sr_1_2?crid=QXNTO5TEIY12&dib=eyJ2IjoiMSJ9.7SLdWinepTkhVDcyAXiCLdkM0v7loj0SzWWFC60lEkmVKfUxkrTH9ZtLAX4K-iVWlQKZgeWf_b468GqMZBoJfHRSNefw6n93tzH-cyeF7S4.0ZuyUFNLju85qpl705nty2rMYg6m8UP9AuOgR4P4yfQ&dib_tag=se&keywords=nada+pode+me+ferir&qid=1755426528&sprefix=nada+pode%2Caps%2C283&sr=8-2&ufe=app_do%3Aamzn1.fos.6d798eae-cadf-45de-946a-f477d47705b9',
     },
     {
         id: 13,
@@ -169,6 +181,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Unread',
         image: 'https://m.media-amazon.com/images/I/41AObD27UbL._SY445_SX342_.jpg',
+        link: 'https://www.amazon.com.br/Livro-das-Atitudes/dp/8531507618/ref=sr_1_1?crid=JV3MRQUNM5HM&dib=eyJ2IjoiMSJ9.HNjh4-Qj4Wrf4AO5WbEeBK8TCejirZYwT7fLJqpf2ixkvLUq3VMkm_ymmw8kfVwPnYovLB5sY8FBx1ilD4MU5DSlh5bbjLRKvqHCErJ89UnaMy_nM1lBD-flNNMYriSJzFHk0styvIBn-MZIuCCndl5ZsMZ_w_WCISu21WO4mBImnsX0uSgnkgqU4p254aaNSaVcedCf-4HMoz5iNQf6AO0cJURsXQWSandYEsLZTHb9vg-vD4GZKhAIl8G3v1hzXw8e5hyhI7hvLxXAYIHPXav1N-YtOmBfBh4PetjoJs0.oxb6dbqk920vXvvpDbi9_4qBMV7lDTlDQ53ntOEjtDs&dib_tag=se&keywords=o+livro+das+atitudes&qid=1755426548&sprefix=o+livro+das+at%2Caps%2C286&sr=8-17',
     },
     {
         id: 14,
@@ -182,6 +195,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://books.google.com.br/books/publisher/content?id=hT1VCgAAQBAJ&hl=pt-BR&pg=PP1&img=1&zoom=3&bul=1&sig=ACfU3U12LJ6te5K0m9g78NsGruiZlBHGdg&w=1280',
+        link: 'https://www.amazon.com.br/',
     },
     {
         id: 15,
@@ -195,6 +209,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Unread',
         image: 'https://m.media-amazon.com/images/I/51WQb6Ya1SL._SY445_SX342_.jpg',
+        link: 'https://www.amazon.com.br/morte-dia-vale-pena-viver/dp/8543107202/ref=sr_1_2?crid=211OO7OX6537Z&dib=eyJ2IjoiMSJ9.W92GgLW7G2A0hwHfm2OmjDK-fHa3IZeKOIhK5MjrIDfN5vdXmyNiV26tIE4RX3wHjH608Qeqo2kx8cp01vnQuwqUQ3K--MCb7FzrYbsB2vVZOE4KeW1L5sslodkPuLreBg6lNC9yRffiJ-dwq1dSxBLJzTnprYGEiaLQInwtDWe5LCZq1EKrVNRl1XeqviTB1q6Fix6N5CrChGMCx4LO78qU1cbVPvd5HJKwJYP0aq_UI04CGozPQtwhvvV09uqcmOis252cIVtkmA4O8pCRBl32SJsKg13ZxVpH-OwrSSc.fe_x1oOGL1F9RTz3Ld7y26cU72W_CzVrYOr4LihsZjs&dib_tag=se&keywords=a+morte+um+dia+que+vale+a+pena+viver&qid=1755426627&sprefix=a+morte%2Caps%2C319&sr=8-2',
     },
     {
         id: 16,
@@ -208,6 +223,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://m.media-amazon.com/images/I/81hTY2I9-sL._SY466_.jpg',
+        link: 'https://www.amazon.com.br/Di%C3%A1rio-Anne-Frank-Quadrinhos/dp/8501109673/ref=sr_1_9?crid=19V2TVS39BHIF&dib=eyJ2IjoiMSJ9.xBLdpqpX7fqu9TsSVUrPTcBcEQj-o13Y3xSBqprQ9gMiT20W2Q1FAGMISI9Ige1aXiTUVLMlLi26HavGD_N3InEc_7k2HKI0_VhDCuCAaeNaXsbch78IKXj3gN1ewCmJtZuH-lEX_GWeGjbfYmgQ6a_PlFj97qp4mPjAT5oVVynesO1KSidMfewPb8Gq-6liemEapok_VoE9Asbyvf9U-jXFBD-iUmg_XOSeBoo4TPeWcrUxZ9umWVFNjAmK7X1GJdoUUHGvQSw9H_OPQHW5-LWYBnkoOU3IXmfK__2PFVY.XTS5ayVKuHhPQ3HzsN2CyaocsGNqVvQ00vUvL_VOX0I&dib_tag=se&keywords=diario+de+anne+frank&qid=1755426651&sprefix=diario+de+%2Caps%2C305&sr=8-9',
     },
     {
         id: 17,
@@ -221,6 +237,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Unread',
         image: 'https://m.media-amazon.com/images/I/51xrMBKS-DL._SY445_SX342_.jpg',
+        link: 'https://www.amazon.com.br/mundo-Sofia-Jostein-Gaarder/dp/8535921893/ref=sr_1_1?crid=1R8VIILDD9CNL&dib=eyJ2IjoiMSJ9.y0EtsMGdB5tu3_Io7VQ4cte8oz4kWO03hk3Tm9H9zplwCjDMbl1LrApXt1A1Pju2D90W674VP9vP-Rw2FsjqnnUrrDNXOccBQNAt_in0Aj1ekIKRNjKweqPKehxb_SAOtiCXNpLCtcqOJb_wxxguUjpCTjj7RLgytIpnC5M3AdT2VTPR7FeWyoAqu1Yg3qAxRNCBa2DRKJ8WN_E4aJB0C9KXPajvtLHoxqgwfAT3OtzD2DDqxoqDV0l51ndi4l64Zjlv6Qm1ZyM4HRAQqFxdSc36Rxy35nAB5MltCItrTq4.UpWvLauMC0Uvtd3igyB2XXb8OOZfKpa5Ps5At4eHhlo&dib_tag=se&keywords=o+mundo+de+sofia&qid=1755426669&sprefix=o+mund%2Caps%2C293&sr=8-1&ufe=app_do%3Aamzn1.fos.6d798eae-cadf-45de-946a-f477d47705b9',
     },
     {
         id: 18,
@@ -234,6 +251,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://m.media-amazon.com/images/I/71nXdVSqdlL._SY466_.jpg',
+        link: 'https://www.amazon.com.br/Viver-melhor-sem-ter-que/dp/6555647426/ref=sr_1_1?crid=2JBCZJ2VAQG5N&dib=eyJ2IjoiMSJ9.SiTUSuKaRGrFxiC23SPOmYFbnSy-U1CnhDpTzaxAbCJh4ud7YKURMi2S-N_lypVRZS9AblSmPL5cK3f9SO_EfKXokE45TpLYoe6z-6wKhJZRFpq58cWBfTj2os3oYMf0Kfxv4_2u_vXER_F-lYro3OSfW7-0sww8oLh8lfTx-N7VnjuGvo2kzWnbSsftYKWbv7DoDbFRM6hFOI35pKu590QMSaTHJC8fYYmLUfUwGjY7pJaRo6oXXUFnS_iwesZ75TevalZNvI1J5H62yi8ejG_4sOUhaMmHXZLugjvFqM4.xXW0zTx4q4UuOqzPT9WRcCKitAOMOqcI-dZQrmPKK2Y&dib_tag=se&keywords=viver+%C3%A9+melhor+sem+ter+que+ser+o+melhor&qid=1755568919&sprefix=viver+%C3%A9+mel%2Caps%2C265&sr=8-1',
     },
     {
         id: 19,
@@ -247,6 +265,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://m.media-amazon.com/images/I/51EIE9QIlgL._SY342_.jpg',
+        link: 'https://www.amazon.com.br/Soppy-Os-pequenos-detalhes-amor/dp/6555322675/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=37GTWLQJZBLL5&dib=eyJ2IjoiMSJ9.tZrziSHVhd-VY0u9J_tKJdP0Y_WhSJI3haCgNHid54Ld1b1anP1rloPhgVBETQAwnDdC4ASxUKvoCmDkYjCdBVQoIAufzl12WgTsafZPSNIpy751x1dBEzxDGtZEc0E8mxWtsQVg2hNX2R4q_mh6vavB8-E2zXMURoN8CBqSmB2y5JCYIRG20uxXogGhlrqTMtcN5TeRLRGYKyimylCIeVuIwoh5tPcXV6pvGqmRE5dURBEfZnp3vuoufZD9O1-vMD_2DlPGw3qEFm--bHXltz8KTCotDkS2r6KYqbJKFlU.lNzGIsRWGyMn3Oj8WY_juD_0XVqZC1p02sQjhQiyBBc&dib_tag=se&keywords=soppy&qid=1755426705&sprefix=sopp%2Caps%2C308&sr=8-1',
     },
     {
         id: 20,
@@ -260,6 +279,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://m.media-amazon.com/images/I/71CGwHYYyhL._SY466_.jpg',
+        link: 'https://www.amazon.com.br/M%C3%A9dico-Monstro-Robert-Louis-Stevenson/dp/8596008322/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=37OB72MCJA7K6&dib=eyJ2IjoiMSJ9.yQLN80nE-nlTHGvCXIAdAH6E-gK5rYiXJMtQRiOu5iT8VQQx3oES_kVvq8eBIWDRXiYs5VbUrkDPuLLLPL2u3WB8XjGNXIPVe2G9PQUvLuY5v2TEIgxA6Djl-9MqXJW6scoBclKhAN5eo8vptw4512R4bTmm0xHuF2r9hSBfZLQ7cEULGlCE3ApSh93EgyS5m6XwfLZ3KyCxRQBVzvBRmRDRbgxU6Io0a-CGJwW1fgTpEOyjxw5S8XHm6jJF77qRxjkdbjp5aHTeJx-ItKjvZNzoW1YpmrHlzepA3-eFuU8.OJPMlziLSdTKHTYH2p9S8Iop1qpGZu-KDtnWDUTPbfg&dib_tag=se&keywords=o+medico+e+o+monstro+ftd&qid=1755426747&sprefix=o+m%C3%A9dico+e+o+monstro+ftd%2Caps%2C283&sr=8-1&ufe=app_do%3Aamzn1.fos.6d798eae-cadf-45de-946a-f477d47705b9',
     },
     {
         id: 21,
@@ -273,6 +293,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Read',
         image: 'https://http2.mlstatic.com/D_NQ_NP_789326-MLU77448558013_072024-O.webp',
+        link: 'https://www.amazon.com.br/',
     },
     {
         id: 22,
@@ -286,6 +307,7 @@ export const books: Book[] = [
         mode: 'PDF',
         status: 'Read',
         // image: '',
+        link: 'https://www.amazon.com.br/',
     },
     {
         id: 23,
@@ -299,6 +321,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Reading',
         image: 'https://m.media-amazon.com/images/I/51X-WwYZ-XL._SY445_SX342_.jpg',
+        link: 'https://www.amazon.com.br/Estudo-Vermelho-Arthur-Conan-Doyle/dp/8508161921/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=3PEBW2XB8LR8K&dib=eyJ2IjoiMSJ9.a_ow3Yjsps7npmFxqarqyxrGVDYuOcQF1g27LKzn_BKXeF8nmrIQCHDxrNMgopSur4JQHhrcS_6Idj3_aeDXEXn__vf4TQN2I9XWqZMtMmf6pWVQAhq7g-BDDSntuwAwvPVMwpc87WsxTn_-GMAY1w.witCSNItD4ZIyi_ptNS0CtF3LQQGtBhURvZHeV_ggWc&dib_tag=se&keywords=estudo+em+vermelho+atica&qid=1755426867&sprefix=estudo+em+vermelho+%C3%A1ti%2Caps%2C306&sr=8-1',
     },
     {
         id: 24,
@@ -312,6 +335,7 @@ export const books: Book[] = [
         mode: 'PDF',
         status: 'Read',
         // image: '',
+        link: 'https://www.amazon.com.br/',
     },
     {
         id: 25,
@@ -325,6 +349,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Unread',
         image: 'https://m.media-amazon.com/images/I/51GtZMUgTOL._SY342_.jpg',
+        link: 'https://www.amazon.com.br/homem-que-s%C3%B3-tinha-certezas/dp/857665153X/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=CXKV7EUTX8S0&dib=eyJ2IjoiMSJ9.jNjCU_cxGUqeFAyEV1_LM3qItAgtqJkhnU28l7TBUXXGjHj071QN20LucGBJIEps.EPzCSyxvLFrBmljg5ykQYIBUwi_u8dM-Oer1J0IUYf4&dib_tag=se&keywords=o+homem+que+s%C3%B3+tinha+certezas&qid=1755568966&sprefix=o+homem+que+s%C3%B3+tinha+cerezas%2Caps%2C278&sr=8-1',
     },
     {
         id: 26,
@@ -338,6 +363,7 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Unread',
         image: 'https://m.media-amazon.com/images/I/517dLe6scoL._SY445_SX342_.jpg',
+        link: 'https://www.amazon.com.br/Aranha-Castanha-outras-tramas-Angela/dp/8524911956/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2XWT608GZEAQW&dib=eyJ2IjoiMSJ9.ELKr9RvwFHO22pgrNQVaTQ.KwuiIkQ1wxP1EMNSS4vRzmKBuYAvLnZ3UYycPD2sfbU&dib_tag=se&keywords=aranha+castanha+e+outras+tramas&qid=1755568981&sprefix=aranha+castanha+e+outras+tram%2Caps%2C271&sr=8-1',
     },
     {
         id: 27,
@@ -351,5 +377,6 @@ export const books: Book[] = [
         mode: 'Book',
         status: 'Unread',
         image: 'https://m.media-amazon.com/images/I/71I2nZ1HUDL._SY466_.jpg',
+        link: 'https://www.amazon.com.br/outra-face-Hist%C3%B3ria-garota-afeg%C3%A3/dp/8508156804/ref=sr_1_1?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=18CC0YNC7BRHG&dib=eyJ2IjoiMSJ9.gERFmbXLyzRHWJgktor_8VqPTE18MKNamEg2_CKQqH4z9jluUqVHdjdaSoThWcw87QOwX6SviyGUkd7TH7ENDSAkJx3QAR5XUoMc2iG-LdAXbQZ9BchetfVQuO6wQgZ3Nwno-nnaUMVTvbMOnvscC7_KAmSO7T8fqVAGWaBxf06W2hUPGAwuMpCov2DE69Zi1FwUZeDAwUSiynDUMy_9qMNhkxDzqctfoxYcCbBpahMcZ3deCC9AqdmL9lpQ415mx4A0HUg8nGcGJlwi_IbTl04opXUGS6HAzrxJ4Sispr0.WXCmQGASiU_eHSyCYuGkJNczGKbFlGD5cOdrWic8-w8&dib_tag=se&keywords=a+outra+face&qid=1755568994&sprefix=a+outra+fac%2Caps%2C285&sr=8-1&ufe=app_do%3Aamzn1.fos.6d798eae-cadf-45de-946a-f477d47705b9',
     },
 ];

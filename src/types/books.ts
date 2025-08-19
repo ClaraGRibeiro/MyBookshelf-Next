@@ -8,6 +8,7 @@ export type Book = {
     readDate?: string
     price?: number
     image?: string
+    link?: string
     mode: 'Book' | 'PDF'
     status: 'Reading' | 'Read' | 'Unread'
 }
