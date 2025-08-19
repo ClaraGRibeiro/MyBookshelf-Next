@@ -7,7 +7,7 @@ import TableBook from './tableBooks'
 // components
 import { Book } from '@/types/books'
 import { useState } from 'react'
-import { DrawingPinIcon, DrawingPinFilledIcon, RowsIcon, ViewGridIcon } from '@radix-ui/react-icons'
+import { DrawingPinIcon, DrawingPinFilledIcon, ViewGridIcon, ListBulletIcon } from '@radix-ui/react-icons'
 import { Handles } from '@/types/handles'
 import GridBooks from './gridBooks'
 
@@ -27,7 +27,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <span>
-                                {!grid ? <ViewGridIcon className='!w-5 !h-5' /> : <RowsIcon className='!w-5 !h-5' />}
+                                {!grid ? <ViewGridIcon className='!w-5 !h-5' /> : <ListBulletIcon className='!w-5 !h-5' />}
                             </span>
                         </TooltipTrigger>
                         <TooltipContent>
@@ -48,8 +48,14 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                     </Tooltip>
                 </Button>
             </div>
-            <h1 className='text-center mb-12 text-3xl font-bold'>My BookShelf</h1>
+            <h1 className='text-center text-3xl mb-12 font-bold'>My BookShelf</h1>
             {grid ? <GridBooks books={books} handles={handles} pinReadings={pinReadings} /> : <TableBook books={books} handles={handles} pinReadings={pinReadings} />}
+            <p className='text-center text-xl mt-12'>
+                {books.filter((b) => b.status === 'Read').reduce((acc, b) => acc + (b.pages || 0), 0)} / {books.reduce((acc, b) => acc + (b.pages || 0), 0)} pages
+                ~ {books.filter((b) => b.status === 'Read').length} / {books.length} read books
+                ~ {books.filter((b) => b.readDate?.split('/')[2] === '2025').length} this year
+                ~ R$ {books.reduce((acc, b) => acc + (b.price || 0), 0)}
+            </p>
         </main >
     )
 }

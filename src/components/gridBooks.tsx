@@ -38,7 +38,7 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center'>
                 {sortedBooks.map((b) => (
                     <div key={b.id} className={(b.status === 'Reading' && 'shadow-[0_0_10px_#f4d177,0_0_15px_#f4d177,0_0_35px_#f4d177]') + ' aspect-[2/3] relative hover:scale-110 duration-200 cursor-pointer group'} onClick={() => handleClicked(b.id)}>
-                        <img className='w-full h-full object-cover' src={b.image || 'nobookcover.png'} alt={b.title} title={b.status + " ~ " + b.title} />
+                        <img className='w-full h-full object-cover' src={b.image || 'nobookcover.png'} alt={b.title} title={b.status + ' ~ ' + b.title} />
                         <BookmarkFilledIcon className={
                             (b.status == 'Read' ? 'text-[#02A9F4]' :
                                 b.status == 'Unread' ? 'text-[#FF6666]' :

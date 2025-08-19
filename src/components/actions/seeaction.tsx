@@ -42,7 +42,7 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
                     </Button>
                 </DialogTrigger>)
             }
-            <DialogContent className='sm:max-w-[425px] max-h-[90%] overflow-y-auto'>
+            <DialogContent className='sm:max-w-[425px] max-h-[98%] overflow-y-auto'>
                 <DialogHeader>
                     <DialogTitle className='text-slate-600'>See '{book.title}'</DialogTitle>
                     <DialogDescription className='text-slate-800'>
@@ -56,7 +56,7 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
                     <p className='text-slate-800'><strong className='text-slate-600'>Pages:</strong> {book.pages ?? '-'}</p>
                     <p className='text-slate-800'><strong className='text-slate-600'>Got Date:</strong> {book.gotDate ?? '-'}</p>
                     <p className='text-slate-800'><strong className='text-slate-600'>Read Date:</strong> {book.readDate ?? '-'}</p>
-                    <p className='text-slate-800'><strong className='text-slate-600'>Price:</strong> {book.price ?? 'Free'}</p>
+                    <p className={book.price ? 'text-slate-800' : 'text-green-600'}><strong className='text-slate-600'>Price:</strong> {book.price ? ('R$ ' + book.price.toFixed(2)) : 'Free'}</p>
                     <p className='text-slate-800'><strong className='text-slate-600'>Mode:</strong> {book.mode}</p>
                     <p className='text-slate-800'><strong className='text-slate-600'>Status:</strong> <span className={
                         (book.status == 'Read' ? 'bg-[#02A9F4]' :

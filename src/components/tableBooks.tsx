@@ -10,6 +10,7 @@ import DeleteAction from './actions/deleteaction'
 import EditAction from './actions/editaction'
 import SeeAction from './actions/seeaction'
 import { Handles } from '@/types/handles'
+import AddAction from './actions/addaction'
 
 type TableBooksProps = {
     books: Book[]
@@ -68,24 +69,24 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
     const toggleStatus = (book: Book) => {
         let num: number = -1
         switch (book.status) {
-            case "Unread": num = -1
+            case 'Unread': num = -1
                 break;
-            case "Reading": num = 0
+            case 'Reading': num = 0
                 break;
-            case "Read": num = 1
+            case 'Read': num = 1
                 break;
             default:
                 break;
         }
         let newStatus: Book['status']
         num === 1 ? num = -1 : num++
-        num === -1 ? newStatus = "Unread" : num === 0 ? newStatus = "Reading" : newStatus = "Read"
+        num === -1 ? newStatus = 'Unread' : num === 0 ? newStatus = 'Reading' : newStatus = 'Read'
         handles.onChangeStatus(book.id, newStatus)
     }
 
     return (
         <Table className='text-lg'>
-            <TableCaption>{books.filter((b) => b.status === 'Read').length}/{books.length} books read</TableCaption>
+            <TableCaption><AddAction books={books} onAdd={handles.onAdd}/></TableCaption>
             <TableHeader>
                 <TableRow className='text-base'>
                     <TableHead onClick={() => handleSort('title')} className='text-slate-600 cursor-pointer hover:text-slate-800 group sm:max-w-36'>
@@ -128,12 +129,12 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
             </TableHeader>
             <TableBody>
                 {sortedBooks.map((b) => (
-                    <TableRow key={b.id} className={b.status === "Reading" ? 'bg-slate-200 hover:bg-slate-300' : ''}>
-                        <TableCell className="whitespace-nowrap overflow-hidden truncate max-w-36">{b.title}</TableCell>
-                        <TableCell className="whitespace-nowrap overflow-hidden truncate max-w-36">{b.author}</TableCell>
+                    <TableRow key={b.id} className={b.status === 'Reading' ? 'bg-slate-200 hover:bg-slate-300' : ''}>
+                        <TableCell className='whitespace-nowrap overflow-hidden truncate max-w-36'>{b.title}</TableCell>
+                        <TableCell className='whitespace-nowrap overflow-hidden truncate max-w-36'>{b.author}</TableCell>
                         <TableCell className='whitespace-nowrap overflow-hidden truncate max-w-26'>{b.publisher ?? '-'}</TableCell>
                         <TableCell className='text-center w-24'>{b.pages ?? '-'}</TableCell>
-                        <TableCell className={(b.price ?? 'text-green-500 font-bold') + ' text-center w-24'}>{b.price ? 'R$ ' + b.price.toFixed(2) : 'Free'}</TableCell>
+                        <TableCell className={(b.price ?? 'text-green-600 font-bold') + ' text-center w-24'}>{b.price ? 'R$ ' + b.price.toFixed(2) : 'Free'}</TableCell>
                         <TableCell className='text-center max-w-24'>
                             <span
                                 onClick={() => toggleStatus(b)}

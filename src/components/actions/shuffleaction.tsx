@@ -22,9 +22,9 @@ type ShuffleActionProps = {
 const ShuffleAction = ({ books, handles }: ShuffleActionProps) => {
     const [chosenBookId, setChosenBookId] = useState<number | null>(null)
     const handleShuffleBook = () => {
-        const unreadBooks = books.filter(b => b?.status === "Unread")
+        const unreadBooks = books.filter(b => b?.status === 'Unread')
         if (unreadBooks.length === 0) {
-            alert("No unread books available to shuffle.")
+            alert('No unread books available to shuffle.')
             return
         }
         setChosenBookId(unreadBooks[Math.floor(Math.random() * unreadBooks.length)].id)
@@ -33,7 +33,7 @@ const ShuffleAction = ({ books, handles }: ShuffleActionProps) => {
 
     return (
         <>
-            <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-100 hover:text-slate-800 !duration-400' onClick={() => { handleShuffleBook() }}>
+            <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-100 focus:bg-slate-100 hover:text-slate-800 focus:text-slate-800 !duration-400' onClick={() => { handleShuffleBook() }}>
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <span>

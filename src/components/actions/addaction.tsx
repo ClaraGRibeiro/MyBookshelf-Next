@@ -36,7 +36,7 @@ const AddAction = ({ books, onAdd }: AddActionProps) => {
                     </Tooltip>
                 </Button>
             </DialogTrigger>
-            <DialogContent className='sm:max-w-[425px]'>
+            <DialogContent className='sm:max-w-[425px] max-h-[98%] overflow-y-auto'>
                 <form
                     onSubmit={(e) => {
                         e.preventDefault()
@@ -49,12 +49,16 @@ const AddAction = ({ books, onAdd }: AddActionProps) => {
                             author: data.get('author')?.toString() || '-',
                             publisher: data.get('publisher')?.toString() || '-',
                             pages: Number(data.get('pages')),
-                            gotDate: data.get('gotDate')?.toString(),
-                            readDate: data.get('readDate')?.toString(),
+                            gotDate: data.get('gotDate')
+                                ? data.get('gotDate')?.toString().split('-').reverse().join('/')
+                                : '',
+                            readDate: data.get('readDate')
+                                ? data.get('readDate')?.toString().split('-').reverse().join('/')
+                                : '',
                             price: Number(data.get('price')),
                             image: data.get('image')?.toString().trim() || '',
                             mode: (data.get('mode')?.toString() as Book['mode']) || 'Book',
-                            status: (data.get('status')?.toString() as Book['status']) || 'Unread',
+                            status: (data.get('status')?.toString() as Book['status']) || data.get('readDate') && 'Read' || 'Unread',
                         }
                         onAdd(newBook)
                         setOpen(false)
@@ -68,53 +72,39 @@ const AddAction = ({ books, onAdd }: AddActionProps) => {
                         </DialogDescription>
                     </DialogHeader>
                     <div className='grid gap-4 py-4'>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='title' placeholder='Book Title *' required />
+                        <Input type='text' name='title' placeholder='Book Title *' required />
+                        <Input type='text' name='author' placeholder='Author Name *' required />
+                        <Input type='text' name='publisher' placeholder='Publisher Name (optional)' />
+                        <Input type='number' min={0} step={1} name='pages' placeholder='Pages (optional)' />
+                        <div className='flex flex-row items-center justify-between'>
+                            <span className='text-[#62748e] ml-3 text-sm'>Got Date (optional)</span>
+                            <Input className='w-fit text-[#62748e]' type='date' name='gotDate' />
                         </div>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='author' placeholder='Author Name *' required />
+                        <div className='flex flex-row items-center justify-between'>
+                            <span className='text-[#62748e] ml-3 text-sm'>Read Date (optional)</span>
+                            <Input className='w-fit text-[#62748e]' type='date' name='readDate' />
                         </div>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='publisher' placeholder='Publisher Name (optional)' />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Input type='number' min={0} step={1} name='pages' placeholder='Pages (optional)' />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='gotDate' placeholder='Got Date (optional)' />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='readDate' placeholder='Read Date (optional)' />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Input type='number' min={0} step={0.01} name='price' placeholder='Price (optional)' />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='image' placeholder='Image url (optional)' />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Select name='mode'>
-                                <SelectTrigger className='w-full'>
-                                    <SelectValue placeholder='Mode' />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value='Book'>Book</SelectItem>
-                                    <SelectItem value='PDF'>PDF</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                        <div className='grid gap-3'>
-                            <Select name='status'>
-                                <SelectTrigger className='w-full'>
-                                    <SelectValue placeholder='Status' />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value='Unread'>Unread</SelectItem>
-                                    <SelectItem value='Read'>Read</SelectItem>
-                                    <SelectItem value='Reading'>Reading</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
+                        <Input type='number' min={0} step={0.01} name='price' placeholder='Price (optional)' />
+                        <Input type='text' name='image' placeholder='Image url (optional)' />
+                        <Select name='mode'>
+                            <SelectTrigger className='w-full'>
+                                <SelectValue placeholder='Mode' />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value='Book'>Book</SelectItem>
+                                <SelectItem value='PDF'>PDF</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <Select name='status'>
+                            <SelectTrigger className='w-full'>
+                                <SelectValue placeholder='Status' />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value='Unread'>Unread</SelectItem>
+                                <SelectItem value='Read'>Read</SelectItem>
+                                <SelectItem value='Reading'>Reading</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                     <DialogFooter>
                         <DialogClose asChild>

@@ -16,21 +16,19 @@ const Header = ({ books, handles }: HeaderProps) => {
     return (
         <header className='h-fill flex-wrap bg-slate-800 flex md:justify-between justify-center items-center py-3 px-12 gap-3'>
             <a className='flex items-center gap-2' href='/'>
-                <img className='md:h-12 h-6' src='books.png' alt='Logo' />
-                <h1 className='text-slate-100 text-xl font-bold'>NextBook</h1>
+                <img className='md:h-12 h-8' src='books.png' alt='Logo' />
+                <h1 className='text-slate-100 text-2xl md:text-xl font-bold'>NextBook</h1>
             </a>
-            <div>
-                <ul className='flex gap-6 items-center text-slate-100'>
-                    <li>
-                        <AddAction books={books} onAdd={handles.onAdd} />
-                    </li>
+            <div className='flex gap-x-6 gap-y-2 items-center flex-wrap-reverse justify-center text-slate-100'>
+                <ul className='flex gap-6 items-center'>
                     <li>
                         <ShuffleAction books={books} handles={handles} />
                     </li>
                     <li>
-                        <Search books={books} handles={handles} />
+                        <AddAction books={books} onAdd={handles.onAdd} />
                     </li>
                 </ul>
+                <Search books={books} handles={handles} />
             </div>
         </header>
     )

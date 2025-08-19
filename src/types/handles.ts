@@ -1,4 +1,4 @@
-import { Book } from "./books";
+import { Book } from './books';
 
 export type Handles = {
   onAdd: (book: Book) => void;

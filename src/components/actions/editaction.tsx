@@ -39,7 +39,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                     </Tooltip>
                 </Button>
             </DialogTrigger>
-            <DialogContent className='sm:max-w-[425px]'>
+            <DialogContent className='sm:max-w-[425px] max-h-[98%] overflow-y-auto'>
                 <form
                     onSubmit={(e) => {
                         e.preventDefault()
@@ -51,8 +51,8 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                             author: data.get('author')?.toString() || book.author,
                             publisher: data.get('publisher')?.toString() || book.publisher,
                             pages: Number(data.get('pages')) || book.pages,
-                            gotDate: data.get('gotDate')?.toString() || book.gotDate,
-                            readDate: data.get('readDate')?.toString() || book.readDate,
+                            gotDate: data.get('gotDate')?.toString().split('-').reverse().join('/') || book.gotDate,
+                            readDate: data.get('readDate')?.toString().split('-').reverse().join('/') || book.readDate,
                             price: Number(data.get('price')) || book.price,
                             image: data.has('image') ? data.get('image')?.toString() : book.image,
                             mode: (data.get('mode')?.toString() as Book['mode']) || book.mode,
@@ -69,53 +69,39 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                         </DialogDescription>
                     </DialogHeader>
                     <div className='grid gap-4 py-4 text-slate-600'>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='title' placeholder='Book Title *' defaultValue={book.title} />
+                        <Input type='text' name='title' placeholder='Book Title *' defaultValue={book.title} />
+                        <Input type='text' name='author' placeholder='Author Name *' defaultValue={book.author} />
+                        <Input type='text' name='publisher' placeholder='Publisher Name (optional)' defaultValue={book.publisher} />
+                        <Input type='number' min={0} step={1} name='pages' placeholder='Pages (optional)' defaultValue={book.pages} />
+                        <div className='flex flex-row items-center justify-between'>
+                            <span className='text-[#62748e] ml-3 text-sm'>Got Date (optional)</span>
+                            <Input className='w-fit text-[#62748e]' type='date' defaultValue={book.gotDate?.split('/').reverse().join('-')} name='gotDate' />
                         </div>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='author' placeholder='Author Name *' defaultValue={book.author} />
+                        <div className='flex flex-row items-center justify-between'>
+                            <span className='text-[#62748e] ml-3 text-sm'>Read Date (optional)</span>
+                            <Input className='w-fit text-[#62748e]' type='date' defaultValue={book.readDate?.split('/').reverse().join('-')} name='readDate' />
                         </div>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='publisher' placeholder='Publisher Name (optional)' defaultValue={book.publisher} />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Input type='number' min={0} step={1} name='pages' placeholder='Pages (optional)' defaultValue={book.pages} />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='gotDate' placeholder='Got Date (optional)' defaultValue={book.gotDate} />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='readDate' placeholder='Read Date (optional)' defaultValue={book.readDate} />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Input type='number' min={0} step={0.01} name='price' placeholder='Price (optional)' defaultValue={book.price} />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Input type='text' name='image' placeholder='Image url (optional)' defaultValue={book.image} />
-                        </div>
-                        <div className='grid gap-3'>
-                            <Select name='mode' value={mode} onValueChange={(value) => setMode(value as Book['mode'])}>
-                                <SelectTrigger className='w-full'>
-                                    <SelectValue placeholder='Mode' />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value='Book'>Book</SelectItem>
-                                    <SelectItem value='PDF'>PDF</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
-                        <div className='grid gap-3'>
-                            <Select name='status' value={status} onValueChange={(value) => setStatus(value as Book['status'])}>
-                                <SelectTrigger className='w-full'>
-                                    <SelectValue placeholder='Status' />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectItem value='Unread'>Unread</SelectItem>
-                                    <SelectItem value='Read'>Read</SelectItem>
-                                    <SelectItem value='Reading'>Reading</SelectItem>
-                                </SelectContent>
-                            </Select>
-                        </div>
+                        <Input type='number' min={0} step={0.01} name='price' placeholder='Price (optional)' defaultValue={book.price} />
+                        <Input type='text' name='image' placeholder='Image url (optional)' defaultValue={book.image} />
+                        <Select name='mode' value={mode} onValueChange={(value) => setMode(value as Book['mode'])}>
+                            <SelectTrigger className='w-full'>
+                                <SelectValue placeholder='Mode' />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value='Book'>Book</SelectItem>
+                                <SelectItem value='PDF'>PDF</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <Select name='status' value={status} onValueChange={(value) => setStatus(value as Book['status'])}>
+                            <SelectTrigger className='w-full'>
+                                <SelectValue placeholder='Status' />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value='Unread'>Unread</SelectItem>
+                                <SelectItem value='Read'>Read</SelectItem>
+                                <SelectItem value='Reading'>Reading</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                     <DialogFooter>
                         <DialogClose asChild>
