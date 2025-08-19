@@ -65,8 +65,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                     <DialogHeader>
                         <DialogTitle className='text-slate-600'>Edit '{book.title}'</DialogTitle>
                         <DialogDescription className='text-slate-800'>
-                            Make changes to this book here. Click save when you&apos;re
-                            done.
+                            Make changes to this book here. Click save when finished.
                         </DialogDescription>
                     </DialogHeader>
                     <div className='grid gap-4 py-4 text-slate-600'>

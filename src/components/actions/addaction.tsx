@@ -69,8 +69,7 @@ const AddAction = ({ books, onAdd, style = '' }: AddActionProps) => {
                     <DialogHeader>
                         <DialogTitle>Add a Book</DialogTitle>
                         <DialogDescription>
-                            Add more book in your bookshelf. Click save&apos;when you re
-                            done.
+                            Add more book in your bookshelf. Click save when finished.
                         </DialogDescription>
                     </DialogHeader>
                     <div className='grid gap-4 py-4'>
