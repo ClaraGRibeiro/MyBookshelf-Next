@@ -11,7 +11,6 @@ import EditAction from './actions/editaction'
 import SeeAction from './actions/seeaction'
 import { Handles } from '@/types/handles'
 import AddAction from './actions/addaction'
-import LinkAction from './actions/linkaction'
 
 type TableBooksProps = {
     books: Book[]
@@ -87,7 +86,7 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
 
     return (
         <Table className='text-lg'>
-            <TableCaption><AddAction books={books} onAdd={handles.onAdd}/></TableCaption>
+            <TableCaption><AddAction books={books} onAdd={handles.onAdd} /></TableCaption>
             <TableHeader>
                 <TableRow className='text-base'>
                     <TableHead onClick={() => handleSort('title')} className='text-slate-600 cursor-pointer hover:text-slate-800 group sm:max-w-36'>
@@ -130,7 +129,7 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
             </TableHeader>
             <TableBody>
                 {sortedBooks.map((b) => (
-                    <TableRow key={b.id} className={b.status === 'Reading' ? 'bg-slate-200 hover:bg-slate-300' : ''}>
+                    <TableRow key={b.id} className={`${b.status === 'Reading' && 'bg-slate-200 hover:bg-slate-300'} ${b.link && ' cursor-pointer'}`} onClick={() => b.link && window.open(b.link, '_blank')}>
                         <TableCell className='whitespace-nowrap overflow-hidden truncate max-w-36'>{b.title}</TableCell>
                         <TableCell className='whitespace-nowrap overflow-hidden truncate max-w-36'>{b.author}</TableCell>
                         <TableCell className='whitespace-nowrap overflow-hidden truncate max-w-26'>{b.publisher ?? '-'}</TableCell>
@@ -153,9 +152,6 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
                             <SeeAction book={b} handles={handles} />
                         </TableCell>
                         <TableCell className='w-8'>
-                            <LinkAction bookLink={b.link} />
-                        </TableCell>
-                        <TableCell className='w-8'>
                             <EditAction book={b} onEdit={handles.onEdit} />
                         </TableCell>
                         <TableCell className='w-8'>
@@ -164,7 +160,7 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
                     </TableRow>
                 ))}
             </TableBody>
-        </Table>
+        </Table >
     )
 }
 

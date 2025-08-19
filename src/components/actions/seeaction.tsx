@@ -67,7 +67,7 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
                     }>{book.status}</span></p>
                     {book.image &&
                         (<div className='aspect-[2/3] absolute h-52 m-auto right-0 bottom-0'>
-                            <a href={book.link} target="_blank" rel="noopener noreferrer" >
+                            <a href={book.link} target="_blank" rel="noopener noreferrer" className={book.link && 'cursor-pointer'}>
                                 <img src={book.image} alt='' className='w-full h-full object-cover' />
                             </a>
                         </div>)
@@ -75,7 +75,7 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
                 </div>
 
                 <DialogFooter className='flex flex-row w-full justify-end'>
-                    <LinkAction bookLink={book.link} />
+                    {book.link && <LinkAction bookLink={book.link} />}
                     <EditAction book={book} onEdit={handles.onEdit} />
                     <DeleteAction book={book} onDelete={handles.onDelete} closeModal={() => setOpen(false)} />
                 </DialogFooter>

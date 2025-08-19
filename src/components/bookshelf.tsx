@@ -19,6 +19,14 @@ type BookShelfProps = {
 const Bookshelf = ({ books, handles }: BookShelfProps) => {
     const [pinReadings, setPinReadings] = useState(false)
     const [grid, setGrid] = useState(true)
+    const pagesRead = books.filter((b) => b.status === 'Read').reduce((acc, b) => acc + (b.pages || 0), 0)
+    const totalPages = books.reduce((acc, b) => acc + (b.pages || 0), 0)
+    const numBooksRead = books.filter((b) => b.status === 'Read').length
+    const spent = books.reduce((acc, b) => acc + (b.price || 0), 0)
+    const yearNow = new Date().getFullYear()
+    const monthNow = new Date().getMonth() + 1
+    const readingsY = books.filter((b) => b.readDate?.split('/')[2] === yearNow.toString()).length
+    const readingsM = books.filter((b) => b.readDate?.split('/')[2] === yearNow.toString() && Number(b.readDate.split('/')[1]) === monthNow).length
 
     return (
         <main className='p-12 text-slate-800'>
@@ -51,10 +59,10 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
             <h1 className='text-center text-3xl mb-12 font-bold'>My BookShelf</h1>
             {grid ? <GridBooks books={books} handles={handles} pinReadings={pinReadings} /> : <TableBook books={books} handles={handles} pinReadings={pinReadings} />}
             <p className='text-center text-xl mt-12'>
-                {books.filter((b) => b.status === 'Read').reduce((acc, b) => acc + (b.pages || 0), 0)} / {books.reduce((acc, b) => acc + (b.pages || 0), 0)} pages
-                ~ {books.filter((b) => b.status === 'Read').length} / {books.length} read books
-                ~ {books.filter((b) => b.readDate?.split('/')[2] === '2025').length} this year
-                ~ R$ {books.reduce((acc, b) => acc + (b.price || 0), 0)}
+                {pagesRead} / {totalPages} pages ({(pagesRead * 100 / totalPages).toFixed(0)}%)
+                ~ {numBooksRead} / {books.length} read books ({(numBooksRead * 100 / books.length).toFixed(0)}%)
+                ~ {readingsY} this year ({readingsM} this month)
+                ~ R$ {spent} (R$ {(spent / totalPages).toFixed(2)} per page)
             </p>
         </main >
     )
