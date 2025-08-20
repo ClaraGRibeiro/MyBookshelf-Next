@@ -19,8 +19,8 @@ const LinkAction = ({ bookLink }: LinkActionProps) => {
                 <TooltipTrigger asChild>
                     <a 
                         href={bookLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                        target='_blank' 
+                        rel='noopener noreferrer' 
                         className='text-slate-600 group-hover:text-slate-100 group-active:text-slate-100 flex items-center'
                     >
                         <OpenInNewWindowIcon className='!w-5 !h-5' />

@@ -6,7 +6,7 @@ import { Button } from './ui/button'
 // components próprios
 import TableBook from './tableBooks'
 import GridBooks from './gridBooks'
-import Chart from './chart'
+import Charts from './charts'
 import { Book } from '@/types/books'
 import { Handles } from '@/types/handles'
 import { useState } from 'react'
@@ -30,8 +30,8 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
   const booksByMonth = months.map((m, i) => { return { name: m, value: books.filter((b) => b.readDate?.split('/')[2] === yearNow.toString() && Number(b.readDate.split('/')[1]) === i + 1).length } })
   const years = Array.from(new Set(books.filter(b => b.readDate).map((b) => Number(b.readDate?.split('/')[2])))).sort((x, y) => x - y)
-  const booksByYear = years.map((y, i) => {return { name: y.toString(), value: books.filter((b) => Number(b.readDate?.split('/')[2]) === y).length } })
-  
+  const booksByYear = years.map((y, i) => { return { name: y.toString(), value: books.filter((b) => Number(b.readDate?.split('/')[2]) === y).length } })
+
   return (
     <main className='p-12 text-slate-800'>
       <div className='fixed bottom-8 right-3 flex flex-col gap-2 items-center justify-center'>
@@ -50,7 +50,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                 )}
               </span>
             </TooltipTrigger>
-            <TooltipContent className='bg-gray-800 text-white p-2 rounded'>
+            <TooltipContent className='bg-gray-800 text-slate-100 p-2 rounded'>
               {!grid ? 'View grid' : 'View rows'}
             </TooltipContent>
           </Tooltip>
@@ -71,7 +71,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                 )}
               </span>
             </TooltipTrigger>
-            <TooltipContent className='bg-gray-800 text-white p-2 rounded'>
+            <TooltipContent className='bg-gray-800 text-slate-100 p-2 rounded'>
               Pin readings on the top
             </TooltipContent>
           </Tooltip>
@@ -85,15 +85,15 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
       ) : (
         <TableBook books={books} handles={handles} pinReadings={pinReadings} />
       )}
-      <div className='mt-12 md:mt-16 flex flex-col gap-4 items-center justify-center'>
-        <p className="text-center font-bold text-xl"><span className="bg-gradient-to-r from-[#006AB3] via-[#E63431] to-[#FBAC0F] bg-clip-text text-transparent">R$ {totalSpent} total</span></p>
-        <div className='flex flex-wrap gap-4 md:gap-12 justify-center items-center mb-2'>
-          <Chart type='pie' value={numBooksRead} nameValue='Readings' total={books.length} nameTotal='Remaining' label='Readings' colors={['#006AB3', '#cad5e2']} />
-          <Chart type='pie' value={readingsY} nameValue='In this year' total={numBooksRead} nameTotal='Readings in others years' label={'In ' + yearNow} colors={['#E63431', '#cad5e2']} />
-          <Chart type='pie' value={readingsM} nameValue='In this month' total={readingsY} nameTotal='Readings in others months of this years' label={'In ' + new Date().toLocaleString('en-US', { month: 'long' })} colors={['#FBAC0F', '#cad5e2']} />
+      <div className='mt-12 md:mt-16 flex flex-col gap-6 items-center justify-center'>
+        <div className='grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 justify-items-center items-center mb-2'>
+          <p className='text-center font-bold text-3xl'><span className='bg-gradient-to-r from-[#006AB3] via-[#E63431] to-[#FBAC0F] bg-clip-text text-transparent'>R$ <br /> {totalSpent} <br /> total</span></p>
+          <Charts type='pie' value={numBooksRead} total={books.length} label='Readings' colors={['#006AB3', '#cad5e2']} />
+          <Charts type='pie' value={readingsY} total={numBooksRead} label={'In ' + yearNow} colors={['#E63431', '#cad5e2']} />
+          <Charts type='pie' value={readingsM} total={readingsY} label={'In ' + new Date().toLocaleString('en-US', { month: 'long' })} colors={['#FBAC0F', '#cad5e2']} />
         </div>
-        <Chart type='bar' data={booksByYear} label='Books per Year' colors={['#E63431']} />
-        <Chart type='bar' data={booksByMonth} label='Books per Month (2025)' colors={['#FBAC0F']} />
+        <Charts type='bar' data={booksByYear} label='Books per Year' colors={['#E63431']} />
+        <Charts type='bar' data={booksByMonth} label='Books per Month (2025)' colors={['#FBAC0F']} />
       </div>
     </main>
   )

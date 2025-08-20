@@ -28,7 +28,7 @@ const AddAction = ({ books, onAdd, style = '' }: AddActionProps) => {
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <span>
-                                <PlusCircledIcon className={(style === "grid" ? '!w-12 !h-12' : '!w-6 !h-6') + ' cursor-pointer'} />
+                                <PlusCircledIcon className={(style === 'grid' ? '!w-12 !h-12' : '!w-6 !h-6') + ' cursor-pointer'} />
                             </span>
                         </TooltipTrigger>
                         <TooltipContent>
