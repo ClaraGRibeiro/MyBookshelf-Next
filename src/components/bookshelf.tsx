@@ -92,8 +92,8 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
           <Chart type='pie' value={readingsY} nameValue='In this year' total={numBooksRead} nameTotal='Readings in others years' label={'In ' + yearNow} colors={['#E63431', '#cad5e2']} />
           <Chart type='pie' value={readingsM} nameValue='In this month' total={readingsY} nameTotal='Readings in others months of this years' label={'In ' + new Date().toLocaleString('en-US', { month: 'long' })} colors={['#FBAC0F', '#cad5e2']} />
         </div>
-        <Chart type='bar' data={booksByMonth} label='Books per Month (2025)' colors={['#E63431']} />
         <Chart type='bar' data={booksByYear} label='Books per Year' colors={['#E63431']} />
+        <Chart type='bar' data={booksByMonth} label='Books per Month (2025)' colors={['#FBAC0F']} />
       </div>
     </main>
   )
