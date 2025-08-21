@@ -78,7 +78,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
         </Button>
       </div>
 
-      <h1 className='text-center text-3xl mb-6 font-bold'>My BookShelf</h1>
+      <h1 className='text-center text-3xl mb-12 font-bold'>My BookShelf</h1>
 
       {grid ? (
         <GridBooks books={books} handles={handles} pinReadings={pinReadings} />

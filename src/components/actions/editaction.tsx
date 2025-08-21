@@ -19,10 +19,8 @@ type EditActionProps = {
 }
 
 const EditAction = ({ book, onEdit }: EditActionProps) => {
-
     const [mode, setMode] = useState(book.mode)
     const [status, setStatus] = useState(book.status)
-
     return (
         <Dialog>
             <DialogTrigger asChild>
@@ -45,6 +43,10 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                         e.preventDefault()
                         const form = e.currentTarget
                         const data = new FormData(form)
+                        let readDateVar: string | undefined = data.get('readDate')?.toString().split('-').reverse().join('/') || book.readDate
+                        let statusVar = data.get('status')?.toString() || book.status
+                        if (readDateVar && statusVar !== 'Read') { alert('Please set the book as read!'); return }
+                        if (statusVar === 'Read' && !readDateVar) { alert('Please insert a read date!'); return }
                         const updatedBook: Book = {
                             ...book,
                             title: data.get('title')?.toString() || book.title,
@@ -52,12 +54,12 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                             publisher: data.get('publisher')?.toString() || book.publisher,
                             pages: Number(data.get('pages')) || book.pages,
                             gotDate: data.get('gotDate')?.toString().split('-').reverse().join('/') || book.gotDate,
-                            readDate: data.get('readDate')?.toString().split('-').reverse().join('/') || book.readDate,
+                            readDate: readDateVar,
                             price: Number(data.get('price')) || book.price,
                             image: data.has('image') ? data.get('image')?.toString() : book.image,
                             link: data.has('link') ? data.get('link')?.toString() : book.link,
                             mode: (data.get('mode')?.toString() as Book['mode']) || book.mode,
-                            status: (data.get('status')?.toString() as Book['status']) || book.status,
+                            status: statusVar as Book['status'],
                         }
                         onEdit(updatedBook)
                     }}
@@ -84,7 +86,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                         <Input type='number' min={0} step={0.01} name='price' placeholder='Price (optional)' defaultValue={book.price} />
                         <Input type='text' name='image' placeholder='Image url (optional)' defaultValue={book.image} />
                         <Input type='text' name='link' placeholder='Purchase link (optional)' defaultValue={book.link} />
-                        <Select name='mode' value={mode} onValueChange={(value) => setMode(value as Book['mode'])}>
+                        <Select name='mode' value={mode} onValueChange={(value) => setMode(value as Book['mode'])} defaultValue={book.mode}>
                             <SelectTrigger className='w-full'>
                                 <SelectValue placeholder='Mode' />
                             </SelectTrigger>
@@ -97,7 +99,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                             <SelectTrigger className='w-full'>
                                 <SelectValue placeholder='Status' />
                             </SelectTrigger>
-                            <SelectContent>
+                            <SelectContent defaultValue={book.status}>
                                 <SelectItem value='Unread'>Unread</SelectItem>
                                 <SelectItem value='Read'>Read</SelectItem>
                                 <SelectItem value='Reading'>Reading</SelectItem>

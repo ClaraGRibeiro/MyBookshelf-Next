@@ -62,6 +62,7 @@ const AddAction = ({ books, onAdd, style = '' }: AddActionProps) => {
                             mode: (data.get('mode')?.toString() as Book['mode']) || 'Book',
                             status: (data.get('status')?.toString() as Book['status']) || data.get('readDate') && 'Read' || 'Unread',
                         }
+                        
                         onAdd(newBook)
                         setOpen(false)
                     }}

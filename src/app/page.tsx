@@ -32,9 +32,14 @@ export default function Home() {
 
     // Change the status of a book by copying its properties, updating the status, and replacing the old book
     const handleChangeStatus = (bookId: Book['id'], newStatus: Book['status']): void => {
+      let newDate = undefined
+      if (newStatus === 'Read') { 
+        const today = new Date();
+        newDate = `${String(today.getDate()).padStart(2, "0")}/${String(today.getMonth() + 1).padStart(2, "0")}/${today.getFullYear()}`
+      }
       setBooks((prev) =>
         prev.map((b) =>
-          b.id === bookId ? { ...b, status: newStatus } : b
+          b.id === bookId ? { ...b, status: newStatus, readDate: newDate} : b
         )
       );
     }
