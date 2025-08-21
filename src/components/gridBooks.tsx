@@ -1,12 +1,12 @@
 'use client'
 
-// components shadcn
+// icons radix
+import { BookmarkFilledIcon } from '@radix-ui/react-icons'
 // components
 import { Book } from '@/types/books'
 import { Handles } from '@/types/handles'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SeeAction from './actions/seeaction'
-import { BookmarkFilledIcon } from '@radix-ui/react-icons'
 import AddAction from './actions/addaction'
 
 type GridBooksProps = {

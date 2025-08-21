@@ -3,14 +3,11 @@
 // components shadcn
 import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
 import { Button } from '../ui/button'
-import { Input } from '../ui/input'
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../ui/dialog'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select'
 // icons radix
 import { ShuffleIcon } from '@radix-ui/react-icons'
 // components
 import { Book } from '@/types/books'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import SeeAction from './seeaction'
 import { Handles } from '@/types/handles'
 

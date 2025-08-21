@@ -2,14 +2,15 @@
 
 // components shadcn
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from './ui/table'
+// icons radix
+import { CaretSortIcon } from '@radix-ui/react-icons'
 // components
 import { useState } from 'react'
 import { Book } from '@/types/books'
-import { CaretSortIcon } from '@radix-ui/react-icons'
+import { Handles } from '@/types/handles'
 import DeleteAction from './actions/deleteaction'
 import EditAction from './actions/editaction'
 import SeeAction from './actions/seeaction'
-import { Handles } from '@/types/handles'
 import AddAction from './actions/addaction'
 
 type TableBooksProps = {
