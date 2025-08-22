@@ -2,24 +2,15 @@
 
 // components shadcn
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
 // icons radix
-import {
-  BookmarkFilledIcon,
-  CaretSortIcon,
-  ChevronDownIcon,
-} from "@radix-ui/react-icons";
+import { BookmarkFilledIcon, CaretSortIcon } from "@radix-ui/react-icons";
 // components
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import { useState } from "react";
 import SeeAction from "./actions/seeaction";
 import AddAction from "./actions/addaction";
+import FilterBy from "./actions/filterBy";
 
 type GridBooksProps = {
   books: Book[];
@@ -80,7 +71,7 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
 
   return (
     <>
-      <div className="flex flex-wrap items-center justify-center gap-6 mb-8">
+      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-8">
         <Tooltip>
           <TooltipTrigger asChild>
             <span
@@ -165,34 +156,14 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
             Sort by Status
           </TooltipContent>
         </Tooltip>
-        <DropdownMenu>
-          <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-2 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center">
-            <span>Filter by</span>
-            <ChevronDownIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem onSelect={() => setFilterBy("Unread")}>
-              Unread
-            </DropdownMenuItem>
-            <DropdownMenuItem onSelect={() => setFilterBy("Reading")}>
-              Reading
-            </DropdownMenuItem>
-            <DropdownMenuItem onSelect={() => setFilterBy("Read")}>
-              Read
-            </DropdownMenuItem>
-            <DropdownMenuItem onSelect={() => setFilterBy(null)}>
-              All
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <FilterBy value={filterBy} onChange={setFilterBy} />
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 md:gap-8 lg:gap-5 justify-items-center">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center">
         {sortedBooks.map((b) => (
           <div
             key={b.id}
             className={
-              (b.status === "Reading" &&
-                "shadow-[0_0_10px_#f4d177,0_0_15px_#f4d177,0_0_35px_#f4d177]") +
+              (b.status === "Reading" && "shadow-[0_0_40px_#fbac0f]") +
               " aspect-[2/3] relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group"
             }
             onClick={() => handleClicked(b.id)}

@@ -112,7 +112,6 @@
 
 @layer base {
   :root {
-    /* [var(--light-slate)] */
     --light-slate: #f1f5f9; /*slate-100*/
     --medium-slate: #45556c; /*slate-600*/
     --dark-slate: #1d293d; /*slate-800*/
@@ -122,6 +121,7 @@
     --dark-red: #e63431;
     --light-yellow: #f6c64d;
     --dark-yellow: #fbac0f;
+    --green: #0e8614;
     --bg-sepia: #fff3e4;
   }
 
@@ -135,6 +135,7 @@
     --dark-red: #ff6666;
     --light-yellow: #fbac0f;
     --dark-yellow: #f6c64d;
+    --green: #14ad1c;
     --bg-sepia: var(--light-slate);
   }
 

@@ -3,12 +3,6 @@
 // components shadcn
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import {
   Table,
   TableBody,
   TableCaption,
@@ -18,7 +12,7 @@ import {
   TableRow,
 } from "./ui/table";
 // icons radix
-import { CaretSortIcon, ChevronDownIcon } from "@radix-ui/react-icons";
+import { CaretSortIcon } from "@radix-ui/react-icons";
 // components
 import { useState } from "react";
 import { Book } from "@/types/books";
@@ -27,6 +21,7 @@ import DeleteAction from "./actions/deleteaction";
 import EditAction from "./actions/editaction";
 import SeeAction from "./actions/seeaction";
 import AddAction from "./actions/addaction";
+import FilterBy from "./actions/filterBy";
 
 type TableBooksProps = {
   books: Book[];
@@ -207,26 +202,7 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
             </Tooltip>
           </TableHead>
           <TableHead colSpan={3}>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="m-auto cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-2 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center">
-                <span>Filter by</span>
-                <ChevronDownIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onSelect={() => setFilterBy("Unread")}>
-                  Unread
-                </DropdownMenuItem>
-                <DropdownMenuItem onSelect={() => setFilterBy("Reading")}>
-                  Reading
-                </DropdownMenuItem>
-                <DropdownMenuItem onSelect={() => setFilterBy("Read")}>
-                  Read
-                </DropdownMenuItem>
-                <DropdownMenuItem onSelect={() => setFilterBy(null)}>
-                  All
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <FilterBy value={filterBy} onChange={setFilterBy} />
           </TableHead>
         </TableRow>
       </TableHeader>
@@ -247,7 +223,7 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
             </TableCell>
             <TableCell
               className={
-                (b.price ?? "text-green-600 font-bold") +
+                (b.price ?? "text-[var(--green)] font-bold") +
                 " hidden md:table-cell text-center w-24"
               }
             >
@@ -278,10 +254,10 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
             <TableCell className="w-8">
               <SeeAction book={b} handles={handles} />
             </TableCell>
-            <TableCell className="w-8">
+            <TableCell className="w-8 hidden md:table-cell">
               <EditAction book={b} onEdit={handles.onEdit} />
             </TableCell>
-            <TableCell className="w-8">
+            <TableCell className="w-8 hidden md:table-cell">
               <DeleteAction book={b} onDelete={handles.onDelete} />
             </TableCell>
           </TableRow>

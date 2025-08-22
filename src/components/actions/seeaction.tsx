@@ -85,7 +85,7 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
           </p>
           <p
             className={
-              book.price ? "text-[var(--dark-slate)]" : "text-green-600"
+              book.price ? "text-[var(--dark-slate)]" : "text-[var(--green)]"
             }
           >
             <strong className="text-[var(--medium-slate)]">Price:</strong>{" "}
