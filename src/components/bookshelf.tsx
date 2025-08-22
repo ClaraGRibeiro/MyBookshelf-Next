@@ -22,8 +22,8 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
   const [pinReadings, setPinReadings] = useState(false)
   const [grid, setGrid] = useState(true)
   return (
-    <main className='p-12 text-slate-800'>
-      <div className='fixed bottom-10 right-2 flex flex-col gap-2 items-center justify-center'>
+    <main className='px-12 pt-16 py-24 text-slate-800'>
+      <div className='fixed bottom-14 right-2 flex flex-col gap-4 items-center justify-center'>
         <Button className='opacity-50 hover:opacity-100 active:opacity-100 z-2 cursor-pointer duration-200 p-0 hover:bg-transparent active:bg-transparent' variant='ghost' onClick={() => setGrid((prev) => !prev)}>
           <Tooltip>
             <TooltipTrigger asChild>

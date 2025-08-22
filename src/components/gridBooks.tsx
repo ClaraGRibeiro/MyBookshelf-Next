@@ -1,7 +1,10 @@
 'use client'
 
+// components shadcn
+import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip'
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, } from './ui/dropdown-menu'
 // icons radix
-import { BookmarkFilledIcon } from '@radix-ui/react-icons'
+import { BookmarkFilledIcon, CaretSortIcon, ChevronDownIcon } from '@radix-ui/react-icons'
 // components
 import { Book } from '@/types/books'
 import { Handles } from '@/types/handles'
@@ -16,15 +19,41 @@ type GridBooksProps = {
 }
 
 const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
-    let sortedBooks: Book[] = []
-    if (pinReadings) {
-        sortedBooks = [
-            ...[...books] // espalha livros e pega apenas os 'Reading' (em ordem)
-                .filter((b) => b.status === 'Reading'), // apenas 'Reading')
-            ...[...books].filter((b) => b.status !== 'Reading')
-        ]
-    } else sortedBooks = books
     const [clickedBookId, setClickedBookId] = useState<number | null>(null)
+    const [filterBy, setFilterBy] = useState<Book['status'] | null>(null)
+    const [sortBy, setSortBy] = useState<keyof Book>('title')
+    const [sortAsc, setSortAsc] = useState(true)
+
+    const handleSort = (key: keyof Book) => {
+        if (sortBy === key) {
+            setSortAsc(!sortAsc)
+        } else {
+            setSortBy(key)
+            setSortAsc(true)
+        }
+    }
+    const compareBooks = (a: Book, b: Book) => {
+        if (!sortBy) return 0
+        const aValue = a[sortBy] ?? ''
+        const bValue = b[sortBy] ?? ''
+
+        if (typeof aValue === 'number' && typeof bValue === 'number') {
+            return sortAsc ? aValue - bValue : bValue - aValue
+        }
+
+        return sortAsc
+            ? aValue.toString().localeCompare(bValue.toString())
+            : bValue.toString().localeCompare(aValue.toString())
+    }
+    let sortedBooks: Book[]
+    if (pinReadings) {
+        const readings = books.filter(b => b.status === 'Reading').sort(compareBooks)
+        const others = books.filter(b => b.status !== 'Reading').sort(compareBooks)
+        sortedBooks = [...readings, ...others]
+    } else {
+        sortedBooks = [...books].sort(compareBooks)
+    }
+    if (filterBy) { sortedBooks = sortedBooks.filter((b) => b.status === filterBy) }
 
     const handleClicked = (bId: number) => {
         if (bId === clickedBookId) {
@@ -36,6 +65,86 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
 
     return (
         <>
+            <div className='flex flex-wrap items-center justify-center gap-6 mb-8'>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <span onClick={() => handleSort('title')} className='cursor-pointer group text-slate-600 hover:text-slate-800 active:text-slate-800 group sm:max-w-36 flex items-center flex-row gap-1 w-fit'>
+                            Book Title
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
+                        </span>
+                    </TooltipTrigger>
+                    <TooltipContent className='bg-gray-800 text-slate-100 p-2 rounded text-center'>
+                        Sort by Book Title
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <span onClick={() => handleSort('author')} className='cursor-pointer group text-slate-600 hover:text-slate-800 active:text-slate-800 group sm:max-w-36 flex items-center flex-row gap-1 w-fit'>
+                            Author
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
+                        </span>
+                    </TooltipTrigger>
+                    <TooltipContent className='bg-gray-800 text-slate-100 p-2 rounded text-center'>
+                        Sort by Author
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <span onClick={() => handleSort('publisher')} className='cursor-pointer group text-slate-600 hover:text-slate-800 active:text-slate-800 group sm:max-w-36 flex items-center flex-row gap-1 w-fit'>
+                            Publisher
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
+                        </span>
+                    </TooltipTrigger>
+                    <TooltipContent className='bg-gray-800 text-slate-100 p-2 rounded text-center'>
+                        Sort by Publisher
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <span onClick={() => handleSort('pages')} className='cursor-pointer group text-slate-600 hover:text-slate-800 active:text-slate-800 group sm:max-w-36 flex items-center flex-row gap-1 w-fit'>
+                            Pages
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
+                        </span>
+                    </TooltipTrigger>
+                    <TooltipContent className='bg-gray-800 text-slate-100 p-2 rounded text-center'>
+                        Sort by Pages
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <span onClick={() => handleSort('price')} className='cursor-pointer group text-slate-600 hover:text-slate-800 active:text-slate-800 group sm:max-w-36 flex items-center flex-row gap-1 w-fit'>
+                            Price
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
+                        </span>
+                    </TooltipTrigger>
+                    <TooltipContent className='bg-gray-800 text-slate-100 p-2 rounded text-center'>
+                        Sort by Price
+                    </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <span onClick={() => handleSort('status')} className='cursor-pointer group text-slate-600 hover:text-slate-800 active:text-slate-800 group sm:max-w-36 flex items-center flex-row gap-1 w-fit'>
+                            Status
+                            <CaretSortIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200' />
+                        </span>
+                    </TooltipTrigger>
+                    <TooltipContent className='bg-gray-800 text-slate-100 p-2 rounded text-center'>
+                        Sort by Status
+                    </TooltipContent>
+                </Tooltip>
+                <DropdownMenu>
+                    <DropdownMenuTrigger className='cursor-pointer group text-slate-600 hover:text-slate-800 active:text-slate-800 hover:border-slate-800 active:border-slate-800 group flex-row gap-2 border border-slate-600 rounded px-2 py-1 flex justify-between items-center'>
+                        <span>Filter by</span>
+                        <ChevronDownIcon className='inline group-hover:scale-130 group-active:scale-130 duration-200'/>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        <DropdownMenuItem onSelect={() => setFilterBy("Unread")}>Unread</DropdownMenuItem>
+                        <DropdownMenuItem onSelect={() => setFilterBy("Reading")}>Reading</DropdownMenuItem>
+                        <DropdownMenuItem onSelect={() => setFilterBy("Read")}>Read</DropdownMenuItem>
+                        <DropdownMenuItem onSelect={() => setFilterBy(null)}>All</DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            </div>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 md:gap-8 lg:gap-5 justify-items-center'>
                 {sortedBooks.map((b) => (
                     <div key={b.id} className={(b.status === 'Reading' && 'shadow-[0_0_10px_#f4d177,0_0_15px_#f4d177,0_0_35px_#f4d177]') + ' aspect-[2/3] relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group'} onClick={() => handleClicked(b.id)}>

@@ -56,7 +56,7 @@ export default function Home() {
   const handles = allHandles();
 
   return (
-    <div className='bg-[#FFF3E4]/80'>
+    <div className='bg-[#FFF3E4]/80 min-h-dvh relative'>
       <Header books={books} handles={handles} />
       <Bookshelf books={books} handles={handles} />
       <Footer />
