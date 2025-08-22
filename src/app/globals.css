@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -112,6 +111,37 @@
 }
 
 @layer base {
+  :root {
+    /* [var(--light-slate)] */
+    --light-slate: #f1f5f9; /*slate-100*/
+    --medium-slate: #45556c; /*slate-600*/
+    --dark-slate: #1d293d; /*slate-800*/
+    --light-blue: #02a9f4;
+    --dark-blue: #006ab3;
+    --light-red: #ff6666;
+    --dark-red: #e63431;
+    --light-yellow: #f6c64d;
+    --dark-yellow: #fbac0f;
+    --bg-sepia: #fff3e4;
+  }
+
+  .dark {
+    --light-slate: #1d293d; /*slate-800*/
+    --medium-slate: #90a1b9; /*slate-400*/
+    --dark-slate: #f1f5f9; /*slate-100*/
+    --light-blue: #006ab3;
+    --dark-blue: #02a9f4;
+    --light-red: #e63431;
+    --dark-red: #ff6666;
+    --light-yellow: #fbac0f;
+    --dark-yellow: #f6c64d;
+    --bg-sepia: var(--light-slate);
+  }
+
+  .btn-content {
+    @apply text-[var(--dark-slate)] group-hover:text-[var(--light-slate)] group-active:text-[var(--light-slate)] flex items-center;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }

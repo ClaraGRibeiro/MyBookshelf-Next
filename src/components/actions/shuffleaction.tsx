@@ -1,52 +1,58 @@
-'use client'
+"use client";
 
 // components shadcn
-import { Tooltip, TooltipContent, TooltipTrigger } from '../ui/tooltip'
-import { Button } from '../ui/button'
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Button } from "../ui/button";
 // icons radix
-import { ShuffleIcon } from '@radix-ui/react-icons'
+import { ShuffleIcon } from "@radix-ui/react-icons";
 // components
-import { Book } from '@/types/books'
-import { useState } from 'react'
-import SeeAction from './seeaction'
-import { Handles } from '@/types/handles'
+import { Book } from "@/types/books";
+import { useState } from "react";
+import SeeAction from "./seeaction";
+import { Handles } from "@/types/handles";
 
 type ShuffleActionProps = {
-    books: Book[]
-    handles: Handles
-}
+  books: Book[];
+  handles: Handles;
+};
 
 const ShuffleAction = ({ books, handles }: ShuffleActionProps) => {
-    const [chosenBookId, setChosenBookId] = useState<number | null>(null)
-    const handleShuffleBook = () => {
-        const unreadBooks = books.filter(b => b?.status === 'Unread')
-        if (unreadBooks.length === 0) {
-            alert('No unread books available to shuffle.')
-            return
-        }
-        setChosenBookId(unreadBooks[Math.floor(Math.random() * unreadBooks.length)].id)
+  const [chosenBookId, setChosenBookId] = useState<number | null>(null);
+  const handleShuffleBook = () => {
+    const unreadBooks = books.filter((b) => b?.status === "Unread");
+    if (unreadBooks.length === 0) {
+      alert("No unread books available to shuffle.");
+      return;
     }
-    const chosenBook = books.find(b => b.id === chosenBookId) || null
+    setChosenBookId(
+      unreadBooks[Math.floor(Math.random() * unreadBooks.length)].id,
+    );
+  };
+  const chosenBook = books.find((b) => b.id === chosenBookId) || null;
 
-    return (
-        <>
-            <Button variant='ghost' className='p-2 cursor-pointer hover:bg-slate-100 active:bg-slate-100 focus:bg-slate-100 hover:text-slate-800 active:text-slate-800 focus:text-slate-800 !duration-400' onClick={() => { handleShuffleBook() }}>
-                <Tooltip>
-                    <TooltipTrigger asChild>
-                        <span>
-                            <ShuffleIcon className='cursor-pointer !w-6 !h-6' />
-                        </span>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                        Randomly choose the next book
-                    </TooltipContent>
-                </Tooltip>
-            </Button>
-            {chosenBook && (
-                <SeeAction noButtonMode={true} book={chosenBook} handles={handles} />
-            )}
-        </>
-    )
-}
+  return (
+    <>
+      <Button
+        variant="own"
+        className="hover:!bg-[var(--light-slate)] active:!bg-[var(--light-slate)]"
+        onClick={() => {
+          handleShuffleBook();
+        }}
+      >
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)] btn-content">
+              <ShuffleIcon className="cursor-pointer !w-6 !h-6" />
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>Randomly choose the next book</TooltipContent>
+        </Tooltip>
+      </Button>
+      {chosenBook && (
+        <SeeAction noButtonMode={true} book={chosenBook} handles={handles} />
+      )}
+    </>
+  );
+};
 
-export default ShuffleAction
+export default ShuffleAction;
