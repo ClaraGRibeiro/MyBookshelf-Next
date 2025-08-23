@@ -2,12 +2,21 @@
 
 // components shadcn
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
-import { Bar, BarChart, CartesianGrid, LabelList, XAxis } from "recharts";
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  LabelList,
+  TooltipProps,
+  XAxis,
+} from "recharts";
 import { Label, Pie, PieChart } from "recharts";
+// components
+import { Book } from "@/types/books";
 
 type ChartsProps = {
   type: "pie" | "bar";
-  dataChart?: { name: string; value: number }[];
+  dataChart?: { name: string; value: number; books: Book[] }[];
   value?: number;
   total?: number;
   label: string;
@@ -22,6 +31,47 @@ const Charts = ({
   label,
   colors,
 }: ChartsProps) => {
+  function CustomTooltip({ active, payload, label }: TooltipProps<any, any>) {
+    if (active && payload && payload.length > 0) {
+      const books: Book[] = payload[0].payload.books;
+      const totalPages = books.reduce((acc, b) => acc + (b.pages || 0), 0);
+      return (
+        <div className="bg-[var(--light-slate)] border rounded-lg p-2 shadow-md max-w-42">
+          <p className="font-bold mb-1">
+            {label} {books.length > 0 && "~ " + totalPages + " pages"}
+          </p>
+          {books.length > 0 ? (
+            <div className="flex flex-wrap gap-1 justify-center items-center">
+              {books.map((b, id) => (
+                <div
+                  key={id}
+                  className={
+                    "w-8 aspect-[2/3] relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group"
+                  }
+                >
+                  <img
+                    className="w-full h-full object-cover"
+                    src={b.image || "nobookcover.png"}
+                    alt={b.title}
+                    title={b.status + " ~ " + b.title}
+                  />
+                  {!b.image && (
+                    <span className="absolute transform top-1/3 -translate-y-1/4 right-0 -translate-x-1 text-center line-clamp-2 w-[75%] max-h-[90%] select-none text-[0.5rem] break-words text-[var(--light-slate)]">
+                      {b.title}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No books</p>
+          )}
+        </div>
+      );
+    }
+    return null;
+  }
+
   if (type === "pie") {
     const chartData = [
       { name: "Readings", value, fill: colors[0], label: "Readings" },
@@ -109,7 +159,7 @@ const Charts = ({
             tickMargin={10}
             axisLine={false}
           />
-          <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+          <ChartTooltip cursor={false} content={<CustomTooltip />} />
           <Bar dataKey="value" fill={colors[0]} radius={8}>
             <LabelList
               position="top"

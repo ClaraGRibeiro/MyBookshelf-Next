@@ -17,65 +17,27 @@ import { BarChartIcon } from "@radix-ui/react-icons";
 import Charts from "./charts";
 import { Book } from "@/types/books";
 
-const data = [
-  {
-    goal: 400,
-  },
-  {
-    goal: 300,
-  },
-  {
-    goal: 200,
-  },
-  {
-    goal: 300,
-  },
-  {
-    goal: 200,
-  },
-  {
-    goal: 278,
-  },
-  {
-    goal: 189,
-  },
-  {
-    goal: 239,
-  },
-  {
-    goal: 300,
-  },
-  {
-    goal: 200,
-  },
-  {
-    goal: 278,
-  },
-  {
-    goal: 189,
-  },
-  {
-    goal: 349,
-  },
-];
-
 type DrawerChartsProps = {
   books: Book[];
 };
 
 export function DrawerCharts({ books }: DrawerChartsProps) {
-  const totalSpent = books.reduce((acc, b) => acc + (b.price || 0), 0);
-  const numBooksRead = books.filter((b) => b.status === "Read").length;
-  const yearNow = new Date().getFullYear();
-  const monthNow = new Date().getMonth() + 1;
-  const readingsY = books.filter(
-    (b) => b.readDate?.split("/")[2] === yearNow.toString(),
-  ).length;
-  const readingsM = books.filter(
-    (b) =>
-      b.readDate?.split("/")[2] === yearNow.toString() &&
-      Number(b.readDate.split("/")[1]) === monthNow,
-  ).length;
+  const booksRead = books.filter((b) => b.status === "Read");
+  const currentYear = new Date().getFullYear();
+  const currentMonth = new Date().toLocaleString("en-US", { month: "short" });
+  const years = Array.from(
+    new Set(booksRead.map((b) => Number(b.readDate?.split("/")[2]))),
+  ).sort((x, y) => x - y);
+  const booksByYear = years.map((y) => {
+    const b = booksRead.filter((b) => Number(b.readDate?.split("/")[2]) === y);
+    return {
+      name: y.toString(),
+      value: b.length || 0,
+      books: b,
+    };
+  });
+  const readThisYear =
+    booksByYear.find((bY) => bY.name === currentYear.toString())?.books || [];
   const months = [
     "Jan",
     "Feb",
@@ -91,29 +53,22 @@ export function DrawerCharts({ books }: DrawerChartsProps) {
     "Dec",
   ];
   const booksByMonth = months.map((m, i) => {
+    const b = readThisYear.filter(
+      (b) => Number(b.readDate?.split("/")[1]) === i + 1,
+    );
     return {
       name: m,
-      value: books.filter(
-        (b) =>
-          b.readDate?.split("/")[2] === yearNow.toString() &&
-          Number(b.readDate.split("/")[1]) === i + 1,
-      ).length,
+      value: b.length || 0,
+      books: b || [],
     };
   });
-  const years = Array.from(
-    new Set(
-      books
-        .filter((b) => b.readDate)
-        .map((b) => Number(b.readDate?.split("/")[2])),
-    ),
-  ).sort((x, y) => x - y);
-  const booksByYear = years.map((y, i) => {
-    return {
-      name: y.toString(),
-      value: books.filter((b) => Number(b.readDate?.split("/")[2]) === y)
-        .length,
-    };
-  });
+  const readThisMonth =
+    booksByMonth.find((bM) => bM.name === currentMonth)?.books || [];
+
+  const totalSpent = books.reduce((acc, b) => acc + (b.price || 0), 0);
+  const totalPages = books.reduce((acc, b) => acc + (b.pages || 0), 0);
+  const totalPagesRead = booksRead.reduce((acc, b) => acc + (b.pages || 0), 0);
+  const timeRead = ((2.5 * totalPagesRead) / 60).toFixed(1);
 
   return (
     <Drawer>
@@ -141,35 +96,64 @@ export function DrawerCharts({ books }: DrawerChartsProps) {
             </DrawerDescription>
           </DrawerHeader>
           <div className="mt-12 md:mt-16 flex flex-col gap-12 items-center justify-center">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 justify-items-center items-center mb-2">
-              <p className="text-center font-bold text-3xl">
-                <span className="bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
-                  R$ <br /> {totalSpent} <br /> total
-                </span>
-              </p>
-              <Charts
-                type="pie"
-                value={numBooksRead}
-                total={books.length}
-                label="Readings"
-                colors={["#006AB3", "#cad5e2"]}
-              />
-              <Charts
-                type="pie"
-                value={readingsY}
-                total={numBooksRead}
-                label={"In " + yearNow}
-                colors={["#E63431", "#cad5e2"]}
-              />
-              <Charts
-                type="pie"
-                value={readingsM}
-                total={readingsY}
-                label={
-                  "In " + new Date().toLocaleString("en-US", { month: "long" })
-                }
-                colors={["#FBAC0F", "#cad5e2"]}
-              />
+            <div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 justify-items-center items-center mb-6 md:mb-12">
+                <p className="text-center">
+                  total of <br />
+                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                    {books.length}
+                  </span>
+                  <br /> books
+                </p>
+                <p className="text-center">
+                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                    {totalPagesRead}
+                  </span>
+                  <br /> pages <br /> read
+                </p>
+                <p className="text-center">
+                  about <br />
+                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                    {timeRead}h
+                  </span>
+                  <br /> reading
+                </p>
+                <p className="text-center">
+                  R$ <br />
+                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                    {totalSpent}
+                  </span>
+                  <br /> total
+                </p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-12 justify-items-center items-center mb-2">
+                <Charts
+                  type="pie"
+                  value={booksRead.length}
+                  total={books.length}
+                  label="Readings"
+                  colors={["#006AB3", "#cad5e2"]}
+                />
+                <Charts
+                  type="pie"
+                  value={readThisYear.length}
+                  total={booksRead.length}
+                  label={"In " + currentYear}
+                  colors={["#E63431", "#cad5e2"]}
+                />
+                <div className="col-span-2 flex justify-center md:col-span-1 md:block">
+                  <Charts
+                    type="pie"
+                    value={readThisMonth.length}
+                    total={readThisYear.length}
+                    label={
+                      "In " +
+                      new Date().toLocaleString("en-US", { month: "long" })
+                    }
+                    colors={["#FBAC0F", "#cad5e2"]}
+                  />
+                </div>
+              </div>
             </div>
             <Charts
               type="bar"
