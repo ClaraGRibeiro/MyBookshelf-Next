@@ -30,7 +30,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
     <main className="px-12 pt-16 py-24 text-[var(--dark-slate)]">
       <div className="fixed bottom-14 right-2 flex flex-col gap-4 items-center justify-center">
         <Button
-          className="opacity-50 hover:opacity-100 active:opacity-100 z-2 cursor-pointer duration-200 p-0 hover:bg-transparent active:bg-transparent"
+          className="opacity-50 hover:opacity-100 active:opacity-100 z-2 cursor-pointer !duration-200 p-0 hover:bg-transparent active:bg-transparent"
           variant="ghost"
           onClick={() => setGrid((prev) => !prev)}
         >
@@ -44,14 +44,12 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                 )}
               </span>
             </TooltipTrigger>
-            <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded">
-              {!grid ? "View grid" : "View rows"}
-            </TooltipContent>
+            <TooltipContent>{!grid ? "View grid" : "View rows"}</TooltipContent>
           </Tooltip>
         </Button>
 
         <Button
-          className="opacity-50 hover:opacity-100 active:opacity-100 z-2 cursor-pointer duration-200 p-0 hover:bg-transparent active:bg-transparent"
+          className="opacity-50 hover:opacity-100 active:opacity-100 z-2 cursor-pointer !duration-200 p-0 hover:bg-transparent active:bg-transparent"
           variant="ghost"
           onClick={() => setPinReadings((prev) => !prev)}
         >
@@ -65,9 +63,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
                 )}
               </span>
             </TooltipTrigger>
-            <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded">
-              Pin readings on the top
-            </TooltipContent>
+            <TooltipContent>Pin readings on the top</TooltipContent>
           </Tooltip>
         </Button>
 

@@ -1,7 +1,5 @@
 "use client";
 
-// components shadcn
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 // components
 import Search from "./actions/search";
 import AddAction from "./actions/addaction";
@@ -19,7 +17,7 @@ const Header = ({ books, handles }: HeaderProps) => {
   return (
     <header className="h-fill flex-wrap dark:bg-[var(--medium-slate)] bg-[var(--dark-slate)] flex md:justify-between justify-center items-center py-3 px-12 gap-3">
       <a className="flex items-center gap-2" href="/">
-        <img className="md:h-12 h-8" src="books.png" alt="Logo" />
+        <img className="md:h-12 h-10" src="books.png" alt="Logo" />
         <h1 className="text-[var(--light-slate)] text-2xl md:text-xl font-bold">
           NextBook
         </h1>

@@ -122,15 +122,13 @@ export function DrawerCharts({ books }: DrawerChartsProps) {
           <Tooltip>
             <TooltipTrigger
               asChild
-              className="opacity-50 hover:opacity-100 active:opacity-100 z-2 cursor-pointer duration-200 p-0 hover:bg-transparent active:bg-transparent"
+              className="opacity-50 hover:opacity-100 active:opacity-100 z-2 cursor-pointer !duration-200 p-0 hover:bg-transparent active:bg-transparent"
             >
               <span>
                 <BarChartIcon className="!w-6 !h-6" />
               </span>
             </TooltipTrigger>
-            <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded">
-              See statistical data
-            </TooltipContent>
+            <TooltipContent>See statistical data</TooltipContent>
           </Tooltip>
         </Button>
       </DrawerTrigger>

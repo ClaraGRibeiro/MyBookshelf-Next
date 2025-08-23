@@ -1,7 +1,5 @@
 "use client";
 
-// components shadcn
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 // icons radix
 import { BookmarkFilledIcon, CaretSortIcon } from "@radix-ui/react-icons";
 // components
@@ -11,6 +9,7 @@ import { useState } from "react";
 import SeeAction from "./actions/seeaction";
 import AddAction from "./actions/addaction";
 import FilterBy from "./actions/filterBy";
+import SortBy from "./actions/sortBy";
 
 type GridBooksProps = {
   books: Book[];
@@ -72,90 +71,12 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
   return (
     <>
       <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-8">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span
-              onClick={() => handleSort("title")}
-              className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-36 flex items-center flex-row gap-1 w-fit"
-            >
-              Book Title
-              <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-            </span>
-          </TooltipTrigger>
-          <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-            Sort by Book Title
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span
-              onClick={() => handleSort("author")}
-              className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-36 flex items-center flex-row gap-1 w-fit"
-            >
-              Author
-              <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-            </span>
-          </TooltipTrigger>
-          <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-            Sort by Author
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span
-              onClick={() => handleSort("publisher")}
-              className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-36 flex items-center flex-row gap-1 w-fit"
-            >
-              Publisher
-              <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-            </span>
-          </TooltipTrigger>
-          <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-            Sort by Publisher
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span
-              onClick={() => handleSort("pages")}
-              className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-36 flex items-center flex-row gap-1 w-fit"
-            >
-              Pages
-              <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-            </span>
-          </TooltipTrigger>
-          <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-            Sort by Pages
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span
-              onClick={() => handleSort("price")}
-              className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-36 flex items-center flex-row gap-1 w-fit"
-            >
-              Price
-              <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-            </span>
-          </TooltipTrigger>
-          <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-            Sort by Price
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <span
-              onClick={() => handleSort("status")}
-              className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-36 flex items-center flex-row gap-1 w-fit"
-            >
-              Status
-              <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-            </span>
-          </TooltipTrigger>
-          <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-            Sort by Status
-          </TooltipContent>
-        </Tooltip>
+        <SortBy value={sortBy} onChange={handleSort} type={"title"} />
+        <SortBy value={sortBy} onChange={handleSort} type={"author"} />
+        <SortBy value={sortBy} onChange={handleSort} type={"publisher"} />
+        <SortBy value={sortBy} onChange={handleSort} type={"pages"} />
+        <SortBy value={sortBy} onChange={handleSort} type={"price"} />
+        <SortBy value={sortBy} onChange={handleSort} type={"status"} />
         <FilterBy value={filterBy} onChange={setFilterBy} />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center">

@@ -11,10 +11,8 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-// icons radix
-import { CaretSortIcon } from "@radix-ui/react-icons";
 // components
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import DeleteAction from "./actions/deleteaction";
@@ -22,6 +20,7 @@ import EditAction from "./actions/editaction";
 import SeeAction from "./actions/seeaction";
 import AddAction from "./actions/addaction";
 import FilterBy from "./actions/filterBy";
+import SortBy from "./actions/sortBy";
 
 type TableBooksProps = {
   books: Book[];
@@ -98,138 +97,77 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
     handles.onChangeStatus(book.id, newStatus);
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+    };
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
+
   return (
     <Table className="text-lg">
       <TableCaption>
         <AddAction books={books} onAdd={handles.onAdd} lightBg={true} />
       </TableCaption>
       <TableHeader>
-        <TableRow className="text-base">
-          <TableHead
-            onClick={() => handleSort("title")}
-            className="text-[var(--medium-slate)] cursor-pointer hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-36"
-          >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span className="flex items-center flex-row gap-1 w-fit">
-                  Book Title
-                  <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-                Sort by Book Title
-              </TooltipContent>
-            </Tooltip>
+        <TableRow className="!text-base hover:!bg-transparent">
+          <TableHead className="!table-cell">
+            <SortBy value={sortBy} onChange={handleSort} type={"title"} />
           </TableHead>
-          <TableHead
-            onClick={() => handleSort("author")}
-            className="text-[var(--medium-slate)] cursor-pointer hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-36 hidden md:table-cell"
-          >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span className="flex items-center flex-row gap-1 w-fit">
-                  Author
-                  <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-                Sort by Author
-              </TooltipContent>
-            </Tooltip>
+          <TableHead className="hidden md:table-cell">
+            <SortBy value={sortBy} onChange={handleSort} type={"author"} />
           </TableHead>
-          <TableHead
-            onClick={() => handleSort("publisher")}
-            className="text-[var(--medium-slate)] cursor-pointer hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-26 hidden md:table-cell"
-          >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span className="flex items-center flex-row gap-1 w-fit">
-                  Publisher
-                  <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-                Sort by Publisher
-              </TooltipContent>
-            </Tooltip>
+          <TableHead className="hidden md:table-cell">
+            <SortBy value={sortBy} onChange={handleSort} type={"publisher"} />
           </TableHead>
-          <TableHead
-            onClick={() => handleSort("pages")}
-            className="text-[var(--medium-slate)] cursor-pointer hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-24 hidden md:table-cell"
-          >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span className="flex items-center flex-row gap-1 w-fit mx-auto">
-                  Pages
-                  <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-                Sort by Pages
-              </TooltipContent>
-            </Tooltip>
+          <TableHead className="w-24 hidden md:table-cell">
+            <div className="flex justify-center items-center">
+              <SortBy value={sortBy} onChange={handleSort} type={"pages"} />
+            </div>
           </TableHead>
-          <TableHead
-            onClick={() => handleSort("price")}
-            className="text-[var(--medium-slate)] cursor-pointer hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-24 hidden md:table-cell"
-          >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span className="flex items-center flex-row gap-1 w-fit mx-auto">
-                  Price
-                  <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-                Sort by Price
-              </TooltipContent>
-            </Tooltip>
+          <TableHead className="w-24 hidden md:table-cell">
+            <div className="flex justify-center items-center">
+              <SortBy value={sortBy} onChange={handleSort} type={"price"} />
+            </div>
           </TableHead>
-          <TableHead
-            onClick={() => handleSort("status")}
-            className="text-[var(--medium-slate)] cursor-pointer text-center hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group w-24 hidden md:table-cell"
-          >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span className="flex items-center flex-row gap-1 w-fit mx-auto">
-                  Status
-                  <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-                Sort by Status
-              </TooltipContent>
-            </Tooltip>
+          <TableHead className="w-24 hidden md:table-cell">
+            <div className="flex justify-center items-center">
+              <SortBy value={sortBy} onChange={handleSort} type={"status"} />
+            </div>
           </TableHead>
-          <TableHead colSpan={3}>
-            <FilterBy value={filterBy} onChange={setFilterBy} />
-          </TableHead>
+          {isMobile ? (
+            <TableHead colSpan={1} className="!table-cell">
+              <FilterBy value={filterBy} onChange={setFilterBy} />
+            </TableHead>
+          ) : (
+            <TableHead colSpan={3} className="!table-cell">
+              <FilterBy value={filterBy} onChange={setFilterBy} />
+            </TableHead>
+          )}
         </TableRow>
       </TableHeader>
       <TableBody>
         {sortedBooks.map((b) => (
           <TableRow key={b.id}>
-            <TableCell className="whitespace-nowrap overflow-hidden truncate max-w-36">
-              {b.title}
-            </TableCell>
-            <TableCell className="hidden md:table-cell whitespace-nowrap overflow-hidden truncate max-w-36">
-              {b.author}
-            </TableCell>
-            <TableCell className="hidden md:table-cell whitespace-nowrap overflow-hidden truncate max-w-26">
-              {b.publisher ?? "-"}
-            </TableCell>
-            <TableCell className="hidden md:table-cell text-center w-24">
+            <TableCell className="!table-cell !max-w-36">{b.title}</TableCell>
+            <TableCell className="!max-w-36">{b.author}</TableCell>
+            <TableCell className="!max-w-26">{b.publisher ?? "-"}</TableCell>
+            <TableCell className="!text-center !w-24">
               {b.pages ?? "-"}
             </TableCell>
             <TableCell
               className={
                 (b.price ?? "text-[var(--green)] font-bold") +
-                " hidden md:table-cell text-center w-24"
+                " text-center w-24"
               }
             >
               {b.price ? "R$ " + b.price.toFixed(2) : "Free"}
             </TableCell>
-            <TableCell className="hidden md:table-cell text-center max-w-24">
+            <TableCell className="text-center max-w-24">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <span
@@ -246,19 +184,23 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
                     {b.status}
                   </span>
                 </TooltipTrigger>
-                <TooltipContent className="bg-[var(--dark-slate)] text-[var(--light-slate)] p-2 rounded text-center">
-                  Change status
-                </TooltipContent>
+                <TooltipContent>Change status</TooltipContent>
               </Tooltip>
             </TableCell>
-            <TableCell className="w-8">
-              <SeeAction book={b} handles={handles} />
+            <TableCell className="w-8 !table-cell">
+              <div className="flex justify-center items-center">
+                <SeeAction book={b} handles={handles} />
+              </div>
             </TableCell>
             <TableCell className="w-8 hidden md:table-cell">
-              <EditAction book={b} onEdit={handles.onEdit} />
+              <div className="flex justify-center items-center">
+                <EditAction book={b} onEdit={handles.onEdit} />
+              </div>
             </TableCell>
             <TableCell className="w-8 hidden md:table-cell">
-              <DeleteAction book={b} onDelete={handles.onDelete} />
+              <div className="flex justify-center items-center">
+                <DeleteAction book={b} onDelete={handles.onDelete} />
+              </div>
             </TableCell>
           </TableRow>
         ))}
