@@ -25,7 +25,7 @@ type BookShelfProps = {
 
 const Bookshelf = ({ books, handles }: BookShelfProps) => {
   const [pinReadings, setPinReadings] = useState(false);
-  const [grid, setGrid] = useState(true);
+  const [grid, setGrid] = useState(false);
   return (
     <main className="px-12 pt-16 py-24 text-[var(--dark-slate)]">
       <div className="fixed bottom-14 right-2 flex flex-col gap-4 items-center justify-center">

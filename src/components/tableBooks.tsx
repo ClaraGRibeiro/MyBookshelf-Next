@@ -98,7 +98,6 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
   };
 
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
     const checkIsMobile = () => {
       setIsMobile(window.matchMedia("(max-width: 768px)").matches);
@@ -107,6 +106,15 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
     window.addEventListener("resize", checkIsMobile);
     return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
+
+  const [clickedBookId, setClickedBookId] = useState<number | null>(null);
+  const handleClicked = (bId: number) => {
+    if (bId === clickedBookId) {
+      setClickedBookId(null);
+      setTimeout(() => setClickedBookId(bId), 0);
+    } else setClickedBookId(bId);
+  };
+  const clickedBook = books.find((b) => b.id === clickedBookId) || null;
 
   return (
     <Table className="text-lg">
@@ -139,21 +147,32 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
               <SortBy value={sortBy} onChange={handleSort} type={"status"} />
             </div>
           </TableHead>
-          {isMobile ? (
-            <TableHead colSpan={1} className="!table-cell">
+          <TableHead colSpan={isMobile ? 1 : 3} className="!table-cell">
+            <div
+              className={
+                isMobile
+                  ? "flex justify-end items-center"
+                  : "flex justify-center items-center"
+              }
+            >
               <FilterBy value={filterBy} onChange={setFilterBy} />
-            </TableHead>
-          ) : (
-            <TableHead colSpan={3} className="!table-cell">
-              <FilterBy value={filterBy} onChange={setFilterBy} />
-            </TableHead>
-          )}
+            </div>
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
         {sortedBooks.map((b) => (
-          <TableRow key={b.id}>
-            <TableCell className="!table-cell !max-w-36">{b.title}</TableCell>
+          <TableRow
+            key={b.id}
+            onClick={isMobile ? () => handleClicked(b.id) : undefined}
+            className={isMobile ? "cursor-pointer" : ""}
+          >
+            <TableCell
+              colSpan={isMobile ? 2 : 1}
+              className="!table-cell !max-w-36"
+            >
+              {b.title}
+            </TableCell>
             <TableCell className="!max-w-36">{b.author}</TableCell>
             <TableCell className="!max-w-26">{b.publisher ?? "-"}</TableCell>
             <TableCell className="!text-center !w-24">
@@ -187,7 +206,7 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
                 <TooltipContent>Change status</TooltipContent>
               </Tooltip>
             </TableCell>
-            <TableCell className="w-8 !table-cell">
+            <TableCell className="w-8 hidden md:table-cell">
               <div className="flex justify-center items-center">
                 <SeeAction book={b} handles={handles} />
               </div>
@@ -205,6 +224,9 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
           </TableRow>
         ))}
       </TableBody>
+      {clickedBook && (
+        <SeeAction noButtonMode={true} book={clickedBook} handles={handles} />
+      )}
     </Table>
   );
 };
