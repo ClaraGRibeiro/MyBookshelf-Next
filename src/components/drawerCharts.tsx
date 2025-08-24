@@ -11,6 +11,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
+import { Progress } from "./ui/progress";
 // icons radix
 import { BarChartIcon } from "@radix-ui/react-icons";
 // components
@@ -64,7 +65,6 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   });
   const readThisMonth =
     booksByMonth.find((bM) => bM.name === currentMonth)?.books || [];
-
   const totalSpent = books.reduce((acc, b) => acc + (b.price || 0), 0);
   const totalPagesRead = booksRead.reduce((acc, b) => acc + (b.pages || 0), 0);
   const timeRead = ((2.5 * totalPagesRead) / 60).toFixed(1);
@@ -76,6 +76,9 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
     (max, curr) => (curr.value > max.value ? curr : max),
     { name: "No reads", value: 0, books: [] },
   );
+  const pagePerDay = 12;
+  const pagesAvg = totalPagesRead / booksRead.length;
+  const goal = Math.round((pagePerDay * 365) / pagesAvg);
   return (
     <Drawer>
       <DrawerTrigger>
@@ -101,9 +104,9 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
               Track reading progress: month by month, year by year.
             </DrawerDescription>
           </DrawerHeader>
-          <div className="mt-12 md:mt-16 flex flex-col gap-12 items-center justify-center">
-            <div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12 justify-items-center items-center mb-6 md:mb-12">
+          <div className="mt-12 md:mt-16 flex flex-col items-center justify-center gap-8">
+            <div className="flex flex-col justify-center items-center gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 md justify-items-center items-center gap-8">
                 <p className="text-center">
                   total of <br />
                   <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
@@ -132,7 +135,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
                   <br /> total
                 </p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-12 justify-items-center items-center mb-2">
+              <div className="grid grid-cols-2 md:grid-cols-3 md justify-items-center items-center gap-8">
                 <Charts
                   type="pie"
                   value={booksRead.length}
@@ -142,16 +145,16 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
                 />
                 <Charts
                   type="pie"
-                  value={readThisYear.length}
-                  total={booksRead.length}
+                  value={readThisYear.length} //0
+                  total={booksRead.length} //27
                   label={"In " + currentYear}
                   colors={["#E63431", "#cad5e2"]}
                 />
                 <div className="col-span-2 flex justify-center md:col-span-1 md:block">
                   <Charts
                     type="pie"
-                    value={readThisMonth.length}
-                    total={readThisYear.length}
+                    value={readThisMonth.length} //0
+                    total={readThisYear.length} //0
                     label={
                       "In " +
                       new Date().toLocaleString("en-US", { month: "long" })
@@ -161,7 +164,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center items-center flex-wrap gap-6 md:gap-12">
+            <div className="flex justify-center items-center flex-wrap gap-8">
               <p className="text-center">
                 Best Year <br />
                 <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
@@ -176,6 +179,22 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
                 </span>
                 <br /> ({bestMonth.value} reads)
               </p>
+            </div>
+            <div className="max-w-[70%] md:max-w-120 flex flex-col justify-center items-center">
+              <p className="text-center">
+                Read <strong>{pagePerDay}</strong> pages a day, with an avg of{" "}
+                <strong>{Math.round(pagesAvg)}</strong> pages per book, in a
+                year you will have read <strong>{goal}</strong> books!
+              </p>
+              <div className="w-full flex justify-between gap-8">
+                <span>{readThisYear.length}</span>
+                <span>
+                  {goal - readThisYear.length > 0
+                    ? goal - readThisYear.length
+                    : "🎉"}
+                </span>
+              </div>
+              <Progress value={(readThisYear.length * 100) / goal} />
             </div>
             <Charts
               type="bar"

@@ -73,15 +73,25 @@ const Charts = ({
   }
 
   if (type === "pie") {
-    const chartData = [
-      { name: "Readings", value, fill: colors[0], label: "Readings" },
-      {
-        name: "Remaining",
-        value: value && total ? total - value : 0,
-        fill: colors[1],
-        label: "Remaining",
-      },
-    ];
+    const safeValue = value ?? 0;
+    const safeTotal = total ?? 0;
+    const chartData =
+      safeTotal > 0 && safeValue > 0
+        ? [
+            {
+              name: "Readings",
+              value: value ?? 1,
+              fill: colors[0],
+              label: "Readings",
+            },
+            {
+              name: "Remaining",
+              value: value && total ? total - value : 0,
+              fill: colors[1],
+              label: "Remaining",
+            },
+          ]
+        : [{ name: "No Data", value: 1, fill: colors[1], label: "No Data" }];
     return (
       <ChartContainer config={{}} className="mx-auto aspect-square h-32 w-32">
         <PieChart width={200} height={200}>
@@ -112,8 +122,8 @@ const Charts = ({
                         className="text-3xl"
                         fill={colors[0]}
                       >
-                        {value && total
-                          ? `${((value * 100) / total).toFixed(0)}%`
+                        {safeTotal > 0 && safeValue > 0
+                          ? `${Math.round((safeValue * 100) / safeTotal)}%`
                           : "0%"}
                       </tspan>
                       <tspan
@@ -128,7 +138,7 @@ const Charts = ({
                         y={(viewBox.cy || 0) + 30}
                         className="fill-[var(--medium-slate)]"
                       >
-                        {value}/{total}
+                        {safeValue}/{safeTotal}
                       </tspan>
                     </text>
                   );
