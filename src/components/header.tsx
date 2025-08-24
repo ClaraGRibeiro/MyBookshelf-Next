@@ -16,29 +16,21 @@ type HeaderProps = {
 
 const Header = ({ books, handles }: HeaderProps) => {
   return (
-    <header className="h-fill flex-wrap dark:bg-[var(--medium-slate)] bg-[var(--dark-slate)] flex md:justify-between justify-center items-center py-3 px-12 gap-3">
+    <header className="h-fill flex-wrap dark:bg-[var(--medium-slate)] bg-[var(--dark-slate)] flex md:justify-between justify-center items-center py-3 px-12 gap-4">
       <a className="flex items-center gap-2" href="/">
         <img className="md:h-12 h-10" src="books.png" alt="Logo" />
         <h1 className="text-[var(--light-slate)] text-2xl md:text-xl font-bold">
           NextBook
         </h1>
       </a>
-      <div className="flex gap-x-6 gap-y-2 items-center flex-wrap-reverse justify-center text-[var(--light-slate)]">
-        <ul className="flex gap-6 items-center">
-          <li>
-            <AddAction books={books} onAdd={handles.onAdd} lightBg={false} />
-          </li>
-          <Search books={books} handles={handles} />
-          <li>
-            <ShuffleAction books={books} handles={handles} />
-          </li>
-          <li>
-            <ThemeToggle />
-          </li>
-          <li>
-            <Download books={books} />
-          </li>
-        </ul>
+      <div className="flex flex-wrap-reverse justify-center items-center gap-4 md:gap-6">
+        <div className="flex gap-6 items-center">
+          <AddAction books={books} onAdd={handles.onAdd} lightBg={false} />
+          <ShuffleAction books={books} handles={handles} />
+          <Download books={books} />
+          <ThemeToggle />
+        </div>
+        <Search books={books} handles={handles} />
       </div>
     </header>
   );

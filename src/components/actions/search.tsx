@@ -71,7 +71,10 @@ const Search = ({ books, handles }: SearchProps) => {
 
   return (
     <>
-      <div className="relative flex items-center" ref={containerRef}>
+      <div
+        className="text-[var(--light-slate)] relative flex items-center"
+        ref={containerRef}
+      >
         <MagnifyingGlassIcon className="absolute left-3 !w-5 !h-5" />
         {search.length > 0 && ( // if there is text typed, show an X button to clear the search
           <Cross2Icon
