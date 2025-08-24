@@ -36,8 +36,8 @@ const Charts = ({
       const books: Book[] = payload[0].payload.books;
       const totalPages = books.reduce((acc, b) => acc + (b.pages || 0), 0);
       return (
-        <div className="bg-[var(--light-slate)] border rounded-lg p-2 shadow-md max-w-42">
-          <p className="font-bold mb-1">
+        <div className="bg-[var(--light-slate)] border rounded-lg p-2 shadow-md max-w-56">
+          <p className="font-bold mb-4">
             {label} {books.length > 0 && "~ " + totalPages + " pages"}
           </p>
           {books.length > 0 ? (
@@ -46,7 +46,7 @@ const Charts = ({
                 <div
                   key={id}
                   className={
-                    "w-8 aspect-[2/3] relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group"
+                    "w-12 aspect-[2/3] relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group"
                   }
                 >
                   <img

@@ -16,7 +16,7 @@ import {
   ViewGridIcon,
   ListBulletIcon,
 } from "@radix-ui/react-icons";
-import { DrawerCharts } from "./drawerCharts";
+import DrawerCharts from "./drawerCharts";
 
 type BookShelfProps = {
   books: Book[];

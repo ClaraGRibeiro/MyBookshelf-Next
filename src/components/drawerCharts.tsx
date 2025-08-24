@@ -21,7 +21,7 @@ type DrawerChartsProps = {
   books: Book[];
 };
 
-export function DrawerCharts({ books }: DrawerChartsProps) {
+const DrawerCharts = ({ books }: DrawerChartsProps) => {
   const booksRead = books.filter((b) => b.status === "Read");
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().toLocaleString("en-US", { month: "short" });
@@ -66,10 +66,14 @@ export function DrawerCharts({ books }: DrawerChartsProps) {
     booksByMonth.find((bM) => bM.name === currentMonth)?.books || [];
 
   const totalSpent = books.reduce((acc, b) => acc + (b.price || 0), 0);
-  const totalPages = books.reduce((acc, b) => acc + (b.pages || 0), 0);
   const totalPagesRead = booksRead.reduce((acc, b) => acc + (b.pages || 0), 0);
   const timeRead = ((2.5 * totalPagesRead) / 60).toFixed(1);
-
+  const bestYear = booksByYear.reduce((max, curr) =>
+    curr.value > max.value ? curr : max,
+  );
+  const bestMonth = booksByMonth.reduce((max, curr) =>
+    curr.value > max.value ? curr : max,
+  );
   return (
     <Drawer>
       <DrawerTrigger>
@@ -155,6 +159,22 @@ export function DrawerCharts({ books }: DrawerChartsProps) {
                 </div>
               </div>
             </div>
+            <div className="flex justify-center items-center flex-wrap gap-6 md:gap-12">
+              <p className="text-center">
+                Best Year <br />
+                <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                  {bestYear.name}
+                </span>
+                <br /> ({bestYear.value} reads)
+              </p>
+              <p className="text-center">
+                Best Month <br />
+                <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                  {bestMonth.name}
+                </span>
+                <br /> ({bestMonth.value} reads)
+              </p>
+            </div>
             <Charts
               type="bar"
               dataChart={booksByYear}
@@ -172,4 +192,5 @@ export function DrawerCharts({ books }: DrawerChartsProps) {
       </DrawerContent>
     </Drawer>
   );
-}
+};
+export default DrawerCharts;
