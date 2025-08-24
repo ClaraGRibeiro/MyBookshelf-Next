@@ -26,10 +26,7 @@ const ThemeToggle = () => {
     >
       <Tooltip>
         <TooltipTrigger asChild>
-          <span
-            className="!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)] btn-content"
-            onClick={toggleDarkMode}
-          >
+          <span className="!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)] btn-content">
             {isDark ? (
               <SunIcon className="!w-6 !h-6 cursor-pointer" />
             ) : (

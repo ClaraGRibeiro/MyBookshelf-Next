@@ -31,7 +31,7 @@ export const books: Book[] = [
   {
     id: 3,
     title: "O Pequeno Príncipe",
-    author: "Antoine de Saint‑Exupéry",
+    author: "Antoine de Saint Exupéry",
     publisher: "Harpercollins",
     pages: 64,
     gotDate: "29/06/2025",
@@ -374,7 +374,7 @@ export const books: Book[] = [
     pages: 127,
     gotDate: "15/08/2025",
     // readDate: null,
-    price: 4,
+    price: 4.0,
     mode: "Book",
     status: "Unread",
     image: "https://m.media-amazon.com/images/I/71I2nZ1HUDL._SY466_.jpg",

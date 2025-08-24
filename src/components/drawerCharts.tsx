@@ -130,7 +130,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
                 <p className="text-center">
                   R$ <br />
                   <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
-                    {totalSpent}
+                    {totalSpent.toFixed(2)}
                   </span>
                   <br /> total
                 </p>
