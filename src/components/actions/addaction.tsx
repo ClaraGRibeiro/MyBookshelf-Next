@@ -76,6 +76,18 @@ const AddAction = ({
               (max, book) => Math.max(max, book.id),
               0,
             );
+            let readDateVar: string | undefined =
+              data.get("readDate")?.toString().split("-").reverse().join("/") ||
+              "";
+            let statusVar = data.get("status")?.toString() || "";
+            if (readDateVar && statusVar !== "Read") {
+              alert("Please set the book as read!");
+              return;
+            }
+            if (statusVar === "Read" && !readDateVar) {
+              alert("Please insert a read date!");
+              return;
+            }
             const newBook: Book = {
               id: maxId + 1,
               title: data.get("title")?.toString() || "-",

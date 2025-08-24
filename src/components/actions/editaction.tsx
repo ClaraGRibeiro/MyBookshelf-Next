@@ -36,8 +36,10 @@ type EditActionProps = {
 const EditAction = ({ book, onEdit }: EditActionProps) => {
   const [mode, setMode] = useState(book.mode);
   const [status, setStatus] = useState(book.status);
+  const [open, setOpen] = useState(false);
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="own">
           <Tooltip>
@@ -91,6 +93,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
               status: statusVar as Book["status"],
             };
             onEdit(updatedBook);
+            setOpen(false);
           }}
         >
           <DialogHeader>
@@ -205,14 +208,12 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                 Cancel
               </Button>
             </DialogClose>
-            <DialogClose asChild>
-              <Button
-                type="submit"
-                className="cursor-pointer !bg-[var(--medium-slate)] text-[var(--light-slate)] hover:!bg-[var(--dark-slate)] active:!bg-[var(--dark-slate)]"
-              >
-                Save changes
-              </Button>
-            </DialogClose>
+            <Button
+              type="submit"
+              className="cursor-pointer !bg-[var(--medium-slate)] text-[var(--light-slate)] hover:!bg-[var(--dark-slate)] active:!bg-[var(--dark-slate)]"
+            >
+              Save changes
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
