@@ -68,11 +68,13 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   const totalSpent = books.reduce((acc, b) => acc + (b.price || 0), 0);
   const totalPagesRead = booksRead.reduce((acc, b) => acc + (b.pages || 0), 0);
   const timeRead = ((2.5 * totalPagesRead) / 60).toFixed(1);
-  const bestYear = booksByYear.reduce((max, curr) =>
-    curr.value > max.value ? curr : max,
+  const bestYear = booksByYear.reduce(
+    (max, curr) => (curr.value > max.value ? curr : max),
+    { name: "No reads", value: 0, books: [] },
   );
-  const bestMonth = booksByMonth.reduce((max, curr) =>
-    curr.value > max.value ? curr : max,
+  const bestMonth = booksByMonth.reduce(
+    (max, curr) => (curr.value > max.value ? curr : max),
+    { name: "No reads", value: 0, books: [] },
   );
   return (
     <Drawer>

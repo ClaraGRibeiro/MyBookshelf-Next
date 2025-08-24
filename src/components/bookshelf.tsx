@@ -67,7 +67,9 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
           </Tooltip>
         </Button>
 
-        <DrawerCharts books={books} />
+        {books.filter((b) => b.status === "Read").length > 0 && (
+          <DrawerCharts books={books} />
+        )}
       </div>
 
       <h1 className="text-center text-3xl mb-12 font-bold">My BookShelf</h1>
