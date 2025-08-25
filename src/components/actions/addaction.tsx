@@ -25,7 +25,7 @@ import {
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 // components
 import { Book } from "@/types/books";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Handles } from "@/types/handles";
 
 type AddActionProps = {
@@ -42,6 +42,12 @@ const AddAction = ({
   lightBg = false,
 }: AddActionProps) => {
   const [open, setOpen] = useState(false);
+  const [imagePreview, setImagePreview] = useState("");
+  useEffect(() => {
+    if (open) {
+      setImagePreview("");
+    }
+  }, [open]);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -177,11 +183,23 @@ const AddAction = ({
               name="price"
               placeholder="Price (optional)"
             />
-            <Input
-              type="text"
-              name="image"
-              placeholder="Image url (optional)"
-            />
+            <div className="flex flex-justify-between items-center gap-4 text-sm">
+              {imagePreview && (
+                <div className={"aspect-[2/3] w-12 relative"}>
+                  <img
+                    className="w-full h-full object-cover"
+                    src={imagePreview}
+                    alt="preview"
+                  />
+                </div>
+              )}
+              <Input
+                onChange={(e) => setImagePreview(e.target.value)}
+                type="text"
+                name="image"
+                placeholder="Image url (optional)"
+              />
+            </div>
             <Input
               type="text"
               name="link"

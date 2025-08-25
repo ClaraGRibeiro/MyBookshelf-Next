@@ -25,7 +25,7 @@ import {
 import { Pencil2Icon } from "@radix-ui/react-icons";
 // components
 import { Book } from "@/types/books";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Handles } from "@/types/handles";
 
 type EditActionProps = {
@@ -37,6 +37,12 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
   const [mode, setMode] = useState(book.mode);
   const [status, setStatus] = useState(book.status);
   const [open, setOpen] = useState(false);
+  const [imagePreview, setImagePreview] = useState(book.image || "");
+  useEffect(() => {
+    if (open) {
+      setImagePreview(book.image || "");
+    }
+  }, [open, book.image]);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -85,9 +91,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                   .join("/") || book.gotDate,
               readDate: readDateVar,
               price: Number(data.get("price")) || book.price,
-              image: data.has("image")
-                ? data.get("image")?.toString()
-                : book.image,
+              image: imagePreview || book.image,
               link: data.has("link") ? data.get("link")?.toString() : book.link,
               mode: (data.get("mode")?.toString() as Book["mode"]) || book.mode,
               status: statusVar as Book["status"],
@@ -161,12 +165,24 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
               placeholder="Price (optional)"
               defaultValue={book.price}
             />
-            <Input
-              type="text"
-              name="image"
-              placeholder="Image url (optional)"
-              defaultValue={book.image}
-            />
+            <div className="flex flex-justify-between items-center gap-4">
+              {imagePreview && (
+                <div className={"aspect-[2/3] w-12 relative"}>
+                  <img
+                    className="w-full h-full object-cover"
+                    src={imagePreview}
+                    alt="Image Preview"
+                  />
+                </div>
+              )}
+              <Input
+                onChange={(e) => setImagePreview(e.target.value)}
+                type="text"
+                name="image"
+                placeholder="Image url (optional)"
+                defaultValue={book.image}
+              />
+            </div>
             <Input
               type="text"
               name="link"

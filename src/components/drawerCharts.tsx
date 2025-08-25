@@ -76,7 +76,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
     (max, curr) => (curr.value > max.value ? curr : max),
     { name: "No reads", value: 0, books: [] },
   );
-  const pagePerDay = 12;
+  const pagePerDay = 10;
   const pagesAvg = totalPagesRead / booksRead.length;
   const goal = Math.round((pagePerDay * 365) / pagesAvg);
   return (
