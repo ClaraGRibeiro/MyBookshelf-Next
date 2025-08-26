@@ -11,8 +11,8 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { Book } from "@/types/books";
 
 type FilterByProps = {
-  value: Book["status"] | null;
-  onChange: (status: Book["status"] | null) => void;
+  value: Book["status"] | Book["ownership"] | null;
+  onChange: (key: Book["status"] | Book["ownership"] | null) => void;
 };
 
 const FilterBy = ({ value, onChange }: FilterByProps) => {
@@ -31,6 +31,12 @@ const FilterBy = ({ value, onChange }: FilterByProps) => {
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={() => onChange("Read")}>
           Read
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => onChange("Owned")}>
+          Owned
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => onChange("Borrowed")}>
+          Borrowed
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={() => onChange(null)}>All</DropdownMenuItem>
       </DropdownMenuContent>

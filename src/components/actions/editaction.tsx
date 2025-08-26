@@ -1,6 +1,8 @@
 "use client";
 
 // components shadcn
+import { Label } from "../ui/label";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -36,6 +38,8 @@ type EditActionProps = {
 const EditAction = ({ book, onEdit }: EditActionProps) => {
   const [mode, setMode] = useState(book.mode);
   const [status, setStatus] = useState(book.status);
+  const [readDate, setReadDate] = useState(book.readDate);
+  const [ownership, setOwnership] = useState(book.ownership);
   const [open, setOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState(book.image || "");
   useEffect(() => {
@@ -64,16 +68,13 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
             e.preventDefault();
             const form = e.currentTarget;
             const data = new FormData(form);
-            let readDateVar: string | undefined =
-              data.get("readDate")?.toString().split("-").reverse().join("/") ||
-              book.readDate;
-            let statusVar = data.get("status")?.toString() || book.status;
-            if (readDateVar && statusVar !== "Read") {
-              alert("Please set the book as read!");
+            const statusVar = data.get("status")?.toString();
+            if (readDate && statusVar !== "Read") {
+              alert("There is reading date. Please mark the book as read!");
               return;
             }
-            if (statusVar === "Read" && !readDateVar) {
-              alert("Please insert a read date!");
+            if (statusVar === "Read" && !readDate) {
+              alert("The book is marked as read. Please enter a reading date!");
               return;
             }
             const updatedBook: Book = {
@@ -89,11 +90,12 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                   .split("-")
                   .reverse()
                   .join("/") || book.gotDate,
-              readDate: readDateVar,
+              readDate: readDate === "" ? undefined : readDate,
               price: Number(data.get("price")) || book.price,
               image: imagePreview || book.image,
               link: data.has("link") ? data.get("link")?.toString() : book.link,
-              mode: (data.get("mode")?.toString() as Book["mode"]) || book.mode,
+              mode: mode,
+              ownership: ownership,
               status: statusVar as Book["status"],
             };
             onEdit(updatedBook);
@@ -136,24 +138,32 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
               defaultValue={book.pages}
             />
             <div className="flex flex-row items-center justify-between">
-              <span className="text-[#62748e] ml-3 text-sm">
+              <span className="text-[var(--medium-slate)] ml-3 text-sm">
                 Got Date (optional)
               </span>
               <Input
-                className="w-fit text-[#62748e]"
+                className="w-fit text-[var(--medium-slate)]"
                 type="date"
                 defaultValue={book.gotDate?.split("/").reverse().join("-")}
                 name="gotDate"
               />
             </div>
             <div className="flex flex-row items-center justify-between">
-              <span className="text-[#62748e] ml-3 text-sm">
+              <span className="text-[var(--medium-slate)] ml-3 text-sm">
                 Read Date (optional)
               </span>
               <Input
-                className="w-fit text-[#62748e]"
+                className="w-fit text-[var(--medium-slate)]"
                 type="date"
-                defaultValue={book.readDate?.split("/").reverse().join("-")}
+                value={readDate ? readDate.split("/").reverse().join("-") : ""}
+                onChange={(e) =>
+                  setReadDate(
+                    e.target.value
+                      .split("-")
+                      .reverse()
+                      .join("/") as Book["readDate"],
+                  )
+                }
                 name="readDate"
               />
             </div>
@@ -189,24 +199,47 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
               placeholder="Purchase link (optional)"
               defaultValue={book.link}
             />
-            <Select
-              name="mode"
-              value={mode}
-              onValueChange={(value) => setMode(value as Book["mode"])}
-              defaultValue={book.mode}
-            >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Mode" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Book">Book</SelectItem>
-                <SelectItem value="PDF">PDF</SelectItem>
-              </SelectContent>
-            </Select>
+
+            <div className="flex justify-between items-center flex-wrap">
+              <div className="flex flex-col gap-2">
+                <span className="text-[var(--dark-slate)]">Mode</span>
+                <RadioGroup
+                  value={mode}
+                  onValueChange={(val) => setMode(val as Book["mode"])}
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="Book" id="Book" />
+                    <Label htmlFor="Book">Book</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="PDF" id="PDF" />
+                    <Label htmlFor="PDF">PDF</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+              <div className="flex flex-col gap-2">
+                <span className="text-[var(--dark-slate)]">Ownership</span>
+                <RadioGroup
+                  value={ownership}
+                  onValueChange={(val) =>
+                    setOwnership(val as Book["ownership"])
+                  }
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="Owned" id="Owned" />
+                    <Label htmlFor="Owned">Owned</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="Borrowed" id="Borrowed" />
+                    <Label htmlFor="Borrowed">Borrowed</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+            </div>
             <Select
               name="status"
               value={status}
-              onValueChange={(value) => setStatus(value as Book["status"])}
+              onValueChange={(val) => setStatus(val as Book["status"])}
             >
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Status" />

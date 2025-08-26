@@ -1,6 +1,8 @@
 "use client";
 
 // components shadcn
+import { Label } from "../ui/label";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
@@ -41,13 +43,23 @@ const AddAction = ({
   large = false,
   lightBg = false,
 }: AddActionProps) => {
+  const [ownership, setOwnership] = useState<Book["ownership"]>("Owned");
+  const [mode, setMode] = useState<Book["mode"]>("Book");
   const [open, setOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState("");
   useEffect(() => {
     if (open) {
       setImagePreview("");
+      setOwnership("Owned");
+      setMode("Book");
     }
   }, [open]);
+  useEffect(() => {
+    console.log(ownership);
+  }, [ownership]);
+  useEffect(() => {
+    console.log(mode);
+  }, [mode]);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -114,7 +126,8 @@ const AddAction = ({
               price: Number(data.get("price")),
               image: data.get("image")?.toString().trim() || "",
               link: data.get("link")?.toString().trim() || "",
-              mode: (data.get("mode")?.toString() as Book["mode"]) || "Book",
+              mode: mode,
+              ownership: ownership,
               status:
                 (data.get("status")?.toString() as Book["status"]) ||
                 (data.get("readDate") && "Read") ||
@@ -157,21 +170,21 @@ const AddAction = ({
               placeholder="Pages (optional)"
             />
             <div className="flex flex-row items-center justify-between">
-              <span className="text-[#62748e] ml-3 text-sm">
+              <span className="text-[var(--dark-slate)] ml-3 text-sm">
                 Got Date (optional)
               </span>
               <Input
-                className="w-fit text-[#62748e]"
+                className="w-fit text-[var(--medium-slate)]"
                 type="date"
                 name="gotDate"
               />
             </div>
             <div className="flex flex-row items-center justify-between">
-              <span className="text-[#62748e] ml-3 text-sm">
+              <span className="text-[var(--dark-slate)] ml-3 text-sm">
                 Read Date (optional)
               </span>
               <Input
-                className="w-fit text-[#62748e]"
+                className="w-fit text-[var(--medium-slate)]"
                 type="date"
                 name="readDate"
               />
@@ -205,15 +218,42 @@ const AddAction = ({
               name="link"
               placeholder="Purchase link (optional)"
             />
-            <Select name="mode">
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Mode" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="Book">Book</SelectItem>
-                <SelectItem value="PDF">PDF</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="flex justify-between items-center flex-wrap">
+              <div className="flex flex-col gap-2">
+                <span className="text-[var(--dark-slate)]">Mode</span>
+                <RadioGroup
+                  value={mode}
+                  onValueChange={(val) => setMode(val as Book["mode"])}
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="Book" id="Book" />
+                    <Label htmlFor="Book">Book</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="PDF" id="PDF" />
+                    <Label htmlFor="PDF">PDF</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+              <div className="flex flex-col gap-2">
+                <span className="text-[var(--dark-slate)]">Ownership</span>
+                <RadioGroup
+                  value={ownership}
+                  onValueChange={(val) =>
+                    setOwnership(val as Book["ownership"])
+                  }
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="Owned" id="Owned" />
+                    <Label htmlFor="Owned">Owned</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="Borrowed" id="Borrowed" />
+                    <Label htmlFor="Borrowed">Borrowed</Label>
+                  </div>
+                </RadioGroup>
+              </div>
+            </div>
             <Select name="status">
               <SelectTrigger className="w-full">
                 <SelectValue placeholder="Status" />

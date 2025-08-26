@@ -29,7 +29,9 @@ type TableBooksProps = {
 };
 
 const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
-  const [filterBy, setFilterBy] = useState<Book["status"] | null>(null);
+  const [filterBy, setFilterBy] = useState<
+    Book["status"] | Book["ownership"] | null
+  >(null);
   const [sortBy, setSortBy] = useState<keyof Book>("title");
   const [sortAsc, setSortAsc] = useState(true);
 
@@ -68,8 +70,13 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
   } else {
     sortedBooks = [...books].sort(compareBooks);
   }
+
   if (filterBy) {
-    sortedBooks = sortedBooks.filter((b) => b.status === filterBy);
+    if (filterBy === "Owned" || filterBy === "Borrowed") {
+      sortedBooks = sortedBooks.filter((b) => b.ownership === filterBy);
+    } else {
+      sortedBooks = sortedBooks.filter((b) => b.status === filterBy);
+    }
   }
 
   const toggleStatus = (book: Book) => {

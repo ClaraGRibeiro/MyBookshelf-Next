@@ -136,7 +136,7 @@
     --light-yellow: #fbac0f;
     --dark-yellow: #f6c64d;
     --green: #14ad1c;
-    --bg-sepia: var(--light-slate);
+    --bg-sepia: #0f172b; /*slate-900*/
   }
 
   .btn-content {

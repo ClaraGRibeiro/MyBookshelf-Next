@@ -19,7 +19,9 @@ type GridBooksProps = {
 
 const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
   const [clickedBookId, setClickedBookId] = useState<number | null>(null);
-  const [filterBy, setFilterBy] = useState<Book["status"] | null>(null);
+  const [filterBy, setFilterBy] = useState<
+    Book["status"] | Book["ownership"] | null
+  >(null);
   const [sortBy, setSortBy] = useState<keyof Book>("title");
   const [sortAsc, setSortAsc] = useState(true);
 
@@ -45,19 +47,30 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
       : bValue.toString().localeCompare(aValue.toString());
   };
   let sortedBooks: Book[];
+  const readings = books
+    .filter((b) => b.status === "Reading")
+    .sort(compareBooks);
+  const borrowedBooks = books
+    .filter((b) => b.ownership === "Borrowed")
+    .sort(compareBooks);
+  const ownedBooks = books
+    .filter((b) => b.ownership === "Owned")
+    .sort(compareBooks);
+  const others = books
+    .filter((b) => b.status !== "Reading" && b.ownership !== "Borrowed")
+    .sort(compareBooks);
   if (pinReadings) {
-    const readings = books
-      .filter((b) => b.status === "Reading")
-      .sort(compareBooks);
-    const others = books
-      .filter((b) => b.status !== "Reading")
-      .sort(compareBooks);
-    sortedBooks = [...readings, ...others];
+    sortedBooks = [...readings, ...others, ...borrowedBooks];
   } else {
-    sortedBooks = [...books].sort(compareBooks);
+    sortedBooks = [...ownedBooks, ...borrowedBooks];
   }
+
   if (filterBy) {
-    sortedBooks = sortedBooks.filter((b) => b.status === filterBy);
+    if (filterBy === "Owned" || filterBy === "Borrowed") {
+      sortedBooks = sortedBooks.filter((b) => b.ownership === filterBy);
+    } else {
+      sortedBooks = sortedBooks.filter((b) => b.status === filterBy);
+    }
   }
 
   const handleClicked = (bId: number) => {
@@ -84,8 +97,9 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
           <div
             key={b.id}
             className={
-              (b.status === "Reading" && "shadow-[0_0_40px_#fbac0f]") +
-              " aspect-[2/3] relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group"
+              (b.status === "Reading" &&
+                "border-4 border-[var(--light-yellow)] hover:border-[var(--dark-yellow)] active:border-[var(--dark-yellow)] ") +
+              "aspect-[2/3] relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group"
             }
             onClick={() => handleClicked(b.id)}
           >
@@ -108,6 +122,11 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
             {!b.image && (
               <span className="absolute transform top-1/3 -translate-y-1/4 right-0 -translate-x-3 text-center line-clamp-2 w-[75%] max-h-[90%] select-none text-xl break-words font-bold text-[var(--light-slate)]">
                 {b.title}
+              </span>
+            )}
+            {b.ownership === "Borrowed" && (
+              <span className="absolute left-0 bottom-0 text-center select-none text-lg font-semibold text-[var(--light-slate)] bg-[var(--dark-slate)] group-hover:text-[var(--dark-slate)] group-active:text-[var(--dark-slate)] group-hover:bg-[var(--light-slate)] group-active:bg-[var(--light-slate)] px-4 py-1 rounded-tr-3xl !duration-200">
+                {b.ownership}
               </span>
             )}
           </div>

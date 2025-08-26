@@ -9,6 +9,7 @@ export type Book = {
   price?: number;
   image?: string;
   link?: string;
+  ownership: "Owned" | "Borrowed";
   mode: "Book" | "PDF";
   status: "Reading" | "Read" | "Unread";
 };

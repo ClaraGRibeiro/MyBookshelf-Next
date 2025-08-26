@@ -96,6 +96,10 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
             {book.mode}
           </p>
           <p className="text-[var(--dark-slate)]">
+            <strong className="text-[var(--medium-slate)]">Ownership:</strong>{" "}
+            {book.ownership}
+          </p>
+          <p className="text-[var(--dark-slate)]">
             <strong className="text-[var(--medium-slate)]">Status:</strong>{" "}
             <span
               className={
