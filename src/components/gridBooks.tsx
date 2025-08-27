@@ -47,22 +47,13 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
       : bValue.toString().localeCompare(aValue.toString());
   };
   let sortedBooks: Book[];
-  const readings = books
-    .filter((b) => b.status === "Reading")
-    .sort(compareBooks);
-  const borrowedBooks = books
-    .filter((b) => b.ownership === "Borrowed")
-    .sort(compareBooks);
-  const ownedBooks = books
-    .filter((b) => b.ownership === "Owned")
-    .sort(compareBooks);
-  const others = books
-    .filter((b) => b.status !== "Reading" && b.ownership !== "Borrowed")
-    .sort(compareBooks);
   if (pinReadings) {
-    sortedBooks = [...readings, ...others, ...borrowedBooks];
+    sortedBooks = [
+      ...books.filter((b) => b.status === "Reading").sort(compareBooks),
+      ...books.filter((b) => b.status !== "Reading").sort(compareBooks),
+    ];
   } else {
-    sortedBooks = [...ownedBooks, ...borrowedBooks];
+    sortedBooks = [...books.sort(compareBooks)];
   }
 
   if (filterBy) {

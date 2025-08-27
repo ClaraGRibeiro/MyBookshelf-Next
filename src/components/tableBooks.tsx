@@ -60,15 +60,12 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
 
   let sortedBooks: Book[];
   if (pinReadings) {
-    const readings = books
-      .filter((b) => b.status === "Reading")
-      .sort(compareBooks);
-    const others = books
-      .filter((b) => b.status !== "Reading")
-      .sort(compareBooks);
-    sortedBooks = [...readings, ...others];
+    sortedBooks = [
+      ...books.filter((b) => b.status === "Reading").sort(compareBooks),
+      ...books.filter((b) => b.status !== "Reading").sort(compareBooks),
+    ];
   } else {
-    sortedBooks = [...books].sort(compareBooks);
+    sortedBooks = [...books.sort(compareBooks)];
   }
 
   if (filterBy) {
