@@ -1,6 +1,12 @@
 "use client";
 
 // components shadcn
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { Button } from "./ui/button";
 import {
@@ -14,29 +20,48 @@ import {
 import { Progress } from "./ui/progress";
 // icons radix
 import { BarChartIcon } from "@radix-ui/react-icons";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 // components
 import Charts from "./charts";
 import { Book } from "@/types/books";
+import { useState } from "react";
 
 type DrawerChartsProps = {
   books: Book[];
 };
 
 const DrawerCharts = ({ books }: DrawerChartsProps) => {
+  const [showBy, setShowBy] = useState<"Books" | "Pages">("Books");
   const booksRead = books.filter((b) => b.status === "Read");
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().toLocaleString("en-US", { month: "short" });
   const years = Array.from(
     new Set(booksRead.map((b) => Number(b.readDate?.split("/")[2]))),
   ).sort((x, y) => x - y);
-  const booksByYear = years.map((y) => {
-    const b = booksRead.filter((b) => Number(b.readDate?.split("/")[2]) === y);
-    return {
-      name: y.toString(),
-      value: b.length || 0,
-      books: b,
-    };
-  });
+  let booksByYear = [];
+  if (showBy === "Books") {
+    booksByYear = years.map((y) => {
+      const b = booksRead.filter(
+        (b) => Number(b.readDate?.split("/")[2]) === y,
+      );
+      return {
+        name: y.toString(),
+        value: b.length || 0,
+        books: b,
+      };
+    });
+  } else {
+    booksByYear = years.map((y) => {
+      const b = booksRead.filter(
+        (b) => Number(b.readDate?.split("/")[2]) === y,
+      );
+      return {
+        name: y.toString(),
+        value: b.reduce((acc, b) => acc + (b.pages || 0), 0) || 0,
+        books: b,
+      };
+    });
+  }
   const readThisYear =
     booksByYear.find((bY) => bY.name === currentYear.toString())?.books || [];
   const months = [
@@ -53,16 +78,30 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
     "Nov",
     "Dec",
   ];
-  const booksByMonth = months.map((m, i) => {
-    const b = readThisYear.filter(
-      (b) => Number(b.readDate?.split("/")[1]) === i + 1,
-    );
-    return {
-      name: m,
-      value: b.length || 0,
-      books: b || [],
-    };
-  });
+  let booksByMonth = [];
+  if (showBy === "Books") {
+    booksByMonth = months.map((m, i) => {
+      const b = readThisYear.filter(
+        (b) => Number(b.readDate?.split("/")[1]) === i + 1,
+      );
+      return {
+        name: m,
+        value: b.length || 0,
+        books: b || [],
+      };
+    });
+  } else {
+    booksByMonth = months.map((m, i) => {
+      const b = readThisYear.filter(
+        (b) => Number(b.readDate?.split("/")[1]) === i + 1,
+      );
+      return {
+        name: m,
+        value: b.reduce((acc, b) => acc + (b.pages || 0), 0) || 0 || 0,
+        books: b || [],
+      };
+    });
+  }
   const readThisMonth =
     booksByMonth.find((bM) => bM.name === currentMonth)?.books || [];
   const totalSpent = books.reduce((acc, b) => acc + (b.price || 0), 0);
@@ -145,16 +184,16 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
                 />
                 <Charts
                   type="pie"
-                  value={readThisYear.length} //0
-                  total={booksRead.length} //27
+                  value={readThisYear.length}
+                  total={booksRead.length}
                   label={"In " + currentYear}
                   colors={["#E63431", "#cad5e2"]}
                 />
                 <div className="col-span-2 flex justify-center md:col-span-1 md:block">
                   <Charts
                     type="pie"
-                    value={readThisMonth.length} //0
-                    total={readThisYear.length} //0
+                    value={readThisMonth.length}
+                    total={readThisYear.length}
                     label={
                       "In " +
                       new Date().toLocaleString("en-US", { month: "long" })
@@ -164,23 +203,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center items-center flex-wrap gap-8">
-              <p className="text-center">
-                Best Year <br />
-                <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
-                  {bestYear.name}
-                </span>
-                <br /> ({bestYear.value} reads)
-              </p>
-              <p className="text-center">
-                Best Month <br />
-                <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
-                  {bestMonth.name}
-                </span>
-                <br /> ({bestMonth.value} reads)
-              </p>
-            </div>
-            <div className="max-w-[70%] md:max-w-120 flex flex-col justify-center items-center">
+            <div className="max-w-[70%] md:max-w-120 mb-12 flex flex-col justify-center items-center">
               <p className="text-center">
                 Read <strong>{pagePerDay}</strong> pages a day, with an avg of{" "}
                 <strong>{Math.round(pagesAvg)}</strong> pages per book, in a
@@ -196,17 +219,51 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
               </div>
               <Progress value={(readThisYear.length * 100) / goal} />
             </div>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-2 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">
+                <span>Show by nº of</span>
+                <ChevronDownIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onSelect={() => setShowBy("Books")}>
+                  Books
+                </DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => setShowBy("Pages")}>
+                  Pages
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+            <div className="flex justify-center items-center flex-wrap gap-8">
+              <p className="text-center">
+                Best Year <br />
+                <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                  {bestYear.name}
+                </span>
+                <br /> ({bestYear.value}{" "}
+                {showBy === "Books" ? "reads" : "pages"})
+              </p>
+              <p className="text-center">
+                Best Month <br />
+                <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                  {bestMonth.name}
+                </span>
+                <br /> ({bestMonth.value}{" "}
+                {showBy === "Books" ? "reads" : "pages"})
+              </p>
+            </div>
             <Charts
               type="bar"
               dataChart={booksByYear}
               label="Books per Year"
               colors={["#E63431"]}
+              showBy={showBy}
             />
             <Charts
               type="bar"
               dataChart={booksByMonth}
               label={"Books per Month (" + new Date().getFullYear() + ")"}
               colors={["#FBAC0F"]}
+              showBy={showBy}
             />
           </div>
         </div>

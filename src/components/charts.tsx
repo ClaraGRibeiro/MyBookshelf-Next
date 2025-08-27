@@ -21,6 +21,7 @@ type ChartsProps = {
   total?: number;
   label: string;
   colors: string[];
+  showBy?: "Books" | "Pages";
 };
 
 const Charts = ({
@@ -30,15 +31,19 @@ const Charts = ({
   total,
   label,
   colors,
+  showBy,
 }: ChartsProps) => {
   function CustomTooltip({ active, payload, label }: TooltipProps<any, any>) {
     if (active && payload && payload.length > 0) {
       const books: Book[] = payload[0].payload.books;
-      const totalPages = books.reduce((acc, b) => acc + (b.pages || 0), 0);
+      const totalPages =
+        books.reduce((acc, b) => acc + (b.pages || 0), 0) + " pages";
+      const totalBooks = books.length + " books";
       return (
         <div className="bg-[var(--light-slate)] border rounded-lg p-2 shadow-md max-w-56">
           <p className="font-bold mb-4">
-            {label} {books.length > 0 && "~ " + totalPages + " pages"}
+            {label} -{" "}
+            {books.length > 0 && (showBy === "Books" ? totalPages : totalBooks)}
           </p>
           {books.length > 0 ? (
             <div className="flex flex-wrap gap-1 justify-center items-center">
