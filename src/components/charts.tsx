@@ -36,6 +36,15 @@ const Charts = ({
   function CustomTooltip({ active, payload, label }: TooltipProps<any, any>) {
     if (active && payload && payload.length > 0) {
       const books: Book[] = payload[0].payload.books;
+      const sortedBooks = books.sort((a, b) => {
+        const dateA = a.readDate
+          ? new Date(a.readDate.split("/").reverse().join("-")).getTime()
+          : 0;
+        const dateB = b.readDate
+          ? new Date(b.readDate.split("/").reverse().join("-")).getTime()
+          : 0;
+        return dateA - dateB;
+      });
       const totalPages =
         books.reduce((acc, b) => acc + (b.pages || 0), 0) + " pages";
       const totalBooks = books.length + " books";
@@ -43,11 +52,12 @@ const Charts = ({
         <div className="bg-[var(--light-slate)] border rounded-lg p-2 shadow-md max-w-56">
           <p className="font-bold mb-4">
             {label} -{" "}
-            {books.length > 0 && (showBy === "Books" ? totalPages : totalBooks)}
+            {sortedBooks.length > 0 &&
+              (showBy === "Books" ? totalPages : totalBooks)}
           </p>
-          {books.length > 0 ? (
+          {sortedBooks.length > 0 ? (
             <div className="flex flex-wrap gap-1 justify-center items-center">
-              {books.map((b, id) => (
+              {sortedBooks.map((b, id) => (
                 <div
                   key={id}
                   className={
