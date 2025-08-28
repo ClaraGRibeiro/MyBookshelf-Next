@@ -20,7 +20,7 @@ type GridBooksProps = {
 const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
   const [clickedBookId, setClickedBookId] = useState<number | null>(null);
   const [filterBy, setFilterBy] = useState<
-    Book["status"] | Book["ownership"] | null
+    Book["status"] | Book["ownership"] | Book["mode"] | null
   >(null);
   const [sortBy, setSortBy] = useState<keyof Book>("title");
   const [sortAsc, setSortAsc] = useState(true);
@@ -59,6 +59,8 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
   if (filterBy) {
     if (filterBy === "Owned" || filterBy === "Borrowed") {
       sortedBooks = sortedBooks.filter((b) => b.ownership === filterBy);
+    } else if (filterBy === "Physical" || filterBy === "Digital") {
+      sortedBooks = sortedBooks.filter((b) => b.mode === filterBy);
     } else {
       sortedBooks = sortedBooks.filter((b) => b.status === filterBy);
     }
@@ -98,7 +100,7 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
               className="w-full h-full object-cover"
               src={b.image || "nobookcover.png"}
               alt={b.title}
-              title={b.status + " ~ " + b.title}
+              title={"(" + b.status + ") " + b.title}
             />
             <BookmarkFilledIcon
               className={
@@ -111,7 +113,7 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
               }
             />
             {!b.image && (
-              <span className="absolute transform top-1/3 -translate-y-1/4 right-0 -translate-x-3 text-center line-clamp-2 w-[75%] max-h-[90%] select-none text-xl break-words font-bold text-[var(--light-slate)]">
+              <span className="absolute transform top-[30%] left-[15%] text-center w-[75%] max-h-[90%] select-none text-xl break-words font-bold text-[var(--light-slate)]">
                 {b.title}
               </span>
             )}

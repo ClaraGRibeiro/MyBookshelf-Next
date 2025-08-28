@@ -4,6 +4,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "../ui/dropdown-menu";
 // icons radix
 import { ChevronDownIcon } from "@radix-ui/react-icons";
@@ -11,8 +12,10 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 import { Book } from "@/types/books";
 
 type FilterByProps = {
-  value: Book["status"] | Book["ownership"] | null;
-  onChange: (key: Book["status"] | Book["ownership"] | null) => void;
+  value: Book["status"] | Book["ownership"] | Book["mode"] | null;
+  onChange: (
+    key: Book["status"] | Book["ownership"] | Book["mode"] | null,
+  ) => void;
 };
 
 const FilterBy = ({ value, onChange }: FilterByProps) => {
@@ -32,12 +35,21 @@ const FilterBy = ({ value, onChange }: FilterByProps) => {
         <DropdownMenuItem onSelect={() => onChange("Read")}>
           Read
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => onChange("Owned")}>
           Owned
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={() => onChange("Borrowed")}>
           Borrowed
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem onSelect={() => onChange("Physical")}>
+          Physical
+        </DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => onChange("Digital")}>
+          Digital
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => onChange(null)}>All</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

@@ -44,22 +44,16 @@ const AddAction = ({
   lightBg = false,
 }: AddActionProps) => {
   const [ownership, setOwnership] = useState<Book["ownership"]>("Owned");
-  const [mode, setMode] = useState<Book["mode"]>("Book");
+  const [mode, setMode] = useState<Book["mode"]>("Physical");
   const [open, setOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState("");
   useEffect(() => {
     if (open) {
       setImagePreview("");
       setOwnership("Owned");
-      setMode("Book");
+      setMode("Physical");
     }
   }, [open]);
-  useEffect(() => {
-    console.log(ownership);
-  }, [ownership]);
-  useEffect(() => {
-    console.log(mode);
-  }, [mode]);
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>

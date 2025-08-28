@@ -10,6 +10,6 @@ export type Book = {
   image?: string;
   link?: string;
   ownership: "Owned" | "Borrowed";
-  mode: "Book" | "PDF";
+  mode: "Physical" | "Digital";
   status: "Reading" | "Read" | "Unread";
 };
