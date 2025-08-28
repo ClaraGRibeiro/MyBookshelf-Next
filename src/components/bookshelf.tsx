@@ -9,7 +9,7 @@ import GridBooks from "./gridBooks";
 // import Charts from './charts'
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   DrawingPinIcon,
   DrawingPinFilledIcon,
@@ -24,6 +24,16 @@ type BookShelfProps = {
 };
 
 const Bookshelf = ({ books, handles }: BookShelfProps) => {
+  const [top3, setTop3] = useState<any[] | null>(null);
+  useEffect(() => {
+    (async () => {
+      const res = await fetch("/api/amazonAPI");
+      const data = await res.json();
+      setTop3(data);
+      console.log(data);
+    })();
+  }, []);
+
   const [pinReadings, setPinReadings] = useState(false);
   const [grid, setGrid] = useState(true);
   return (
@@ -78,6 +88,46 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
         <GridBooks books={books} handles={handles} pinReadings={pinReadings} />
       ) : (
         <TableBook books={books} handles={handles} pinReadings={pinReadings} />
+      )}
+      {!top3 ? (
+        <h2 className="text-center text-xl mt-20 font-bold">
+          Loading 3 Tops...
+        </h2>
+      ) : (
+        <div className="mt-20">
+          <h2 className="text-center text-xl mb-12 font-bold">
+            3 Tops Amazon BR
+          </h2>
+          <ul className="flex gap-8 items-start justify-betw mx-auto w-fit">
+            {top3?.map((book) => (
+              <li
+                key={book.rank}
+                className="flex items-center gap-3"
+                onClick={() => window.open(book.link, "_blank")}
+              >
+                <div
+                  className={
+                    "aspect-[2/3] relative w-24 hover:scale-110 active:scale-110 duration-200 cursor-pointer group"
+                  }
+                >
+                  <img
+                    src={book.image}
+                    alt={book.title}
+                    width={50}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div>
+                  <p>({book.category})</p>
+                  <p className="font-semibold">{book.title.split(":")[0]}</p>
+                  <p className="text-sm text-[var(--medium-slate)]">
+                    {book.author}
+                  </p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </main>
   );

@@ -118,6 +118,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   const pagePerDay = 10;
   const pagesAvg = totalPagesRead / booksRead.length;
   const goal = Math.round((pagePerDay * 365) / pagesAvg);
+
   return (
     <Drawer>
       <DrawerTrigger>
