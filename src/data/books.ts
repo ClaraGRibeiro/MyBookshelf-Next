@@ -115,7 +115,7 @@ export const books: Book[] = [
     // readDate: null,
     price: 4.0,
     mode: "Physical",
-    status: "Unread",
+    status: "Reading",
     ownership: "Owned",
     image: "https://m.media-amazon.com/images/I/41Jxt+ZGIdL._SY445_SX342_.jpg",
     link: "https://a.co/d/fo11rZY",
