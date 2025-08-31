@@ -33,10 +33,28 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
       setSortAsc(true);
     }
   };
+
+  const parseDate = (val: string): null | number => {
+    if (!val || val === "-") return null;
+    const parts = val.split("/");
+    if (parts.length !== 3) return 0;
+    const d = new Date(parts.reverse().join("-"));
+    return isNaN(d.getTime()) ? 0 : d.getTime();
+  };
+
   const compareBooks = (a: Book, b: Book) => {
     if (!sortBy) return 0;
     const aValue = a[sortBy] ?? "";
     const bValue = b[sortBy] ?? "";
+
+    if (sortBy === "gotDate" || sortBy === "readDate") {
+      const aDate = parseDate(aValue as string);
+      const bDate = parseDate(bValue as string);
+      if (aDate === null && bDate === null) return 0;
+      if (aDate === null) return 1;
+      if (bDate === null) return -1;
+      return sortAsc ? aDate - bDate : bDate - aDate;
+    }
 
     if (typeof aValue === "number" && typeof bValue === "number") {
       return sortAsc ? aValue - bValue : bValue - aValue;
@@ -83,9 +101,11 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
         <SortBy value={sortBy} onChange={handleSort} type={"pages"} />
         <SortBy value={sortBy} onChange={handleSort} type={"price"} />
         <SortBy value={sortBy} onChange={handleSort} type={"status"} />
+        <SortBy value={sortBy} onChange={handleSort} type={"gotDate"} />
+        <SortBy value={sortBy} onChange={handleSort} type={"readDate"} />
         <FilterBy value={filterBy} onChange={setFilterBy} />
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 justify-items-center content-start">
         {sortedBooks.map((b) => (
           <div
             key={b.id}
@@ -124,7 +144,7 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
             )}
           </div>
         ))}
-        <div className="flex items-center justify-center">
+        <div className="aspect-[2/3] h-full w-full relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group">
           <AddAction
             books={books}
             onAdd={handles.onAdd}

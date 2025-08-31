@@ -60,7 +60,7 @@ const AddAction = ({
         <Button
           variant="own"
           className={`
-            ${large ? " !px-2 !py-8 " : ""}
+            ${large ? " w-full h-full object-cover " : ""}
                 ${!lightBg ? " hover:!bg-[var(--light-slate)] active:!bg-[var(--light-slate)] " : ""}
                 `}
         >

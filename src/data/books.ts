@@ -422,4 +422,20 @@ export const books: Book[] = [
     image: "https://m.media-amazon.com/images/I/51auYwIMZvL._SY445_SX342_.jpg",
     link: "https://a.co/d/2UC0fUY",
   },
+  {
+    id: 29,
+    title: "Empreendedorismo Para Computação",
+    author: "Roberto Ferrari",
+    publisher: "Elsevier",
+    pages: 184,
+    gotDate: "09/02/2024",
+    readDate: "10/02/2024",
+    // price: null,
+    mode: "Physical",
+    status: "Read",
+    ownership: "Borrowed",
+    image:
+      "https://img.travessa.com.br/livro/GR/6a/6a370394-c288-4f49-93bb-1778d3839230.jpg",
+    link: "https://a.co/d/drSvAzf",
+  },
 ];
