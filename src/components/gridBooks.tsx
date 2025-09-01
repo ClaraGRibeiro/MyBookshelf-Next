@@ -53,7 +53,7 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
       if (aDate === null && bDate === null) return 0;
       if (aDate === null) return 1;
       if (bDate === null) return -1;
-      return sortAsc ? aDate - bDate : bDate - aDate;
+      return sortAsc ? bDate - aDate : aDate - bDate;
     }
 
     if (typeof aValue === "number" && typeof bValue === "number") {
