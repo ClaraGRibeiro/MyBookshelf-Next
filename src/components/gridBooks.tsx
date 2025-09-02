@@ -137,8 +137,13 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
                 {b.title}
               </span>
             )}
+            {b.mode === "Digital" && (
+              <span className="absolute left-0 bottom-0 text-center select-none text-base font-semibold text-[var(--light-slate)] bg-[var(--medium-slate)] group-hover:text-[var(--dark-slate)] group-active:text-[var(--dark-slate)] group-hover:bg-[var(--light-slate)] group-active:bg-[var(--light-slate)] px-2 py-1 rounded-tr-lg !duration-200">
+                {b.mode}
+              </span>
+            )}
             {b.ownership === "Borrowed" && (
-              <span className="absolute left-0 bottom-0 text-center select-none text-lg font-semibold text-[var(--light-slate)] bg-[var(--dark-slate)] group-hover:text-[var(--dark-slate)] group-active:text-[var(--dark-slate)] group-hover:bg-[var(--light-slate)] group-active:bg-[var(--light-slate)] px-4 py-1 rounded-tr-3xl !duration-200">
+              <span className="absolute left-0 bottom-0 text-center select-none text-base font-semibold text-[var(--light-slate)] bg-[var(--medium-slate)] group-hover:text-[var(--dark-slate)] group-active:text-[var(--dark-slate)] group-hover:bg-[var(--light-slate)] group-active:bg-[var(--light-slate)] px-2 py-1 rounded-tr-lg !duration-200">
                 {b.ownership}
               </span>
             )}

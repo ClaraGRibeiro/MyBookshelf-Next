@@ -6,7 +6,7 @@ export type Book = {
   pages?: number;
   gotDate?: string;
   readDate?: string;
-  price?: number;
+  price: number;
   image?: string;
   link?: string;
   ownership: "Owned" | "Borrowed";

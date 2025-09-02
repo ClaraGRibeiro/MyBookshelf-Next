@@ -49,11 +49,11 @@ const Charts = ({
         books.reduce((acc, b) => acc + (b.pages || 0), 0) + " pages";
       const totalBooks = books.length + " books";
       return (
-        <div className="bg-[var(--light-slate)] border rounded-lg p-2 shadow-md max-w-56">
+        <div className="bg-[var(--light-slate)] border rounded-lg p-2 shadow-md max-w-70">
           <p className="font-bold mb-4">
-            {label} -{" "}
+            {label}
             {sortedBooks.length > 0 &&
-              (showBy === "Books" ? totalPages : totalBooks)}
+              (showBy === "Books" ? ` - ${totalPages}` : ` - ${totalBooks}`)}
           </p>
           {sortedBooks.length > 0 ? (
             <div className="flex flex-wrap gap-1 justify-center items-center">
@@ -79,7 +79,7 @@ const Charts = ({
               ))}
             </div>
           ) : (
-            <p>No books</p>
+            <p>No reading</p>
           )}
         </div>
       );

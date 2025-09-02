@@ -36,13 +36,13 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().toLocaleString("en-US", { month: "short" });
   const years = Array.from(
-    new Set(booksRead.map((b) => Number(b.readDate?.split("/")[2])))
+    new Set(booksRead.map((b) => Number(b.readDate?.split("/")[2]))),
   ).sort((x, y) => x - y);
   let booksByYear = [];
   if (showBy === "Books") {
     booksByYear = years.map((y) => {
       const b = booksRead.filter(
-        (b) => Number(b.readDate?.split("/")[2]) === y
+        (b) => Number(b.readDate?.split("/")[2]) === y,
       );
       return {
         name: y.toString(),
@@ -53,7 +53,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   } else {
     booksByYear = years.map((y) => {
       const b = booksRead.filter(
-        (b) => Number(b.readDate?.split("/")[2]) === y
+        (b) => Number(b.readDate?.split("/")[2]) === y,
       );
       return {
         name: y.toString(),
@@ -82,7 +82,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   if (showBy === "Books") {
     booksByMonth = months.map((m, i) => {
       const b = readThisYear.filter(
-        (b) => Number(b.readDate?.split("/")[1]) === i + 1
+        (b) => Number(b.readDate?.split("/")[1]) === i + 1,
       );
       return {
         name: m,
@@ -93,7 +93,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   } else {
     booksByMonth = months.map((m, i) => {
       const b = readThisYear.filter(
-        (b) => Number(b.readDate?.split("/")[1]) === i + 1
+        (b) => Number(b.readDate?.split("/")[1]) === i + 1,
       );
       return {
         name: m,
@@ -104,22 +104,26 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   }
   const readThisMonth =
     booksByMonth.find((bM) => bM.name === currentMonth)?.books || [];
-  const totalSpent = books.reduce((acc, b) => acc + (b.price || 0), 0);
+  const totalSpent = books.reduce((acc, b) => acc + b.price, 0);
   const totalPagesRead = booksRead.reduce((acc, b) => acc + (b.pages || 0), 0);
   const minPerPage = 3.5;
   const timeRead = ((minPerPage * totalPagesRead) / 60).toFixed(1);
   const bestYear = booksByYear.reduce(
     (max, curr) => (curr.value > max.value ? curr : max),
-    { name: "No reads", value: 0, books: [] }
+    { name: "No reads", value: 0, books: [] },
   );
   const bestMonth = booksByMonth.reduce(
     (max, curr) => (curr.value > max.value ? curr : max),
-    { name: "No reads", value: 0, books: [] }
+    { name: "No reads", value: 0, books: [] },
   );
   const minPerDay = 30;
-  const pagesThisYear = readThisYear.reduce((acc, b) => acc + (b.pages || 0), 0)
+  const pagesThisYear = readThisYear.reduce(
+    (acc, b) => acc + (b.pages || 0),
+    0,
+  );
   const annualPageGoal = Math.round((minPerDay * 365) / minPerPage);
-  const booksGoal = Math.round(annualPageGoal/(totalPagesRead / booksRead.length))
+  const pagesAvgThisYear = pagesThisYear / readThisYear.length;
+  const booksGoal = Math.round(annualPageGoal / pagesAvgThisYear);
 
   return (
     <Drawer>
@@ -207,14 +211,19 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
               </div>
             </div>
             <div className="max-w-[70%] md:max-w-120 mt-6 mb-12 gap-2 flex flex-col justify-center items-center">
-              <p className="text-center text-sm">
-                If you read just <strong>{minPerDay}</strong> minutes a day, at an average pace of <strong>{minPerPage}</strong> minutes per page, in one year you'll finish over <strong>{annualPageGoal}</strong> pages! <br />
+              <p className="text-center text-sm mb-4">
+                If you read just <strong>{minPerDay}</strong> minutes a day, at
+                an average pace of <strong>{minPerPage}</strong> minutes per
+                page, in one year you'll finish over{" "}
+                <strong>{annualPageGoal}</strong> pages — about{" "}
+                <strong>{booksGoal}</strong> books!
               </p>
-              <div className="w-full flex justify-between gap-8">
-                <span>{pagesThisYear}</span>
+              <div className="w-full flex justify-between items-baseline gap-8">
+                <span>{`${pagesThisYear} (${readThisYear.length})`}</span>
+                <span className="text-xs">{currentYear}</span>
                 <span>
                   {annualPageGoal - pagesThisYear > 0
-                    ? annualPageGoal - pagesThisYear
+                    ? `${annualPageGoal - pagesThisYear} (${booksGoal - readThisYear.length})`
                     : "🎉"}
                 </span>
               </div>

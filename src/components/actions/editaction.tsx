@@ -208,12 +208,12 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                   onValueChange={(val) => setMode(val as Book["mode"])}
                 >
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="Book" id="Book" />
-                    <Label htmlFor="Book">Book</Label>
+                    <RadioGroupItem value="Physical" id="Physical" />
+                    <Label htmlFor="Physical">Physical</Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="PDF" id="PDF" />
-                    <Label htmlFor="PDF">PDF</Label>
+                    <RadioGroupItem value="Digital" id="Digital" />
+                    <Label htmlFor="Digital">Digital</Label>
                   </div>
                 </RadioGroup>
               </div>
