@@ -35,79 +35,45 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   const booksRead = books.filter((b) => b.status === "Read");
   const currentYear = new Date().getFullYear();
   const currentMonth = new Date().toLocaleString("en-US", { month: "short" });
-  const years = Array.from(
+  const allYears = Array.from(
     new Set(booksRead.map((b) => Number(b.readDate?.split("/")[2]))),
   ).sort((x, y) => x - y);
   let booksByYear = [];
-  if (showBy === "Books") {
-    booksByYear = years.map((y) => {
-      const b = booksRead.filter(
-        (b) => Number(b.readDate?.split("/")[2]) === y,
-      );
-      return {
-        name: y.toString(),
-        value: b.length || 0,
-        books: b,
-      };
-    });
-  } else {
-    booksByYear = years.map((y) => {
-      const b = booksRead.filter(
-        (b) => Number(b.readDate?.split("/")[2]) === y,
-      );
-      return {
-        name: y.toString(),
-        value: b.reduce((acc, b) => acc + (b.pages || 0), 0) || 0,
-        books: b,
-      };
-    });
-  }
+  booksByYear = allYears.map((y) => {
+    const b = booksRead.filter((b) => Number(b.readDate?.split("/")[2]) === y);
+    return {
+      name: y.toString(),
+      value:
+        showBy === "Books"
+          ? b.length || 0
+          : b.reduce((acc, b) => acc + (b.pages || 0), 0) || 0,
+      books: b,
+    };
+  });
   const readThisYear =
     booksByYear.find((bY) => bY.name === currentYear.toString())?.books || [];
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
   let booksByMonth = [];
-  if (showBy === "Books") {
-    booksByMonth = months.map((m, i) => {
-      const b = readThisYear.filter(
-        (b) => Number(b.readDate?.split("/")[1]) === i + 1,
-      );
-      return {
-        name: m,
-        value: b.length || 0,
-        books: b || [],
-      };
-    });
-  } else {
-    booksByMonth = months.map((m, i) => {
-      const b = readThisYear.filter(
-        (b) => Number(b.readDate?.split("/")[1]) === i + 1,
-      );
-      return {
-        name: m,
-        value: b.reduce((acc, b) => acc + (b.pages || 0), 0) || 0 || 0,
-        books: b || [],
-      };
-    });
-  }
+  booksByMonth = Array.from({ length: 12 }, (_, i) =>
+    new Date(0, i).toLocaleString("en-US", { month: "short" }),
+  ).map((m, i) => {
+    const b = readThisYear.filter(
+      (b) => Number(b.readDate?.split("/")[1]) === i + 1,
+    );
+    return {
+      name: m,
+      value:
+        showBy === "Books"
+          ? b.length || 0
+          : b.reduce((acc, b) => acc + (b.pages || 0), 0) || 0 || 0,
+      books: b || [],
+    };
+  });
   const readThisMonth =
     booksByMonth.find((bM) => bM.name === currentMonth)?.books || [];
   const totalSpent = books.reduce((acc, b) => acc + b.price, 0);
   const totalPagesRead = booksRead.reduce((acc, b) => acc + (b.pages || 0), 0);
-  const minPerPage = 3.5;
-  const timeRead = ((minPerPage * totalPagesRead) / 60).toFixed(1);
+  const minutesPerPage = 3.5;
+  const timeReading = ((minutesPerPage * totalPagesRead) / 60).toFixed(1);
   const bestYear = booksByYear.reduce(
     (max, curr) => (curr.value > max.value ? curr : max),
     { name: "No reads", value: 0, books: [] },
@@ -116,14 +82,34 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
     (max, curr) => (curr.value > max.value ? curr : max),
     { name: "No reads", value: 0, books: [] },
   );
-  const minPerDay = 30;
+  const minutesPerDay = 30;
   const pagesThisYear = readThisYear.reduce(
     (acc, b) => acc + (b.pages || 0),
     0,
   );
-  const annualPageGoal = Math.round((minPerDay * 365) / minPerPage);
+  const annualPageGoal = Math.round((minutesPerDay * 365) / minutesPerPage);
   const pagesAvgThisYear = pagesThisYear / readThisYear.length;
-  const booksGoal = Math.round(annualPageGoal / pagesAvgThisYear);
+  const annualBooksGoal = Math.round(annualPageGoal / pagesAvgThisYear);
+  const daysInMonth = new Date(
+    currentYear,
+    new Date().getMonth() + 1,
+    0,
+  ).getDate();
+  let booksByDay: { name: string; value: number; books: Book[] }[] = [];
+  booksByDay = Array.from({ length: daysInMonth }, (_, i) => {
+    const day = i + 1;
+    const b = readThisMonth.filter(
+      (b) => Number(b.readDate?.split("/")[0]) === day,
+    );
+    return {
+      name: day.toString(),
+      value:
+        showBy === "Books"
+          ? b.length || 0
+          : b.reduce((acc, b) => acc + (b.pages || 0), 0) || 0,
+      books: b || [],
+    };
+  });
 
   return (
     <Drawer>
@@ -169,7 +155,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
                 <p className="text-center">
                   about <br />
                   <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
-                    {timeRead}h
+                    {timeReading}h
                   </span>
                   <br /> reading
                 </p>
@@ -212,18 +198,18 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
             </div>
             <div className="max-w-[70%] md:max-w-120 mt-6 mb-12 gap-2 flex flex-col justify-center items-center">
               <p className="text-center text-sm mb-4">
-                If you read just <strong>{minPerDay}</strong> minutes a day, at
-                an average pace of <strong>{minPerPage}</strong> minutes per
-                page, in one year you'll finish over{" "}
+                If you read just <strong>{minutesPerDay}</strong> minutes a day,
+                at an average pace of <strong>{minutesPerPage}</strong> minutes
+                per page, in one year you'll finish over{" "}
                 <strong>{annualPageGoal}</strong> pages — about{" "}
-                <strong>{booksGoal}</strong> books!
+                <strong>{annualBooksGoal}</strong> books!
               </p>
               <div className="w-full flex justify-between items-baseline gap-8">
                 <span>{`${pagesThisYear} (${readThisYear.length})`}</span>
                 <span className="text-xs">{currentYear}</span>
                 <span>
                   {annualPageGoal - pagesThisYear > 0
-                    ? `${annualPageGoal - pagesThisYear} (${booksGoal - readThisYear.length})`
+                    ? `${annualPageGoal - pagesThisYear} (${annualBooksGoal - readThisYear.length})`
                     : "🎉"}
                 </span>
               </div>
@@ -265,13 +251,20 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
               type="bar"
               dataChart={booksByYear}
               label="Books per Year"
-              colors={["#E63431"]}
+              colors={["#006AB3"]}
               showBy={showBy}
             />
             <Charts
               type="bar"
               dataChart={booksByMonth}
               label={"Books per Month (" + new Date().getFullYear() + ")"}
+              colors={["#E63431"]}
+              showBy={showBy}
+            />
+            <Charts
+              type="bar"
+              dataChart={booksByDay}
+              label={`Books per Day (${new Date().toLocaleString("en-US", { month: "long" })})`}
               colors={["#FBAC0F"]}
               showBy={showBy}
             />

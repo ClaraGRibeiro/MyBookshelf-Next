@@ -1,7 +1,7 @@
 "use client";
 
 // icons radix
-import { BookmarkFilledIcon, CaretSortIcon } from "@radix-ui/react-icons";
+import { BookmarkFilledIcon } from "@radix-ui/react-icons";
 // components
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
@@ -125,10 +125,10 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
             <BookmarkFilledIcon
               className={
                 (b.status == "Read"
-                  ? "group-hover:text-[var(--dark-blue)] text-[var(--light-blue)]"
+                  ? "text-[var(--light-blue)] dark:!text-[var(--dark-blue)]"
                   : b.status == "Unread"
-                    ? "group-hover:text-[var(--dark-red)] text-[var(--light-red)]"
-                    : "group-hover:text-[var(--dark-yellow)] text-[var(--light-yellow)]") +
+                    ? "text-[var(--light-red)] dark:!text-[var(--dark-red)]"
+                    : "text-[var(--light-yellow)] dark:!text-[var(--dark-yellow)]") +
                 " absolute top-0 right-0 p-0 m-0 duration-200 h-8 w-8 group-hover:opacity-100 group-active:opacity-100"
               }
             />
