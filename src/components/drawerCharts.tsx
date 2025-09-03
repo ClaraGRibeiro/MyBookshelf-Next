@@ -31,10 +31,11 @@ type DrawerChartsProps = {
 };
 
 const DrawerCharts = ({ books }: DrawerChartsProps) => {
+  const currentYear = new Date().getFullYear();
+  const [selectedYear, setSelectedYear] = useState<number>(currentYear);
+  const currentMonth = new Date().toLocaleString("en-US", { month: "short" });
   const [showBy, setShowBy] = useState<"Books" | "Pages">("Books");
   const booksRead = books.filter((b) => b.status === "Read");
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().toLocaleString("en-US", { month: "short" });
   const allYears = Array.from(
     new Set(booksRead.map((b) => Number(b.readDate?.split("/")[2]))),
   ).sort((x, y) => x - y);
@@ -52,20 +53,24 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   });
   const readThisYear =
     booksByYear.find((bY) => bY.name === currentYear.toString())?.books || [];
-  let booksByMonth = [];
-  booksByMonth = Array.from({ length: 12 }, (_, i) =>
+  const monthNames = Array.from({ length: 12 }, (_, i) =>
     new Date(0, i).toLocaleString("en-US", { month: "short" }),
-  ).map((m, i) => {
-    const b = readThisYear.filter(
+  );
+  const readThisSelectedYear =
+    booksRead.filter(
+      (b) => Number(b.readDate?.split("/")[2]) === selectedYear,
+    ) || [];
+  const booksByMonth = monthNames.map((m, i) => {
+    const b = readThisSelectedYear.filter(
       (b) => Number(b.readDate?.split("/")[1]) === i + 1,
     );
     return {
       name: m,
       value:
         showBy === "Books"
-          ? b.length || 0
-          : b.reduce((acc, b) => acc + (b.pages || 0), 0) || 0 || 0,
-      books: b || [],
+          ? b.length
+          : b.reduce((acc, b) => acc + (b.pages || 0), 0),
+      books: b,
     };
   });
   const readThisMonth =
@@ -90,26 +95,6 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   const annualPageGoal = Math.round((minutesPerDay * 365) / minutesPerPage);
   const pagesAvgThisYear = pagesThisYear / readThisYear.length;
   const annualBooksGoal = Math.round(annualPageGoal / pagesAvgThisYear);
-  const daysInMonth = new Date(
-    currentYear,
-    new Date().getMonth() + 1,
-    0,
-  ).getDate();
-  let booksByDay: { name: string; value: number; books: Book[] }[] = [];
-  booksByDay = Array.from({ length: daysInMonth }, (_, i) => {
-    const day = i + 1;
-    const b = readThisMonth.filter(
-      (b) => Number(b.readDate?.split("/")[0]) === day,
-    );
-    return {
-      name: day.toString(),
-      value:
-        showBy === "Books"
-          ? b.length || 0
-          : b.reduce((acc, b) => acc + (b.pages || 0), 0) || 0,
-      books: b || [],
-    };
-  });
 
   return (
     <Drawer>
@@ -254,18 +239,25 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
               colors={["#006AB3"]}
               showBy={showBy}
             />
+
+            <DropdownMenu>
+              <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-2 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">
+                <span>{selectedYear}</span>
+                <ChevronDownIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {allYears.map((y) => (
+                  <DropdownMenuItem key={y} onSelect={() => setSelectedYear(y)}>
+                    {y}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Charts
               type="bar"
               dataChart={booksByMonth}
               label={"Books per Month (" + new Date().getFullYear() + ")"}
               colors={["#E63431"]}
-              showBy={showBy}
-            />
-            <Charts
-              type="bar"
-              dataChart={booksByDay}
-              label={`Books per Day (${new Date().toLocaleString("en-US", { month: "long" })})`}
-              colors={["#FBAC0F"]}
               showBy={showBy}
             />
           </div>
