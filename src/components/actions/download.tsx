@@ -51,7 +51,7 @@ const Download = ({ books }: DownloadProps) => {
             ? "[o]"
             : b.status === "Unread"
               ? "[ ]"
-              : "",
+              : "[/]",
         b.id,
       ]),
       columnStyles: {

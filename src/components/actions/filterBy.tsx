@@ -35,6 +35,9 @@ const FilterBy = ({ value, onChange }: FilterByProps) => {
         <DropdownMenuItem onSelect={() => onChange("Read")}>
           Read
         </DropdownMenuItem>
+        <DropdownMenuItem onSelect={() => onChange("Next")}>
+          Next
+        </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => onChange("Owned")}>
           Owned

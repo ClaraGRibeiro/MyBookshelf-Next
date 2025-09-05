@@ -11,5 +11,5 @@ export type Book = {
   link?: string;
   ownership: "Owned" | "Borrowed";
   mode: "Physical" | "Digital";
-  status: "Reading" | "Read" | "Unread";
+  status: "Reading" | "Read" | "Unread" | "Next";
 };

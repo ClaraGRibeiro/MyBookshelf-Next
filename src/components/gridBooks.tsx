@@ -128,7 +128,9 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
                   ? "text-[var(--light-blue)] dark:!text-[var(--dark-blue)]"
                   : b.status == "Unread"
                     ? "text-[var(--light-red)] dark:!text-[var(--dark-red)]"
-                    : "text-[var(--light-yellow)] dark:!text-[var(--dark-yellow)]") +
+                    : b.status == "Reading"
+                      ? "text-[var(--light-yellow)] dark:!text-[var(--dark-yellow)]"
+                      : "text-[var(--medium-slate)] dark:!text-[var(-medium-slate)]") +
                 " absolute top-0 right-0 p-0 m-0 duration-200 h-8 w-8 group-hover:opacity-100 group-active:opacity-100"
               }
             />

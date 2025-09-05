@@ -79,9 +79,12 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
   }
 
   const toggleStatus = (book: Book) => {
-    let num: number = -1;
+    let num: number = -2;
     switch (book.status) {
       case "Unread":
+        num = -2;
+        break;
+      case "Next":
         num = -1;
         break;
       case "Reading":
@@ -94,12 +97,14 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
         break;
     }
     let newStatus: Book["status"];
-    num === 1 ? (num = -1) : num++;
-    num === -1
+    num === 1 ? (num = -2) : num++;
+    num === -2
       ? (newStatus = "Unread")
-      : num === 0
-        ? (newStatus = "Reading")
-        : (newStatus = "Read");
+      : num === -1
+        ? (newStatus = "Next")
+        : num === 0
+          ? (newStatus = "Reading")
+          : (newStatus = "Read");
     handles.onChangeStatus(book.id, newStatus);
   };
 
@@ -202,7 +207,9 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
                         ? "bg-[var(--light-blue)] hover:bg-[var(--dark-blue)] active:bg-[var(--dark-blue)]"
                         : b.status == "Unread"
                           ? "bg-[var(--light-red)] hover:bg-[var(--dark-red)] active:bg-[var(--dark-red)]"
-                          : "bg-[var(--light-yellow)] hover:bg-[var(--dark-yellow)] active:bg-[var(--dark-yellow)]") +
+                          : b.status == "Reading"
+                            ? "bg-[var(--light-yellow)] hover:bg-[var(--dark-yellow)] active:bg-[var(--dark-yellow)]"
+                            : "bg-[var(--dark-slate)] hover:bg-[var(--medium-slate)] active:bg-[var(--medium-slate)]") +
                       " text-sm text-[var(--light-slate)] rounded-3xl px-2 py-1 cursor-pointer flex justify-center items-center gap-2 duration-200 select-none"
                     }
                   >

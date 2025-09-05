@@ -248,6 +248,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                 <SelectItem value="Unread">Unread</SelectItem>
                 <SelectItem value="Read">Read</SelectItem>
                 <SelectItem value="Reading">Reading</SelectItem>
+                <SelectItem value="Next">Next</SelectItem>
               </SelectContent>
             </Select>
           </div>

@@ -19,7 +19,7 @@ type ShuffleActionProps = {
 const ShuffleAction = ({ books, handles }: ShuffleActionProps) => {
   const [chosenBookId, setChosenBookId] = useState<number | null>(null);
   const handleShuffleBook = () => {
-    const unreadBooks = books.filter((b) => b?.status === "Unread");
+    const unreadBooks = books.filter((b) => b?.status !== "Read");
     if (unreadBooks.length === 0) {
       alert("No unread books available to shuffle.");
       return;
