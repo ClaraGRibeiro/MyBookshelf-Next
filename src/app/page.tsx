@@ -13,15 +13,12 @@ export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  const handleAPI = (res: Book[]) => {
-    setBooks(res);
-    setLoading(false);
-  };
-
   useEffect(() => {
-    fetch("/api/books")
-      .then((res) => res.json())
-      .then(handleAPI)
+    import("../data/books.json")
+      .then((data) => {
+        setBooks(data.default);
+        setLoading(false);
+      })
       .catch(console.error);
   }, []);
 
