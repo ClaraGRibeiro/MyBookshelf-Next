@@ -187,7 +187,8 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
                 at an average pace of <strong>{minutesPerPage}</strong> minutes
                 per page, in one year you'll finish over{" "}
                 <strong>{annualPageGoal}</strong> pages — about{" "}
-                <strong>{annualBooksGoal}</strong> books!
+                <strong>{annualBooksGoal}</strong> books of{" "}
+                <strong>{Math.round(pagesAvgThisYear)}</strong> pages each!
               </p>
               <div className="w-full flex justify-between items-baseline gap-8">
                 <span>{`${pagesThisYear} (${readThisYear.length})`}</span>
