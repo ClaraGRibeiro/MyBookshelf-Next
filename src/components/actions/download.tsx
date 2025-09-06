@@ -42,7 +42,7 @@ const Download = ({ books }: DownloadProps) => {
         b.author,
         b.publisher ?? "-",
         b.pages ?? "-",
-        b.price?.toFixed(2) ?? "-",
+        b.price ?? "-",
         b.gotDate ?? "-",
         b.readDate ?? "-",
         b.status === "Read"

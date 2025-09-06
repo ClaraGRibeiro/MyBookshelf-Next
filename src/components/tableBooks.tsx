@@ -166,11 +166,11 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
             </TableCell>
             <TableCell
               className={
-                (b.price === 0 && "text-[var(--green)] font-bold") +
+                (Number(b.price) === 0 && "text-[var(--green)] font-bold") +
                 " text-center w-24"
               }
             >
-              {b.price > 0 ? "R$ " + b.price.toFixed(2) : "Free"}
+              {b.price > 0 ? "R$ " + b.price : "Free"}
             </TableCell>
             <TableCell className="text-center max-w-24">
               <Tooltip>

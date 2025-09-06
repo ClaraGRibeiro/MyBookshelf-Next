@@ -4,14 +4,26 @@
 import Bookshelf from "@/components/bookshelf";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { books as initialBooks } from "@/data/books";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import "./globals.css";
 
 export default function Home() {
-  const [books, setBooks] = useState<Book[]>(initialBooks);
+  const [books, setBooks] = useState<Book[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  const handleAPI = (res: Book[]) => {
+    setBooks(res);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetch("/api/books")
+      .then((res) => res.json())
+      .then(handleAPI)
+      .catch(console.error);
+  }, []);
 
   // function containing all handler logic
   function allHandles(): Handles {
@@ -59,10 +71,28 @@ export default function Home() {
   const handles = allHandles();
 
   return (
-    <div className="bg-[var(--bg-sepia)] min-h-dvh relative">
-      <Header books={books} handles={handles} />
-      <Bookshelf books={books} handles={handles} />
-      <Footer />
-    </div>
+    <>
+      {loading ? (
+        <div className="h-dvh relative bg-[var(--dark-slate)] flex flex-col justify-center items-center gap-6">
+          <div className="flex-wrap flex justify-center items-center gap-6">
+            <img className="h-24" src="books.png" alt="Logo" />
+            <h1 className="text-[var(--light-slate)] text-4xl font-bold">
+              NextBook
+            </h1>
+            <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              <span className="w-3 h-3 bg-[var(--light-blue)] rounded animate-bounce delay-0"></span>
+              <span className="w-3 h-3 bg-[var(--light-red)] rounded animate-bounce delay-150"></span>
+              <span className="w-3 h-3 bg-[var(--light-yellow)] rounded animate-bounce delay-300"></span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="bg-[var(--bg-sepia)] min-h-dvh relative">
+          <Header books={books} handles={handles} />
+          <Bookshelf books={books} handles={handles} />
+          <Footer />
+        </div>
+      )}
+    </>
   );
 }
