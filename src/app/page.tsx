@@ -16,7 +16,7 @@ export default function Home() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 1500);
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -25,7 +25,6 @@ export default function Home() {
     import("../data/books.json")
       .then((data) => {
         setBooks(data.default);
-        setLoading(false);
       })
       .catch(console.error);
   }, []);
