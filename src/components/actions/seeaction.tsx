@@ -16,11 +16,11 @@ import {
 import { EyeOpenIcon } from "@radix-ui/react-icons";
 // components
 import { Book } from "@/types/books";
-import DeleteAction from "./deleteaction";
-import EditAction from "./editaction";
+import DeleteAction from "./deleteAction";
+import EditAction from "./editAction";
 import { useState, useEffect } from "react";
 import { Handles } from "@/types/handles";
-import LinkAction from "./linkaction";
+import LinkAction from "./linkAction";
 
 type SeeActionProps = {
   book: Book;

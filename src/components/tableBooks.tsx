@@ -15,20 +15,22 @@ import {
 import { useEffect, useState } from "react";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import DeleteAction from "./actions/deleteaction";
-import EditAction from "./actions/editaction";
-import SeeAction from "./actions/seeaction";
-import AddAction from "./actions/addaction";
+import DeleteAction from "./actions/deleteAction";
+import EditAction from "./actions/editAction";
+import SeeAction from "./actions/seeAction";
+import AddAction from "./actions/addAction";
 import FilterBy from "./actions/filterBy";
 import SortBy from "./actions/sortBy";
+import orderBooks from "./actions/orderBooks";
 
 type TableBooksProps = {
   books: Book[];
   handles: Handles;
-  pinReadings: Boolean;
+  pinReadings: boolean;
 };
 
 const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
+  const [clickedBookId, setClickedBookId] = useState<number | null>(null);
   const [filterBy, setFilterBy] = useState<
     Book["status"] | Book["ownership"] | Book["mode"] | null
   >(null);
@@ -44,43 +46,13 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
     }
   };
 
-  const compareBooks = (a: Book, b: Book) => {
-    if (!sortBy) return 0;
-    const aValue = a[sortBy] ?? "";
-    const bValue = b[sortBy] ?? "";
-
-    if (typeof aValue === "number" && typeof bValue === "number") {
-      return sortAsc ? aValue - bValue : bValue - aValue;
-    }
-
-    return sortAsc
-      ? aValue.toString().localeCompare(bValue.toString())
-      : bValue.toString().localeCompare(aValue.toString());
-  };
-
-  let sortedBooks: Book[];
-  if (pinReadings) {
-    sortedBooks = [
-      ...books.filter((b) => b.status === "Reading").sort(compareBooks),
-      ...books.filter((b) => b.status === "Next").sort(compareBooks),
-      ...books
-        .filter((b) => b.status !== "Reading" && b.status !== "Next")
-        .sort(compareBooks),
-    ];
-  } else {
-    sortedBooks = [...books.sort(compareBooks)];
-  }
-  if (filterBy) {
-    if (filterBy === "Owned" || filterBy === "Borrowed") {
-      sortedBooks = sortedBooks.filter((b) => b.ownership === filterBy);
-    } else if (filterBy === "Physical" || filterBy === "Digital") {
-      sortedBooks = sortedBooks.filter((b) => b.mode === filterBy);
-    } else if (filterBy === "Unread") {
-      sortedBooks = sortedBooks.filter((b) => b.status !== "Read");
-    } else {
-      sortedBooks = sortedBooks.filter((b) => b.status === filterBy);
-    }
-  }
+  const sortedBooks: Book[] = orderBooks({
+    books,
+    sortBy,
+    sortAsc,
+    pinReadings,
+    filterBy,
+  });
 
   const toggleStatus = (book: Book) => {
     let num: number = -2;
@@ -122,7 +94,6 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
     return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
 
-  const [clickedBookId, setClickedBookId] = useState<number | null>(null);
   const handleClicked = (bId: number) => {
     if (bId === clickedBookId) {
       setClickedBookId(null);

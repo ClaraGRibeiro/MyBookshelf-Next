@@ -46,12 +46,12 @@ const Download = ({ books }: DownloadProps) => {
         b.gotDate ?? "-",
         b.readDate ?? "-",
         b.status === "Read"
-          ? "[x]"
+          ? "Read"
           : b.status === "Reading"
-            ? "[o]"
+            ? "Reading"
             : b.status === "Unread"
-              ? "[ ]"
-              : "[/]",
+              ? "Unread"
+              : "Next",
         b.id,
       ]),
       columnStyles: {
