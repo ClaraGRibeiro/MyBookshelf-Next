@@ -8,7 +8,7 @@ import { ShuffleIcon } from "@radix-ui/react-icons";
 // components
 import { Book } from "@/types/books";
 import { useState } from "react";
-import SeeAction from "./seeActionx";
+import SeeAction from "./seeAction";
 import { Handles } from "@/types/handles";
 
 type ShuffleActionProps = {
