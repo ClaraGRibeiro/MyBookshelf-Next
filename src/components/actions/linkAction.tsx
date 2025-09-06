@@ -18,7 +18,7 @@ const LinkAction = ({ bookLink }: LinkActionProps) => {
       <Tooltip>
         <TooltipTrigger asChild>
           <a
-            href={bookLink}
+            href={bookLink ?? undefined}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-content"

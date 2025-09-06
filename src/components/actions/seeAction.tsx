@@ -121,10 +121,10 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
           {book.image && (
             <div className="aspect-[2/3] absolute h-52 m-auto right-0 bottom-0">
               <a
-                href={book.link}
+                href={book.link ?? undefined}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={book.link && "cursor-pointer"}
+                className={book.link ? "cursor-pointer" : ""}
               >
                 <img
                   src={book.image}

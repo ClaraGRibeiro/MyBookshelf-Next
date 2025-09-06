@@ -127,7 +127,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
               type="text"
               name="publisher"
               placeholder="Publisher Name (optional)"
-              defaultValue={book.publisher}
+              defaultValue={book.publisher ?? undefined}
             />
             <Input
               type="number"
@@ -135,7 +135,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
               step={1}
               name="pages"
               placeholder="Pages (optional)"
-              defaultValue={book.pages}
+              defaultValue={book.pages ?? undefined}
             />
             <div className="flex flex-row items-center justify-between">
               <span className="text-[var(--medium-slate)] ml-3 text-sm">
@@ -190,14 +190,14 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                 type="text"
                 name="image"
                 placeholder="Image url (optional)"
-                defaultValue={book.image}
+                defaultValue={book.image ?? undefined}
               />
             </div>
             <Input
               type="text"
               name="link"
               placeholder="Purchase link (optional)"
-              defaultValue={book.link}
+              defaultValue={book.link ?? undefined}
             />
 
             <div className="flex justify-between items-center flex-wrap">
