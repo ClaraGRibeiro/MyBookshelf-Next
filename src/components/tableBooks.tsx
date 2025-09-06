@@ -62,17 +62,21 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
   if (pinReadings) {
     sortedBooks = [
       ...books.filter((b) => b.status === "Reading").sort(compareBooks),
-      ...books.filter((b) => b.status !== "Reading").sort(compareBooks),
+      ...books.filter((b) => b.status === "Next").sort(compareBooks),
+      ...books
+        .filter((b) => b.status !== "Reading" && b.status !== "Next")
+        .sort(compareBooks),
     ];
   } else {
     sortedBooks = [...books.sort(compareBooks)];
   }
-
   if (filterBy) {
     if (filterBy === "Owned" || filterBy === "Borrowed") {
       sortedBooks = sortedBooks.filter((b) => b.ownership === filterBy);
     } else if (filterBy === "Physical" || filterBy === "Digital") {
       sortedBooks = sortedBooks.filter((b) => b.mode === filterBy);
+    } else if (filterBy === "Unread") {
+      sortedBooks = sortedBooks.filter((b) => b.status !== "Read");
     } else {
       sortedBooks = sortedBooks.filter((b) => b.status === filterBy);
     }

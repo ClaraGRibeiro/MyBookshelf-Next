@@ -68,7 +68,10 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
   if (pinReadings) {
     sortedBooks = [
       ...books.filter((b) => b.status === "Reading").sort(compareBooks),
-      ...books.filter((b) => b.status !== "Reading").sort(compareBooks),
+      ...books.filter((b) => b.status === "Next").sort(compareBooks),
+      ...books
+        .filter((b) => b.status !== "Reading" && b.status !== "Next")
+        .sort(compareBooks),
     ];
   } else {
     sortedBooks = [...books.sort(compareBooks)];
@@ -79,6 +82,8 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
       sortedBooks = sortedBooks.filter((b) => b.ownership === filterBy);
     } else if (filterBy === "Physical" || filterBy === "Digital") {
       sortedBooks = sortedBooks.filter((b) => b.mode === filterBy);
+    } else if (filterBy === "Unread") {
+      sortedBooks = sortedBooks.filter((b) => b.status !== "Read");
     } else {
       sortedBooks = sortedBooks.filter((b) => b.status === filterBy);
     }
@@ -110,8 +115,11 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
           <div
             key={b.id}
             className={
-              (b.status === "Reading" &&
-                "border-4 border-[var(--light-yellow)] hover:border-[var(--dark-yellow)] active:border-[var(--dark-yellow)] ") +
+              (b.status === "Reading"
+                ? "border-4 border-[var(--light-yellow)] hover:border-[var(--dark-yellow)] active:border-[var(--dark-yellow)] "
+                : b.status === "Next"
+                  ? "border-4 border-[var(--medium-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] "
+                  : "") +
               "aspect-[2/3] relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group"
             }
             onClick={() => handleClicked(b.id)}

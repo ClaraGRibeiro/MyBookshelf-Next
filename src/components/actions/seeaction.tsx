@@ -109,7 +109,9 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
                   ? "bg-[var(--dark-blue)]"
                   : book.status == "Unread"
                     ? "bg-[var(--dark-red)]"
-                    : "bg-[var(--dark-yellow)]") +
+                    : book.status == "Reading"
+                      ? "bg-[var(--dark-yellow)]"
+                      : "bg-[var(--medium-slate)]") +
                 " text-sm text-[var(--light-slate)] rounded-3xl px-2 py-1 select-none"
               }
             >
