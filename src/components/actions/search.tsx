@@ -7,7 +7,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Cross2Icon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 // components
 import { useEffect, useState, useRef } from "react";
-import SeeAction from "./seeAction";
+import SeeAction from "./seeActionx";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 

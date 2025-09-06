@@ -15,13 +15,13 @@ import {
 import { useEffect, useState } from "react";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import DeleteAction from "./actions/deleteAction";
-import EditAction from "./actions/editAction";
-import SeeAction from "./actions/seeAction";
-import AddAction from "./actions/addAction";
+import DeleteAction from "./actions/deleteActionx";
+import EditAction from "./actions/editActionx";
+import SeeAction from "./actions/seeActionx";
+import AddAction from "./actions/addActionx";
 import FilterBy from "./actions/filterBy";
 import SortBy from "./actions/sortBy";
-import orderBooks from "./actions/orderBooks";
+import orderBooks from "./actions/orderBooksx";
 
 type TableBooksProps = {
   books: Book[];

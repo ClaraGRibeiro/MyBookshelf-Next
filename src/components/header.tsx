@@ -2,9 +2,9 @@
 
 // components
 import Search from "./actions/search";
-import AddAction from "./actions/addAction";
+import AddAction from "./actions/addActionx";
 import ThemeToggle from "./actions/themeToggle";
-import ShuffleAction from "./actions/shuffleAction";
+import ShuffleAction from "./actions/shuffleActionx";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import Download from "./actions/download";

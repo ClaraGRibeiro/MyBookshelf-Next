@@ -6,11 +6,11 @@ import { BookmarkFilledIcon } from "@radix-ui/react-icons";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import { useState } from "react";
-import SeeAction from "./actions/seeAction";
-import AddAction from "./actions/addAction";
+import SeeAction from "./actions/seeActionx";
+import AddAction from "./actions/addActionx";
 import FilterBy from "./actions/filterBy";
 import SortBy from "./actions/sortBy";
-import orderBooks from "./actions/orderBooks";
+import orderBooks from "./actions/orderBooksx";
 
 type GridBooksProps = {
   books: Book[];
