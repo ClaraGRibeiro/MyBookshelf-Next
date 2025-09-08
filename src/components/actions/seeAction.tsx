@@ -51,7 +51,7 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
       )}
       <DialogContent className="sm:max-w-[425px] max-h-[98%] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-[var(--medium-slate)] max-w-[90%] m-auto text-center">
+          <DialogTitle className="text-[var(--medium-slate)] max-w-[98%] m-auto text-center">
             See '{book.title}'
           </DialogTitle>
           <DialogDescription className="text-[var(--dark-slate)]">
