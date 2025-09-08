@@ -87,14 +87,15 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
             <BookmarkFilledIcon
               className={
                 (b.status == "Read"
-                  ? "text-[var(--light-blue)] dark:!text-[var(--dark-blue)]"
+                  ? "text-[var(--light-blue)] dark:!text-[var(--dark-blue)] dark:!stroke-[var(--light-blue)] stroke-[var(--dark-blue)]"
                   : b.status == "Unread"
-                    ? "text-[var(--light-red)] dark:!text-[var(--dark-red)]"
+                    ? "text-[var(--light-red)] dark:!text-[var(--dark-red)] dark:!stroke-[var(--light-red)] stroke-[var(--dark-red)]"
                     : b.status == "Reading"
-                      ? "text-[var(--light-yellow)] dark:!text-[var(--dark-yellow)]"
+                      ? "text-[var(--light-yellow)] dark:!text-[var(--dark-yellow)] dark:!stroke-[var(--light-yellow)] stroke-[var(--dark-yellow)]"
                       : "text-[var(--medium-slate)] dark:!text-[var(-medium-slate)]") +
                 " absolute top-0 right-0 p-0 m-0 duration-200 h-8 w-8 group-hover:opacity-100 group-active:opacity-100"
               }
+              strokeWidth={0.5}
             />
             {!b.image && (
               <span className="absolute transform top-[30%] left-[15%] text-center w-[75%] max-h-[90%] select-none text-xl break-words font-bold text-[var(--light-slate)]">

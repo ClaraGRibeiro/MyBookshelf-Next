@@ -49,7 +49,7 @@ export default function Home() {
     // Change the status of a book by copying its properties, updating the status, and replacing the old book
     const handleChangeStatus = (
       bookId: Book["id"],
-      newStatus: Book["status"]
+      newStatus: Book["status"],
     ): void => {
       let newDate = undefined;
       if (newStatus === "Read") {
@@ -58,8 +58,8 @@ export default function Home() {
       }
       setBooks((prev) =>
         prev.map((b) =>
-          b.id === bookId ? { ...b, status: newStatus, readDate: newDate } : b
-        )
+          b.id === bookId ? { ...b, status: newStatus, readDate: newDate } : b,
+        ),
       );
     };
 

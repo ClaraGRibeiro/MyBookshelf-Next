@@ -7,7 +7,6 @@ async function exportBooks() {
 
     let books = await res.json();
 
-    // Converter price de string para número
     books = books.map((book: { price: number }) => ({
       ...book,
       price: Number(book.price),

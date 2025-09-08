@@ -106,7 +106,7 @@
   },
   {
     "id": 8,
-    "title": "O Monge E O Executivo",
+    "title": "O Monge E O Executivo - Uma Hist?ria Sobre A Ess?ncia Da Lideran?a",
     "author": "James C. Hunter",
     "publisher": "Sextante",
     "pages": 145,
@@ -256,7 +256,7 @@
   },
   {
     "id": 18,
-    "title": "Viver ? Melhor Sem Ter Que Ser O Melhor",
+    "title": "Viver ? Melhor Sem Ter Que Ser O Melhor - E Outros Princ?pios Do Arcadismo Para Os Dias De Hoje",
     "author": "Daniel Martins de Barros",
     "publisher": "Sextante",
     "pages": 128,
@@ -391,7 +391,7 @@
   },
   {
     "id": 27,
-    "title": "A Outra Face",
+    "title": "A Outra Face - Hist?ria De Uma Garota Afeg?",
     "author": "Deborah Ellis",
     "publisher": "?tica",
     "pages": 127,
@@ -451,7 +451,7 @@
   },
   {
     "id": 31,
-    "title": "De volta ao mosteiro: O monge e o executivo falam de lideran?a e trabalho em equipe",
+    "title": "De Volta Ao Mosteiro: O Monge E O Executivo Falam De Lideran?a E Trabalho Em Equipe",
     "author": "James C. Hunter",
     "publisher": "Sextante",
     "pages": 192,
@@ -478,5 +478,35 @@
     "ownership": "Owned",
     "mode": "Digital",
     "status": "Reading"
+  },
+  {
+    "id": 33,
+    "title": "Shinsetsu - O Poder Da Gentileza",
+    "author": "Cl?vis De Barros",
+    "publisher": "Planeta",
+    "pages": 272,
+    "gotDate": "08/09/2025",
+    "readDate": null,
+    "price": 6,
+    "image": "https://m.media-amazon.com/images/I/91Je8SnqYrL._SY466_.jpg",
+    "link": "https://a.co/d/bCL21vn",
+    "ownership": "Owned",
+    "mode": "Physical",
+    "status": "Unread"
+  },
+  {
+    "id": 34,
+    "title": "O M?gico De Oz",
+    "author": "L. Frank Baum",
+    "publisher": "?tica",
+    "pages": 152,
+    "gotDate": "08/09/2025",
+    "readDate": null,
+    "price": 0,
+    "image": "https://m.media-amazon.com/images/I/81oyDNoKE4L._SY425_.jpg",
+    "link": "https://a.co/d/4zAualB",
+    "ownership": "Borrowed",
+    "mode": "Physical",
+    "status": "Unread"
   }
 ]
