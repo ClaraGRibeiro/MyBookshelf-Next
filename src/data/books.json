@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "H?bitos At?micos",
+    "title": "Hábitos Atômicos",
     "author": "James Clear",
     "publisher": "Alta Life",
     "pages": 320,
@@ -31,8 +31,8 @@
   },
   {
     "id": 3,
-    "title": "O Pequeno Pr?ncipe",
-    "author": "Antoine de Saint Exup?ry",
+    "title": "O Pequeno Príncipe",
+    "author": "Antoine de Saint Exupéry",
     "publisher": "Harpercollins",
     "pages": 64,
     "gotDate": "29/06/2025",
@@ -61,7 +61,7 @@
   },
   {
     "id": 5,
-    "title": "Nunca ? Hora De Parar",
+    "title": "Nunca É Hora De Parar",
     "author": "David Goggins",
     "publisher": "Sextante",
     "pages": 272,
@@ -106,7 +106,7 @@
   },
   {
     "id": 8,
-    "title": "O Monge E O Executivo - Uma Hist?ria Sobre A Ess?ncia Da Lideran?a",
+    "title": "O Monge E O Executivo - Uma História Sobre A Essência Da Liderança",
     "author": "James C. Hunter",
     "publisher": "Sextante",
     "pages": 145,
@@ -122,7 +122,7 @@
   {
     "id": 9,
     "title": "O Morro Dos Ventos Uivantes",
-    "author": "Emily Bront?",
+    "author": "Emily Brontë",
     "publisher": "Principis",
     "pages": 368,
     "gotDate": "05/07/2025",
@@ -151,7 +151,7 @@
   },
   {
     "id": 11,
-    "title": "As Vantagens De Ser Invis?vel",
+    "title": "As Vantagens De Ser Invisível",
     "author": "Stephen Chbosky",
     "publisher": "Lua De Papel",
     "pages": 288,
@@ -182,7 +182,7 @@
   {
     "id": 13,
     "title": "O Livro Das Atitudes",
-    "author": "S?nia Caf?; Neide Innecco",
+    "author": "Sônia Café; Neide Innecco",
     "publisher": "Pensamento",
     "pages": 147,
     "gotDate": "17/07/2025",
@@ -196,7 +196,7 @@
   },
   {
     "id": 14,
-    "title": "Os Criminosos Vieram Para O Ch?",
+    "title": "Os Criminosos Vieram Para O Chá",
     "author": "Agatha Christie",
     "publisher": "FTD",
     "pages": 120,
@@ -211,8 +211,8 @@
   },
   {
     "id": 15,
-    "title": "A Morte ? Um Dia Que Vale A Pena Viver",
-    "author": "Ana Cl?udia Quintana Arantes",
+    "title": "A Morte É Um Dia Que Vale A Pena Viver",
+    "author": "Ana Cláudia Quintana Arantes",
     "publisher": "Sextante",
     "pages": 224,
     "gotDate": "05/07/2025",
@@ -226,7 +226,7 @@
   },
   {
     "id": 16,
-    "title": "Di?rio De Anne Frank",
+    "title": "Diário De Anne Frank",
     "author": "Anne Frank",
     "publisher": "Record",
     "pages": 160,
@@ -256,7 +256,7 @@
   },
   {
     "id": 18,
-    "title": "Viver ? Melhor Sem Ter Que Ser O Melhor - E Outros Princ?pios Do Arcadismo Para Os Dias De Hoje",
+    "title": "Viver É Melhor Sem Ter Que Ser O Melhor - E Outros Princípios Do Arcadismo Para Os Dias De Hoje",
     "author": "Daniel Martins de Barros",
     "publisher": "Sextante",
     "pages": 128,
@@ -286,7 +286,7 @@
   },
   {
     "id": 20,
-    "title": "O M?dico E O Monstro",
+    "title": "O Médico E O Monstro",
     "author": "Robert Louis Stevenson",
     "publisher": "FTD",
     "pages": 125,
@@ -301,7 +301,7 @@
   },
   {
     "id": 21,
-    "title": "A Revolu??o Dos Bichos",
+    "title": "A Revolução Dos Bichos",
     "author": "George Orwell",
     "publisher": "Prime",
     "pages": 125,
@@ -316,7 +316,7 @@
   },
   {
     "id": 22,
-    "title": "A Cura Do Ci?me",
+    "title": "A Cura Do Ciúme",
     "author": "Robert L. Leahy",
     "publisher": "Artmed",
     "pages": 192,
@@ -333,7 +333,7 @@
     "id": 23,
     "title": "Um Estudo Em Vermelho",
     "author": "Arthur Conan Doyle",
-    "publisher": "?tica",
+    "publisher": "Ática",
     "pages": 166,
     "gotDate": "02/07/2025",
     "readDate": "26/08/2025",
@@ -361,8 +361,8 @@
   },
   {
     "id": 25,
-    "title": "O Homem Que S? Tinha Certezas",
-    "author": "Adriana Falc?o",
+    "title": "O Homem Que Só Tinha Certezas",
+    "author": "Adriana Falcão",
     "publisher": "Planeta",
     "pages": 71,
     "gotDate": "17/07/2025",
@@ -391,9 +391,9 @@
   },
   {
     "id": 27,
-    "title": "A Outra Face - Hist?ria De Uma Garota Afeg?",
+    "title": "A Outra Face - História De Uma Garota Afegã",
     "author": "Deborah Ellis",
-    "publisher": "?tica",
+    "publisher": "Ática",
     "pages": 127,
     "gotDate": "15/08/2025",
     "readDate": null,
@@ -421,7 +421,7 @@
   },
   {
     "id": 29,
-    "title": "Empreendedorismo Para Computa??o",
+    "title": "Empreendedorismo Para Computação",
     "author": "Roberto Ferrari",
     "publisher": "Elsevier",
     "pages": 184,
@@ -436,9 +436,9 @@
   },
   {
     "id": 30,
-    "title": "A Viagem De Parvana - Mais Hist?rias De Uma Garota Afeg?",
+    "title": "A Viagem De Parvana - Mais Histórias De Uma Garota Afegã",
     "author": "Deborah Ellis",
-    "publisher": "?tica",
+    "publisher": "Ática",
     "pages": 144,
     "gotDate": "02/09/2025",
     "readDate": null,
@@ -451,7 +451,7 @@
   },
   {
     "id": 31,
-    "title": "De Volta Ao Mosteiro: O Monge E O Executivo Falam De Lideran?a E Trabalho Em Equipe",
+    "title": "De Volta Ao Mosteiro: O Monge E O Executivo Falam De Liderança E Trabalho Em Equipe",
     "author": "James C. Hunter",
     "publisher": "Sextante",
     "pages": 192,
@@ -466,7 +466,7 @@
   },
   {
     "id": 32,
-    "title": "Como Se Tornar Um L?der Servidor: Os Princ?pios De Lideran?a De O Monge E O Executivo",
+    "title": "Como Se Tornar Um Líder Servidor: Os Princípios De Liderança De O Monge E O Executivo",
     "author": "James C. Hunter",
     "publisher": "Sextante",
     "pages": 144,
@@ -482,7 +482,7 @@
   {
     "id": 33,
     "title": "Shinsetsu - O Poder Da Gentileza",
-    "author": "Cl?vis De Barros",
+    "author": "Clóvis De Barros",
     "publisher": "Planeta",
     "pages": 272,
     "gotDate": "08/09/2025",
@@ -496,9 +496,9 @@
   },
   {
     "id": 34,
-    "title": "O M?gico De Oz",
+    "title": "O Mágico De Oz",
     "author": "L. Frank Baum",
-    "publisher": "?tica",
+    "publisher": "Ática",
     "pages": 152,
     "gotDate": "08/09/2025",
     "readDate": null,

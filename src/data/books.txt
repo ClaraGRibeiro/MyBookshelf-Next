@@ -1,0 +1,62 @@
+chcp 65001
+mysql -u root -p
+
+DROP DATABASE nextbook_db;
+
+CREATE DATABASE nextbook_db;
+
+USE nextbook_db;
+
+CREATE TABLE books (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  author VARCHAR(255) NOT NULL,
+  publisher VARCHAR(255),
+  pages INT,
+  gotDate VARCHAR(255),
+  readDate VARCHAR(255),
+  price DECIMAL(10,2) NOT NULL,
+  image VARCHAR(500),
+  link VARCHAR(500),
+  ownership ENUM('Owned', 'Borrowed') NOT NULL,
+  mode ENUM('Physical', 'Digital') NOT NULL,
+  status ENUM('Reading', 'Read', 'Unread', 'Next') NOT NULL
+);
+
+INSERT INTO books 
+(title, author, publisher, pages, gotDate, readDate, price, image, link, ownership, mode, status) 
+VALUES
+('Hábitos Atômicos', 'James Clear', 'Alta Life', 320, '03/12/2024', '19/12/2024', 31.77, 'https://m.media-amazon.com/images/I/81eT2pjx4jL._SY425_.jpg', 'https://a.co/d/7wfpzAG', 'Owned', 'Physical', 'Read'),
+('#Um Dia Sem Reclamar', 'Davi Lago; Marcelo Galuppo', 'Citadel', 160, '03/12/2024', '03/12/2024', 21.87, 'https://m.media-amazon.com/images/I/51dFs0+2ZmL._SY445_SX342_.jpg', 'https://a.co/d/5rmeX8N', 'Owned', 'Physical', 'Read'),
+('O Pequeno Príncipe', 'Antoine de Saint Exupéry', 'Harpercollins', 64, '29/06/2025', '30/06/2025', 4.00, 'https://m.media-amazon.com/images/I/515ytu+Z2nL._SY342_.jpg', 'https://a.co/d/1etNgQE', 'Owned', 'Physical', 'Read'),
+('Orgulho E Preconceito', 'Jane Austen', 'Camelot', 240, '05/07/2025', NULL, 18.31, 'https://m.media-amazon.com/images/I/51AHB+f-0DL._SY445_SX342_.jpg', 'https://a.co/d/eTZaApW', 'Owned', 'Physical', 'Unread'),
+('Nunca É Hora De Parar', 'David Goggins', 'Sextante', 272, '03/12/2024', '06/07/2025', 34.89, 'https://m.media-amazon.com/images/I/81eOYoxFp4L._SY425_.jpg', 'https://a.co/d/e3rYwaN', 'Owned', 'Physical', 'Read'),
+('Mar Morto', 'Jorge Amado', 'Record', 223, '21/10/2022', '24/05/2022', 0.00, 'https://m.media-amazon.com/images/I/71kFG8R+0VL._SY466_.jpg', 'https://a.co/d/dyK0iQZ', 'Owned', 'Digital', 'Read'),
+('Amar ou depender', 'Walter Riso', 'Academia', 192, '06/01/2023', '05/01/2023', 0.00, 'https://m.media-amazon.com/images/I/41yBw-Jy6UL._SY445_SX342_.jpg', 'https://a.co/d/i7PYRGM', 'Owned', 'Digital', 'Read'),
+('O Monge E O Executivo - Uma História Sobre A Essência Da Liderança', 'James C. Hunter', 'Sextante', 145, '02/07/2025', '03/09/2025', 4.00, 'https://m.media-amazon.com/images/I/41Jxt+ZGIdL._SY445_SX342_.jpg', 'https://a.co/d/fo11rZY', 'Owned', 'Physical', 'Read'),
+('O Morro Dos Ventos Uivantes', 'Emily Brontë', 'Principis', 368, '05/07/2025', NULL, 25.12, 'https://m.media-amazon.com/images/I/51sz0nn7u9L._SY445_SX342_.jpg', 'https://a.co/d/1FMv50k', 'Owned', 'Physical', 'Unread'),
+('Melancia', 'Marian Keyes', 'Bertrand Brasil', 489, '17/07/2025', NULL, 0.00, 'https://m.media-amazon.com/images/I/41IzshO6ddL._SY445_SX342_.jpg', 'https://a.co/d/8Wyq8B1', 'Owned', 'Physical', 'Unread'),
+('As Vantagens De Ser Invisível', 'Stephen Chbosky', 'Lua De Papel', 288, '18/12/2017', '03/02/2018', 0.00, 'https://m.media-amazon.com/images/I/51u7LhO6iWL._SY466_.jpg', 'https://a.co/d/7U4YTFz', 'Owned', 'Physical', 'Read'),
+('Nada Pode Me Ferir', 'David Goggins', 'Sextante', 320, '03/12/2024', '06/01/2025', 32.64, 'https://m.media-amazon.com/images/I/41yVUV8vrOL._SY445_SX342_.jpg', 'https://a.co/d/1Z2AqYv', 'Owned', 'Physical', 'Read'),
+('O Livro Das Atitudes', 'Sônia Café; Neide Innecco', 'Pensamento', 147, '17/07/2025', NULL, 0.00, 'https://m.media-amazon.com/images/I/41AObD27UbL._SY445_SX342_.jpg', 'https://a.co/d/cTxRdMD', 'Owned', 'Physical', 'Unread'),
+('Os Criminosos Vieram Para O Chá', 'Agatha Christie', 'FTD', 120, '02/07/2025', '06/07/2025', 4.00, 'https://books.google.com.br/books/publisher/content?id=hT1VCgAAQBAJ&hl=pt-BR&pg=PP1&img=1&zoom=3&bul=1&sig=ACfU3U12LJ6te5K0m9g78NsGruiZlBHGdg&w=1280', 'https://a.co/d/grCdps6', 'Owned', 'Physical', 'Read'),
+('A Morte É Um Dia Que Vale A Pena Viver', 'Ana Cláudia Quintana Arantes', 'Sextante', 224, '05/07/2025', NULL, 35.22, 'https://m.media-amazon.com/images/I/51WQb6Ya1SL._SY445_SX342_.jpg', 'https://a.co/d/f5vuJtc', 'Owned', 'Physical', 'Unread'),
+('Diário De Anne Frank', 'Anne Frank', 'Record', 160, '27/12/2017', '15/01/2018', 0.00, 'https://m.media-amazon.com/images/I/81hTY2I9-sL._SY466_.jpg', 'https://a.co/d/gfjrEkd', 'Owned', 'Physical', 'Read'),
+('O Mundo De Sofia', 'Jostein Gaarder', 'Seguinte', 551, '17/07/2025', NULL, 0.00, 'https://m.media-amazon.com/images/I/51xrMBKS-DL._SY445_SX342_.jpg', 'https://a.co/d/0PoFZA4', 'Owned', 'Physical', 'Unread'),
+('Viver É Melhor Sem Ter Que Ser O Melhor - E Outros Princípios Do Arcadismo Para Os Dias De Hoje', 'Daniel Martins de Barros', 'Sextante', 128, '05/07/2025', '12/08/2025', 16.40, 'https://m.media-amazon.com/images/I/71nXdVSqdlL._SY466_.jpg', 'https://a.co/d/8aynerf', 'Owned', 'Physical', 'Read'),
+('Soppy: Os Pequenos Detalhes Do Amor', 'Philippa Rice', 'Rocco', 112, '05/07/2025', '18/07/2025', 26.44, 'https://m.media-amazon.com/images/I/51EIE9QIlgL._SY342_.jpg', 'https://a.co/d/7JJ59P5', 'Owned', 'Physical', 'Read'),
+('O Médico E O Monstro', 'Robert Louis Stevenson', 'FTD', 125, '02/07/2025', '09/08/2025', 4.00, 'https://m.media-amazon.com/images/I/71CGwHYYyhL._SY466_.jpg', 'https://a.co/d/f8fXl0C', 'Owned', 'Physical', 'Read'),
+('A Revolução Dos Bichos', 'George Orwell', 'Prime', 125, '02/07/2025', '21/07/2025', 4.00, 'https://http2.mlstatic.com/D_NQ_NP_789326-MLU77448558013_072024-O.webp', 'https://a.co/d/aPY4DiX', 'Owned', 'Physical', 'Read'),
+('A Cura Do Ciúme', 'Robert L. Leahy', 'Artmed', 192, '06/01/2023', '06/01/2023', 0.00, 'https://m.media-amazon.com/images/I/41gsD+xAwXL._SY445_SX342_.jpg', 'https://a.co/d/7dcGwPD', 'Owned', 'Digital', 'Read'),
+('Um Estudo Em Vermelho', 'Arthur Conan Doyle', 'Ática', 166, '02/07/2025', '26/08/2025', 4.00, 'https://m.media-amazon.com/images/I/51X-WwYZ-XL._SY445_SX342_.jpg', 'https://a.co/d/9wVGn0h', 'Owned', 'Physical', 'Read'),
+('Indistractable', 'Nir Eyal', 'Bloomsbury Publishing PLC', 290, '05/11/2023', '15/02/2024', 0.00, 'https://m.media-amazon.com/images/I/41W35Os4veL._SY445_SX342_.jpg', 'https://a.co/d/cmnUlZo', 'Owned', 'Digital', 'Read'),
+('O Homem Que Só Tinha Certezas', 'Adriana Falcão', 'Planeta', 71, '17/07/2025', '28/08/2025', 0.00, 'https://m.media-amazon.com/images/I/51GtZMUgTOL._SY342_.jpg', 'https://a.co/d/fSJJpXp', 'Owned', 'Physical', 'Read'),
+('Aranha Castanha E Outras Tramas', 'Gloria Kirinus', 'Cortez', 63, '29/11/2018', '27/08/2025', 0.00, 'https://m.media-amazon.com/images/I/517dLe6scoL._SY445_SX342_.jpg', 'https://a.co/d/4PljlFs', 'Owned', 'Physical', 'Read'),
+('A Outra Face - História De Uma Garota Afegã', 'Deborah Ellis', 'Ática', 127, '15/08/2025', NULL, 4.00, 'https://m.media-amazon.com/images/I/71I2nZ1HUDL._SY466_.jpg', 'https://a.co/d/i4hsj8o', 'Owned', 'Physical', 'Unread'),
+('Arrume A Sua Cama', 'William H. McRaven', 'Academia', 128, '04/09/2025', '05/09/2025', 0.00, 'https://m.media-amazon.com/images/I/51auYwIMZvL._SY445_SX342_.jpg', 'https://a.co/d/2UC0fUY', 'Borrowed', 'Physical', 'Read'),
+('Empreendedorismo Para Computação', 'Roberto Ferrari', 'Elsevier', 184, '09/02/2024', '10/02/2024', 0.00, 'https://img.travessa.com.br/livro/GR/6a/6a370394-c288-4f49-93bb-1778d3839230.jpg', 'https://a.co/d/drSvAzf', 'Borrowed', 'Physical', 'Read'),
+('A Viagem De Parvana - Mais Histórias De Uma Garota Afegã', 'Deborah Ellis', 'Ática', 144, '02/09/2025', NULL, 0.00, 'https://m.media-amazon.com/images/I/71yLl3WXUeL._SY466_.jpg', 'https://a.co/d/6u4Gg5s', 'Owned', 'Digital', 'Unread'),
+('De Volta Ao Mosteiro: O Monge E O Executivo Falam De Liderança E Trabalho Em Equipe', 'James C. Hunter', 'Sextante', 192, '03/09/2025', NULL, 0.00, 'https://m.media-amazon.com/images/I/71UrIquE4yL._SY466_.jpg', 'https://a.co/d/7IKGmti', 'Owned', 'Digital', 'Next'),
+('Como Se Tornar Um Líder Servidor: Os Princípios De Liderança De O Monge E O Executivo', 'James C. Hunter', 'Sextante', 144, '03/09/2025', NULL, 0.00, 'https://m.media-amazon.com/images/I/81rG4PQv3BL._SY466_.jpg', 'https://a.co/d/ixtK9Y2', 'Owned', 'Digital', 'Reading'),
+('Shinsetsu - O Poder Da Gentileza', 'Clóvis De Barros', 'Planeta', 272, '08/09/2025', NULL, 6.0, 'https://m.media-amazon.com/images/I/91Je8SnqYrL._SY466_.jpg', 'https://a.co/d/bCL21vn', 'Owned', 'Physical', 'Unread'),
+('O Mágico De Oz', 'L. Frank Baum', 'Ática', 152, '08/09/2025', NULL, 0.00, 'https://m.media-amazon.com/images/I/81oyDNoKE4L._SY425_.jpg', 'https://a.co/d/4zAualB', 'Borrowed', 'Physical', 'Unread');

@@ -78,7 +78,7 @@ const AddAction = ({
           </Tooltip>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] max-h-[98%] overflow-y-auto">
+      <DialogContent className="sm:max-w-[425px] max-h-[90%] overflow-y-auto">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -133,7 +133,9 @@ const AddAction = ({
           }}
         >
           <DialogHeader>
-            <DialogTitle>Add a Book</DialogTitle>
+            <DialogTitle className="max-w-[90%] m-auto text-center">
+              Add a Book
+            </DialogTitle>
             <DialogDescription>
               Add more book in your bookshelf. Click save when finished.
             </DialogDescription>

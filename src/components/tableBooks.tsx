@@ -170,7 +170,7 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
                 " text-center w-24"
               }
             >
-              {b.price > 0 ? "R$ " + b.price : "Free"}
+              {b.price > 0 ? "R$ " + b.price.toFixed(2) : "Free"}
             </TableCell>
             <TableCell className="text-center max-w-24">
               <Tooltip>

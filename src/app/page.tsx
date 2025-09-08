@@ -14,17 +14,10 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  useEffect(() => {
     import("../data/books.json")
       .then((data) => {
         setBooks(data.default);
+        setLoading(false);
       })
       .catch(console.error);
   }, []);

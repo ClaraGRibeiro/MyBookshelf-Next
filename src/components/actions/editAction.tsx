@@ -62,7 +62,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
           </Tooltip>
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] max-h-[98%] overflow-y-auto">
+      <DialogContent className="sm:max-w-[425px] max-h-[90%] overflow-y-auto">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -103,7 +103,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
           }}
         >
           <DialogHeader>
-            <DialogTitle className="text-[var(--medium-slate)]">
+            <DialogTitle className="text-[var(--medium-slate)] max-w-[90%] m-auto text-center">
               Edit '{book.title}'
             </DialogTitle>
             <DialogDescription className="text-[var(--dark-slate)]">

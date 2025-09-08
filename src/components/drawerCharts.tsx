@@ -75,9 +75,8 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   });
   const readThisMonth =
     booksByMonth.find((bM) => bM.name === currentMonth)?.books || [];
-  const totalSpent = Math.round(
-    books.reduce((acc, b) => acc + Number(b.price), 0),
-  );
+  const totalSpent =
+    Math.round(books.reduce((acc, b) => acc + Number(b.price), 0) * 100) / 100;
   const totalPagesRead = booksRead.reduce((acc, b) => acc + (b.pages || 0), 0);
   const minutesPerPage = 3.5;
   const timeReading = Math.round((minutesPerPage * totalPagesRead) / 60);
