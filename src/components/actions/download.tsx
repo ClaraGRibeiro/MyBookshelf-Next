@@ -1,96 +1,88 @@
 "use client";
 
-// components shadcn
 import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-// icons radix
 import { DownloadIcon } from "@radix-ui/react-icons";
-// components
-import jsPDF from "jspdf";
-import autoTable from "jspdf-autotable";
+import { saveAs } from "file-saver";
 import { Book } from "@/types/books";
+import ExcelJS from "exceljs";
 
 type DownloadProps = {
   books: Book[];
 };
+
 const Download = ({ books }: DownloadProps) => {
-  const downloadBooksPDF = (books: Book[]) => {
+  const downloadBooksXLSX = async (books: Book[]) => {
     const booksList = books.sort((a, b) => {
       if (!a.title) return 1;
       if (!b.title) return -1;
       return a.title.localeCompare(b.title);
     });
-    const doc = new jsPDF();
 
-    autoTable(doc, {
-      head: [
-        [
-          "#",
-          "Title",
-          "Author",
-          "Publisher",
-          "Price",
-          "Pages",
-          "Got Date",
-          "Read Date",
-          "Status",
-        ],
-      ],
-      body: booksList.map((b, i) => [
-        i + 1,
-        b.title,
-        b.author,
-        b.publisher ?? "-",
-        b.pages ?? "-",
-        b.price ?? "-",
-        b.gotDate ?? "-",
-        b.readDate ?? "-",
-        b.status === "Read"
-          ? "Read"
-          : b.status === "Reading"
-            ? "Reading"
-            : b.status === "Unread"
-              ? "Unread"
-              : "Next",
-        b.id,
-      ]),
-      columnStyles: {
-        0: { halign: "center" },
-        4: { halign: "center" },
-        5: { halign: "center" },
-        6: { halign: "center" },
-        7: { halign: "center" },
-        8: { halign: "center" },
-      },
-      headStyles: {
-        fillColor: [29, 41, 61],
-        textColor: [241, 245, 249],
-        fontStyle: "bold",
-        halign: "center",
-      },
-      didDrawCell: (data) => {
-        if (data.section === "body") {
-          const bookId = data.row.cells[0].raw;
-          const book = booksList.find((b) => b.id === bookId);
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet("Books");
+    worksheet.columns = [
+      { header: "#", key: "index", width: 5 },
+      { header: "Title", key: "title", width: 35 },
+      { header: "Author", key: "author", width: 25 },
+      { header: "Publisher", key: "publisher", width: 25 },
+      { header: "Pages", key: "pages", width: 6 },
+      { header: "Got Date", key: "gotDate", width: 12 },
+      { header: "Read Date", key: "readDate", width: 12 },
+      { header: "Price", key: "price", width: 6 },
+      { header: "Cover", key: "image", width: 6 },
+      { header: "Shop", key: "link", width: 6 },
+      { header: "Ownership", key: "ownership", width: 10 },
+      { header: "Mode", key: "mode", width: 6 },
+      { header: "Status", key: "status", width: 6 },
+    ];
 
-          if (book?.link) {
-            const { x, y, width, height } = data.cell;
-            doc.link(x, y, width * data.table.columns.length, height, {
-              url: book.link,
-            });
-          }
-        }
-      },
-    });
+    for (let i = 0; i < booksList.length; i++) {
+      const b = booksList[i];
+      const row = worksheet.addRow({
+        index: i + 1,
+        title: b.title,
+        author: b.author,
+        publisher: b.publisher ?? "-",
+        pages: b.pages ?? "-",
+        gotDate: b.gotDate ?? "-",
+        readDate: b.readDate ?? "-",
+        price: b.price ?? "-",
+        image: b.image ?? "-",
+        link: b.link ?? "-",
+        ownership: b.ownership === "Borrowed" ? "🤝" : "🏠",
+        mode: b.mode === "Digital" ? "📱" : "📚",
+        status:
+          b.status === "Read"
+            ? "✅"
+            : b.status === "Reading"
+              ? "👀"
+              : b.status === "Unread"
+                ? "❌"
+                : "🎯",
+      });
+      const coverCell = row.getCell("I");
+      coverCell.value = { text: "Link", hyperlink: b.image || "" };
+      coverCell.font = { color: { argb: "FF0000FF" }, underline: true };
+      const shopCell = row.getCell("J");
+      shopCell.value = { text: "Link", hyperlink: b.link || "" };
+      shopCell.font = { color: { argb: "FF0000FF" }, underline: true };
+    }
 
-    doc.save("books.pdf");
+    const buffer = await workbook.xlsx.writeBuffer();
+    saveAs(
+      new Blob([buffer], {
+        type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      }),
+      "books.xlsx",
+    );
   };
 
   return (
     <Button
       variant="own"
       className="hover:!bg-[var(--light-slate)] active:!bg-[var(--light-slate)]"
-      onClick={() => downloadBooksPDF(books)}
+      onClick={() => downloadBooksXLSX(books)}
     >
       <Tooltip>
         <TooltipTrigger asChild>
