@@ -64,7 +64,7 @@ const DeleteAction = ({ book, onDelete, closeModal }: DeleteActionProps) => {
           <DialogClose asChild>
             <Button
               variant="own"
-              className="cursor-pointer text-[var(--light-slate)] bg-[var(--light-red)] !duration-400 hover:bg-[var(--dark-red)] active:bg-[var(--dark-red)]"
+              className="cursor-pointer !text-[var(--light-slate)] bg-[var(--light-red)] !duration-400 hover:bg-[var(--dark-red)] active:bg-[var(--dark-red)]"
               onClick={() => {
                 onDelete(book.id);
                 closeModal && closeModal();
