@@ -1,12 +1,51 @@
 import { NextResponse } from "next/server";
-import { db } from "@/lib/db";
+import fs from "fs";
+import path from "path";
 
+const dev = process.env.NODE_ENV === "development";
+const filePath = path.join(process.cwd(), "src", "data", "books.json");
+
+function readBooks() {
+  if (!dev) return [];
+  const data = fs.readFileSync(filePath, "utf-8");
+  return JSON.parse(data);
+}
+
+function writeBooks(books: any[]) {
+  if (!dev) return;
+  fs.writeFileSync(filePath, JSON.stringify(books, null, 2));
+}
+
+// GET /api/books
 export async function GET() {
-  try {
-    const [rows] = await db.query("SELECT * FROM books");
-    return NextResponse.json(rows);
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ message: "Error" }, { status: 500 });
-  }
+  const books = readBooks();
+  return NextResponse.json(books);
+}
+
+// POST /api/books
+export async function POST(req: Request) {
+  const newBook = await req.json();
+  const books = readBooks();
+  books.push(newBook);
+  writeBooks(books);
+  return NextResponse.json({ success: true, books });
+}
+
+// PUT /api/books
+export async function PUT(req: Request) {
+  const updatedBook = await req.json();
+  let books = readBooks();
+  books = books.map((b: any) => (b.id === updatedBook.id ? updatedBook : b));
+  writeBooks(books);
+  return NextResponse.json({ success: true, books });
+}
+
+// DELETE /api/books?id=123
+export async function DELETE(req: Request) {
+  const { searchParams } = new URL(req.url);
+  const id = Number(searchParams.get("id"));
+  let books = readBooks();
+  books = books.filter((b: any) => b.id !== id);
+  writeBooks(books);
+  return NextResponse.json({ success: true, books });
 }

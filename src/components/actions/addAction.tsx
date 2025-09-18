@@ -102,13 +102,13 @@ const AddAction = ({
             }
             const newBook: Book = {
               id: maxId + 1,
-              title: data.get("title")?.toString() || "-",
-              author: data.get("author")?.toString() || "-",
-              publisher: data.get("publisher")?.toString() || "-",
+              title: data.get("title")!.toString(),
+              author: data.get("author")!.toString(),
+              publisher: data.get("publisher")?.toString() || undefined,
               pages: Number(data.get("pages")),
               gotDate: data.get("gotDate")
                 ? data.get("gotDate")?.toString().split("-").reverse().join("/")
-                : "",
+                : undefined,
               readDate: data.get("readDate")
                 ? data
                     .get("readDate")
@@ -116,10 +116,10 @@ const AddAction = ({
                     .split("-")
                     .reverse()
                     .join("/")
-                : "",
+                : undefined,
               price: Number(data.get("price")),
-              image: data.get("image")?.toString().trim() || "",
-              link: data.get("link")?.toString().trim() || "",
+              image: data.get("image")?.toString().trim() || undefined,
+              link: data.get("link")?.toString().trim() || undefined,
               mode: mode,
               ownership: ownership,
               status:

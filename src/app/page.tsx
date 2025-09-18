@@ -12,6 +12,7 @@ import "./globals.css";
 export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const dev = process.env.NODE_ENV === "development";
 
   useEffect(() => {
     import("../data/books.json")
@@ -25,18 +26,37 @@ export default function Home() {
   // function containing all handler logic
   function allHandles(): Handles {
     // add a new book to the books array by spreading previous books and appending the new one
-    const handleAdd = (book: Book): void => {
+    const handleAdd = async (book: Book): Promise<void> => {
       setBooks((prev) => [...prev, book]);
+      if (dev) {
+        await fetch("/api/books", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(book),
+        });
+      }
     };
 
     // Edit an existing book by replacing the old book with the updated one in the same position
-    const handleEdit = (book: Book): void => {
+    const handleEdit = async (book: Book): Promise<void> => {
       setBooks((prev) => prev.map((b) => (b.id === book.id ? book : b)));
+      if (dev) {
+        await fetch("/api/books", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(book),
+        });
+      }
     };
 
     // Remove the deleted book by filtering it out from the books array
-    const handleDelete = (bookId: Book["id"]): void => {
+    const handleDelete = async (bookId: Book["id"]): Promise<void> => {
       setBooks((prev) => prev.filter((b) => b.id !== bookId));
+      if (dev) {
+        await fetch(`/api/books?id=${bookId}`, {
+          method: "DELETE",
+        });
+      }
     };
 
     // Change the status of a book by copying its properties, updating the status, and replacing the old book
@@ -54,6 +74,9 @@ export default function Home() {
           b.id === bookId ? { ...b, status: newStatus, readDate: newDate } : b,
         ),
       );
+      if (dev) {
+        // alterar status no json
+      }
     };
 
     // return all the handlers functions

@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "export-books": "ts-node src/lib/exportBooks.ts",
-    "prebuild": "npm run export-books",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
