@@ -53,7 +53,7 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
 
   return (
     <>
-      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-8">
+      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-2">
         <SortBy value={sortBy} onChange={handleSort} type={"title"} />
         <SortBy value={sortBy} onChange={handleSort} type={"author"} />
         <SortBy value={sortBy} onChange={handleSort} type={"publisher"} />
@@ -64,6 +64,7 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
         <SortBy value={sortBy} onChange={handleSort} type={"readDate"} />
         <FilterBy value={filterBy} onChange={setFilterBy} />
       </div>
+      <p className="text-center mb-8 font-light text-[var(--medium-slate)]">{sortedBooks.length} books [{filterBy ?? "All"}]</p>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-items-center content-start">
         {sortedBooks.map((b) => (
           <div
