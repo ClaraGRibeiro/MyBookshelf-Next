@@ -221,7 +221,7 @@
     "link": "https://a.co/d/f5vuJtc",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Next"
+    "status": "Unread"
   },
   {
     "id": 16,
@@ -500,10 +500,10 @@
     "pages": 152,
     "gotDate": "08/09/2025",
     "readDate": "21/09/2025",
-    "price": 0,
+    "price": 2,
     "image": "https://m.media-amazon.com/images/I/81oyDNoKE4L._SY425_.jpg",
     "link": "https://a.co/d/af4QViN",
-    "ownership": "Borrowed",
+    "ownership": "Owned",
     "mode": "Physical",
     "status": "Read"
   }

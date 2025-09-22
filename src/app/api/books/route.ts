@@ -1,6 +1,21 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { exec } from "child_process";
+
+function gitCommitAndPush() {
+  exec(`git add . && git commit -m "Updating books data" && git push`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Erro ao executar Git: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
+}
 
 const dev = process.env.NODE_ENV === "development";
 const filePath = path.join(process.cwd(), "src", "data", "books.json");
@@ -28,6 +43,7 @@ export async function POST(req: Request) {
   const books = readBooks();
   books.push(newBook);
   writeBooks(books);
+  gitCommitAndPush()
   return NextResponse.json({ success: true, books });
 }
 
@@ -37,6 +53,7 @@ export async function PUT(req: Request) {
   let books = readBooks();
   books = books.map((b: any) => (b.id === updatedBook.id ? updatedBook : b));
   writeBooks(books);
+  gitCommitAndPush()
   return NextResponse.json({ success: true, books });
 }
 
@@ -47,5 +64,6 @@ export async function DELETE(req: Request) {
   let books = readBooks();
   books = books.filter((b: any) => b.id !== id);
   writeBooks(books);
+  gitCommitAndPush()
   return NextResponse.json({ success: true, books });
 }

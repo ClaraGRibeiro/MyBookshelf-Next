@@ -45,8 +45,8 @@ const Download = ({ books }: DownloadProps) => {
         author: b.author,
         publisher: b.publisher ?? "-",
         pages: b.pages ?? "-",
-        gotDate: b.gotDate ?? "-",
-        readDate: b.readDate ?? "-",
+        gotDate: b.gotDate ? String(b.gotDate) : "-",
+        readDate: b.readDate ? String(b.readDate) : "-",
         price: b.price ?? "-",
         image: b.image ?? "-",
         link: b.link ?? "-",
@@ -90,7 +90,7 @@ const Download = ({ books }: DownloadProps) => {
             <DownloadIcon className="!w-6 !h-6 cursor-pointer" />
           </span>
         </TooltipTrigger>
-        <TooltipContent>Download data base</TooltipContent>
+        <TooltipContent>Download database</TooltipContent>
       </Tooltip>
     </Button>
   );
