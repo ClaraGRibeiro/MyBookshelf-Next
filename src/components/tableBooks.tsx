@@ -103,6 +103,9 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
   const clickedBook = books.find((b) => b.id === clickedBookId) || null;
 
   return (
+    <>
+      <p className="text-center mb-2 font-light text-[var(--medium-slate)]">{sortedBooks.length} books [{filterBy ?? "All"}]</p>
+
     <Table className="text-lg">
       <TableCaption>
         <AddAction books={books} onAdd={handles.onAdd} lightBg={true} />
@@ -216,6 +219,7 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
         <SeeAction noButtonMode={true} book={clickedBook} handles={handles} />
       )}
     </Table>
+    </>
   );
 };
 
