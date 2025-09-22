@@ -60,10 +60,10 @@ export default function Home() {
     };
 
     // Change the status of a book by copying its properties, updating the status, and replacing the old book
-    const handleChangeStatus = (
+    const handleChangeStatus = async (
       bookId: Book["id"],
       newStatus: Book["status"],
-    ): void => {
+    ): Promise<void> => {
       let newDate = undefined;
       if (newStatus === "Read") {
         const today = new Date();
@@ -75,7 +75,19 @@ export default function Home() {
         ),
       );
       if (dev) {
-        // alterar status no json
+        const updatedBook = books.find((b) => b.id === bookId);
+        if (updatedBook) {
+          const bookToSave = {
+            ...updatedBook,
+            status: newStatus,
+            readDate: newDate,
+          };
+          await fetch("/api/books", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(bookToSave),
+          });
+        }
       }
     };
 

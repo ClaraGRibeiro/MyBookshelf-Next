@@ -216,13 +216,12 @@
     "publisher": "Sextante",
     "pages": 224,
     "gotDate": "05/07/2025",
-    "readDate": null,
     "price": 35.22,
     "image": "https://m.media-amazon.com/images/I/51WQb6Ya1SL._SY445_SX342_.jpg",
     "link": "https://a.co/d/f5vuJtc",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread"
+    "status": "Next"
   },
   {
     "id": 16,
@@ -456,13 +455,12 @@
     "publisher": "Sextante",
     "pages": 192,
     "gotDate": "03/09/2025",
-    "readDate": null,
     "price": 0,
     "image": "https://m.media-amazon.com/images/I/71UrIquE4yL._SY466_.jpg",
     "link": "https://a.co/d/7IKGmti",
     "ownership": "Owned",
     "mode": "Digital",
-    "status": "Next"
+    "status": "Reading"
   },
   {
     "id": 32,
@@ -501,12 +499,12 @@
     "publisher": "Ática",
     "pages": 152,
     "gotDate": "08/09/2025",
-    "readDate": null,
+    "readDate": "21/09/2025",
     "price": 0,
     "image": "https://m.media-amazon.com/images/I/81oyDNoKE4L._SY425_.jpg",
-    "link": "https://a.co/d/4zAualB",
+    "link": "https://a.co/d/af4QViN",
     "ownership": "Borrowed",
     "mode": "Physical",
-    "status": "Reading"
+    "status": "Read"
   }
 ]
