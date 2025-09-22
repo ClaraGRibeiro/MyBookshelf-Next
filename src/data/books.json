@@ -506,16 +506,5 @@
     "ownership": "Owned",
     "mode": "Physical",
     "status": "Read"
-  },
-  {
-    "id": 35,
-    "title": "teste",
-    "author": "autor teste",
-    "pages": 0,
-    "gotDate": "22/09/2025",
-    "price": 0,
-    "mode": "Physical",
-    "ownership": "Owned",
-    "status": "Unread"
   }
 ]
