@@ -506,5 +506,19 @@
     "ownership": "Owned",
     "mode": "Physical",
     "status": "Read"
+  },
+  {
+    "id": 35,
+    "title": "Um Toque De Clássicos: Marx, Durkheim, Weber",
+    "author": "Tania Quintaneiro; Márcia Gardênia Monteiro Oliveira; Maria Ligia de Oliveira Barbosa",
+    "publisher": "UFMG",
+    "pages": 157,
+    "gotDate": "25/09/2025",
+    "price": 0,
+    "image": "https://m.media-amazon.com/images/I/61-I5Cp3yCL._SY385_.jpg",
+    "link": "https://a.co/d/e1naqDk",
+    "mode": "Digital",
+    "ownership": "Owned",
+    "status": "Unread"
   }
 ]
