@@ -77,10 +77,12 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
               alert("The book is marked as read. Please enter a reading date!");
               return;
             }
+            const titleVar = data.get("title")?.toString()
+            const authorVar = data.get("author")?.toString()
             const updatedBook: Book = {
               ...book,
-              title: data.get("title")?.toString().charAt(0).toUpperCase() || book.title,
-              author: data.get("author")?.toString().charAt(0).toUpperCase() || book.author,
+              title: titleVar ? (titleVar.charAt(0).toUpperCase() + titleVar.slice(1).toLowerCase()) : book.title,
+              author: authorVar ? (authorVar.charAt(0).toUpperCase() + authorVar.slice(1).toLowerCase()) : book.author,
               publisher: data.get("publisher")?.toString() || book.publisher,
               pages: Number(data.get("pages")) || book.pages,
               gotDate:

@@ -100,10 +100,12 @@ const AddAction = ({
               alert("Please insert a read date!");
               return;
             }
+            const titleVar = data.get("title")?.toString()
+            const authorVar = data.get("author")?.toString()
             const newBook: Book = {
               id: maxId + 1,
-              title: data.get("title")!.toString().charAt(0).toUpperCase(),
-              author: data.get("author")!.toString().charAt(0).toUpperCase(),
+              title: titleVar ? titleVar.charAt(0).toUpperCase() + titleVar.slice(1).toLowerCase() : "No Title",
+              author: authorVar ? authorVar.charAt(0).toUpperCase() + authorVar.slice(1).toLowerCase() : "No Author",
               publisher: data.get("publisher")?.toString() || undefined,
               pages: Number(data.get("pages")),
               gotDate: data.get("gotDate")
