@@ -79,8 +79,8 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
             }
             const updatedBook: Book = {
               ...book,
-              title: data.get("title")?.toString() || book.title,
-              author: data.get("author")?.toString() || book.author,
+              title: data.get("title")?.toString().charAt(0).toUpperCase() || book.title,
+              author: data.get("author")?.toString().charAt(0).toUpperCase() || book.author,
               publisher: data.get("publisher")?.toString() || book.publisher,
               pages: Number(data.get("pages")) || book.pages,
               gotDate:

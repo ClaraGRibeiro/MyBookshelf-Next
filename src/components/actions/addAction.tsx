@@ -102,8 +102,8 @@ const AddAction = ({
             }
             const newBook: Book = {
               id: maxId + 1,
-              title: data.get("title")!.toString(),
-              author: data.get("author")!.toString(),
+              title: data.get("title")!.toString().charAt(0).toUpperCase(),
+              author: data.get("author")!.toString().charAt(0).toUpperCase(),
               publisher: data.get("publisher")?.toString() || undefined,
               pages: Number(data.get("pages")),
               gotDate: data.get("gotDate")
