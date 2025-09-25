@@ -64,6 +64,10 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
             {book.title}
           </p>
           <p className="text-[var(--dark-slate)]">
+            <strong className="text-[var(--medium-slate)]">Subtitle:</strong>{" "}
+            {book.subtitle ?? "-"}
+          </p>
+          <p className="text-[var(--dark-slate)]">
             <strong className="text-[var(--medium-slate)]">Author Name:</strong>{" "}
             {book.author}
           </p>
@@ -77,11 +81,11 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
           </p>
           <p className="text-[var(--dark-slate)]">
             <strong className="text-[var(--medium-slate)]">Got Date:</strong>{" "}
-            {book.gotDate === undefined ? "-" : book.gotDate}
+            {book.gotDate === null ? "-" : book.gotDate}
           </p>
           <p className="text-[var(--dark-slate)]">
             <strong className="text-[var(--medium-slate)]">Read Date:</strong>{" "}
-            {book.readDate === undefined ? "-" : book.readDate}
+            {book.readDate === null ? "-" : book.readDate}
           </p>
           <p
             className={

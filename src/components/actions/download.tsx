@@ -24,6 +24,7 @@ const Download = ({ books }: DownloadProps) => {
     worksheet.columns = [
       { header: "#", key: "index", width: 5 },
       { header: "Title", key: "title", width: 35 },
+      { header: "Subtitle", key: "subtitle", width: 35 },
       { header: "Author", key: "author", width: 25 },
       { header: "Publisher", key: "publisher", width: 25 },
       { header: "Pages", key: "pages", width: 6 },
@@ -42,6 +43,7 @@ const Download = ({ books }: DownloadProps) => {
       const row = worksheet.addRow({
         index: i + 1,
         title: b.title,
+        subtitle: b.subtitle ?? "-",
         author: b.author,
         publisher: b.publisher ?? "-",
         pages: b.pages ?? "-",

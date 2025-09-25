@@ -160,7 +160,7 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
               colSpan={isMobile ? 2 : 1}
               className="!table-cell !max-w-36"
             >
-              {b.title}
+              {b.title} {b.subtitle ? ("- " + b.subtitle) : ""}
             </TableCell>
             <TableCell className="!max-w-36">{b.author}</TableCell>
             <TableCell className="!max-w-26">{b.publisher ?? "-"}</TableCell>

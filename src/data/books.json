@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "Hábitos Atômicos - Um Método Fácil E Comprovado De Criar Bons Hábitos E Se Livrar Dos Maus",
+    "title": "Hábitos Atômicos",
     "author": "James Clear",
     "publisher": "Alta Life",
     "pages": 320,
@@ -12,11 +12,12 @@
     "link": "https://a.co/d/7wfpzAG",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "Um Método Fácil E Comprovado De Criar Bons Hábitos E Se Livrar Dos Maus"
   },
   {
     "id": 2,
-    "title": "#Um Dia Sem Reclamar - Descubra Por Que A Gratidão Pode Mudar A Sua Vida",
+    "title": "#Um Dia Sem Reclamar",
     "author": "Davi Lago; Marcelo Galuppo",
     "publisher": "Citadel",
     "pages": 160,
@@ -27,12 +28,13 @@
     "link": "https://a.co/d/5rmeX8N",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "Descubra Por Que A Gratidão Pode Mudar A Sua Vida"
   },
   {
     "id": 3,
     "title": "O Pequeno Príncipe",
-    "author": "Antoine de Saint Exupéry",
+    "author": "Antoine De Saint Exupéry",
     "publisher": "Harpercollins",
     "pages": 64,
     "gotDate": "29/06/2025",
@@ -42,7 +44,8 @@
     "link": "https://a.co/d/1etNgQE",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": ""
   },
   {
     "id": 4,
@@ -57,11 +60,12 @@
     "link": "https://a.co/d/eTZaApW",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread"
+    "status": "Unread",
+    "subtitle": ""
   },
   {
     "id": 5,
-    "title": "Nunca É Hora De Parar - Liberte Sua Mente E Desenvolva Seu Potencial Inexplorado",
+    "title": "Nunca É Hora De Parar",
     "author": "David Goggins",
     "publisher": "Sextante",
     "pages": 272,
@@ -72,7 +76,8 @@
     "link": "https://a.co/d/e3rYwaN",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "Liberte Sua Mente E Desenvolva Seu Potencial Inexplorado"
   },
   {
     "id": 6,
@@ -87,11 +92,12 @@
     "link": "https://a.co/d/dyK0iQZ",
     "ownership": "Owned",
     "mode": "Digital",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": ""
   },
   {
     "id": 7,
-    "title": "Amar ou depender - Como Superar O Apego Afetivo E Fazer Do Amor Uma Experiência Plena E Saudável",
+    "title": "Amar Ou Depender",
     "author": "Walter Riso",
     "publisher": "Academia",
     "pages": 192,
@@ -102,11 +108,12 @@
     "link": "https://a.co/d/i7PYRGM",
     "ownership": "Owned",
     "mode": "Digital",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "Como Superar O Apego Afetivo E Fazer Do Amor Uma Experiência Plena E Saudável"
   },
   {
     "id": 8,
-    "title": "O Monge E O Executivo - Uma História Sobre A Essência Da Liderança",
+    "title": "O Monge E O Executivo",
     "author": "James C. Hunter",
     "publisher": "Sextante",
     "pages": 145,
@@ -117,7 +124,8 @@
     "link": "https://a.co/d/fo11rZY",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "Uma História Sobre A Essência Da Liderança"
   },
   {
     "id": 9,
@@ -132,7 +140,8 @@
     "link": "https://a.co/d/1FMv50k",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread"
+    "status": "Unread",
+    "subtitle": ""
   },
   {
     "id": 10,
@@ -147,7 +156,8 @@
     "link": "https://a.co/d/8Wyq8B1",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread"
+    "status": "Unread",
+    "subtitle": ""
   },
   {
     "id": 11,
@@ -162,7 +172,8 @@
     "link": "https://a.co/d/7U4YTFz",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": ""
   },
   {
     "id": 12,
@@ -177,7 +188,8 @@
     "link": "https://a.co/d/1Z2AqYv",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": ""
   },
   {
     "id": 13,
@@ -192,7 +204,8 @@
     "link": "https://a.co/d/cTxRdMD",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread"
+    "status": "Unread",
+    "subtitle": ""
   },
   {
     "id": 14,
@@ -207,11 +220,12 @@
     "link": "https://a.co/d/grCdps6",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": ""
   },
   {
     "id": 15,
-    "title": "A Morte É Um Dia Que Vale A Pena Viver - E Um Excelente Motivo Para Se Buscar Um Novo Olhar Para A Vida",
+    "title": "A Morte É Um Dia Que Vale A Pena Viver",
     "author": "Ana Cláudia Quintana Arantes",
     "publisher": "Sextante",
     "pages": 224,
@@ -221,7 +235,8 @@
     "link": "https://a.co/d/f5vuJtc",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Next"
+    "status": "Next",
+    "subtitle": "E Um Excelente Motivo Para Se Buscar Um Novo Olhar Para A Vida"
   },
   {
     "id": 16,
@@ -236,7 +251,8 @@
     "link": "https://a.co/d/gfjrEkd",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "Em Quadrinhos"
   },
   {
     "id": 17,
@@ -251,12 +267,13 @@
     "link": "https://a.co/d/0PoFZA4",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread"
+    "status": "Unread",
+    "subtitle": ""
   },
   {
     "id": 18,
-    "title": "Viver É Melhor Sem Ter Que Ser O Melhor - E Outros Princípios Do Arcadismo Para Os Dias De Hoje",
-    "author": "Daniel Martins de Barros",
+    "title": "Viver É Melhor Sem Ter Que Ser O Melhor",
+    "author": "Daniel Martins De Barros",
     "publisher": "Sextante",
     "pages": 128,
     "gotDate": "05/07/2025",
@@ -266,11 +283,12 @@
     "link": "https://a.co/d/8aynerf",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "E Outros Princípios Do Arcadismo Para Os Dias De Hoje"
   },
   {
     "id": 19,
-    "title": "Soppy: Os Pequenos Detalhes Do Amor",
+    "title": "Soppy",
     "author": "Philippa Rice",
     "publisher": "Rocco",
     "pages": 112,
@@ -281,7 +299,8 @@
     "link": "https://a.co/d/7JJ59P5",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "Os Pequenos Detalhes Do Amor"
   },
   {
     "id": 20,
@@ -296,7 +315,8 @@
     "link": "https://a.co/d/f8fXl0C",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": ""
   },
   {
     "id": 21,
@@ -315,7 +335,7 @@
   },
   {
     "id": 22,
-    "title": "A Cura Do Ciúme - Aprenda a Confiar, Supere a Possessividade e Salve Seu Relacionamento",
+    "title": "A Cura Do Ciúme",
     "author": "Robert L. Leahy",
     "publisher": "Artmed",
     "pages": 192,
@@ -326,7 +346,8 @@
     "link": "https://a.co/d/7dcGwPD",
     "ownership": "Owned",
     "mode": "Digital",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "Aprenda A Confiar, Supere A Possessividade E Salve Seu Relacionamento"
   },
   {
     "id": 23,
@@ -341,11 +362,12 @@
     "link": "https://a.co/d/9wVGn0h",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": ""
   },
   {
     "id": 24,
-    "title": "Indistractable: How To Control Your Attention And Choose Your Life",
+    "title": "Indistractable",
     "author": "Nir Eyal",
     "publisher": "Bloomsbury Publishing PLC",
     "pages": 290,
@@ -356,7 +378,8 @@
     "link": "https://a.co/d/cmnUlZo",
     "ownership": "Owned",
     "mode": "Digital",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "How To Control Your Attention And Choose Your Life"
   },
   {
     "id": 25,
@@ -371,11 +394,12 @@
     "link": "https://a.co/d/fSJJpXp",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": ""
   },
   {
     "id": 26,
-    "title": "Aranha Castanha E Outras Tramas",
+    "title": "Aranha Castanha",
     "author": "Gloria Kirinus",
     "publisher": "Cortez",
     "pages": 63,
@@ -386,11 +410,12 @@
     "link": "https://a.co/d/4PljlFs",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "E Outras Tramas"
   },
   {
     "id": 27,
-    "title": "A Outra Face - História De Uma Garota Afegã",
+    "title": "A Outra Face",
     "author": "Deborah Ellis",
     "publisher": "Ática",
     "pages": 127,
@@ -401,12 +426,13 @@
     "link": "https://a.co/d/i4hsj8o",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread"
+    "status": "Unread",
+    "subtitle": "História De Uma Garota Afegã"
   },
   {
     "id": 28,
-    "title": "Arrume A Sua Cama - Pequenas Coisas Que Podem Mudar A Sua Vida... E Talvez O Mundo",
-    "author": "William H. McRaven",
+    "title": "Arrume A Sua Cama",
+    "author": "William H. Mcraven",
     "publisher": "Academia",
     "pages": 128,
     "gotDate": "04/09/2025",
@@ -416,7 +442,8 @@
     "link": "https://a.co/d/2UC0fUY",
     "ownership": "Borrowed",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "Pequenas Coisas Que Podem Mudar A Sua Vida... E Talvez O Mundo"
   },
   {
     "id": 29,
@@ -431,11 +458,12 @@
     "link": "https://a.co/d/drSvAzf",
     "ownership": "Borrowed",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": ""
   },
   {
     "id": 30,
-    "title": "A Viagem De Parvana - Mais Histórias De Uma Garota Afegã",
+    "title": "A Viagem De Parvana",
     "author": "Deborah Ellis",
     "publisher": "Ática",
     "pages": 144,
@@ -446,11 +474,12 @@
     "link": "https://a.co/d/6u4Gg5s",
     "ownership": "Owned",
     "mode": "Digital",
-    "status": "Unread"
+    "status": "Unread",
+    "subtitle": "Mais Histórias De Uma Garota Afegã"
   },
   {
     "id": 31,
-    "title": "De Volta Ao Mosteiro: O Monge E O Executivo Falam De Liderança E Trabalho Em Equipe",
+    "title": "De Volta Ao Mosteiro",
     "author": "James C. Hunter",
     "publisher": "Sextante",
     "pages": 192,
@@ -460,11 +489,12 @@
     "link": "https://a.co/d/7IKGmti",
     "ownership": "Owned",
     "mode": "Digital",
-    "status": "Reading"
+    "status": "Reading",
+    "subtitle": "O Monge E O Executivo Falam De Liderança E Trabalho Em Equipe"
   },
   {
     "id": 32,
-    "title": "Como Se Tornar Um Líder Servidor: Os Princípios De Liderança De O Monge E O Executivo",
+    "title": "Como Se Tornar Um Líder Servidor",
     "author": "James C. Hunter",
     "publisher": "Sextante",
     "pages": 144,
@@ -475,11 +505,12 @@
     "link": "https://a.co/d/ixtK9Y2",
     "ownership": "Owned",
     "mode": "Digital",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": "Os Princípios De Liderança De O Monge E O Executivo"
   },
   {
     "id": 33,
-    "title": "Shinsetsu - O Poder Da Gentileza",
+    "title": "Shinsetsu",
     "author": "Clóvis De Barros",
     "publisher": "Planeta",
     "pages": 272,
@@ -490,7 +521,8 @@
     "link": "https://a.co/d/bCL21vn",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread"
+    "status": "Unread",
+    "subtitle": "O Poder Da Gentileza"
   },
   {
     "id": 34,
@@ -505,12 +537,13 @@
     "link": "https://a.co/d/af4QViN",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read"
+    "status": "Read",
+    "subtitle": ""
   },
   {
     "id": 35,
-    "title": "Um Toque De Clássicos: Marx, Durkheim, Weber",
-    "author": "Tania Quintaneiro; Márcia Gardênia Monteiro Oliveira; Maria Ligia de Oliveira Barbosa",
+    "title": "Um Toque De Clássicos",
+    "author": "Tania Quintaneiro; Márcia Gardênia Monteiro Oliveira; Maria Ligia De Oliveira Barbosa",
     "publisher": "UFMG",
     "pages": 157,
     "gotDate": "25/09/2025",
@@ -519,6 +552,7 @@
     "link": "https://a.co/d/e1naqDk",
     "mode": "Digital",
     "ownership": "Owned",
-    "status": "Unread"
+    "status": "Unread",
+    "subtitle": "Marx, Durkheim, Weber"
   }
 ]

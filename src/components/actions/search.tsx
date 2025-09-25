@@ -26,6 +26,7 @@ const Search = ({ books, handles }: SearchProps) => {
     .filter(
       (b) =>
         b.title.toLowerCase().includes(search.toLowerCase()) ||
+        b.subtitle?.toLowerCase().includes(search.toLowerCase()) ||
         b.author.toLowerCase().includes(search.toLowerCase()) ||
         b.publisher?.toLowerCase().includes(search.toLowerCase()),
     )

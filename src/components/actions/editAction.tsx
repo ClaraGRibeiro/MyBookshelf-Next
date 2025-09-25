@@ -77,12 +77,31 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
               alert("The book is marked as read. Please enter a reading date!");
               return;
             }
-            const titleVar = data.get("title")?.toString()
-            const authorVar = data.get("author")?.toString()
+            const titleVar = data.get("title")?.toString();
+            const subtitleVar = data.get("subtitle")?.toString();
+            const authorVar = data.get("author")?.toString();
             const updatedBook: Book = {
               ...book,
-              title: titleVar ? titleVar.replace(/\b\w/g, c => c.toUpperCase()) : book.title,
-              author: authorVar ? authorVar.replace(/\b\w/g, c => c.toUpperCase()) : book.author,
+              title: titleVar
+                ? titleVar
+                    .toLowerCase()
+                    .split(" ")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")
+                : book.title,
+              subtitle: subtitleVar
+                && subtitleVar
+                    .toLowerCase()
+                    .split(" ")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" "),
+              author: authorVar
+                ? authorVar
+                    .toLowerCase()
+                    .split(" ")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")
+                : book.author,
               publisher: data.get("publisher")?.toString() || book.publisher,
               pages: Number(data.get("pages")) || book.pages,
               gotDate:
@@ -118,6 +137,12 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
               name="title"
               placeholder="Book Title *"
               defaultValue={book.title}
+            />
+            <Input
+              type="text"
+              name="subtitle"
+              placeholder="Subtitle (optional)"
+              defaultValue={book.subtitle ?? undefined}
             />
             <Input
               type="text"
@@ -163,7 +188,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                     e.target.value
                       .split("-")
                       .reverse()
-                      .join("/") as Book["readDate"],
+                      .join("/") as Book["readDate"]
                   )
                 }
                 name="readDate"

@@ -86,7 +86,7 @@ const AddAction = ({
             const data = new FormData(form);
             const maxId = books.reduce(
               (max, book) => Math.max(max, book.id),
-              0,
+              0
             );
             let readDateVar: string | undefined =
               data.get("readDate")?.toString().split("-").reverse().join("/") ||
@@ -100,12 +100,32 @@ const AddAction = ({
               alert("Please insert a read date!");
               return;
             }
-            const titleVar = data.get("title")!.toString()
-            const authorVar = data.get("author")!.toString()
+            const titleVar = data.get("title")!.toString();
+            const subtitleVar = data.get("subtitle")!.toString();
+            const authorVar = data.get("author")!.toString();
             const newBook: Book = {
               id: maxId + 1,
-              title: titleVar && titleVar.replace(/\b\w/g, c => c.toUpperCase()),
-              author: authorVar && authorVar.replace(/\b\w/g, c => c.toUpperCase()),
+              title:
+                titleVar &&
+                titleVar
+                  .toLowerCase()
+                  .split(" ")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" "),
+              subtitle:
+                subtitleVar &&
+                subtitleVar
+                  .toLowerCase()
+                  .split(" ")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" "),
+              author:
+                authorVar &&
+                authorVar
+                  .toLowerCase()
+                  .split(" ")
+                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                  .join(" "),
               publisher: data.get("publisher")?.toString() || undefined,
               pages: Number(data.get("pages")),
               gotDate: data.get("gotDate")
@@ -148,6 +168,11 @@ const AddAction = ({
               name="title"
               placeholder="Book Title *"
               required
+            />
+            <Input
+              type="text"
+              name="subtitle"
+              placeholder="Subtitle (optional)"
             />
             <Input
               type="text"
