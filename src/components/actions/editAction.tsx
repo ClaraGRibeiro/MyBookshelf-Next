@@ -81,8 +81,8 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
             const authorVar = data.get("author")?.toString()
             const updatedBook: Book = {
               ...book,
-              title: titleVar ? (titleVar.charAt(0).toUpperCase() + titleVar.slice(1).toLowerCase()) : book.title,
-              author: authorVar ? (authorVar.charAt(0).toUpperCase() + authorVar.slice(1).toLowerCase()) : book.author,
+              title: titleVar ? titleVar.replace(/\b\w/g, c => c.toUpperCase()) : book.title,
+              author: authorVar ? authorVar.replace(/\b\w/g, c => c.toUpperCase()) : book.author,
               publisher: data.get("publisher")?.toString() || book.publisher,
               pages: Number(data.get("pages")) || book.pages,
               gotDate:
