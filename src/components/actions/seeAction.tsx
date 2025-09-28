@@ -63,30 +63,38 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
             <strong className="text-[var(--medium-slate)]">Book Title:</strong>{" "}
             {book.title}
           </p>
-          <p className="text-[var(--dark-slate)]">
-            <strong className="text-[var(--medium-slate)]">Subtitle:</strong>{" "}
-            {book.subtitle ?? "-"}
-          </p>
+          {book.subtitle && (
+            <p className="text-[var(--dark-slate)]">
+              <strong className="text-[var(--medium-slate)]">Subtitle:</strong>{" "}
+              {book.subtitle}
+            </p>
+          )}
           <p className="text-[var(--dark-slate)]">
             <strong className="text-[var(--medium-slate)]">Author Name:</strong>{" "}
             {book.author}
           </p>
-          <p className="text-[var(--dark-slate)]">
-            <strong className="text-[var(--medium-slate)]">Publisher:</strong>{" "}
-            {book.publisher ?? "-"}
-          </p>
+          {book.publisher && (
+            <p className="text-[var(--dark-slate)]">
+              <strong className="text-[var(--medium-slate)]">Publisher:</strong>{" "}
+              {book.publisher}
+            </p>
+          )}
           <p className="text-[var(--dark-slate)]">
             <strong className="text-[var(--medium-slate)]">Pages:</strong>{" "}
-            {book.pages ?? "-"}
+            {book.pages}
           </p>
-          <p className="text-[var(--dark-slate)]">
-            <strong className="text-[var(--medium-slate)]">Got Date:</strong>{" "}
-            {book.gotDate === null ? "-" : book.gotDate}
-          </p>
-          <p className="text-[var(--dark-slate)]">
-            <strong className="text-[var(--medium-slate)]">Read Date:</strong>{" "}
-            {book.readDate === null ? "-" : book.readDate}
-          </p>
+          {book.gotDate && (
+            <p className="text-[var(--dark-slate)]">
+              <strong className="text-[var(--medium-slate)]">Got Date:</strong>{" "}
+              {book.gotDate}
+            </p>
+          )}
+          {book.readDate && (
+            <p className="text-[var(--dark-slate)]">
+              <strong className="text-[var(--medium-slate)]">Read Date:</strong>{" "}
+              {book.readDate}
+            </p>
+          )}
           <p
             className={
               book.price > 0

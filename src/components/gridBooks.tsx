@@ -64,7 +64,9 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
         <SortBy value={sortBy} onChange={handleSort} type={"readDate"} />
         <FilterBy value={filterBy} onChange={setFilterBy} />
       </div>
-      <p className="text-center mb-8 font-light text-[var(--medium-slate)]">{sortedBooks.length} books [{filterBy ?? "All"}]</p>
+      <p className="text-center mb-8 font-light text-[var(--medium-slate)]">
+        {sortedBooks.length} books [{filterBy ?? "All"}]
+      </p>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-items-center content-start">
         {sortedBooks.map((b) => (
           <div

@@ -24,7 +24,7 @@ const Download = ({ books }: DownloadProps) => {
     worksheet.columns = [
       { header: "#", key: "index", width: 5 },
       { header: "Title", key: "title", width: 35 },
-      { header: "Subtitle", key: "subtitle", width: 35 },
+      { header: "Subtitle", key: "subtitle", width: 70 },
       { header: "Author", key: "author", width: 25 },
       { header: "Publisher", key: "publisher", width: 25 },
       { header: "Pages", key: "pages", width: 6 },
@@ -63,10 +63,10 @@ const Download = ({ books }: DownloadProps) => {
                 ? "❌"
                 : "🎯",
       });
-      const coverCell = row.getCell("I");
+      const coverCell = row.getCell("J");
       coverCell.value = { text: "Link", hyperlink: b.image || "" };
       coverCell.font = { color: { argb: "FF0000FF" }, underline: true };
-      const shopCell = row.getCell("J");
+      const shopCell = row.getCell("K");
       shopCell.value = { text: "Link", hyperlink: b.link || "" };
       shopCell.font = { color: { argb: "FF0000FF" }, underline: true };
     }

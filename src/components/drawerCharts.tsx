@@ -23,14 +23,36 @@ import { BarChartIcon } from "@radix-ui/react-icons";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 // components
 import Charts from "./charts";
+import SeeAction from "./actions/seeAction";
 import { Book } from "@/types/books";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Handles } from "@/types/handles";
 
 type DrawerChartsProps = {
   books: Book[];
+  handles: Handles;
 };
 
-const DrawerCharts = ({ books }: DrawerChartsProps) => {
+const DrawerCharts = ({ books, handles }: DrawerChartsProps) => {
+  const [open, setOpen] = useState(false);
+  const [clickedBookId, setClickedBookId] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (!open) {
+      setClickedBookId(null);
+    }
+  }, [open]);
+  const handleClicked = (b: Book | null) => {
+    if (b?.id === undefined) return;
+    if (b?.id === clickedBookId) {
+      setClickedBookId(null);
+      setTimeout(() => setClickedBookId(b.id), 0);
+    } else {
+      setClickedBookId(b.id);
+    }
+  };
+  const clickedBook = books.find((b) => b.id === clickedBookId) || null;
+
   const currentYear = new Date().getFullYear();
   const [selectedYear, setSelectedYear] = useState<number>(currentYear);
   const currentMonth = new Date().toLocaleString("en-US", { month: "short" });
@@ -96,9 +118,28 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
   const annualPageGoal = Math.round((minutesPerDay * 365) / minutesPerPage);
   const pagesAvgThisYear = pagesThisYear / readThisYear.length;
   const annualBooksGoal = Math.round(annualPageGoal / pagesAvgThisYear);
-
+  const parseDate = (val: string): null | number => {
+    if (!val || val === "-") return null;
+    const parts = val.split("/");
+    if (parts.length !== 3) return 0;
+    const d = new Date(parts.reverse().join("-"));
+    return isNaN(d.getTime()) ? 0 : d.getTime();
+  };
+  const compareBooks = (a: Book, b: Book) => {
+    const aValue = a["readDate"] ?? "";
+    const bValue = b["readDate"] ?? "";
+    const aDate = parseDate(aValue as string);
+    const bDate = parseDate(bValue as string);
+    if (aDate === null && bDate === null) return 0;
+    if (aDate === null) return 1;
+    if (bDate === null) return -1;
+    return bDate - aDate;
+  };
+  const lastReading = books.sort(compareBooks)[0];
+  const atualReading = books.filter((b) => b.status === "Reading")[0];
+  const nextReading = books.filter((b) => b.status === "Next")[0];
   return (
-    <Drawer>
+    <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger>
         <Button asChild className="" variant="ghost">
           <Tooltip>
@@ -122,9 +163,9 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
               Track reading progress: month by month, year by year.
             </DrawerDescription>
           </DrawerHeader>
-          <div className="mt-12 md:mt-16 flex flex-col items-center justify-center gap-8">
-            <div className="flex flex-col justify-center items-center gap-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 md justify-items-center items-center gap-8">
+          <div className="flex flex-col items-center justify-center gap-12 my-8">
+            <div className="flex flex-col justify-center items-center gap-12 max-w-[70%] md:max-w-120 ">
+              <div className="grid grid-cols-2 md:grid-cols-4 md justify-items-center items-center gap-12">
                 <p className="text-center">
                   total of <br />
                   <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
@@ -153,7 +194,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
                   <br /> total
                 </p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 md justify-items-center items-center gap-8">
+              <div className="grid grid-cols-2 md:grid-cols-3 md justify-items-center items-center gap-12">
                 <Charts
                   type="pie"
                   value={booksRead.length}
@@ -181,58 +222,134 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
                   />
                 </div>
               </div>
-            </div>
-            <div className="max-w-[70%] md:max-w-120 mt-6 mb-12 gap-2 flex flex-col justify-center items-center">
-              <p className="text-center text-sm mb-4">
-                If you read just <strong>{minutesPerDay}</strong> minutes a day,
-                at an average pace of <strong>{minutesPerPage}</strong> minutes
-                per page, in one year you'll finish over{" "}
-                <strong>{annualPageGoal}</strong> pages — about{" "}
-                <strong>{annualBooksGoal}</strong> books of{" "}
-                <strong>{Math.round(pagesAvgThisYear)}</strong> pages each!
-              </p>
-              <div className="w-full flex justify-between items-baseline gap-8">
-                <span>{`${pagesThisYear} (${readThisYear.length})`}</span>
-                <span className="text-xs">{currentYear}</span>
-                <span>
-                  {annualPageGoal - pagesThisYear > 0
-                    ? `${annualPageGoal - pagesThisYear} (${annualBooksGoal - readThisYear.length})`
-                    : "🎉"}
-                </span>
+
+              <div className="flex justify-between items-center w-full mb-8">
+                <div className="flex flex-col justify-center items-center gap-2">
+                  <p>Last Reading</p>
+                  <div
+                    className={`aspect-[2/3] relative w-24 duration-200 ${
+                      lastReading
+                        ? "hover:scale-110 active:scale-110 cursor-pointer"
+                        : ""
+                    }`}
+                    onClick={() => handleClicked(lastReading)}
+                  >
+                    <img
+                      title={lastReading?.title ?? "NONE"}
+                      src={lastReading?.image ?? "nobookcover.png"}
+                      alt="Last Reading"
+                      className="w-full h-full object-cover"
+                    />
+
+                    {!lastReading?.image && (
+                      <span className="absolute transform top-[30%] left-[15%] text-center w-[75%] max-h-[90%] select-none text-md break-words font-bold text-[var(--light-slate)]">
+                        NONE
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center items-center gap-2">
+                  <p>Atual Reading</p>
+                  <div
+                    className={`aspect-[2/3] relative w-24 duration-200 ${
+                      atualReading
+                        ? "hover:scale-110 active:scale-110 cursor-pointer"
+                        : ""
+                    }`}
+                    onClick={() => handleClicked(atualReading)}
+                  >
+                    <img
+                      title={atualReading?.title ?? "NONE"}
+                      src={atualReading?.image ?? "nobookcover.png"}
+                      alt="Atual Reading"
+                      className="w-full h-full object-cover"
+                    />
+
+                    {!atualReading?.image && (
+                      <span className="absolute transform top-[30%] left-[15%] text-center w-[75%] max-h-[90%] select-none text-md break-words font-bold text-[var(--light-slate)]">
+                        NONE
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="flex flex-col justify-center items-center gap-2">
+                  <p>Next Reading</p>
+                  <div
+                    className={`aspect-[2/3] relative w-24 duration-200 ${
+                      nextReading
+                        ? "hover:scale-110 active:scale-110 cursor-pointer"
+                        : ""
+                    }`}
+                    onClick={() => handleClicked(nextReading)}
+                  >
+                    <img
+                      title={nextReading?.title ?? "NONE"}
+                      src={nextReading?.image ?? "nobookcover.png"}
+                      alt="Next Reading"
+                      className="w-full h-full object-cover"
+                    />
+
+                    {!nextReading?.image && (
+                      <span className="absolute transform top-[30%] left-[15%] text-center w-[75%] max-h-[90%] select-none text-md break-words font-bold text-[var(--light-slate)]">
+                        NONE
+                      </span>
+                    )}
+                  </div>
+                </div>
               </div>
-              <Progress value={(pagesThisYear * 100) / annualPageGoal} />
-            </div>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-2 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">
-                <span>Show by nº of</span>
-                <ChevronDownIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                <DropdownMenuItem onSelect={() => setShowBy("Books")}>
-                  Books
-                </DropdownMenuItem>
-                <DropdownMenuItem onSelect={() => setShowBy("Pages")}>
-                  Pages
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <div className="flex justify-center items-center flex-wrap gap-8">
-              <p className="text-center">
-                Best Year <br />
-                <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
-                  {bestYear.name}
-                </span>
-                <br /> ({bestYear.value}{" "}
-                {showBy === "Books" ? "reads" : "pages"})
-              </p>
-              <p className="text-center">
-                Best Month <br />
-                <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
-                  {bestMonth.name}
-                </span>
-                <br /> ({bestMonth.value}{" "}
-                {showBy === "Books" ? "reads" : "pages"})
-              </p>
+
+              <div className="w-full">
+                <p className="text-center text-sm mb-8">
+                  If you read just <strong>{minutesPerDay}</strong> minutes a
+                  day, at an average pace of <strong>{minutesPerPage}</strong>{" "}
+                  minutes per page, in one year you'll finish over{" "}
+                  <strong>{annualPageGoal}</strong> pages — about{" "}
+                  <strong>{annualBooksGoal}</strong> books of{" "}
+                  <strong>{Math.round(pagesAvgThisYear)}</strong> pages each!
+                </p>
+                <div className="w-full flex justify-between items-baseline gap-12">
+                  <span>{`${pagesThisYear} (${readThisYear.length})`}</span>
+                  <span className="text-xs">{currentYear}</span>
+                  <span>
+                    {annualPageGoal - pagesThisYear > 0
+                      ? `${annualPageGoal - pagesThisYear} (${annualBooksGoal - readThisYear.length})`
+                      : "🎉"}
+                  </span>
+                </div>
+                <Progress value={(pagesThisYear * 100) / annualPageGoal} />
+              </div>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="mt-8 cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-12 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">
+                  <span>Show by nº of</span>
+                  <ChevronDownIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem onSelect={() => setShowBy("Books")}>
+                    Books
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onSelect={() => setShowBy("Pages")}>
+                    Pages
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <div className="flex justify-center items-center flex-wrap gap-12">
+                <p className="text-center">
+                  Best Year <br />
+                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                    {bestYear.name}
+                  </span>
+                  <br /> ({bestYear.value}{" "}
+                  {showBy === "Books" ? "reads" : "pages"})
+                </p>
+                <p className="text-center">
+                  Best Month <br />
+                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                    {bestMonth.name}
+                  </span>
+                  <br /> ({bestMonth.value}{" "}
+                  {showBy === "Books" ? "reads" : "pages"})
+                </p>
+              </div>
             </div>
             <Charts
               type="bar"
@@ -243,7 +360,7 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
             />
 
             <DropdownMenu>
-              <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-2 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">
+              <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-12 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">
                 <span>{selectedYear}</span>
                 <ChevronDownIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
               </DropdownMenuTrigger>
@@ -263,6 +380,13 @@ const DrawerCharts = ({ books }: DrawerChartsProps) => {
               showBy={showBy}
             />
           </div>
+          {clickedBook && (
+            <SeeAction
+              noButtonMode={true}
+              book={clickedBook}
+              handles={handles}
+            />
+          )}
         </div>
       </DrawerContent>
     </Drawer>

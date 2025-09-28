@@ -104,121 +104,123 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
 
   return (
     <>
-      <p className="text-center mb-2 font-light text-[var(--medium-slate)]">{sortedBooks.length} books [{filterBy ?? "All"}]</p>
+      <p className="text-center mb-2 font-light text-[var(--medium-slate)]">
+        {sortedBooks.length} books [{filterBy ?? "All"}]
+      </p>
 
-    <Table className="text-lg">
-      <TableCaption>
-        <AddAction books={books} onAdd={handles.onAdd} lightBg={true} />
-      </TableCaption>
-      <TableHeader>
-        <TableRow className="!text-base hover:!bg-transparent">
-          <TableHead className="!table-cell">
-            <SortBy value={sortBy} onChange={handleSort} type={"title"} />
-          </TableHead>
-          <TableHead className="hidden md:table-cell">
-            <SortBy value={sortBy} onChange={handleSort} type={"author"} />
-          </TableHead>
-          <TableHead className="hidden md:table-cell">
-            <SortBy value={sortBy} onChange={handleSort} type={"publisher"} />
-          </TableHead>
-          <TableHead className="w-24 hidden md:table-cell">
-            <div className="flex justify-center items-center">
-              <SortBy value={sortBy} onChange={handleSort} type={"pages"} />
-            </div>
-          </TableHead>
-          <TableHead className="w-24 hidden md:table-cell">
-            <div className="flex justify-center items-center">
-              <SortBy value={sortBy} onChange={handleSort} type={"price"} />
-            </div>
-          </TableHead>
-          <TableHead className="w-24 hidden md:table-cell">
-            <div className="flex justify-center items-center">
-              <SortBy value={sortBy} onChange={handleSort} type={"status"} />
-            </div>
-          </TableHead>
-          <TableHead colSpan={isMobile ? 1 : 3} className="!table-cell">
-            <div
-              className={
-                isMobile
-                  ? "flex justify-end items-center"
-                  : "flex justify-center items-center"
-              }
-            >
-              <FilterBy value={filterBy} onChange={setFilterBy} />
-            </div>
-          </TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {sortedBooks.map((b) => (
-          <TableRow
-            key={b.id}
-            onClick={isMobile ? () => handleClicked(b.id) : undefined}
-            className={isMobile ? "cursor-pointer" : ""}
-          >
-            <TableCell
-              colSpan={isMobile ? 2 : 1}
-              className="!table-cell !max-w-36"
-            >
-              {b.title} {b.subtitle ? ("- " + b.subtitle) : ""}
-            </TableCell>
-            <TableCell className="!max-w-36">{b.author}</TableCell>
-            <TableCell className="!max-w-26">{b.publisher ?? "-"}</TableCell>
-            <TableCell className="!text-center !w-24">
-              {b.pages ?? "-"}
-            </TableCell>
-            <TableCell
-              className={
-                (Number(b.price) === 0 && "text-[var(--green)] font-bold") +
-                " text-center w-24"
-              }
-            >
-              {b.price > 0 ? "R$ " + b.price.toFixed(2) : "Free"}
-            </TableCell>
-            <TableCell className="text-center max-w-24">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <span
-                    onClick={() => toggleStatus(b)}
-                    className={
-                      (b.status == "Read"
-                        ? "bg-[var(--light-blue)] hover:bg-[var(--dark-blue)] active:bg-[var(--dark-blue)]"
-                        : b.status == "Unread"
-                          ? "bg-[var(--light-red)] hover:bg-[var(--dark-red)] active:bg-[var(--dark-red)]"
-                          : b.status == "Reading"
-                            ? "bg-[var(--light-yellow)] hover:bg-[var(--dark-yellow)] active:bg-[var(--dark-yellow)]"
-                            : "bg-[var(--dark-slate)] hover:bg-[var(--medium-slate)] active:bg-[var(--medium-slate)]") +
-                      " text-sm text-[var(--light-slate)] rounded-3xl px-2 py-1 cursor-pointer flex justify-center items-center gap-2 duration-200 select-none"
-                    }
-                  >
-                    {b.status}
-                  </span>
-                </TooltipTrigger>
-                <TooltipContent>Change status</TooltipContent>
-              </Tooltip>
-            </TableCell>
-            <TableCell className="w-8 hidden md:table-cell">
+      <Table className="text-lg">
+        <TableCaption>
+          <AddAction books={books} onAdd={handles.onAdd} lightBg={true} />
+        </TableCaption>
+        <TableHeader>
+          <TableRow className="!text-base hover:!bg-transparent">
+            <TableHead className="!table-cell">
+              <SortBy value={sortBy} onChange={handleSort} type={"title"} />
+            </TableHead>
+            <TableHead className="hidden md:table-cell">
+              <SortBy value={sortBy} onChange={handleSort} type={"author"} />
+            </TableHead>
+            <TableHead className="hidden md:table-cell">
+              <SortBy value={sortBy} onChange={handleSort} type={"publisher"} />
+            </TableHead>
+            <TableHead className="w-24 hidden md:table-cell">
               <div className="flex justify-center items-center">
-                <SeeAction book={b} handles={handles} />
+                <SortBy value={sortBy} onChange={handleSort} type={"pages"} />
               </div>
-            </TableCell>
-            <TableCell className="w-8 hidden md:table-cell">
+            </TableHead>
+            <TableHead className="w-24 hidden md:table-cell">
               <div className="flex justify-center items-center">
-                <EditAction book={b} onEdit={handles.onEdit} />
+                <SortBy value={sortBy} onChange={handleSort} type={"price"} />
               </div>
-            </TableCell>
-            <TableCell className="w-8 hidden md:table-cell">
+            </TableHead>
+            <TableHead className="w-24 hidden md:table-cell">
               <div className="flex justify-center items-center">
-                <DeleteAction book={b} onDelete={handles.onDelete} />
+                <SortBy value={sortBy} onChange={handleSort} type={"status"} />
               </div>
-            </TableCell>
+            </TableHead>
+            <TableHead colSpan={isMobile ? 1 : 3} className="!table-cell">
+              <div
+                className={
+                  isMobile
+                    ? "flex justify-end items-center"
+                    : "flex justify-center items-center"
+                }
+              >
+                <FilterBy value={filterBy} onChange={setFilterBy} />
+              </div>
+            </TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-      {clickedBook && (
-        <SeeAction noButtonMode={true} book={clickedBook} handles={handles} />
-      )}
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {sortedBooks.map((b) => (
+            <TableRow
+              key={b.id}
+              onClick={isMobile ? () => handleClicked(b.id) : undefined}
+              className={isMobile ? "cursor-pointer" : ""}
+            >
+              <TableCell
+                colSpan={isMobile ? 2 : 1}
+                className="!table-cell !max-w-36"
+              >
+                {b.title} {b.subtitle ? "- " + b.subtitle : ""}
+              </TableCell>
+              <TableCell className="!max-w-36">{b.author}</TableCell>
+              <TableCell className="!max-w-26">{b.publisher ?? "-"}</TableCell>
+              <TableCell className="!text-center !w-24">
+                {b.pages ?? "-"}
+              </TableCell>
+              <TableCell
+                className={
+                  (Number(b.price) === 0 && "text-[var(--green)] font-bold") +
+                  " text-center w-24"
+                }
+              >
+                {b.price > 0 ? "R$ " + b.price.toFixed(2) : "Free"}
+              </TableCell>
+              <TableCell className="text-center max-w-24">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span
+                      onClick={() => toggleStatus(b)}
+                      className={
+                        (b.status == "Read"
+                          ? "bg-[var(--light-blue)] hover:bg-[var(--dark-blue)] active:bg-[var(--dark-blue)]"
+                          : b.status == "Unread"
+                            ? "bg-[var(--light-red)] hover:bg-[var(--dark-red)] active:bg-[var(--dark-red)]"
+                            : b.status == "Reading"
+                              ? "bg-[var(--light-yellow)] hover:bg-[var(--dark-yellow)] active:bg-[var(--dark-yellow)]"
+                              : "bg-[var(--dark-slate)] hover:bg-[var(--medium-slate)] active:bg-[var(--medium-slate)]") +
+                        " text-sm text-[var(--light-slate)] rounded-3xl px-2 py-1 cursor-pointer flex justify-center items-center gap-2 duration-200 select-none"
+                      }
+                    >
+                      {b.status}
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent>Change status</TooltipContent>
+                </Tooltip>
+              </TableCell>
+              <TableCell className="w-8 hidden md:table-cell">
+                <div className="flex justify-center items-center">
+                  <SeeAction book={b} handles={handles} />
+                </div>
+              </TableCell>
+              <TableCell className="w-8 hidden md:table-cell">
+                <div className="flex justify-center items-center">
+                  <EditAction book={b} onEdit={handles.onEdit} />
+                </div>
+              </TableCell>
+              <TableCell className="w-8 hidden md:table-cell">
+                <div className="flex justify-center items-center">
+                  <DeleteAction book={b} onDelete={handles.onDelete} />
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+        {clickedBook && (
+          <SeeAction noButtonMode={true} book={clickedBook} handles={handles} />
+        )}
+      </Table>
     </>
   );
 };

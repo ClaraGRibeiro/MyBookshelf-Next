@@ -7,7 +7,6 @@ import Footer from "@/components/footer";
 import { useEffect, useState } from "react";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import "./globals.css";
 
 export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);

@@ -68,7 +68,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
         </Button>
 
         {books.filter((b) => b.status === "Read").length > 0 && (
-          <DrawerCharts books={books} />
+          <DrawerCharts books={books} handles={handles} />
         )}
       </div>
 

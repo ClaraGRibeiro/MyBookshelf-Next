@@ -44,8 +44,7 @@
     "link": "https://a.co/d/1etNgQE",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read",
-    "subtitle": ""
+    "status": "Read"
   },
   {
     "id": 4,
@@ -54,14 +53,12 @@
     "publisher": "Camelot",
     "pages": 240,
     "gotDate": "05/07/2025",
-    "readDate": null,
     "price": 18.31,
     "image": "https://m.media-amazon.com/images/I/51AHB+f-0DL._SY445_SX342_.jpg",
     "link": "https://a.co/d/eTZaApW",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread",
-    "subtitle": ""
+    "status": "Unread"
   },
   {
     "id": 5,
@@ -92,8 +89,7 @@
     "link": "https://a.co/d/dyK0iQZ",
     "ownership": "Owned",
     "mode": "Digital",
-    "status": "Read",
-    "subtitle": ""
+    "status": "Read"
   },
   {
     "id": 7,
@@ -134,14 +130,12 @@
     "publisher": "Principis",
     "pages": 368,
     "gotDate": "05/07/2025",
-    "readDate": null,
     "price": 25.12,
     "image": "https://m.media-amazon.com/images/I/51sz0nn7u9L._SY445_SX342_.jpg",
     "link": "https://a.co/d/1FMv50k",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread",
-    "subtitle": ""
+    "status": "Unread"
   },
   {
     "id": 10,
@@ -150,14 +144,12 @@
     "publisher": "Bertrand Brasil",
     "pages": 489,
     "gotDate": "17/07/2025",
-    "readDate": null,
     "price": 0,
     "image": "https://m.media-amazon.com/images/I/41IzshO6ddL._SY445_SX342_.jpg",
     "link": "https://a.co/d/8Wyq8B1",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread",
-    "subtitle": ""
+    "status": "Unread"
   },
   {
     "id": 11,
@@ -172,8 +164,7 @@
     "link": "https://a.co/d/7U4YTFz",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read",
-    "subtitle": ""
+    "status": "Read"
   },
   {
     "id": 12,
@@ -188,8 +179,7 @@
     "link": "https://a.co/d/1Z2AqYv",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read",
-    "subtitle": ""
+    "status": "Read"
   },
   {
     "id": 13,
@@ -198,14 +188,12 @@
     "publisher": "Pensamento",
     "pages": 147,
     "gotDate": "17/07/2025",
-    "readDate": null,
     "price": 0,
     "image": "https://m.media-amazon.com/images/I/41AObD27UbL._SY445_SX342_.jpg",
     "link": "https://a.co/d/cTxRdMD",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread",
-    "subtitle": ""
+    "status": "Unread"
   },
   {
     "id": 14,
@@ -220,8 +208,7 @@
     "link": "https://a.co/d/grCdps6",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read",
-    "subtitle": ""
+    "status": "Read"
   },
   {
     "id": 15,
@@ -261,14 +248,12 @@
     "publisher": "Seguinte",
     "pages": 551,
     "gotDate": "17/07/2025",
-    "readDate": null,
     "price": 0,
     "image": "https://m.media-amazon.com/images/I/51xrMBKS-DL._SY445_SX342_.jpg",
     "link": "https://a.co/d/0PoFZA4",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread",
-    "subtitle": ""
+    "status": "Unread"
   },
   {
     "id": 18,
@@ -315,8 +300,7 @@
     "link": "https://a.co/d/f8fXl0C",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read",
-    "subtitle": ""
+    "status": "Read"
   },
   {
     "id": 21,
@@ -362,8 +346,7 @@
     "link": "https://a.co/d/9wVGn0h",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read",
-    "subtitle": ""
+    "status": "Read"
   },
   {
     "id": 24,
@@ -394,8 +377,7 @@
     "link": "https://a.co/d/fSJJpXp",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read",
-    "subtitle": ""
+    "status": "Read"
   },
   {
     "id": 26,
@@ -420,7 +402,6 @@
     "publisher": "Ática",
     "pages": 127,
     "gotDate": "15/08/2025",
-    "readDate": null,
     "price": 4,
     "image": "https://m.media-amazon.com/images/I/71I2nZ1HUDL._SY466_.jpg",
     "link": "https://a.co/d/i4hsj8o",
@@ -458,8 +439,7 @@
     "link": "https://a.co/d/drSvAzf",
     "ownership": "Borrowed",
     "mode": "Physical",
-    "status": "Read",
-    "subtitle": ""
+    "status": "Read"
   },
   {
     "id": 30,
@@ -468,7 +448,6 @@
     "publisher": "Ática",
     "pages": 144,
     "gotDate": "02/09/2025",
-    "readDate": null,
     "price": 0,
     "image": "https://m.media-amazon.com/images/I/71yLl3WXUeL._SY466_.jpg",
     "link": "https://a.co/d/6u4Gg5s",
@@ -515,7 +494,6 @@
     "publisher": "Planeta",
     "pages": 272,
     "gotDate": "08/09/2025",
-    "readDate": null,
     "price": 6,
     "image": "https://m.media-amazon.com/images/I/91Je8SnqYrL._SY466_.jpg",
     "link": "https://a.co/d/bCL21vn",
@@ -537,8 +515,7 @@
     "link": "https://a.co/d/af4QViN",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Read",
-    "subtitle": ""
+    "status": "Read"
   },
   {
     "id": 35,

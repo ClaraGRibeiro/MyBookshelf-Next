@@ -47,6 +47,16 @@ const AddAction = ({
   const [mode, setMode] = useState<Book["mode"]>("Physical");
   const [open, setOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState("");
+
+  const formatString = (content: string) => {
+    return content
+      .trim()
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
   useEffect(() => {
     if (open) {
       setImagePreview("");
@@ -84,14 +94,14 @@ const AddAction = ({
             e.preventDefault();
             const form = e.currentTarget;
             const data = new FormData(form);
-            const maxId = books.reduce(
-              (max, book) => Math.max(max, book.id),
-              0
-            );
-            let readDateVar: string | undefined =
-              data.get("readDate")?.toString().split("-").reverse().join("/") ||
-              "";
-            let statusVar = data.get("status")?.toString() || "";
+            const statusVar = data.get("status")?.toString();
+            const readDateVar = data.get("readDate")
+              ? data.get("readDate")?.toString().split("-").reverse().join("/")
+              : undefined;
+            const today = new Date();
+            const gotDateVar = data.get("gotDate")
+              ? data.get("gotDate")?.toString().split("-").reverse().join("/")
+              : `${String(today.getDate()).padStart(2, "0")}/${String(today.getMonth() + 1).padStart(2, "0")}/${today.getFullYear()}`;
             if (readDateVar && statusVar !== "Read") {
               alert("Please set the book as read!");
               return;
@@ -100,45 +110,28 @@ const AddAction = ({
               alert("Please insert a read date!");
               return;
             }
-            const titleVar = data.get("title")!.toString();
-            const subtitleVar = data.get("subtitle")!.toString();
-            const authorVar = data.get("author")!.toString();
+
+            const titleVar = formatString(data.get("title")!.toString());
+            const subtitleVar = data.get("subtitle")
+              ? formatString(data.get("subtitle")!.toString())
+              : undefined;
+            const authorVar = formatString(data.get("author")!.toString());
+            const publisherVar = data.get("publisher")
+              ? formatString(data.get("publisher")!.toString())
+              : undefined;
+            const maxId = books.reduce(
+              (max, book) => Math.max(max, book.id),
+              0,
+            );
             const newBook: Book = {
               id: maxId + 1,
-              title:
-                titleVar &&
-                titleVar
-                  .toLowerCase()
-                  .split(" ")
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(" "),
-              subtitle:
-                subtitleVar &&
-                subtitleVar
-                  .toLowerCase()
-                  .split(" ")
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(" "),
-              author:
-                authorVar &&
-                authorVar
-                  .toLowerCase()
-                  .split(" ")
-                  .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                  .join(" "),
-              publisher: data.get("publisher")?.toString() || undefined,
+              title: titleVar,
+              subtitle: subtitleVar,
+              author: authorVar,
+              publisher: publisherVar,
               pages: Number(data.get("pages")),
-              gotDate: data.get("gotDate")
-                ? data.get("gotDate")?.toString().split("-").reverse().join("/")
-                : undefined,
-              readDate: data.get("readDate")
-                ? data
-                    .get("readDate")
-                    ?.toString()
-                    .split("-")
-                    .reverse()
-                    .join("/")
-                : undefined,
+              gotDate: gotDateVar,
+              readDate: readDateVar,
               price: Number(data.get("price")),
               image: data.get("image")?.toString().trim() || undefined,
               link: data.get("link")?.toString().trim() || undefined,
@@ -146,10 +139,9 @@ const AddAction = ({
               ownership: ownership,
               status:
                 (data.get("status")?.toString() as Book["status"]) ||
-                (data.get("readDate") && "Read") ||
+                (readDateVar && "Read") ||
                 "Unread",
             };
-
             onAdd(newBook);
             setOpen(false);
           }}
@@ -243,7 +235,9 @@ const AddAction = ({
             />
             <div className="flex justify-between items-center flex-wrap">
               <div className="flex flex-col gap-2">
-                <span className="text-[var(--dark-slate)]">Mode</span>
+                <span className="text-[var(--medium-slate)] ml-3 text-sm">
+                  Mode
+                </span>
                 <RadioGroup
                   value={mode}
                   onValueChange={(val) => setMode(val as Book["mode"])}
@@ -259,7 +253,9 @@ const AddAction = ({
                 </RadioGroup>
               </div>
               <div className="flex flex-col gap-2">
-                <span className="text-[var(--dark-slate)]">Ownership</span>
+                <span className="text-[var(--medium-slate)] ml-3 text-sm">
+                  Ownership
+                </span>
                 <RadioGroup
                   value={ownership}
                   onValueChange={(val) =>

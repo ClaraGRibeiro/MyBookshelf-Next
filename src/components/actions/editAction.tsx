@@ -42,11 +42,21 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
   const [ownership, setOwnership] = useState(book.ownership);
   const [open, setOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState(book.image || "");
+
   useEffect(() => {
     if (open) {
       setImagePreview(book.image || "");
     }
   }, [open, book.image]);
+
+  const formatString = (content: string) => {
+    return content
+      .trim()
+      .toLowerCase()
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -69,40 +79,31 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
             const form = e.currentTarget;
             const data = new FormData(form);
             const statusVar = data.get("status")?.toString();
-            if (readDate && statusVar !== "Read") {
-              alert("There is reading date. Please mark the book as read!");
+            const readDateVar = data.get("readDate")
+              ? data.get("readDate")?.toString().split("-").reverse().join("/")
+              : undefined;
+            if (readDateVar && statusVar !== "Read") {
+              alert("Please set the book as read!");
               return;
             }
-            if (statusVar === "Read" && !readDate) {
-              alert("The book is marked as read. Please enter a reading date!");
+            if (statusVar === "Read" && !readDateVar) {
+              alert("Please insert a read date!");
               return;
             }
-            const titleVar = data.get("title")?.toString();
-            const subtitleVar = data.get("subtitle")?.toString();
-            const authorVar = data.get("author")?.toString();
+            const titleVar = formatString(data.get("title")!.toString());
+            const subtitleVar = data.get("subtitle")
+              ? formatString(data.get("subtitle")!.toString())
+              : undefined;
+            const authorVar = formatString(data.get("author")!.toString());
+            const publisherVar = data.get("publisher")
+              ? formatString(data.get("publisher")!.toString())
+              : undefined;
             const updatedBook: Book = {
               ...book,
-              title: titleVar
-                ? titleVar
-                    .toLowerCase()
-                    .split(" ")
-                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(" ")
-                : book.title,
-              subtitle: subtitleVar
-                && subtitleVar
-                    .toLowerCase()
-                    .split(" ")
-                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(" "),
-              author: authorVar
-                ? authorVar
-                    .toLowerCase()
-                    .split(" ")
-                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(" ")
-                : book.author,
-              publisher: data.get("publisher")?.toString() || book.publisher,
+              title: titleVar ? titleVar : book.title,
+              subtitle: subtitleVar ? subtitleVar : book.subtitle,
+              author: authorVar ? authorVar : book.author,
+              publisher: publisherVar ? publisherVar : book.publisher,
               pages: Number(data.get("pages")) || book.pages,
               gotDate:
                 data
@@ -111,7 +112,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                   .split("-")
                   .reverse()
                   .join("/") || book.gotDate,
-              readDate: readDate === "" ? undefined : readDate,
+              readDate: readDateVar,
               price: Number(data.get("price")) || book.price,
               image: imagePreview || book.image,
               link: data.has("link") ? data.get("link")?.toString() : book.link,
@@ -182,13 +183,15 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
               <Input
                 className="w-fit text-[var(--medium-slate)]"
                 type="date"
-                value={readDate ? readDate.split("/").reverse().join("-") : ""}
+                value={
+                  readDate ? readDate.split("/").reverse().join("-") : undefined
+                }
                 onChange={(e) =>
                   setReadDate(
                     e.target.value
                       .split("-")
                       .reverse()
-                      .join("/") as Book["readDate"]
+                      .join("/") as Book["readDate"],
                   )
                 }
                 name="readDate"
@@ -229,7 +232,9 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
 
             <div className="flex justify-between items-center flex-wrap">
               <div className="flex flex-col gap-2">
-                <span className="text-[var(--dark-slate)]">Mode</span>
+                <span className="text-[var(--medium-slate)] ml-3 text-sm">
+                  Mode
+                </span>
                 <RadioGroup
                   value={mode}
                   onValueChange={(val) => setMode(val as Book["mode"])}
@@ -245,7 +250,9 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
                 </RadioGroup>
               </div>
               <div className="flex flex-col gap-2">
-                <span className="text-[var(--dark-slate)]">Ownership</span>
+                <span className="text-[var(--medium-slate)] ml-3 text-sm">
+                  Ownership
+                </span>
                 <RadioGroup
                   value={ownership}
                   onValueChange={(val) =>
