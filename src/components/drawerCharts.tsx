@@ -225,7 +225,9 @@ const DrawerCharts = ({ books, handles }: DrawerChartsProps) => {
 
               <div className="flex justify-between items-center w-full mb-8">
                 <div className="flex flex-col justify-center items-center gap-2">
-                  <p className="text-center text-sm md:text-base">Last Reading</p>
+                  <p className="text-center text-sm md:text-base">
+                    Last Reading
+                  </p>
                   <div
                     className={`aspect-[2/3] relative w-18 md:w-24 duration-200 ${
                       lastReading
@@ -249,7 +251,9 @@ const DrawerCharts = ({ books, handles }: DrawerChartsProps) => {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-2">
-                  <p className="text-center text-sm md:text-base">Atual Reading</p>
+                  <p className="text-center text-sm md:text-base">
+                    Atual Reading
+                  </p>
                   <div
                     className={`aspect-[2/3] relative w-18 md:w-24 duration-200 ${
                       atualReading
@@ -273,7 +277,9 @@ const DrawerCharts = ({ books, handles }: DrawerChartsProps) => {
                   </div>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-2">
-                  <p className="text-center text-sm md:text-base">Next Reading</p>
+                  <p className="text-center text-sm md:text-base">
+                    Next Reading
+                  </p>
                   <div
                     className={`aspect-[2/3] relative w-18 md:w-24 duration-200 ${
                       nextReading

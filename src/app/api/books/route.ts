@@ -4,17 +4,17 @@ import path from "path";
 import { exec } from "child_process";
 
 function gitCommitAndPush() {
-  exec(`git add . && git commit -m "Updating books data" && git push`, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Erro ao executar Git: ${error.message}`);
-      return;
-    }
-    if (stderr) {
-      console.error(`stderr: ${stderr}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-  });
+  // exec(`git add . && git commit -m "Updating books data" && git push`, (error, stdout, stderr) => {
+  //   if (error) {
+  //     console.error(`Erro ao executar Git: ${error.message}`);
+  //     return;
+  //   }
+  //   if (stderr) {
+  //     console.error(`stderr: ${stderr}`);
+  //     return;
+  //   }
+  //   console.log(`stdout: ${stdout}`);
+  // });
 }
 
 const dev = process.env.NODE_ENV === "development";

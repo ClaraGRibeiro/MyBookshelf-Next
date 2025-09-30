@@ -17,9 +17,9 @@ export default function Home() {
     import("../data/books.json")
       .then((data) => {
         setBooks(data.default);
-        setLoading(false);
       })
       .catch(console.error);
+    setLoading(false);
   }, []);
 
   // function containing all handler logic
