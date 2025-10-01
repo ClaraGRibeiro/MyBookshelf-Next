@@ -19,7 +19,7 @@ import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import { useEffect, useState } from "react";
 import DeleteAction from "./deleteAction";
-import EditAction from "./editAction";
+import BookForm from "./form";
 import LinkAction from "./linkAction";
 
 type SeeActionProps = {
@@ -154,7 +154,7 @@ export default function SeeAction({
 
         <DialogFooter className="flex flex-row w-full justify-end">
           {book.link && <LinkAction bookLink={book.link} />}
-          <EditAction book={book} onEdit={handles.onEdit} />
+          <BookForm isEdit={true} book={book} onAdd={handles.onAdd} />
           <DeleteAction
             book={book}
             onDelete={handles.onDelete}

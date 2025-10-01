@@ -6,11 +6,11 @@ import { BookmarkFilledIcon } from "@radix-ui/react-icons";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import { useState } from "react";
-import AddAction from "./actions/addAction";
 import FilterBy from "./actions/filterBy";
 import orderBooks from "./actions/orderBooks";
 import SeeAction from "./actions/seeAction";
 import SortBy from "./actions/sortBy";
+import BookForm from "./actions/form";
 
 type GridBooksProps = {
   books: Book[];
@@ -122,10 +122,9 @@ export default function GridBooks({
           </div>
         ))}
         <div className="aspect-[2/3] h-full w-full relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group">
-          <AddAction
-            books={books}
+          <BookForm
+            isEdit={false}
             onAdd={handles.onAdd}
-            onDelete={handles.onDelete}
             large={true}
             lightBg={true}
           />

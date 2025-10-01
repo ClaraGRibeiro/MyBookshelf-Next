@@ -1,20 +1,20 @@
 import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { exec } from "child_process";
+import { Book } from "@/types/books";
 
 function gitCommitAndPush() {
-  exec(`git add . && git commit -m "Updating books data" && git push`, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Erro ao executar Git: ${error.message}`);
-      return;
-    }
-    if (stderr) {
-      console.error(`stderr: ${stderr}`);
-      return;
-    }
-    console.log(`stdout: ${stdout}`);
-  });
+  // exec(`git add . && git commit -m "Updating books data" && git push`, (error, stdout, stderr) => {
+  //   if (error) {
+  //     console.error(`Erro ao executar Git: ${error.message}`);
+  //     return;
+  //   }
+  //   if (stderr) {
+  //     console.error(`stderr: ${stderr}`);
+  //     return;
+  //   }
+  //   console.log(`stdout: ${stdout}`);
+  // });
 }
 
 const dev = process.env.NODE_ENV === "development";
@@ -41,7 +41,11 @@ export async function GET() {
 export async function POST(req: Request) {
   const newBook = await req.json();
   const books = readBooks();
-  books.push(newBook);
+  const maxId = books.reduce(
+    (max: number, book: Book) => Math.max(max, book.id),
+    0,
+  );
+  books.push({ ...newBook, id: maxId + 1 });
   writeBooks(books);
   gitCommitAndPush();
   return NextResponse.json({ success: true, books });

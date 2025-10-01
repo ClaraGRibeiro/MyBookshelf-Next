@@ -15,13 +15,12 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import { useEffect, useState } from "react";
-import AddAction from "./actions/addAction";
 import DeleteAction from "./actions/deleteAction";
-import EditAction from "./actions/editAction";
 import FilterBy from "./actions/filterBy";
 import orderBooks from "./actions/orderBooks";
 import SeeAction from "./actions/seeAction";
 import SortBy from "./actions/sortBy";
+import BookForm from "./actions/form";
 
 type TableBooksProps = {
   books: Book[];
@@ -114,12 +113,7 @@ export default function TableBook({
 
       <Table className="text-lg">
         <TableCaption>
-          <AddAction
-            books={books}
-            onAdd={handles.onAdd}
-            onDelete={handles.onDelete}
-            lightBg={true}
-          />
+          <BookForm isEdit={false} onAdd={handles.onAdd} />
         </TableCaption>
         <TableHeader>
           <TableRow className="!text-base hover:!bg-transparent">
@@ -215,7 +209,7 @@ export default function TableBook({
               </TableCell>
               <TableCell className="w-8 hidden md:table-cell">
                 <div className="flex justify-center items-center">
-                  <EditAction book={b} onEdit={handles.onEdit} />
+                  <BookForm isEdit={true} book={b} onEdit={handles.onEdit} />
                 </div>
               </TableCell>
               <TableCell className="w-8 hidden md:table-cell">

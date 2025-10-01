@@ -3,11 +3,11 @@
 // components
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import AddAction from "./actions/addAction";
 import Download from "./actions/download";
 import Search from "./actions/search";
 import ShuffleAction from "./actions/shuffleAction";
 import ThemeToggle from "./actions/themeToggle";
+import BookForm from "./actions/form";
 
 type HeaderProps = {
   books: Book[];
@@ -25,12 +25,7 @@ export default function Header({ books, handles }: HeaderProps) {
       </a>
       <div className="flex flex-wrap-reverse justify-center items-center gap-4 md:gap-6">
         <div className="flex gap-6 items-center">
-          <AddAction
-            books={books}
-            onAdd={handles.onAdd}
-            onDelete={handles.onDelete}
-            lightBg={false}
-          />
+          <BookForm isEdit={false} onAdd={handles.onAdd} />
           <ShuffleAction books={books} handles={handles} />
           <Download books={books} />
           <ThemeToggle />
