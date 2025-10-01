@@ -1,11 +1,7 @@
 "use client";
 
 // components shadcn
-import { Label } from "../ui/label";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
 import {
   Dialog,
   DialogClose,
@@ -16,6 +12,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import {
   Select,
   SelectContent,
@@ -23,12 +22,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 // icons radix
 import { Pencil2Icon } from "@radix-ui/react-icons";
 // components
 import { Book } from "@/types/books";
-import { useEffect, useState } from "react";
 import { Handles } from "@/types/handles";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 type EditActionProps = {
   book: Book;
@@ -49,7 +50,8 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
     }
   }, [open, book.image]);
 
-  const formatString = (content: string) => {
+  const formatString = (content: unknown) => {
+    if (content == null || typeof content !== "string") return null;
     return content
       .trim()
       .toLowerCase()
@@ -83,17 +85,22 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
               ? data.get("readDate")?.toString().split("-").reverse().join("/")
               : undefined;
             if (readDateVar && statusVar !== "Read") {
-              alert("Please set the book as read!");
+              toast("❌ ERROR", {
+                description: "Please set the book as read!",
+              });
               return;
             }
             if (statusVar === "Read" && !readDateVar) {
-              alert("Please insert a read date!");
+              toast("❌ ERROR", {
+                description: "Please insert a read date!",
+              });
               return;
             }
             const titleVar = formatString(data.get("title")!.toString());
-            const subtitleVar = data.get("subtitle")
-              ? formatString(data.get("subtitle")!.toString())
-              : undefined;
+            const subtitleVar =
+              data.get("subtitle")?.toString().trim() === ""
+                ? null
+                : formatString(data.get("subtitle"));
             const authorVar = formatString(data.get("author")!.toString());
             const publisherVar = data.get("publisher")
               ? formatString(data.get("publisher")!.toString())
@@ -101,7 +108,7 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
             const updatedBook: Book = {
               ...book,
               title: titleVar ? titleVar : book.title,
-              subtitle: subtitleVar ? subtitleVar : book.subtitle,
+              subtitle: subtitleVar,
               author: authorVar ? authorVar : book.author,
               publisher: publisherVar ? publisherVar : book.publisher,
               pages: Number(data.get("pages")) || book.pages,

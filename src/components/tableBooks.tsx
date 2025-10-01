@@ -1,7 +1,6 @@
 "use client";
 
 // components shadcn
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import {
   Table,
   TableBody,
@@ -11,17 +10,18 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 // components
-import { useEffect, useState } from "react";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
+import { useEffect, useState } from "react";
+import AddAction from "./actions/addAction";
 import DeleteAction from "./actions/deleteAction";
 import EditAction from "./actions/editAction";
-import SeeAction from "./actions/seeAction";
-import AddAction from "./actions/addAction";
 import FilterBy from "./actions/filterBy";
-import SortBy from "./actions/sortBy";
 import orderBooks from "./actions/orderBooks";
+import SeeAction from "./actions/seeAction";
+import SortBy from "./actions/sortBy";
 
 type TableBooksProps = {
   books: Book[];
@@ -110,7 +110,12 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
 
       <Table className="text-lg">
         <TableCaption>
-          <AddAction books={books} onAdd={handles.onAdd} lightBg={true} />
+          <AddAction
+            books={books}
+            onAdd={handles.onAdd}
+            onDelete={handles.onDelete}
+            lightBg={true}
+          />
         </TableCaption>
         <TableHeader>
           <TableRow className="!text-base hover:!bg-transparent">

@@ -1,21 +1,23 @@
 "use client";
 
 // components shadcn
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { Toaster } from "sonner";
 import { Button } from "./ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+
 // components próprios
-import TableBook from "./tableBooks";
 import GridBooks from "./gridBooks";
+import TableBook from "./tableBooks";
 // import Charts from './charts'
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import { useState } from "react";
 import {
-  DrawingPinIcon,
   DrawingPinFilledIcon,
-  ViewGridIcon,
+  DrawingPinIcon,
   ListBulletIcon,
+  ViewGridIcon,
 } from "@radix-ui/react-icons";
+import { useState } from "react";
 import DrawerCharts from "./drawerCharts";
 
 type BookShelfProps = {
@@ -79,6 +81,7 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
       ) : (
         <TableBook books={books} handles={handles} pinReadings={pinReadings} />
       )}
+      <Toaster />
     </main>
   );
 };

@@ -1,7 +1,6 @@
 "use client";
 
 // components shadcn
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -12,14 +11,15 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 // icons radix
 import { EyeOpenIcon } from "@radix-ui/react-icons";
 // components
 import { Book } from "@/types/books";
+import { Handles } from "@/types/handles";
+import { useEffect, useState } from "react";
 import DeleteAction from "./deleteAction";
 import EditAction from "./editAction";
-import { useState, useEffect } from "react";
-import { Handles } from "@/types/handles";
 import LinkAction from "./linkAction";
 
 type SeeActionProps = {

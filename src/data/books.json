@@ -531,5 +531,18 @@
     "ownership": "Owned",
     "status": "Unread",
     "subtitle": "Marx, Durkheim, Weber"
+  },
+  {
+    "id": 36,
+    "title": "A Viagem De Parvana",
+    "subtitle": null,
+    "author": "No Author",
+    "publisher": "Editora Ática",
+    "pages": 0,
+    "gotDate": "01/10/2025",
+    "price": 0,
+    "mode": "Physical",
+    "ownership": "Owned",
+    "status": "Unread"
   }
 ]

@@ -6,10 +6,10 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 // icons radix
 import { Cross2Icon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 // components
-import { useEffect, useState, useRef } from "react";
-import SeeAction from "./seeAction";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
+import { useEffect, useRef, useState } from "react";
+import SeeAction from "./seeAction";
 
 type SearchProps = {
   books: Book[];

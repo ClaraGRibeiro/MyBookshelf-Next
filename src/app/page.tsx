@@ -2,11 +2,11 @@
 
 // components
 import Bookshelf from "@/components/bookshelf";
-import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { useEffect, useState } from "react";
+import Header from "@/components/header";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   const [books, setBooks] = useState<Book[]>([]);

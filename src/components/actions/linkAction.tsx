@@ -1,8 +1,8 @@
 "use client";
 
 // components shadcn
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 // icons radix
 import { OpenInNewWindowIcon } from "@radix-ui/react-icons";
 // components

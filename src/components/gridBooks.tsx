@@ -6,11 +6,11 @@ import { BookmarkFilledIcon } from "@radix-ui/react-icons";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import { useState } from "react";
-import SeeAction from "./actions/seeAction";
 import AddAction from "./actions/addAction";
 import FilterBy from "./actions/filterBy";
-import SortBy from "./actions/sortBy";
 import orderBooks from "./actions/orderBooks";
+import SeeAction from "./actions/seeAction";
+import SortBy from "./actions/sortBy";
 
 type GridBooksProps = {
   books: Book[];
@@ -121,6 +121,7 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
           <AddAction
             books={books}
             onAdd={handles.onAdd}
+            onDelete={handles.onDelete}
             large={true}
             lightBg={true}
           />

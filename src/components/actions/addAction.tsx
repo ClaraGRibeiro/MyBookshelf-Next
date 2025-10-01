@@ -1,12 +1,8 @@
 "use client";
 
 // components shadcn
-import { Label } from "../ui/label";
 import { Switch } from "@/components/ui/switch";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
 import {
   Dialog,
   DialogClose,
@@ -17,6 +13,9 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "../ui/dialog";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import {
   Select,
   SelectContent,
@@ -24,16 +23,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 // icons radix
 import { PlusCircledIcon } from "@radix-ui/react-icons";
 // components
 import { Book } from "@/types/books";
-import { useEffect, useState } from "react";
 import { Handles } from "@/types/handles";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 type AddActionProps = {
   books: Book[];
   onAdd: Handles["onAdd"];
+  onDelete: Handles["onDelete"];
   large?: boolean;
   lightBg?: boolean;
 };
@@ -41,6 +43,7 @@ type AddActionProps = {
 const AddAction = ({
   books,
   onAdd,
+  onDelete,
   large = false,
   lightBg = false,
 }: AddActionProps) => {
@@ -50,8 +53,8 @@ const AddAction = ({
   const [open, setOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState("");
 
-  const formatString = (content: string | null) => {
-    if (content === null || content === undefined) return "no content";
+  const formatString = (content: unknown) => {
+    if (content == null || typeof content !== "string") return null;
     return content
       .trim()
       .toLowerCase()
@@ -121,7 +124,9 @@ const AddAction = ({
                 const res = await fetch(url);
                 const resData = await res.json();
                 if (!res.ok) {
-                  alert(resData.message || "ISBN inválido!");
+                  toast("❌ ERROR", {
+                    description: "Invalid ISBN",
+                  });
                   return;
                 }
                 const maxId = books.reduce(
@@ -129,17 +134,18 @@ const AddAction = ({
                   0,
                 );
                 const today = new Date();
+                const titleVar = formatString(resData.title) || "No Title";
 
                 const newBook: Book = {
                   id: maxId + 1,
-                  title: formatString(resData.title),
+                  title: titleVar,
                   subtitle: formatString(resData.subtitle),
                   author:
                     formatString(
                       Array.isArray(resData.authors) &&
                         resData.authors.length > 0 &&
                         resData.authors.join("; "),
-                    ) || "no author",
+                    ) || "No Author",
                   publisher: formatString(resData.publisher),
                   pages: Number(resData.page_count || 0),
                   gotDate: `${String(today.getDate()).padStart(2, "0")}/${String(today.getMonth() + 1).padStart(2, "0")}/${today.getFullYear()}`,
@@ -152,11 +158,23 @@ const AddAction = ({
                   status: "Unread",
                 };
                 onAdd(newBook);
-                alert("[" + resData.title + "] has been added successfully");
+                toast("✅ Success", {
+                  description:
+                    "Book [" +
+                    (titleVar?.length > 25
+                      ? titleVar?.slice(0, 20) + "..."
+                      : titleVar) +
+                    "] has been created",
+                  action: {
+                    label: "Undo",
+                    onClick: () => onDelete(newBook.id),
+                  },
+                });
               } catch (err) {
                 console.error(err);
-
-                alert("Erro ao buscar ISBN");
+                toast("❌ ERROR", {
+                  description: "Error fetching ISBN",
+                });
               }
             }}
           >
@@ -200,11 +218,15 @@ const AddAction = ({
                 ? data.get("gotDate")?.toString().split("-").reverse().join("/")
                 : `${String(today.getDate()).padStart(2, "0")}/${String(today.getMonth() + 1).padStart(2, "0")}/${today.getFullYear()}`;
               if (readDateVar && statusVar !== "Read") {
-                alert("Please set the book as read!");
+                toast("❌ ERROR", {
+                  description: "Please set the book as read!",
+                });
                 return;
               }
               if (statusVar === "Read" && !readDateVar) {
-                alert("Please insert a read date!");
+                toast("❌ ERROR", {
+                  description: "Please insert a read date!",
+                });
                 return;
               }
 
@@ -240,6 +262,14 @@ const AddAction = ({
                   "Unread",
               };
               onAdd(newBook);
+              toast("✅ Book has been created", {
+                description: titleVar,
+                action: {
+                  label: "Undo",
+                  onClick: () => onDelete(newBook.id),
+                },
+              });
+
               setOpen(false);
             }}
           >

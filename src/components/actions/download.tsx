@@ -1,11 +1,12 @@
 "use client";
 
+import { Book } from "@/types/books";
+import { DownloadIcon } from "@radix-ui/react-icons";
+import ExcelJS from "exceljs";
+import { saveAs } from "file-saver";
+import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { DownloadIcon } from "@radix-ui/react-icons";
-import { saveAs } from "file-saver";
-import { Book } from "@/types/books";
-import ExcelJS from "exceljs";
 
 type DownloadProps = {
   books: Book[];
@@ -78,6 +79,10 @@ const Download = ({ books }: DownloadProps) => {
       }),
       "books.xlsx",
     );
+
+    toast("✅ Success", {
+      description: "Books data has been downloaded",
+    });
   };
 
   return (

@@ -1,13 +1,13 @@
 "use client";
 
 // components
-import Search from "./actions/search";
-import AddAction from "./actions/addAction";
-import ThemeToggle from "./actions/themeToggle";
-import ShuffleAction from "./actions/shuffleAction";
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
+import AddAction from "./actions/addAction";
 import Download from "./actions/download";
+import Search from "./actions/search";
+import ShuffleAction from "./actions/shuffleAction";
+import ThemeToggle from "./actions/themeToggle";
 
 type HeaderProps = {
   books: Book[];
@@ -25,7 +25,12 @@ const Header = ({ books, handles }: HeaderProps) => {
       </a>
       <div className="flex flex-wrap-reverse justify-center items-center gap-4 md:gap-6">
         <div className="flex gap-6 items-center">
-          <AddAction books={books} onAdd={handles.onAdd} lightBg={false} />
+          <AddAction
+            books={books}
+            onAdd={handles.onAdd}
+            onDelete={handles.onDelete}
+            lightBg={false}
+          />
           <ShuffleAction books={books} handles={handles} />
           <Download books={books} />
           <ThemeToggle />

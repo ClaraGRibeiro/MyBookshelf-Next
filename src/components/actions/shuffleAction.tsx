@@ -1,15 +1,16 @@
 "use client";
 
 // components shadcn
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Button } from "../ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 // icons radix
 import { ShuffleIcon } from "@radix-ui/react-icons";
 // components
 import { Book } from "@/types/books";
-import { useState } from "react";
-import SeeAction from "./seeAction";
 import { Handles } from "@/types/handles";
+import { useState } from "react";
+import { toast } from "sonner";
+import SeeAction from "./seeAction";
 
 type ShuffleActionProps = {
   books: Book[];
@@ -21,7 +22,9 @@ const ShuffleAction = ({ books, handles }: ShuffleActionProps) => {
   const handleShuffleBook = () => {
     const unreadBooks = books.filter((b) => b?.status !== "Read");
     if (unreadBooks.length === 0) {
-      alert("No unread books available to shuffle.");
+      toast("❌ ERROR", {
+        description: "No unread books available to shuffle.",
+      });
       return;
     }
     setChosenBookId(

@@ -1,13 +1,6 @@
 "use client";
 
 // components shadcn
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { Button } from "./ui/button";
 import {
   Drawer,
@@ -17,16 +10,22 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 import { Progress } from "./ui/progress";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 // icons radix
-import { BarChartIcon } from "@radix-ui/react-icons";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { BarChartIcon, ChevronDownIcon } from "@radix-ui/react-icons";
 // components
-import Charts from "./charts";
-import SeeAction from "./actions/seeAction";
 import { Book } from "@/types/books";
-import { useEffect, useState } from "react";
 import { Handles } from "@/types/handles";
+import { useEffect, useState } from "react";
+import SeeAction from "./actions/seeAction";
+import Charts from "./charts";
 
 type DrawerChartsProps = {
   books: Book[];

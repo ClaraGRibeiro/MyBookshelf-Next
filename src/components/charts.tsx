@@ -1,16 +1,18 @@
 "use client";
 
 // components shadcn
-import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
 import {
   Bar,
   BarChart,
   CartesianGrid,
+  Label,
   LabelList,
+  Pie,
+  PieChart,
   TooltipProps,
   XAxis,
 } from "recharts";
-import { Label, Pie, PieChart } from "recharts";
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
 // components
 import { Book } from "@/types/books";
 
