@@ -17,7 +17,7 @@ type ShuffleActionProps = {
   handles: Handles;
 };
 
-const ShuffleAction = ({ books, handles }: ShuffleActionProps) => {
+export default function ShuffleAction({ books, handles }: ShuffleActionProps) {
   const [chosenBookId, setChosenBookId] = useState<number | null>(null);
   const handleShuffleBook = () => {
     const unreadBooks = books.filter((b) => b?.status !== "Read");
@@ -56,6 +56,4 @@ const ShuffleAction = ({ books, handles }: ShuffleActionProps) => {
       )}
     </>
   );
-};
-
-export default ShuffleAction;
+}

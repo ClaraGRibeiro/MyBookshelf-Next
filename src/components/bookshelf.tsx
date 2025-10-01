@@ -25,7 +25,7 @@ type BookShelfProps = {
   handles: Handles;
 };
 
-const Bookshelf = ({ books, handles }: BookShelfProps) => {
+export default function Bookshelf({ books, handles }: BookShelfProps) {
   const [pinReadings, setPinReadings] = useState(false);
   const [grid, setGrid] = useState(true);
   return (
@@ -84,6 +84,4 @@ const Bookshelf = ({ books, handles }: BookShelfProps) => {
       <Toaster />
     </main>
   );
-};
-
-export default Bookshelf;
+}

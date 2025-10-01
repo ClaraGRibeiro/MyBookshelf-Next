@@ -9,13 +9,13 @@ type orderBooksProps = {
   filterBy: Book["status"] | Book["ownership"] | Book["mode"] | null;
 };
 
-const orderBooks = ({
+export default function orderBooks({
   books,
   sortBy,
   sortAsc,
   pinReadings,
   filterBy,
-}: orderBooksProps): Book[] => {
+}: orderBooksProps): Book[] {
   const parseDate = (val: string): null | number => {
     if (!val || val === "-") return null;
     const parts = val.split("/");
@@ -73,6 +73,4 @@ const orderBooks = ({
   }
 
   return sortedBooks;
-};
-
-export default orderBooks;
+}

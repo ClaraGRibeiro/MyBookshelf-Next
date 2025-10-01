@@ -18,7 +18,11 @@ type GridBooksProps = {
   pinReadings: boolean;
 };
 
-const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
+export default function GridBooks({
+  books,
+  handles,
+  pinReadings,
+}: GridBooksProps) {
   const [clickedBookId, setClickedBookId] = useState<number | null>(null);
   const [filterBy, setFilterBy] = useState<
     Book["status"] | Book["ownership"] | Book["mode"] | null
@@ -132,6 +136,4 @@ const GridBooks = ({ books, handles, pinReadings }: GridBooksProps) => {
       </div>
     </>
   );
-};
-
-export default GridBooks;
+}

@@ -25,7 +25,11 @@ type DeleteActionProps = {
   closeModal?: () => void;
 };
 
-const DeleteAction = ({ book, onDelete, closeModal }: DeleteActionProps) => {
+export default function DeleteAction({
+  book,
+  onDelete,
+  closeModal,
+}: DeleteActionProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -77,6 +81,4 @@ const DeleteAction = ({ book, onDelete, closeModal }: DeleteActionProps) => {
       </DialogContent>
     </Dialog>
   );
-};
-
-export default DeleteAction;
+}

@@ -32,7 +32,7 @@ type DrawerChartsProps = {
   handles: Handles;
 };
 
-const DrawerCharts = ({ books, handles }: DrawerChartsProps) => {
+export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
   const [open, setOpen] = useState(false);
   const [clickedBookId, setClickedBookId] = useState<number | null>(null);
 
@@ -396,5 +396,4 @@ const DrawerCharts = ({ books, handles }: DrawerChartsProps) => {
       </DrawerContent>
     </Drawer>
   );
-};
-export default DrawerCharts;
+}

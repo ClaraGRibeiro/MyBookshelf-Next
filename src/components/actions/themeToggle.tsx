@@ -7,7 +7,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 
-const ThemeToggle = () => {
+export default function ThemeToggle() {
   const [isDark, setIsDark] = useState(false);
 
   const toggleDarkMode = () => {
@@ -40,6 +40,4 @@ const ThemeToggle = () => {
       </Tooltip>
     </Button>
   );
-};
-
-export default ThemeToggle;
+}

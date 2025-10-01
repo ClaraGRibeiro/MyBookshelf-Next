@@ -14,7 +14,7 @@ type HeaderProps = {
   handles: Handles;
 };
 
-const Header = ({ books, handles }: HeaderProps) => {
+export default function Header({ books, handles }: HeaderProps) {
   return (
     <header className="h-fill flex-wrap dark:bg-[var(--medium-slate)] bg-[var(--dark-slate)] flex md:justify-between justify-center items-center py-3 px-12 gap-4">
       <a className="flex items-center gap-2" href="/">
@@ -39,6 +39,4 @@ const Header = ({ books, handles }: HeaderProps) => {
       </div>
     </header>
   );
-};
-
-export default Header;
+}

@@ -40,13 +40,13 @@ type AddActionProps = {
   lightBg?: boolean;
 };
 
-const AddAction = ({
+export default function AddAction({
   books,
   onAdd,
   onDelete,
   large = false,
   lightBg = false,
-}: AddActionProps) => {
+}: AddActionProps) {
   const [isbnMode, setIsbnMode] = useState<boolean>(false);
   const [ownership, setOwnership] = useState<Book["ownership"]>("Owned");
   const [mode, setMode] = useState<Book["mode"]>("Physical");
@@ -419,6 +419,4 @@ const AddAction = ({
       </DialogContent>
     </Dialog>
   );
-};
-
-export default AddAction;
+}

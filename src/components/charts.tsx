@@ -26,7 +26,7 @@ type ChartsProps = {
   showBy?: "Books" | "Pages";
 };
 
-const Charts = ({
+export default function Charts({
   type,
   dataChart,
   value,
@@ -34,7 +34,7 @@ const Charts = ({
   label,
   colors,
   showBy,
-}: ChartsProps) => {
+}: ChartsProps) {
   function CustomTooltip({ active, payload, label }: TooltipProps<any, any>) {
     if (active && payload && payload.length > 0) {
       const books: Book[] = payload[0].payload.books;
@@ -198,6 +198,4 @@ const Charts = ({
       </ChartContainer>
     );
   }
-};
-
-export default Charts;
+}

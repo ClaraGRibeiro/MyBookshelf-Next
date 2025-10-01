@@ -29,7 +29,11 @@ type TableBooksProps = {
   pinReadings: boolean;
 };
 
-const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
+export default function TableBook({
+  books,
+  handles,
+  pinReadings,
+}: TableBooksProps) {
   const [clickedBookId, setClickedBookId] = useState<number | null>(null);
   const [filterBy, setFilterBy] = useState<
     Book["status"] | Book["ownership"] | Book["mode"] | null
@@ -228,6 +232,4 @@ const TableBook = ({ books, handles, pinReadings }: TableBooksProps) => {
       </Table>
     </>
   );
-};
-
-export default TableBook;
+}

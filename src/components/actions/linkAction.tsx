@@ -12,7 +12,7 @@ type LinkActionProps = {
   bookLink: Book["link"];
 };
 
-const LinkAction = ({ bookLink }: LinkActionProps) => {
+export default function LinkAction({ bookLink }: LinkActionProps) {
   return (
     <Button variant="own">
       <Tooltip>
@@ -30,6 +30,4 @@ const LinkAction = ({ bookLink }: LinkActionProps) => {
       </Tooltip>
     </Button>
   );
-};
-
-export default LinkAction;
+}

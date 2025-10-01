@@ -36,7 +36,7 @@ type EditActionProps = {
   onEdit: Handles["onEdit"];
 };
 
-const EditAction = ({ book, onEdit }: EditActionProps) => {
+export default function EditAction({ book, onEdit }: EditActionProps) {
   const [mode, setMode] = useState(book.mode);
   const [status, setStatus] = useState(book.status);
   const [readDate, setReadDate] = useState(book.readDate);
@@ -310,6 +310,4 @@ const EditAction = ({ book, onEdit }: EditActionProps) => {
       </DialogContent>
     </Dialog>
   );
-};
-
-export default EditAction;
+}

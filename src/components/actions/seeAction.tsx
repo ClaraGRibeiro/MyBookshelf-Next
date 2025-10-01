@@ -28,7 +28,11 @@ type SeeActionProps = {
   noButtonMode?: boolean;
 };
 
-const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
+export default function SeeAction({
+  book,
+  handles,
+  noButtonMode = false,
+}: SeeActionProps) {
   const [open, setOpen] = useState(noButtonMode);
   useEffect(() => {
     if (noButtonMode && book) setOpen(true);
@@ -160,6 +164,4 @@ const SeeAction = ({ book, handles, noButtonMode = false }: SeeActionProps) => {
       </DialogContent>
     </Dialog>
   );
-};
-
-export default SeeAction;
+}

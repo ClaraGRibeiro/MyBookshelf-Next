@@ -9,7 +9,7 @@ type SortByProps = {
   onChange: (key: keyof Book) => void;
   type: keyof Book;
 };
-const SortBy = ({ value, onChange, type }: SortByProps) => {
+export default function SortBy({ value, onChange, type }: SortByProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
@@ -26,6 +26,4 @@ const SortBy = ({ value, onChange, type }: SortByProps) => {
       </TooltipContent>
     </Tooltip>
   );
-};
-
-export default SortBy;
+}

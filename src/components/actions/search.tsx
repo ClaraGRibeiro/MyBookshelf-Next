@@ -16,7 +16,7 @@ type SearchProps = {
   handles: Handles;
 };
 
-const Search = ({ books, handles }: SearchProps) => {
+export default function Search({ books, handles }: SearchProps) {
   const [search, setSearch] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
   const [selectedBookId, setSelectedBookId] = useState<number | null>(null);
@@ -138,6 +138,4 @@ const Search = ({ books, handles }: SearchProps) => {
       )}
     </>
   );
-};
-
-export default Search;
+}

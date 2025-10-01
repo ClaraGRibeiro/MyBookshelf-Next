@@ -12,7 +12,7 @@ type DownloadProps = {
   books: Book[];
 };
 
-const Download = ({ books }: DownloadProps) => {
+export default function Download({ books }: DownloadProps) {
   const downloadBooksXLSX = async (books: Book[]) => {
     const booksList = books.sort((a, b) => {
       if (!a.title) return 1;
@@ -101,6 +101,4 @@ const Download = ({ books }: DownloadProps) => {
       </Tooltip>
     </Button>
   );
-};
-
-export default Download;
+}

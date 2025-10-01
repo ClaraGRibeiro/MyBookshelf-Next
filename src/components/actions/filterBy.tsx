@@ -18,7 +18,7 @@ type FilterByProps = {
   ) => void;
 };
 
-const FilterBy = ({ value, onChange }: FilterByProps) => {
+export default function FilterBy({ value, onChange }: FilterByProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-2 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">
@@ -51,6 +51,4 @@ const FilterBy = ({ value, onChange }: FilterByProps) => {
       </DropdownMenuContent>
     </DropdownMenu>
   );
-};
-
-export default FilterBy;
+}

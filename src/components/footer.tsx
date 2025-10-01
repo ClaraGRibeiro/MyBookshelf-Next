@@ -1,6 +1,6 @@
 "use client";
 
-const Footer = () => {
+export default function Footer() {
   return (
     <footer className="w-full fixed bottom-0 h-8 dark:bg-[var(--medium-slate)] bg-[var(--dark-slate)] flex justify-center items-center px-12 text-[var(--light-slate)]">
       <p className="text-sm">
@@ -14,6 +14,4 @@ const Footer = () => {
       </p>
     </footer>
   );
-};
-
-export default Footer;
+}
