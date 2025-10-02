@@ -10,7 +10,7 @@ import FilterBy from "./actions/filterBy";
 import orderBooks from "./actions/orderBooks";
 import SeeAction from "./actions/seeAction";
 import SortBy from "./actions/sortBy";
-import BookForm from "./actions/form";
+import BookForm from "./actions/bookForm";
 
 type GridBooksProps = {
   books: Book[];

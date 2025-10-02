@@ -19,19 +19,21 @@ import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import { useEffect, useState } from "react";
 import DeleteAction from "./deleteAction";
-import BookForm from "./form";
+import BookForm from "./bookForm";
 import LinkAction from "./linkAction";
 
 type SeeActionProps = {
   book: Book;
   handles: Handles;
   noButtonMode?: boolean;
+  addMode?: boolean;
 };
 
 export default function SeeAction({
   book,
   handles,
   noButtonMode = false,
+  addMode = false,
 }: SeeActionProps) {
   const [open, setOpen] = useState(noButtonMode);
   useEffect(() => {
@@ -153,13 +155,25 @@ export default function SeeAction({
         </div>
 
         <DialogFooter className="flex flex-row w-full justify-end">
-          {book.link && <LinkAction bookLink={book.link} />}
-          <BookForm isEdit={true} book={book} onAdd={handles.onAdd} />
-          <DeleteAction
-            book={book}
-            onDelete={handles.onDelete}
-            closeModal={() => setOpen(false)}
-          />
+          {!addMode && (
+            <>
+              {book.link && <LinkAction bookLink={book.link} />}
+              <BookForm isEdit={true} book={book} onAdd={handles.onEdit} />
+              <DeleteAction
+                book={book}
+                onDelete={handles.onDelete}
+                closeModal={() => setOpen(false)}
+              />
+            </>
+          )}
+          {addMode && (
+            <BookForm
+              lightBg={true}
+              isEdit={false}
+              book={book}
+              onAdd={handles.onAdd}
+            />
+          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>

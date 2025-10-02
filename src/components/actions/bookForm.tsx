@@ -30,11 +30,10 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 // icons
-import { PlusCircledIcon, Pencil2Icon } from "@radix-ui/react-icons";
+import { Pencil2Icon, PlusCircledIcon } from "@radix-ui/react-icons";
 // types
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import { Switch } from "@/components/ui/switch";
 
 type BookFormProps = {
   isEdit?: boolean;
@@ -225,27 +224,27 @@ export default function BookForm({
               type="text"
               name="title"
               placeholder="Book Title *"
-              defaultValue={isEdit ? book?.title : ""}
+              defaultValue={book?.title ?? ""}
               required
             />
             <Input
               type="text"
               name="subtitle"
               placeholder="Subtitle (optional)"
-              defaultValue={isEdit ? (book?.subtitle ?? "") : ""}
+              defaultValue={book?.subtitle ?? "" ?? ""}
             />
             <Input
               type="text"
               name="author"
               placeholder="Author Name *"
-              defaultValue={isEdit ? book?.author : ""}
+              defaultValue={book?.author ?? ""}
               required
             />
             <Input
               type="text"
               name="publisher"
               placeholder="Publisher Name (optional)"
-              defaultValue={isEdit ? (book?.publisher ?? "") : ""}
+              defaultValue={book?.publisher ?? "" ?? ""}
             />
             <Input
               type="number"
@@ -253,7 +252,7 @@ export default function BookForm({
               min={0}
               step={1}
               placeholder="Pages (optional)"
-              defaultValue={isEdit ? (book?.pages ?? "") : ""}
+              defaultValue={book?.pages ?? "" ?? ""}
             />
 
             {/* datas */}
@@ -300,7 +299,7 @@ export default function BookForm({
               min={0}
               step={0.01}
               placeholder="Price (optional)"
-              defaultValue={isEdit ? (book?.price ?? "") : ""}
+              defaultValue={book?.price ?? "" ?? ""}
             />
 
             {/* image preview */}
@@ -316,7 +315,7 @@ export default function BookForm({
                 type="text"
                 name="image"
                 placeholder="Image url (optional)"
-                defaultValue={isEdit ? (book?.image ?? "") : ""}
+                defaultValue={book?.image ?? "" ?? ""}
                 onChange={(e) => setImagePreview(e.target.value)}
               />
             </div>
@@ -325,7 +324,7 @@ export default function BookForm({
               type="text"
               name="link"
               placeholder="Purchase link (optional)"
-              defaultValue={isEdit ? (book?.link ?? "") : ""}
+              defaultValue={book?.link ?? "" ?? ""}
             />
 
             {/* mode & ownership */}
