@@ -19,7 +19,9 @@ export default function Home() {
         setBooks(data.default);
       })
       .catch(console.error);
-    setLoading(false);
+    setTimeout(() => {
+      setLoading(false);
+    }, 800);
   }, []);
 
   // function containing all handler logic

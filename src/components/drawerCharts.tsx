@@ -162,7 +162,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
               Track reading progress: month by month, year by year.
             </DrawerDescription>
           </DrawerHeader>
-          <div className="flex flex-col items-center justify-center gap-12 my-8">
+          <div className="flex flex-col items-center justify-center my-8">
             <div className="flex flex-col justify-center items-center gap-12 max-w-[70%] md:max-w-120 ">
               <div className="grid grid-cols-2 md:grid-cols-4 md justify-items-center items-center gap-12">
                 <p className="text-center">
@@ -356,16 +356,8 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                 </p>
               </div>
             </div>
-            <Charts
-              type="bar"
-              dataChart={booksByYear}
-              label="Books per Year"
-              colors={["#006AB3"]}
-              showBy={showBy}
-            />
-
             <DropdownMenu>
-              <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-12 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">
+              <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-12 border border-[var(--medium-slate)] rounded px-2 py-1 mt-12 mb-1 flex justify-between items-center !duration-200">
                 <span>{selectedYear}</span>
                 <ChevronDownIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
               </DropdownMenuTrigger>
@@ -377,13 +369,23 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Charts
-              type="bar"
-              dataChart={booksByMonth}
-              label={"Books per Month (" + new Date().getFullYear() + ")"}
-              colors={["#E63431"]}
-              showBy={showBy}
-            />
+            <div className="flex flex-col md:flex-row items-center gap-12 justify-center md:justify-between">
+              <Charts
+                type="bar"
+                dataChart={booksByYear}
+                label="Books per Year"
+                colors={["#006AB3"]}
+                showBy={showBy}
+              />
+
+              <Charts
+                type="bar"
+                dataChart={booksByMonth}
+                label={"Books per Month (" + new Date().getFullYear() + ")"}
+                colors={["#E63431"]}
+                showBy={showBy}
+              />
+            </div>
           </div>
           {clickedBook && (
             <SeeAction
