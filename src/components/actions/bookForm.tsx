@@ -231,7 +231,7 @@ export default function BookForm({
               type="text"
               name="subtitle"
               placeholder="Subtitle (optional)"
-              defaultValue={book?.subtitle ?? "" ?? ""}
+              defaultValue={book?.subtitle ?? ""}
             />
             <Input
               type="text"
@@ -244,7 +244,7 @@ export default function BookForm({
               type="text"
               name="publisher"
               placeholder="Publisher Name (optional)"
-              defaultValue={book?.publisher ?? "" ?? ""}
+              defaultValue={book?.publisher ?? ""}
             />
             <Input
               type="number"
@@ -252,7 +252,7 @@ export default function BookForm({
               min={0}
               step={1}
               placeholder="Pages (optional)"
-              defaultValue={book?.pages ?? "" ?? ""}
+              defaultValue={book?.pages ?? ""}
             />
 
             {/* datas */}
@@ -299,7 +299,7 @@ export default function BookForm({
               min={0}
               step={0.01}
               placeholder="Price (optional)"
-              defaultValue={book?.price ?? "" ?? ""}
+              defaultValue={book?.price ?? ""}
             />
 
             {/* image preview */}
@@ -315,7 +315,7 @@ export default function BookForm({
                 type="text"
                 name="image"
                 placeholder="Image url (optional)"
-                defaultValue={book?.image ?? "" ?? ""}
+                defaultValue={book?.image ?? ""}
                 onChange={(e) => setImagePreview(e.target.value)}
               />
             </div>
@@ -324,7 +324,7 @@ export default function BookForm({
               type="text"
               name="link"
               placeholder="Purchase link (optional)"
-              defaultValue={book?.link ?? "" ?? ""}
+              defaultValue={book?.link ?? ""}
             />
 
             {/* mode & ownership */}
