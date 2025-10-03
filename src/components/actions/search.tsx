@@ -1,15 +1,12 @@
 "use client";
 
-// components shadcn
-import { Input } from "../ui/input";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-// icons radix
-import { Cross2Icon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
-// components
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
+import { Cross2Icon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { useEffect, useRef, useState } from "react";
-import SeeAction from "./seeAction";
+import { Input } from "../ui/input";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import See from "./see";
 
 type SearchProps = {
   books: Book[];
@@ -134,7 +131,7 @@ export default function Search({ books, handles }: SearchProps) {
       </div>
 
       {selectedBook && ( // if a book was clicked, open the modal
-        <SeeAction noButtonMode={true} book={selectedBook} handles={handles} />
+        <See noButtonMode={true} book={selectedBook} handles={handles} />
       )}
     </>
   );

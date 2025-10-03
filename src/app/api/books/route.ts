@@ -1,7 +1,7 @@
-import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
 import { Book } from "@/types/books";
+import fs from "fs";
+import { NextResponse } from "next/server";
+import path from "path";
 
 function gitCommitAndPush() {
   // exec(`git add . && git commit -m "Updating books data" && git push`, (error, stdout, stderr) => {

@@ -1,18 +1,15 @@
 "use client";
 
-// components shadcn
+import { Book } from "@/types/books";
+import { OpenInNewWindowIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-// icons radix
-import { OpenInNewWindowIcon } from "@radix-ui/react-icons";
-// components
-import { Book } from "@/types/books";
 
-type LinkActionProps = {
+type LinkProps = {
   bookLink: Book["link"];
 };
 
-export default function LinkAction({ bookLink }: LinkActionProps) {
+export default function Link({ bookLink }: LinkProps) {
   return (
     <Button variant="own">
       <Tooltip>

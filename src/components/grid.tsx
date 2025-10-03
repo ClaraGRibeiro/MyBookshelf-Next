@@ -1,28 +1,22 @@
 "use client";
 
-// icons radix
-import { BookmarkFilledIcon } from "@radix-ui/react-icons";
-// components
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
+import { BookmarkFilledIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
-import FilterBy from "./actions/filterBy";
-import orderBooks from "./actions/orderBooks";
-import SeeAction from "./actions/seeAction";
-import SortBy from "./actions/sortBy";
-import BookForm from "./actions/bookForm";
+import Filter from "./actions/filter";
+import Forms from "./actions/forms";
+import order from "./actions/order";
+import See from "./actions/see";
+import Sort from "./actions/sort";
 
-type GridBooksProps = {
+type GridProps = {
   books: Book[];
   handles: Handles;
   pinReadings: boolean;
 };
 
-export default function GridBooks({
-  books,
-  handles,
-  pinReadings,
-}: GridBooksProps) {
+export default function Grid({ books, handles, pinReadings }: GridProps) {
   const [clickedBookId, setClickedBookId] = useState<number | null>(null);
   const [filterBy, setFilterBy] = useState<
     Book["status"] | Book["ownership"] | Book["mode"] | null
@@ -39,7 +33,7 @@ export default function GridBooks({
     }
   };
 
-  const sortedBooks: Book[] = orderBooks({
+  const sortedBooks: Book[] = order({
     books,
     sortBy,
     sortAsc,
@@ -58,15 +52,15 @@ export default function GridBooks({
   return (
     <>
       <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-2">
-        <SortBy value={sortBy} onChange={handleSort} type={"title"} />
-        <SortBy value={sortBy} onChange={handleSort} type={"author"} />
-        <SortBy value={sortBy} onChange={handleSort} type={"publisher"} />
-        <SortBy value={sortBy} onChange={handleSort} type={"pages"} />
-        <SortBy value={sortBy} onChange={handleSort} type={"price"} />
-        <SortBy value={sortBy} onChange={handleSort} type={"status"} />
-        <SortBy value={sortBy} onChange={handleSort} type={"gotDate"} />
-        <SortBy value={sortBy} onChange={handleSort} type={"readDate"} />
-        <FilterBy value={filterBy} onChange={setFilterBy} />
+        <Sort value={sortBy} onChange={handleSort} type={"title"} />
+        <Sort value={sortBy} onChange={handleSort} type={"author"} />
+        <Sort value={sortBy} onChange={handleSort} type={"publisher"} />
+        <Sort value={sortBy} onChange={handleSort} type={"pages"} />
+        <Sort value={sortBy} onChange={handleSort} type={"price"} />
+        <Sort value={sortBy} onChange={handleSort} type={"status"} />
+        <Sort value={sortBy} onChange={handleSort} type={"gotDate"} />
+        <Sort value={sortBy} onChange={handleSort} type={"readDate"} />
+        <Filter value={filterBy} onChange={setFilterBy} />
       </div>
       <p className="text-center mb-8 font-light text-[var(--medium-slate)]">
         {sortedBooks.length} books [{filterBy ?? "All"}]
@@ -122,7 +116,7 @@ export default function GridBooks({
           </div>
         ))}
         <div className="aspect-[2/3] h-full w-full relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group">
-          <BookForm
+          <Forms
             isEdit={false}
             onAdd={handles.onAdd}
             large={true}
@@ -130,7 +124,7 @@ export default function GridBooks({
           />
         </div>
         {clickedBook && (
-          <SeeAction noButtonMode={true} book={clickedBook} handles={handles} />
+          <See noButtonMode={true} book={clickedBook} handles={handles} />
         )}
       </div>
     </>

@@ -1,6 +1,10 @@
 "use client";
 
-// components shadcn
+import { Book } from "@/types/books";
+import { Handles } from "@/types/handles";
+import { IdCardIcon } from "@radix-ui/react-icons";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -14,21 +18,14 @@ import {
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-// icons radix
-import { IdCardIcon } from "@radix-ui/react-icons";
-// components
-import { Book } from "@/types/books";
-import { Handles } from "@/types/handles";
-import SeeAction from "./seeAction";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
+import See from "./see";
 
-type IsbnSearchProps = {
+type IsbnProps = {
   books: Book[];
   handles: Handles;
 };
 
-export function IsbnSearch({ books, handles }: IsbnSearchProps) {
+export function Isbn({ books, handles }: IsbnProps) {
   const [open, setOpen] = useState(false);
   const [bookFound, setBookFound] = useState<Book>();
   const formatString = (content: string | null) => {
@@ -145,7 +142,7 @@ export function IsbnSearch({ books, handles }: IsbnSearchProps) {
           </DialogFooter>
         </form>
         {bookFound && ( // if a book was clicked, open the modal
-          <SeeAction
+          <See
             noButtonMode={true}
             addMode={true}
             book={bookFound}

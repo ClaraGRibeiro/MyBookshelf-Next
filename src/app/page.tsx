@@ -1,9 +1,9 @@
 "use client";
 
-// components
 import Bookshelf from "@/components/bookshelf";
 import Footer from "@/components/footer";
 import Header from "@/components/header";
+// components
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import { useEffect, useState } from "react";

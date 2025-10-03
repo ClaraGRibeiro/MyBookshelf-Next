@@ -1,14 +1,5 @@
 "use client";
 
-// components shadcn
-import { Toaster } from "sonner";
-import { Button } from "./ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-
-// components próprios
-import GridBooks from "./gridBooks";
-import TableBook from "./tableBooks";
-// import Charts from './charts'
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import {
@@ -18,7 +9,12 @@ import {
   ViewGridIcon,
 } from "@radix-ui/react-icons";
 import { useState } from "react";
+import { Toaster } from "sonner";
 import DrawerCharts from "./drawerCharts";
+import Grid from "./grid";
+import Rows from "./rows";
+import { Button } from "./ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 type BookShelfProps = {
   books: Book[];
@@ -77,9 +73,9 @@ export default function Bookshelf({ books, handles }: BookShelfProps) {
       <h1 className="text-center text-3xl mb-12 font-bold">My BookShelf</h1>
 
       {grid ? (
-        <GridBooks books={books} handles={handles} pinReadings={pinReadings} />
+        <Grid books={books} handles={handles} pinReadings={pinReadings} />
       ) : (
-        <TableBook books={books} handles={handles} pinReadings={pinReadings} />
+        <Rows books={books} handles={handles} pinReadings={pinReadings} />
       )}
       <Toaster />
     </main>

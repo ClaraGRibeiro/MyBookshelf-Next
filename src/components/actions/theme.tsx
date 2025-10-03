@@ -1,13 +1,11 @@
 "use client";
 
-// components shadcn
-import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-// icons radix
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
+import { Button } from "../ui/button";
 
-export default function ThemeToggle() {
+export default function Theme() {
   const [isDark, setIsDark] = useState(false);
 
   const toggleDarkMode = () => {

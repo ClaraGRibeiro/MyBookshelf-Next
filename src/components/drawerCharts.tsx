@@ -1,6 +1,11 @@
 "use client";
 
-// components shadcn
+import { Book } from "@/types/books";
+import { Handles } from "@/types/handles";
+import { BarChartIcon, ChevronDownIcon } from "@radix-ui/react-icons";
+import { useEffect, useState } from "react";
+import See from "./actions/see";
+import Charts from "./charts";
 import { Button } from "./ui/button";
 import {
   Drawer,
@@ -18,14 +23,6 @@ import {
 } from "./ui/dropdown-menu";
 import { Progress } from "./ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-// icons radix
-import { BarChartIcon, ChevronDownIcon } from "@radix-ui/react-icons";
-// components
-import { Book } from "@/types/books";
-import { Handles } from "@/types/handles";
-import { useEffect, useState } from "react";
-import SeeAction from "./actions/seeAction";
-import Charts from "./charts";
 
 type DrawerChartsProps = {
   books: Book[];
@@ -369,7 +366,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <div className="flex flex-col md:flex-row items-center gap-12 justify-center md:justify-between">
+            <div className="w-[96%] flex flex-col lg:flex-row items-center gap-4 justify-between">
               <Charts
                 type="bar"
                 dataChart={booksByYear}
@@ -388,11 +385,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
             </div>
           </div>
           {clickedBook && (
-            <SeeAction
-              noButtonMode={true}
-              book={clickedBook}
-              handles={handles}
-            />
+            <See noButtonMode={true} book={clickedBook} handles={handles} />
           )}
         </div>
       </DrawerContent>

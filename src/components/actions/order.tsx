@@ -1,7 +1,6 @@
-// components
 import { Book } from "@/types/books";
 
-type orderBooksProps = {
+type orderProps = {
   books: Book[];
   sortBy: keyof Book;
   sortAsc: boolean;
@@ -9,13 +8,13 @@ type orderBooksProps = {
   filterBy: Book["status"] | Book["ownership"] | Book["mode"] | null;
 };
 
-export default function orderBooks({
+export default function order({
   books,
   sortBy,
   sortAsc,
   pinReadings,
   filterBy,
-}: orderBooksProps): Book[] {
+}: orderProps): Book[] {
   const parseDate = (val: string): null | number => {
     if (!val || val === "-") return null;
     const parts = val.split("/");

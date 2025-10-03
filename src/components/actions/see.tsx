@@ -1,6 +1,9 @@
 "use client";
 
-// components shadcn
+import { Book } from "@/types/books";
+import { Handles } from "@/types/handles";
+import { EyeOpenIcon } from "@radix-ui/react-icons";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -12,29 +15,23 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-// icons radix
-import { EyeOpenIcon } from "@radix-ui/react-icons";
-// components
-import { Book } from "@/types/books";
-import { Handles } from "@/types/handles";
-import { useEffect, useState } from "react";
-import DeleteAction from "./deleteAction";
-import BookForm from "./bookForm";
-import LinkAction from "./linkAction";
+import Delete from "./delete";
+import Forms from "./forms";
+import Link from "./link";
 
-type SeeActionProps = {
+type SeeProps = {
   book: Book;
   handles: Handles;
   noButtonMode?: boolean;
   addMode?: boolean;
 };
 
-export default function SeeAction({
+export default function See({
   book,
   handles,
   noButtonMode = false,
   addMode = false,
-}: SeeActionProps) {
+}: SeeProps) {
   const [open, setOpen] = useState(noButtonMode);
   useEffect(() => {
     if (noButtonMode && book) setOpen(true);
@@ -157,9 +154,9 @@ export default function SeeAction({
         <DialogFooter className="flex flex-row w-full justify-end">
           {!addMode && (
             <>
-              {book.link && <LinkAction bookLink={book.link} />}
-              <BookForm isEdit={true} book={book} onAdd={handles.onEdit} />
-              <DeleteAction
+              {book.link && <Link bookLink={book.link} />}
+              <Forms isEdit={true} book={book} onAdd={handles.onEdit} />
+              <Delete
                 book={book}
                 onDelete={handles.onDelete}
                 closeModal={() => setOpen(false)}
@@ -167,7 +164,7 @@ export default function SeeAction({
             </>
           )}
           {addMode && (
-            <BookForm
+            <Forms
               lightBg={true}
               isEdit={false}
               book={book}

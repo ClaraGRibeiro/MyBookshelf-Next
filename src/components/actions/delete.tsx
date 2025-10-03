@@ -1,6 +1,8 @@
 "use client";
 
-// components shadcn
+import { Book } from "@/types/books";
+import { Handles } from "@/types/handles";
+import { TrashIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -13,23 +15,14 @@ import {
   DialogTrigger,
 } from "../ui/dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-// icons radix
-import { TrashIcon } from "@radix-ui/react-icons";
-// components
-import { Book } from "@/types/books";
-import { Handles } from "@/types/handles";
 
-type DeleteActionProps = {
+type DeleteProps = {
   book: Book;
   onDelete: Handles["onDelete"];
   closeModal?: () => void;
 };
 
-export default function DeleteAction({
-  book,
-  onDelete,
-  closeModal,
-}: DeleteActionProps) {
+export default function Delete({ book, onDelete, closeModal }: DeleteProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>

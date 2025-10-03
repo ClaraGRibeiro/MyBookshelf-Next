@@ -3,16 +3,16 @@
 import { Book } from "@/types/books";
 import { DownloadIcon } from "@radix-ui/react-icons";
 import ExcelJS from "exceljs";
-import { saveAs } from "file-saver";
+import saveAs from "file-saver";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
-type DownloadProps = {
+type XlsxProps = {
   books: Book[];
 };
 
-export default function Download({ books }: DownloadProps) {
+export default function Download({ books }: XlsxProps) {
   const downloadBooksXLSX = async (books: Book[]) => {
     const booksList = books.sort((a, b) => {
       if (!a.title) return 1;

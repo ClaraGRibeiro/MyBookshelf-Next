@@ -1,23 +1,20 @@
 "use client";
 
-// components shadcn
-import { Button } from "../ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-// icons radix
-import { ShuffleIcon } from "@radix-ui/react-icons";
-// components
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
+import { ShuffleIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { toast } from "sonner";
-import SeeAction from "./seeAction";
+import { Button } from "../ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import See from "./see";
 
-type ShuffleActionProps = {
+type ShuffleProps = {
   books: Book[];
   handles: Handles;
 };
 
-export default function ShuffleAction({ books, handles }: ShuffleActionProps) {
+export default function Shuffle({ books, handles }: ShuffleProps) {
   const [chosenBookId, setChosenBookId] = useState<number | null>(null);
   const handleShuffleBook = () => {
     const unreadBooks = books.filter((b) => b?.status !== "Read");
@@ -52,7 +49,7 @@ export default function ShuffleAction({ books, handles }: ShuffleActionProps) {
         </Tooltip>
       </Button>
       {chosenBook && (
-        <SeeAction noButtonMode={true} book={chosenBook} handles={handles} />
+        <See noButtonMode={true} book={chosenBook} handles={handles} />
       )}
     </>
   );

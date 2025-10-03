@@ -1,6 +1,15 @@
 "use client";
 
-// components shadcn
+import { Book } from "@/types/books";
+import { Handles } from "@/types/handles";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { useEffect, useState } from "react";
+import Delete from "./actions/delete";
+import Filter from "./actions/filter";
+import Forms from "./actions/forms";
+import order from "./actions/order";
+import See from "./actions/see";
+import Sort from "./actions/sort";
 import {
   Table,
   TableBody,
@@ -10,29 +19,14 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-// components
-import { Book } from "@/types/books";
-import { Handles } from "@/types/handles";
-import { useEffect, useState } from "react";
-import DeleteAction from "./actions/deleteAction";
-import FilterBy from "./actions/filterBy";
-import orderBooks from "./actions/orderBooks";
-import SeeAction from "./actions/seeAction";
-import SortBy from "./actions/sortBy";
-import BookForm from "./actions/bookForm";
 
-type TableBooksProps = {
+type RowsProps = {
   books: Book[];
   handles: Handles;
   pinReadings: boolean;
 };
 
-export default function TableBook({
-  books,
-  handles,
-  pinReadings,
-}: TableBooksProps) {
+export default function Rows({ books, handles, pinReadings }: RowsProps) {
   const [clickedBookId, setClickedBookId] = useState<number | null>(null);
   const [filterBy, setFilterBy] = useState<
     Book["status"] | Book["ownership"] | Book["mode"] | null
@@ -49,7 +43,7 @@ export default function TableBook({
     }
   };
 
-  const sortedBooks: Book[] = orderBooks({
+  const sortedBooks: Book[] = order({
     books,
     sortBy,
     sortAsc,
@@ -113,32 +107,32 @@ export default function TableBook({
 
       <Table className="text-lg">
         <TableCaption>
-          <BookForm isEdit={false} onAdd={handles.onAdd} />
+          <Forms isEdit={false} onAdd={handles.onAdd} />
         </TableCaption>
         <TableHeader>
           <TableRow className="!text-base hover:!bg-transparent">
             <TableHead className="!table-cell">
-              <SortBy value={sortBy} onChange={handleSort} type={"title"} />
+              <Sort value={sortBy} onChange={handleSort} type={"title"} />
             </TableHead>
             <TableHead className="hidden md:table-cell">
-              <SortBy value={sortBy} onChange={handleSort} type={"author"} />
+              <Sort value={sortBy} onChange={handleSort} type={"author"} />
             </TableHead>
             <TableHead className="hidden md:table-cell">
-              <SortBy value={sortBy} onChange={handleSort} type={"publisher"} />
+              <Sort value={sortBy} onChange={handleSort} type={"publisher"} />
             </TableHead>
             <TableHead className="w-24 hidden md:table-cell">
               <div className="flex justify-center items-center">
-                <SortBy value={sortBy} onChange={handleSort} type={"pages"} />
+                <Sort value={sortBy} onChange={handleSort} type={"pages"} />
               </div>
             </TableHead>
             <TableHead className="w-24 hidden md:table-cell">
               <div className="flex justify-center items-center">
-                <SortBy value={sortBy} onChange={handleSort} type={"price"} />
+                <Sort value={sortBy} onChange={handleSort} type={"price"} />
               </div>
             </TableHead>
             <TableHead className="w-24 hidden md:table-cell">
               <div className="flex justify-center items-center">
-                <SortBy value={sortBy} onChange={handleSort} type={"status"} />
+                <Sort value={sortBy} onChange={handleSort} type={"status"} />
               </div>
             </TableHead>
             <TableHead colSpan={isMobile ? 1 : 3} className="!table-cell">
@@ -149,7 +143,7 @@ export default function TableBook({
                     : "flex justify-center items-center"
                 }
               >
-                <FilterBy value={filterBy} onChange={setFilterBy} />
+                <Filter value={filterBy} onChange={setFilterBy} />
               </div>
             </TableHead>
           </TableRow>
@@ -204,24 +198,24 @@ export default function TableBook({
               </TableCell>
               <TableCell className="w-8 hidden md:table-cell">
                 <div className="flex justify-center items-center">
-                  <SeeAction book={b} handles={handles} />
+                  <See book={b} handles={handles} />
                 </div>
               </TableCell>
               <TableCell className="w-8 hidden md:table-cell">
                 <div className="flex justify-center items-center">
-                  <BookForm isEdit={true} book={b} onEdit={handles.onEdit} />
+                  <Forms isEdit={true} book={b} onEdit={handles.onEdit} />
                 </div>
               </TableCell>
               <TableCell className="w-8 hidden md:table-cell">
                 <div className="flex justify-center items-center">
-                  <DeleteAction book={b} onDelete={handles.onDelete} />
+                  <Delete book={b} onDelete={handles.onDelete} />
                 </div>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
         {clickedBook && (
-          <SeeAction noButtonMode={true} book={clickedBook} handles={handles} />
+          <See noButtonMode={true} book={clickedBook} handles={handles} />
         )}
       </Table>
     </>

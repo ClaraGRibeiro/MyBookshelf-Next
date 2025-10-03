@@ -1,4 +1,5 @@
-// components shadcn
+import { Book } from "@/types/books";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -6,19 +7,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-// icons radix
-import { ChevronDownIcon } from "@radix-ui/react-icons";
-// components
-import { Book } from "@/types/books";
 
-type FilterByProps = {
+type FilterProps = {
   value: Book["status"] | Book["ownership"] | Book["mode"] | null;
   onChange: (
     key: Book["status"] | Book["ownership"] | Book["mode"] | null,
   ) => void;
 };
 
-export default function FilterBy({ value, onChange }: FilterByProps) {
+export default function Filter({ value, onChange }: FilterProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-2 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">

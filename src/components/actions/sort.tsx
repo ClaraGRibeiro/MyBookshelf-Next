@@ -1,15 +1,13 @@
-// components shadcn
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-// icons radix
-import { CaretSortIcon } from "@radix-ui/react-icons";
-// components
 import { Book } from "@/types/books";
-type SortByProps = {
+import { CaretSortIcon } from "@radix-ui/react-icons";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+
+type SortProps = {
   value: keyof Book;
   onChange: (key: keyof Book) => void;
   type: keyof Book;
 };
-export default function SortBy({ value, onChange, type }: SortByProps) {
+export default function Sort({ value, onChange, type }: SortProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>

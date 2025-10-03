@@ -1,14 +1,13 @@
 "use client";
 
-// components
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import BookForm from "./actions/bookForm";
-import Download from "./actions/download";
+import Forms from "./actions/forms";
+import { Isbn } from "./actions/isbn";
 import Search from "./actions/search";
-import ShuffleAction from "./actions/shuffleAction";
-import ThemeToggle from "./actions/themeToggle";
-import { IsbnSearch } from "./actions/IsbnSearch";
+import Shuffle from "./actions/shuffle";
+import Theme from "./actions/theme";
+import Xlsx from "./actions/xlsx";
 
 type HeaderProps = {
   books: Book[];
@@ -17,7 +16,7 @@ type HeaderProps = {
 
 export default function Header({ books, handles }: HeaderProps) {
   return (
-    <header className="h-fill flex-wrap dark:bg-[var(--medium-slate)] bg-[var(--dark-slate)] flex md:justify-between justify-center items-center py-3 px-12 gap-4">
+    <header className="h-fill flex-wrap dark:bg-[var(--medium-slate)] bg-[var(--dark-slate)] flex lg:justify-between justify-center lg:flex-row flex-col items-center py-3 px-12 gap-4">
       <a className="flex items-center gap-2" href="/">
         <img className="md:h-12 h-10" src="books.png" alt="Logo" />
         <h1 className="text-[var(--light-slate)] text-2xl md:text-xl font-bold">
@@ -26,11 +25,11 @@ export default function Header({ books, handles }: HeaderProps) {
       </a>
       <div className="flex flex-wrap-reverse justify-center items-center gap-4 md:gap-6">
         <div className="flex gap-6 items-center">
-          <BookForm isEdit={false} onAdd={handles.onAdd} />
-          <ShuffleAction books={books} handles={handles} />
-          <Download books={books} />
-          <ThemeToggle />
-          <IsbnSearch books={books} handles={handles} />
+          <Forms isEdit={false} onAdd={handles.onAdd} />
+          <Shuffle books={books} handles={handles} />
+          <Xlsx books={books} />
+          <Theme />
+          <Isbn books={books} handles={handles} />
         </div>
         <Search books={books} handles={handles} />
       </div>

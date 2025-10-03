@@ -1,9 +1,11 @@
 "use client";
 
+import { Book } from "@/types/books";
+import { Handles } from "@/types/handles";
+import { Pencil2Icon, PlusCircledIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-// shadcn/ui
-import { Button } from "@/components/ui/button";
+import { Button } from "../ui/button";
 import {
   Dialog,
   DialogClose,
@@ -13,29 +15,20 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+} from "../ui/dialog";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-// icons
-import { Pencil2Icon, PlusCircledIcon } from "@radix-ui/react-icons";
-// types
-import { Book } from "@/types/books";
-import { Handles } from "@/types/handles";
+} from "../ui/select";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
-type BookFormProps = {
+type FormsProps = {
   isEdit?: boolean;
   book?: Book;
   onAdd?: Handles["onAdd"];
@@ -44,14 +37,14 @@ type BookFormProps = {
   lightBg?: boolean;
 };
 
-export default function BookForm({
+export default function Forms({
   isEdit = false,
   book,
   onAdd,
   onEdit,
   large = false,
   lightBg = false,
-}: BookFormProps) {
+}: FormsProps) {
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<Book["mode"]>(book?.mode || "Physical");
   const [status, setStatus] = useState<Book["status"]>(

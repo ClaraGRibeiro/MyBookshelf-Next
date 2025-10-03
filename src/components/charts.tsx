@@ -1,6 +1,6 @@
 "use client";
 
-// components shadcn
+import { Book } from "@/types/books";
 import {
   Bar,
   BarChart,
@@ -13,8 +13,6 @@ import {
   XAxis,
 } from "recharts";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "./ui/chart";
-// components
-import { Book } from "@/types/books";
 
 type ChartsProps = {
   type: "pie" | "bar";
