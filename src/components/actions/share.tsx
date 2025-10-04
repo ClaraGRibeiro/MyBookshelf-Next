@@ -8,74 +8,21 @@ import { Button } from "../ui/button";
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
-type ShareProps = {
-  books: Book[];
-};
-
-export default function Share({ books }: ShareProps) {
-  const booksRead = books.filter((b) => b.status === "Read");
+export default function Share() {
   const handleShare = async () => {
-    const element = document.createElement("div");
-    element.classList.add(
-      "grid",
-      "p-6",
-      "grid-cols-6",
-      "gap-6",
-      "justify-items-center",
-      "content-start",
-      "bg-[#fff3e4]",
-    );
-
-    element.innerHTML = `
-    <h2 style="
-  grid-column: span 6;
-  font-size: 26pt;
-  font-weight: bold;
-  margin: 20px 0 10px;
-  color: #1d293d;
-  ">My Readings</h2>
-    ${booksRead
-      .map(
-        (b) => `
-      <div style="
-      display:flex;
-          flex-direction:column;
-          align-items:center;
-          text-align:center;
-        ">
-        <div style="
-        aspect-ratio:2/3;
-            width:100%;
-            overflow:hidden;
-            ">
-            <img
-              crossOrigin="anonymous"
-              src="${b.image}"
-              alt="${b.title}"
-              style="width:100%;height:100%;object-fit:cover;"
-              />
-              </div>
-              <span style="
-              font-size:10pt;
-            margin-top:6px;
-            color:#0f172b;
-          ">
-            ${b.title}
-          </span>
-          </div>
-          `,
-      )
-      .join("")}
-      
-`;
-
-    document.body.appendChild(element);
+    const element = document.getElementById("share-image");
+    if (!element) {
+      toast("❌ Error", {
+        description: "Could not find the element.",
+      });
+      return;
+    }
 
     const canvas = await html2canvas(element, {
       useCORS: true,
       allowTaint: true,
+      backgroundColor: "#fff3e4",
     });
-    document.body.removeChild(element);
 
     const dataUrl = canvas.toDataURL("image/png");
 
@@ -102,7 +49,7 @@ export default function Share({ books }: ShareProps) {
                 <Share1Icon className="!w-6 !h-6" />
               </span>
             </TooltipTrigger>
-            <TooltipContent>Share your readings</TooltipContent>
+            <TooltipContent>Share your current screen</TooltipContent>
           </Tooltip>
         </DialogTrigger>
       </Dialog>

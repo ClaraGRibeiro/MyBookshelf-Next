@@ -23,6 +23,7 @@ import {
 } from "./ui/dropdown-menu";
 import { Progress } from "./ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import Card from "./card";
 
 type DrawerChartsProps = {
   books: Book[];
@@ -38,13 +39,13 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
       setClickedBookId(null);
     }
   }, [open]);
-  const handleClicked = (b: Book | null) => {
-    if (b?.id === undefined) return;
-    if (b?.id === clickedBookId) {
+  const handleClicked = (bId: number | null) => {
+    if (bId === undefined) return;
+    if (bId === clickedBookId) {
       setClickedBookId(null);
-      setTimeout(() => setClickedBookId(b.id), 0);
+      setTimeout(() => setClickedBookId(bId), 0);
     } else {
-      setClickedBookId(b.id);
+      setClickedBookId(bId);
     }
   };
   const clickedBook = books.find((b) => b.id === clickedBookId) || null;
@@ -132,7 +133,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
     return bDate - aDate;
   };
   const lastReading = books.sort(compareBooks)[0];
-  const atualReading = books.filter((b) => b.status === "Reading")[0];
+  const currentReading = books.filter((b) => b.status === "Reading")[0];
   const nextReading = books.filter((b) => b.status === "Next")[0];
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -219,82 +220,55 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                 </div>
               </div>
 
-              <div className="flex justify-between items-center w-full mb-8">
+              <div className="flex justify-between items-start w-full mb-8">
                 <div className="flex flex-col justify-center items-center gap-2">
-                  <p className="text-center text-sm md:text-base">
-                    Last Reading
-                  </p>
-                  <div
-                    className={`aspect-[2/3] relative w-18 md:w-24 duration-200 ${
-                      lastReading
-                        ? "hover:scale-110 active:scale-110 cursor-pointer"
-                        : ""
-                    }`}
-                    onClick={() => handleClicked(lastReading)}
-                  >
-                    <img
-                      title={lastReading?.title ?? "NONE"}
-                      src={lastReading?.image ?? "nobookcover.png"}
-                      alt="Last Reading"
-                      className="w-full h-full object-cover"
-                    />
-
-                    {!lastReading?.image && (
-                      <span className="absolute transform top-[30%] left-[15%] text-center w-[75%] max-h-[90%] select-none text-md break-words font-bold text-[var(--light-slate)]">
+                  <p className="text-center text-sm md:text-base">Last</p>
+                  <div className="w-22 md:w-28 lg:w-36 bg-[var(--medium-slate)]">
+                    {lastReading ? (
+                      <Card
+                        key={lastReading.id}
+                        book={lastReading}
+                        onClick={handleClicked}
+                        drawerMode={true}
+                      />
+                    ) : (
+                      <p className="text-center text-[var(--light-slate)]">
                         NONE
-                      </span>
+                      </p>
                     )}
                   </div>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-2">
-                  <p className="text-center text-sm md:text-base">
-                    Atual Reading
-                  </p>
-                  <div
-                    className={`aspect-[2/3] relative w-18 md:w-24 duration-200 ${
-                      atualReading
-                        ? "hover:scale-110 active:scale-110 cursor-pointer"
-                        : ""
-                    }`}
-                    onClick={() => handleClicked(atualReading)}
-                  >
-                    <img
-                      title={atualReading?.title ?? "NONE"}
-                      src={atualReading?.image ?? "nobookcover.png"}
-                      alt="Atual Reading"
-                      className="w-full h-full object-cover"
-                    />
-
-                    {!atualReading?.image && (
-                      <span className="absolute transform top-[30%] left-[15%] text-center w-[75%] max-h-[90%] select-none text-md break-words font-bold text-[var(--light-slate)]">
+                  <p className="text-center text-sm md:text-base">Current</p>
+                  <div className="w-22 md:w-28 lg:w-36 bg-[var(--medium-slate)]">
+                    {currentReading ? (
+                      <Card
+                        key={currentReading.id}
+                        book={currentReading}
+                        onClick={handleClicked}
+                        drawerMode={true}
+                      />
+                    ) : (
+                      <p className="text-center text-[var(--light-slate)]">
                         NONE
-                      </span>
+                      </p>
                     )}
                   </div>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-2">
-                  <p className="text-center text-sm md:text-base">
-                    Next Reading
-                  </p>
-                  <div
-                    className={`aspect-[2/3] relative w-18 md:w-24 duration-200 ${
-                      nextReading
-                        ? "hover:scale-110 active:scale-110 cursor-pointer"
-                        : ""
-                    }`}
-                    onClick={() => handleClicked(nextReading)}
-                  >
-                    <img
-                      title={nextReading?.title ?? "NONE"}
-                      src={nextReading?.image ?? "nobookcover.png"}
-                      alt="Next Reading"
-                      className="w-full h-full object-cover"
-                    />
-
-                    {!nextReading?.image && (
-                      <span className="absolute transform top-[30%] left-[15%] text-center w-[75%] max-h-[90%] select-none text-md break-words font-bold text-[var(--light-slate)]">
+                  <p className="text-center text-sm md:text-base">Next</p>
+                  <div className="w-22 md:w-28 lg:w-36 bg-[var(--medium-slate)]">
+                    {nextReading ? (
+                      <Card
+                        key={nextReading.id}
+                        book={nextReading}
+                        onClick={handleClicked}
+                        drawerMode={true}
+                      />
+                    ) : (
+                      <p className="text-center text-[var(--light-slate)]">
                         NONE
-                      </span>
+                      </p>
                     )}
                   </div>
                 </div>

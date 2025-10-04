@@ -25,7 +25,10 @@ export default function Bookshelf({ books, handles }: BookShelfProps) {
   const [pinReadings, setPinReadings] = useState(false);
   const [grid, setGrid] = useState(true);
   return (
-    <main className="px-12 pt-16 py-24 text-[var(--dark-slate)]">
+    <main
+      id="share-image"
+      className="px-12 pt-16 py-24 text-[var(--dark-slate)]"
+    >
       <div className="fixed bottom-14 right-2 flex flex-col gap-4 items-center justify-center">
         <Button
           className="opacity-50 hover:opacity-100 active:opacity-100 z-2 cursor-pointer !duration-200 p-0 hover:bg-transparent active:bg-transparent"
@@ -69,7 +72,6 @@ export default function Bookshelf({ books, handles }: BookShelfProps) {
           <DrawerCharts books={books} handles={handles} />
         )}
       </div>
-
       <h1 className="text-center text-3xl mb-12 font-bold">My BookShelf</h1>
 
       {grid ? (

@@ -104,31 +104,29 @@ export default function Home() {
   const handles = allHandles();
 
   return (
-    <>
-      <div
-        className={`bg-[var(--bg-sepia)] min-h-dvh relative ${
-          loading ? "overflow-hidden h-dvh" : ""
-        }`}
-      >
-        {loading && (
-          <div className="h-dvh fixed w-full bg-[var(--dark-slate)] flex flex-col justify-center items-center gap-6 z-99">
-            <div className="flex-wrap flex justify-center items-center gap-6">
-              <img className="h-24" src="books.png" alt="Logo" />
-              <h1 className="text-[var(--light-slate)] text-4xl font-bold">
-                NextBook
-              </h1>
-              <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                <span className="w-3 h-3 bg-[var(--light-blue)] rounded animate-bounce delay-0"></span>
-                <span className="w-3 h-3 bg-[var(--light-red)] rounded animate-bounce delay-150"></span>
-                <span className="w-3 h-3 bg-[var(--light-yellow)] rounded animate-bounce delay-300"></span>
-              </div>
+    <div
+      className={`bg-[var(--bg-sepia)] min-h-dvh relative ${
+        loading ? "overflow-hidden h-dvh" : ""
+      }`}
+    >
+      {loading && (
+        <div className="h-dvh fixed w-full bg-[var(--dark-slate)] flex flex-col justify-center items-center gap-6 z-99">
+          <div className="flex-wrap flex justify-center items-center gap-6">
+            <img className="h-24" src="books.png" alt="Logo" />
+            <h1 className="text-[var(--light-slate)] text-4xl font-bold">
+              NextBook
+            </h1>
+            <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              <span className="w-3 h-3 bg-[var(--light-blue)] rounded animate-bounce delay-0"></span>
+              <span className="w-3 h-3 bg-[var(--light-red)] rounded animate-bounce delay-150"></span>
+              <span className="w-3 h-3 bg-[var(--light-yellow)] rounded animate-bounce delay-300"></span>
             </div>
           </div>
-        )}
-        <Header books={books} handles={handles} />
-        <Bookshelf books={books} handles={handles} />
-        <Footer />
-      </div>
-    </>
+        </div>
+      )}
+      <Header books={books} handles={handles} />
+      <Bookshelf books={books} handles={handles} />
+      <Footer />
+    </div>
   );
 }
