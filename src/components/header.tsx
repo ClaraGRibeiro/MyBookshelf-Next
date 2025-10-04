@@ -8,6 +8,7 @@ import Search from "./actions/search";
 import Shuffle from "./actions/shuffle";
 import Theme from "./actions/theme";
 import Xlsx from "./actions/xlsx";
+import Share from "./actions/share";
 
 type HeaderProps = {
   books: Book[];
@@ -23,10 +24,11 @@ export default function Header({ books, handles }: HeaderProps) {
           NextBook
         </h1>
       </a>
-      <div className="flex flex-wrap-reverse justify-center items-center gap-4 md:gap-6">
+      <div className="flex flex-wrap-reverse justify-center items-center gap-6 lg:flex-row flex-col">
         <div className="flex gap-6 items-center">
           <Forms isEdit={false} onAdd={handles.onAdd} />
           <Shuffle books={books} handles={handles} />
+          <Share books={books} />
           <Xlsx books={books} />
           <Theme />
           <Isbn books={books} handles={handles} />
