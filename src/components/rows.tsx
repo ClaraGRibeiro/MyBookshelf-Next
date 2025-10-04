@@ -101,10 +101,15 @@ export default function Rows({ books, handles, pinReadings }: RowsProps) {
 
   return (
     <>
-      <p className="text-center mb-2 font-light text-[var(--medium-slate)]">
-        {sortedBooks.length} books [{filterBy ?? "All"}]
-      </p>
-
+      <div className="flex items-center justify-center md:flex-row flex-col gap-2 md:gap-12 mb-2">
+        <p className="text-center font-light text-[var(--medium-slate)]">
+          Sort by {sortBy.toUpperCase()} [{sortAsc ? "asc" : "desc"}]
+        </p>
+        <p className="text-center font-light text-[var(--medium-slate)]">
+          Filter by {filterBy ? filterBy!.toUpperCase() : "ALL"} [
+          {sortedBooks.length} books]
+        </p>
+      </div>
       <Table className="text-lg">
         <TableCaption>
           <Forms isEdit={false} onAdd={handles.onAdd} />

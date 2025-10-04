@@ -24,16 +24,18 @@ export default function Card({ book, onClick, drawerMode = false }: Props) {
       }
       onClick={() => onClick(book.id)}
     >
-      <div
-        className="w-full flex justify-between gap-4 flex-col items-center text-center text-[var(--dark-slate)] absolute left-0 top-0"
-        style={{ pointerEvents: "none" }}
-      >
-        <span>[{book.title}]</span>
-        <br />
-        <span className="text-[var(--medium-slate)]">
-          Could not load book cover image!
-        </span>
-      </div>
+      {!drawerMode && (
+        <div
+          className="w-full flex justify-between gap-4 flex-col items-center text-center text-[var(--dark-slate)] absolute left-0 top-0"
+          style={{ pointerEvents: "none" }}
+        >
+          <span>[{book.title}]</span>
+          <br />
+          <span className="text-[var(--medium-slate)]">
+            Could not load book cover image!
+          </span>
+        </div>
+      )}
       <img
         className="w-full h-full object-cover relative"
         src={book.image || "/nobookcover.png"}
