@@ -2,7 +2,6 @@
 
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import { BookmarkFilledIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import Filter from "./actions/filter";
 import Forms from "./actions/forms";
@@ -52,16 +51,7 @@ export default function Grid({ books, handles, pinReadings }: GridProps) {
 
   return (
     <>
-      <div className="flex items-center justify-center md:flex-row flex-col gap-2 md:gap-12 mb-2">
-        <p className="text-center font-light text-[var(--medium-slate)]">
-          Sort by {sortBy.toUpperCase()} [{sortAsc ? "asc" : "desc"}]
-        </p>
-        <p className="text-center font-light text-[var(--medium-slate)]">
-          Filter by {filterBy ? filterBy!.toUpperCase() : "ALL"} [
-          {sortedBooks.length} books]
-        </p>
-      </div>
-      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-4">
+      <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-2">
         <Sort value={sortBy} onChange={handleSort} type={"title"} />
         <Sort value={sortBy} onChange={handleSort} type={"author"} />
         <Sort value={sortBy} onChange={handleSort} type={"publisher"} />
@@ -71,6 +61,15 @@ export default function Grid({ books, handles, pinReadings }: GridProps) {
         <Sort value={sortBy} onChange={handleSort} type={"gotDate"} />
         <Sort value={sortBy} onChange={handleSort} type={"readDate"} />
         <Filter value={filterBy} onChange={setFilterBy} />
+      </div>
+      <div className="flex items-center justify-center md:flex-row flex-col gap-2 md:gap-12 mb-6">
+        <p className="text-center font-light text-[var(--medium-slate)]">
+          Sort by {sortBy.toUpperCase()} [{sortAsc ? "asc" : "desc"}]
+        </p>
+        <p className="text-center font-light text-[var(--medium-slate)]">
+          Filter by {filterBy ? filterBy!.toUpperCase() : "ALL"} [
+          {sortedBooks.length} books]
+        </p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-items-center content-start">
         {sortedBooks.map((b) => (

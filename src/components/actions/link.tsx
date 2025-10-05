@@ -1,9 +1,9 @@
 "use client";
 
 import { Book } from "@/types/books";
-import { OpenInNewWindowIcon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { ExternalLink } from "lucide-react";
 
 type LinkProps = {
   bookLink: Book["link"];
@@ -20,7 +20,7 @@ export default function Link({ bookLink }: LinkProps) {
             rel="noopener noreferrer"
             className="btn-content"
           >
-            <OpenInNewWindowIcon className="!w-5 !h-5" />
+            <ExternalLink strokeWidth={1.5} className="md-icon" />
           </a>
         </TooltipTrigger>
         <TooltipContent>Open purchase link</TooltipContent>

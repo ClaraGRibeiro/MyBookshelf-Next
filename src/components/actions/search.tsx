@@ -2,7 +2,7 @@
 
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import { Cross2Icon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
+import { Search as SearchIcon, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Input } from "../ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
@@ -73,10 +73,11 @@ export default function Search({ books, handles }: SearchProps) {
         className="text-[var(--light-slate)] relative flex items-center"
         ref={containerRef}
       >
-        <MagnifyingGlassIcon className="absolute left-3 !w-5 !h-5" />
+        <SearchIcon strokeWidth={1.5} className="absolute left-3 md-icon" />
         {search.length > 0 && ( // if there is text typed, show an X button to clear the search
-          <Cross2Icon
-            className="absolute right-3 z-1 cursor-pointer !w-5 !h-5"
+          <X
+            strokeWidth={1.5}
+            className="absolute right-3 z-1 cursor-pointer md-icon"
             onClick={() => {
               setSearch("");
               setSelectedBookId(null);

@@ -1,5 +1,5 @@
 import { Book } from "@/types/books";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,7 +20,10 @@ export default function Filter({ value, onChange }: FilterProps) {
     <DropdownMenu>
       <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-2 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">
         <span>Filter by</span>
-        <ChevronDownIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
+        <ChevronDown
+          strokeWidth={1.5}
+          className="sm-icon inline group-hover:scale-130 group-active:scale-130 duration-200"
+        />
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuItem onSelect={() => onChange("Unread")}>

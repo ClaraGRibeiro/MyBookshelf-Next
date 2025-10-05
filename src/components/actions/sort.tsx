@@ -1,5 +1,5 @@
 import { Book } from "@/types/books";
-import { CaretSortIcon } from "@radix-ui/react-icons";
+import { ChevronsUpDown } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 type SortProps = {
@@ -16,7 +16,10 @@ export default function Sort({ value, onChange, type }: SortProps) {
           className="cursor-pointer !duration-200 group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-36 flex items-center flex-row gap-1 w-fit"
         >
           {type.charAt(0).toUpperCase() + type.slice(1)}
-          <CaretSortIcon className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
+          <ChevronsUpDown
+            strokeWidth={1.5}
+            className="sm-icon inline group-hover:scale-130 group-active:scale-130 duration-200"
+          />
         </span>
       </TooltipTrigger>
       <TooltipContent>

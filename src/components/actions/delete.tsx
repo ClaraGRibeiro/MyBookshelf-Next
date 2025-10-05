@@ -2,7 +2,7 @@
 
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import { TrashIcon } from "@radix-ui/react-icons";
+import { Trash } from "lucide-react";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -33,7 +33,7 @@ export default function Delete({ book, onDelete, closeModal }: DeleteProps) {
           <Tooltip>
             <TooltipTrigger asChild>
               <span className="text-[var(--dark-red)] group-hover:text-[var(--light-slate)] group-active:text-[var(--light-slate)]">
-                <TrashIcon className="!w-5 !h-5" />
+                <Trash strokeWidth={1.5} className="md-icon" />
               </span>
             </TooltipTrigger>
             <TooltipContent>Delete '{book.title}'</TooltipContent>

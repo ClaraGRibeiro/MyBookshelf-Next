@@ -2,7 +2,6 @@
 
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import { EyeOpenIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import {
@@ -18,6 +17,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import Delete from "./delete";
 import Forms from "./forms";
 import Link from "./link";
+import { Eye } from "lucide-react";
 
 type SeeProps = {
   book: Book;
@@ -44,7 +44,7 @@ export default function See({
             <Tooltip>
               <TooltipTrigger asChild>
                 <span className="btn-content">
-                  <EyeOpenIcon className="!w-5 !h-5" />
+                  <Eye strokeWidth={1.5} className="md-icon" />
                 </span>
               </TooltipTrigger>
               <TooltipContent>See '{book.title}'</TooltipContent>
@@ -155,7 +155,7 @@ export default function See({
           {!addMode && (
             <>
               {book.link && <Link bookLink={book.link} />}
-              <Forms isEdit={true} book={book} onAdd={handles.onEdit} />
+              <Forms isEdit={true} book={book} onEdit={handles.onEdit} />
               <Delete
                 book={book}
                 onDelete={handles.onDelete}

@@ -2,7 +2,7 @@
 
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import { ShuffleIcon } from "@radix-ui/react-icons";
+import { Dices } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
@@ -42,7 +42,7 @@ export default function Shuffle({ books, handles }: ShuffleProps) {
         <Tooltip>
           <TooltipTrigger asChild>
             <span className="!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)] btn-content">
-              <ShuffleIcon className="cursor-pointer !w-6 !h-6" />
+              <Dices strokeWidth={1.5} className="cursor-pointer md-icon" />
             </span>
           </TooltipTrigger>
           <TooltipContent>Randomly choose the next book</TooltipContent>

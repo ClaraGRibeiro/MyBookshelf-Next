@@ -1,8 +1,7 @@
 "use client";
 
-import { Book } from "@/types/books";
-import { Share1Icon } from "@radix-ui/react-icons";
 import html2canvas from "html2canvas-pro";
+import { Send } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
 import { Dialog, DialogTrigger } from "../ui/dialog";
@@ -28,7 +27,7 @@ export default function Share() {
 
     const link = document.createElement("a");
     link.href = dataUrl;
-    link.download = "my-readings.png";
+    link.download = "nextbook-mybookshelf.png";
     link.click();
     toast("✅ Success", {
       description: "Your book collection image was saved!",
@@ -46,7 +45,7 @@ export default function Share() {
           <Tooltip>
             <TooltipTrigger asChild>
               <span className="!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)] btn-content">
-                <Share1Icon className="!w-6 !h-6" />
+                <Send strokeWidth={1.5} className="md-icon" />
               </span>
             </TooltipTrigger>
             <TooltipContent>Share your current screen</TooltipContent>

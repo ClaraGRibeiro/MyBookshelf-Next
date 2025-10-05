@@ -2,7 +2,7 @@
 
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import { IdCardIcon } from "@radix-ui/react-icons";
+import { ScanBarcode } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
@@ -51,7 +51,10 @@ export function Isbn({ books, handles }: IsbnProps) {
           <Tooltip>
             <TooltipTrigger asChild>
               <span className="!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)] btn-content">
-                <IdCardIcon className={"!w-6 !h-6 cursor-pointer"} />
+                <ScanBarcode
+                  strokeWidth={1.5}
+                  className={"md-icon cursor-pointer"}
+                />
               </span>
             </TooltipTrigger>
             <TooltipContent>Search online by ISBN</TooltipContent>

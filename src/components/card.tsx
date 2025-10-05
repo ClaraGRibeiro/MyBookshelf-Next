@@ -1,8 +1,7 @@
 "use client";
 
-import { useState } from "react";
 import { Book } from "@/types/books";
-import { BookmarkFilledIcon } from "@radix-ui/react-icons";
+import { Bookmark } from "lucide-react";
 
 type Props = {
   book: Book;
@@ -26,7 +25,7 @@ export default function Card({ book, onClick, drawerMode = false }: Props) {
     >
       {!drawerMode && (
         <div
-          className="w-full flex justify-between gap-4 flex-col items-center text-center text-[var(--dark-slate)] absolute left-0 top-0"
+          className="w-full flex text-xs flex-col items-center text-center text-[var(--dark-slate)] absolute left-0 top-0"
           style={{ pointerEvents: "none" }}
         >
           <span>[{book.title}]</span>
@@ -50,18 +49,18 @@ export default function Card({ book, onClick, drawerMode = false }: Props) {
             </span>
           )}
 
-          <BookmarkFilledIcon
+          <Bookmark
+            strokeWidth={1.5}
             className={
               (book.status == "Read"
-                ? "text-[var(--light-blue)] dark:!text-[var(--dark-blue)] dark:!stroke-[var(--light-blue)] stroke-[var(--dark-blue)]"
+                ? "fill-[var(--light-blue)] dark:!fill-[var(--dark-blue)] dark:!stroke-[var(--light-blue)] stroke-[var(--dark-blue)]"
                 : book.status == "Unread"
-                  ? "text-[var(--light-red)] dark:!text-[var(--dark-red)] dark:!stroke-[var(--light-red)] stroke-[var(--dark-red)]"
+                  ? "fill-[var(--light-red)] dark:!fill-[var(--dark-red)] dark:!stroke-[var(--light-red)] stroke-[var(--dark-red)]"
                   : book.status == "Reading"
-                    ? "text-[var(--light-yellow)] dark:!text-[var(--dark-yellow)] dark:!stroke-[var(--light-yellow)] stroke-[var(--dark-yellow)]"
-                    : "text-[var(--medium-slate)] dark:!text-[var(-medium-slate)]") +
+                    ? "fill-[var(--light-yellow)] dark:!fill-[var(--dark-yellow)] dark:!stroke-[var(--light-yellow)] stroke-[var(--dark-yellow)]"
+                    : "fill-[var(--medium-slate)] dark:!fill-[var(--medium-slate)]") +
               " absolute top-0 right-0 p-0 m-0 duration-200 h-8 w-8 group-hover:opacity-100 group-active:opacity-100"
             }
-            strokeWidth={0.5}
           />
 
           {book.mode === "Digital" && (

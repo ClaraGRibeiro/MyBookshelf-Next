@@ -26,11 +26,11 @@ export default function Header({ books, handles }: HeaderProps) {
       </a>
       <div className="flex justify-center items-center gap-4 lg:flex-row flex-col">
         <div className="flex gap-4 items-center">
-          <Isbn books={books} handles={handles} />
           <Shuffle books={books} handles={handles} />
           <Xlsx books={books} />
           <Share />
           <Theme />
+          <Isbn books={books} handles={handles} />
         </div>
         <div className="flex gap-4 items-center">
           <Search books={books} handles={handles} />

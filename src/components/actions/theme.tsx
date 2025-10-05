@@ -1,9 +1,9 @@
 "use client";
 
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
+import { Moon, Sun } from "lucide-react";
 import { useState } from "react";
 import { Button } from "../ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
 export default function Theme() {
   const [isDark, setIsDark] = useState(false);
@@ -26,9 +26,9 @@ export default function Theme() {
         <TooltipTrigger asChild>
           <span className="!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)] btn-content">
             {isDark ? (
-              <SunIcon className="!w-6 !h-6 cursor-pointer" />
+              <Sun strokeWidth={1.5} className="md-icon cursor-pointer" />
             ) : (
-              <MoonIcon className="!w-6 !h-6 cursor-pointer" />
+              <Moon strokeWidth={1.5} className="md-icon cursor-pointer" />
             )}
           </span>
         </TooltipTrigger>

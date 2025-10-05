@@ -142,6 +142,17 @@
   .btn-content {
     @apply text-[var(--dark-slate)] group-hover:text-[var(--light-slate)] group-active:text-[var(--light-slate)] flex items-center;
   }
+  .sm-icon {
+    @apply !w-3 !h-3;
+  }
+
+  .md-icon {
+    @apply !w-6 !h-6;
+  }
+
+  .lg-icon {
+    @apply !w-12 !h-12;
+  }
 
   * {
     @apply border-border outline-ring/50;

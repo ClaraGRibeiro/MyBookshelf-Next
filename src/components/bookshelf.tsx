@@ -2,12 +2,7 @@
 
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import {
-  DrawingPinFilledIcon,
-  DrawingPinIcon,
-  ListBulletIcon,
-  ViewGridIcon,
-} from "@radix-ui/react-icons";
+import { Grid2X2, Pin, PinOff, TableOfContents } from "lucide-react";
 import { useState } from "react";
 import { Toaster } from "sonner";
 import DrawerCharts from "./drawerCharts";
@@ -39,9 +34,9 @@ export default function Bookshelf({ books, handles }: BookShelfProps) {
             <TooltipTrigger asChild>
               <span>
                 {!grid ? (
-                  <ViewGridIcon className="!w-5 !h-5" />
+                  <Grid2X2 strokeWidth={1.5} className="md-icon" />
                 ) : (
-                  <ListBulletIcon className="!w-5 !h-5" />
+                  <TableOfContents strokeWidth={1.5} className="md-icon" />
                 )}
               </span>
             </TooltipTrigger>
@@ -58,9 +53,9 @@ export default function Bookshelf({ books, handles }: BookShelfProps) {
             <TooltipTrigger asChild>
               <span>
                 {pinReadings ? (
-                  <DrawingPinFilledIcon className="!w-6 !h-6" />
+                  <PinOff strokeWidth={1.5} className="md-icon" />
                 ) : (
-                  <DrawingPinIcon className="!w-6 !h-6" />
+                  <Pin strokeWidth={1.5} className="md-icon" />
                 )}
               </span>
             </TooltipTrigger>

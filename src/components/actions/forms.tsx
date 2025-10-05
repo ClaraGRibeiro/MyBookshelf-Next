@@ -2,7 +2,6 @@
 
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
-import { Pencil2Icon, PlusCircledIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Button } from "../ui/button";
@@ -27,6 +26,7 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { Plus, SquarePen } from "lucide-react";
 
 type FormsProps = {
   isEdit?: boolean;
@@ -171,14 +171,9 @@ export default function Forms({
                 <span
                   className={`${!lightBg && !isEdit ? " !text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] !group-active:text-[var(--dark-slate)] " : ""} + ' btn-content '`}
                 >
-                  <Pencil2Icon
-                    className={
-                      large && !isEdit
-                        ? "!w-12 !h-12"
-                        : !large && !isEdit
-                          ? "!w-6 !h-6"
-                          : "!w-5 !h-5"
-                    }
+                  <SquarePen
+                    strokeWidth={1.5}
+                    className={large && !isEdit ? "lg-icon" : "md-icon"}
                   />
                 </span>
               ) : (
@@ -188,8 +183,9 @@ export default function Forms({
             btn-content
           `}
                 >
-                  <PlusCircledIcon
-                    className={large ? "!w-12 !h-12" : "!w-6 !h-6"}
+                  <Plus
+                    strokeWidth={1.5}
+                    className={large ? "lg-icon" : "md-icon"}
                   />
                 </span>
               )}
@@ -385,9 +381,11 @@ export default function Forms({
 
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button className="cursor-pointer" variant="outline">
+                Cancel
+              </Button>
             </DialogClose>
-            <Button type="submit">
+            <Button className="cursor-pointer" type="submit">
               {isEdit ? "Save changes" : "Add book"}
             </Button>
           </DialogFooter>
