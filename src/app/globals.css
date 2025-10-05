@@ -154,6 +154,10 @@
     @apply !w-12 !h-12;
   }
 
+  .special-colors {
+    @apply bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }

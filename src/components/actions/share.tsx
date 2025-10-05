@@ -7,9 +7,14 @@ import { Button } from "../ui/button";
 import { Dialog, DialogTrigger } from "../ui/dialog";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 
-export default function Share() {
+type ShareProps = {
+  screen: string;
+  lightBg?: boolean;
+};
+
+export default function Share({ screen, lightBg = false }: ShareProps) {
   const handleShare = async () => {
-    const element = document.getElementById("share-image");
+    const element = document.getElementById(screen);
     if (!element) {
       toast("❌ Error", {
         description: "Could not find the element.",
@@ -37,14 +42,25 @@ export default function Share() {
   return (
     <Button
       variant="own"
-      className="hover:!bg-[var(--light-slate)] active:!bg-[var(--light-slate)]"
+      className={
+        !lightBg
+          ? "hover:!bg-[var(--light-slate)] active:!bg-[var(--light-slate)]"
+          : "hover:!bg-[var(--dark-slate)] active:!bg-[var(--dark-slate)]"
+      }
       onClick={handleShare}
     >
       <Dialog>
         <DialogTrigger asChild>
           <Tooltip>
             <TooltipTrigger asChild>
-              <span className="!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)] btn-content">
+              <span
+                className={
+                  !lightBg
+                    ? "!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)]"
+                    : "!text-[var(--dark-slate)] group-hover:!text-[var(--light-slate)] group-active:!text-[var(--light-slate)]" +
+                      " btn-content"
+                }
+              >
                 <Send strokeWidth={1.5} className="md-icon" />
               </span>
             </TooltipTrigger>

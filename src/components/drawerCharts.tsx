@@ -24,6 +24,7 @@ import {
 } from "./ui/dropdown-menu";
 import { Progress } from "./ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import Share from "./actions/share";
 
 type DrawerChartsProps = {
   books: Book[];
@@ -154,38 +155,44 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
       </DrawerTrigger>
       <DrawerContent>
         <div className="mx-auto h-[90%] w-full overflow-y-auto pb-12">
-          <DrawerHeader>
-            <DrawerTitle>My BookShelf Stats</DrawerTitle>
-            <DrawerDescription>
-              Track reading progress: month by month, year by year.
-            </DrawerDescription>
-          </DrawerHeader>
-          <div className="flex flex-col items-center justify-center my-8">
+          <div className="flex flex-wrap justify-center items-center">
+            <DrawerHeader>
+              <DrawerTitle>My BookShelf Stats</DrawerTitle>
+              <DrawerDescription>
+                Track reading progress: month by month, year by year.
+              </DrawerDescription>
+            </DrawerHeader>
+            <Share screen="charts" lightBg={true} />
+          </div>
+          <div
+            id="charts"
+            className="flex flex-col items-center justify-center py-8"
+          >
             <div className="flex flex-col justify-center items-center gap-12 max-w-[70%] md:max-w-120 ">
               <div className="grid grid-cols-2 md:grid-cols-4 md justify-items-center items-center gap-12">
                 <p className="text-center">
                   total of <br />
-                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                  <span className="font-bold text-3xl special-colors">
                     {books.length}
                   </span>
                   <br /> books
                 </p>
                 <p className="text-center">
-                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                  <span className="font-bold text-3xl special-colors">
                     {totalPagesRead}
                   </span>
                   <br /> pages <br /> read
                 </p>
                 <p className="text-center">
                   about <br />
-                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                  <span className="font-bold text-3xl special-colors">
                     {timeReading}h
                   </span>
                   <br /> reading
                 </p>
                 <p className="text-center">
                   R$ <br />
-                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                  <span className="font-bold text-3xl special-colors">
                     {totalSpent}
                   </span>
                   <br /> total
@@ -316,7 +323,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
               <div className="flex justify-center items-center flex-wrap gap-12">
                 <p className="text-center">
                   Best Year <br />
-                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                  <span className="font-bold text-3xl special-colors">
                     {bestYear.name}
                   </span>
                   <br /> ({bestYear.value}{" "}
@@ -324,7 +331,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                 </p>
                 <p className="text-center">
                   Best Month <br />
-                  <span className="font-bold text-3xl bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent">
+                  <span className="font-bold text-3xl special-colors">
                     {bestMonth.name}
                   </span>
                   <br /> ({bestMonth.value}{" "}
