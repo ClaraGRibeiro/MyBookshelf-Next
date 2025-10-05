@@ -12,7 +12,7 @@ const buttonVariants = cva(
         default:
           "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90",
         destructive:
-          "p-2 cursor-pointer bg-transparent hover:bg-[var(--dark-red)] active:bg-[var(--dark-red)] group !duration-400",
+          "p-2 cursor-pointer bg-transparent hover:bg-(--dark-red) active:bg-(--dark-red) group !duration-400",
         outline:
           "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50",
         secondary:
@@ -20,7 +20,7 @@ const buttonVariants = cva(
         ghost:
           "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50",
         link: "text-primary underline-offset-4 hover:underline",
-        own: "!p-2 cursor-pointer !text-[var(--dark-slate)] hover:bg-[var(--dark-slate)] active:bg-[var(--dark-slate)] group transitio !duration-400",
+        own: "!p-2 cursor-pointer !text-(--dark-slate) hover:bg-(--dark-slate) active:bg-(--dark-slate) group transitio !duration-400",
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",

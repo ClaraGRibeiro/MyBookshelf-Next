@@ -15,9 +15,9 @@ export default function Card({ book, onClick, drawerMode = false }: Props) {
       key={book.id}
       className={
         (book.status === "Reading" && !drawerMode
-          ? "border-4 border-[var(--light-yellow)] hover:border-[var(--dark-yellow)] active:border-[var(--dark-yellow)] "
+          ? "border-4 border-(--light-yellow) hover:border-(--dark-yellow) active:border-(--dark-yellow) "
           : book.status === "Next" && !drawerMode
-            ? "border-4 border-[var(--medium-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] "
+            ? "border-4 border-(--medium-slate) hover:border-(--dark-slate) active:border-(--dark-slate) "
             : "") +
         "aspect-[2/3] relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group"
       }
@@ -25,12 +25,12 @@ export default function Card({ book, onClick, drawerMode = false }: Props) {
     >
       {!drawerMode && (
         <div
-          className="w-full flex text-xs flex-col items-center text-center text-[var(--dark-slate)] absolute left-0 top-0"
+          className="w-full flex text-xs flex-col items-center text-center text-(--dark-slate) absolute left-0 top-0"
           style={{ pointerEvents: "none" }}
         >
           <span>[{book.title}]</span>
           <br />
-          <span className="text-[var(--medium-slate)]">
+          <span className="text-(--medium-slate)">
             Could not load book cover image!
           </span>
         </div>
@@ -44,7 +44,7 @@ export default function Card({ book, onClick, drawerMode = false }: Props) {
       {!drawerMode && (
         <>
           {!book.image && (
-            <span className="absolute transform top-[20%] lg:top-[10%] left-[15%] text-center w-[75%] max-h-[90%] select-none text-xl lg:text-base break-words text-[var(--light-slate)]">
+            <span className="absolute transform top-[20%] lg:top-[10%] left-[15%] text-center w-[75%] max-h-[90%] select-none text-xl lg:text-base break-words text-(--light-slate)">
               {book.title}
             </span>
           )}
@@ -53,24 +53,24 @@ export default function Card({ book, onClick, drawerMode = false }: Props) {
             strokeWidth={1.5}
             className={
               (book.status == "Read"
-                ? "fill-[var(--light-blue)] dark:!fill-[var(--dark-blue)] dark:!stroke-[var(--light-blue)] stroke-[var(--dark-blue)]"
+                ? "fill-(--light-blue) dark:!fill-(--dark-blue) dark:!stroke-(--light-blue) stroke-(--dark-blue)"
                 : book.status == "Unread"
-                  ? "fill-[var(--light-red)] dark:!fill-[var(--dark-red)] dark:!stroke-[var(--light-red)] stroke-[var(--dark-red)]"
+                  ? "fill-(--light-red) dark:!fill-(--dark-red) dark:!stroke-(--light-red) stroke-(--dark-red)"
                   : book.status == "Reading"
-                    ? "fill-[var(--light-yellow)] dark:!fill-[var(--dark-yellow)] dark:!stroke-[var(--light-yellow)] stroke-[var(--dark-yellow)]"
-                    : "fill-[var(--medium-slate)] dark:!fill-[var(--medium-slate)]") +
+                    ? "fill-(--light-yellow) dark:!fill-(--dark-yellow) dark:!stroke-(--light-yellow) stroke-(--dark-yellow)"
+                    : "fill-(--medium-slate) dark:!fill-(--medium-slate)") +
               " absolute top-0 right-0 p-0 m-0 duration-200 h-8 w-8 group-hover:opacity-100 group-active:opacity-100"
             }
           />
 
           {book.mode === "Digital" && (
-            <span className="absolute left-0 bottom-0 text-center select-none text-base font-semibold text-[var(--light-slate)] bg-[var(--medium-slate)] group-hover:text-[var(--dark-slate)] group-active:text-[var(--dark-slate)] group-hover:bg-[var(--light-slate)] group-active:bg-[var(--light-slate)] px-2 py-1 rounded-tr-lg !duration-200">
+            <span className="absolute left-0 bottom-0 text-center select-none text-base font-semibold text-(--light-slate) bg-(--medium-slate) group-hover:text-(--dark-slate) group-active:text-(--dark-slate) group-hover:bg-(--light-slate) group-active:bg-(--light-slate) px-2 py-1 rounded-tr-lg !duration-200">
               {book.mode}
             </span>
           )}
 
           {book.ownership === "Borrowed" && (
-            <span className="absolute left-0 bottom-0 text-center select-none text-base font-semibold text-[var(--light-slate)] bg-[var(--medium-slate)] group-hover:text-[var(--dark-slate)] group-active:text-[var(--dark-slate)] group-hover:bg-[var(--light-slate)] group-active:bg-[var(--light-slate)] px-2 py-1 rounded-tr-lg !duration-200">
+            <span className="absolute left-0 bottom-0 text-center select-none text-base font-semibold text-(--light-slate) bg-(--medium-slate) group-hover:text-(--dark-slate) group-active:text-(--dark-slate) group-hover:bg-(--light-slate) group-active:bg-(--light-slate) px-2 py-1 rounded-tr-lg !duration-200">
               {book.ownership}
             </span>
           )}

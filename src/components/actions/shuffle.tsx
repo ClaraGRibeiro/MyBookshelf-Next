@@ -34,14 +34,14 @@ export default function Shuffle({ books, handles }: ShuffleProps) {
     <>
       <Button
         variant="own"
-        className="hover:!bg-[var(--light-slate)] active:!bg-[var(--light-slate)]"
+        className="hover:!bg-(--light-slate) active:!bg-(--light-slate)"
         onClick={() => {
           handleShuffleBook();
         }}
       >
         <Tooltip>
           <TooltipTrigger asChild>
-            <span className="!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)] btn-content">
+            <span className="!text-(--light-slate) group-hover:!text-(--dark-slate) group-active:!text-(--dark-slate) btn-content">
               <Dices strokeWidth={1.5} className="cursor-pointer md-icon" />
             </span>
           </TooltipTrigger>

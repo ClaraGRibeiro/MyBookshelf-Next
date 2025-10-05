@@ -70,7 +70,7 @@ export default function Search({ books, handles }: SearchProps) {
   return (
     <>
       <div
-        className="text-[var(--light-slate)] relative flex items-center"
+        className="text-(--light-slate) relative flex items-center"
         ref={containerRef}
       >
         <SearchIcon strokeWidth={1.5} className="absolute left-3 md-icon" />
@@ -89,7 +89,7 @@ export default function Search({ books, handles }: SearchProps) {
           <TooltipTrigger asChild>
             <Input
               ref={inputRef}
-              className="px-10 relative w-full border border-[var(--light-slate)]"
+              className="px-10 relative w-full border border-(--light-slate)"
               placeholder="Search"
               type="text"
               value={search}
@@ -107,11 +107,11 @@ export default function Search({ books, handles }: SearchProps) {
 
         {search.length > 0 &&
           searchFocused && ( // if some text was typed and the search is focused, show the results
-            <div className="absolute w-full top-full w-screcth z-1 max-h-32 overflow-y-auto bg-[var(--medium-slate)] text-[var(--light-slate)] text-sm">
+            <div className="absolute w-full top-full w-screcth z-1 max-h-32 overflow-y-auto bg-(--medium-slate) text-(--light-slate) text-sm">
               {foundBooks.length > 0 ? ( // if books were find, show them
                 foundBooks.map((b) => (
                   <p
-                    className="border border-b border-[var(--dark-slate)] hover:bg-[var(--dark-slate)] active:bg-[var(--dark-slate)] p-2 hover:cursor-pointer active:cursor-pointer"
+                    className="border border-b border-(--dark-slate) hover:bg-(--dark-slate) active:bg-(--dark-slate) p-2 hover:cursor-pointer active:cursor-pointer"
                     key={b.id}
                     onClick={() => handleSelectBook(b.id)}
                   >
@@ -121,7 +121,7 @@ export default function Search({ books, handles }: SearchProps) {
               ) : (
                 // if no books were find, show a message
                 <p
-                  className="border border-b border-[var(--dark-slate)] hover:bg-[var(--dark-slate)] active:bg-[var(--dark-slate)] p-2 select-none cursor-not-allowed"
+                  className="border border-b border-(--dark-slate) hover:bg-(--dark-slate) active:bg-(--dark-slate) p-2 select-none cursor-not-allowed"
                   onClick={() => handleSelectBook(null)}
                 >
                   No books found

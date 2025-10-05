@@ -17,10 +17,10 @@ type HeaderProps = {
 
 export default function Header({ books, handles }: HeaderProps) {
   return (
-    <header className="dark:bg-[var(--medium-slate)] bg-[var(--dark-slate)] flex lg:justify-between justify-center lg:flex-row flex-col items-center py-4 px-12 gap-4">
+    <header className="dark:bg-(--medium-slate) bg-(--dark-slate) flex lg:justify-between justify-center lg:flex-row flex-col items-center py-4 px-12 gap-4">
       <a className="flex items-center gap-2" href="/">
         <img className="md:h-12 h-10" src="books.png" alt="Logo" />
-        <h1 className="text-[var(--light-slate)] text-2xl md:text-xl font-bold">
+        <h1 className="text-(--light-slate) text-2xl md:text-xl font-bold">
           NextBook
         </h1>
       </a>

@@ -262,7 +262,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
               <div className="flex justify-between items-start w-full mb-8">
                 <div className="flex flex-col justify-center items-center gap-2">
                   <p className="text-center mb-1 text-sm md:text-base">Last</p>
-                  <div className="w-22 md:w-28 lg:w-36 bg-[var(--medium-slate)]">
+                  <div className="w-22 md:w-28 lg:w-36 bg-(--medium-slate)">
                     {lastReading ? (
                       <Card
                         key={lastReading.id}
@@ -271,9 +271,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                         drawerMode={true}
                       />
                     ) : (
-                      <p className="text-center text-[var(--light-slate)]">
-                        NONE
-                      </p>
+                      <p className="text-center text-(--light-slate)">NONE</p>
                     )}
                   </div>
                 </div>
@@ -281,7 +279,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                   <p className="text-center mb-1 text-sm md:text-base">
                     Current
                   </p>
-                  <div className="w-22 md:w-28 lg:w-36 bg-[var(--medium-slate)]">
+                  <div className="w-22 md:w-28 lg:w-36 bg-(--medium-slate)">
                     {currentReading ? (
                       <Card
                         key={currentReading.id}
@@ -290,15 +288,13 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                         drawerMode={true}
                       />
                     ) : (
-                      <p className="text-center text-[var(--light-slate)]">
-                        NONE
-                      </p>
+                      <p className="text-center text-(--light-slate)">NONE</p>
                     )}
                   </div>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-2">
                   <p className="text-center mb-1 text-sm md:text-base">Next</p>
-                  <div className="w-22 md:w-28 lg:w-36 bg-[var(--medium-slate)]">
+                  <div className="w-22 md:w-28 lg:w-36 bg-(--medium-slate)">
                     {nextReading ? (
                       <Card
                         key={nextReading.id}
@@ -307,9 +303,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                         drawerMode={true}
                       />
                     ) : (
-                      <p className="text-center text-[var(--light-slate)]">
-                        NONE
-                      </p>
+                      <p className="text-center text-(--light-slate)">NONE</p>
                     )}
                   </div>
                 </div>
@@ -335,7 +329,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                 <Progress value={(pagesThisYear * 100) / annualPageGoal} />
               </div>
               <DropdownMenu>
-                <DropdownMenuTrigger className="mt-8 cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-12 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">
+                <DropdownMenuTrigger className="mt-8 cursor-pointer group text-(--medium-slate) hover:text-(--dark-slate) active:text-(--dark-slate) hover:border-(--dark-slate) active:border-(--dark-slate) group flex-row gap-12 border border-(--medium-slate) rounded px-2 py-1 flex justify-between items-center !duration-200">
                   <span>Show by nº of</span>
                   <ChevronDown
                     strokeWidth={1.5}
@@ -371,7 +365,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
               </div>
             </div>
             <DropdownMenu>
-              <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-12 border border-[var(--medium-slate)] rounded px-2 py-1 mt-12 mb-1 flex justify-between items-center !duration-200">
+              <DropdownMenuTrigger className="cursor-pointer group text-(--medium-slate) hover:text-(--dark-slate) active:text-(--dark-slate) hover:border-(--dark-slate) active:border-(--dark-slate) group flex-row gap-12 border border-(--medium-slate) rounded px-2 py-1 mt-12 mb-1 flex justify-between items-center !duration-200">
                 <span>{selectedYear}</span>
                 <ChevronDown className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
               </DropdownMenuTrigger>

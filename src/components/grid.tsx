@@ -63,10 +63,10 @@ export default function Grid({ books, handles, pinReadings }: GridProps) {
         <Filter value={filterBy} onChange={setFilterBy} />
       </div>
       <div className="flex items-center justify-center md:flex-row flex-col gap-2 md:gap-12 mb-6">
-        <p className="text-center font-light text-[var(--medium-slate)]">
+        <p className="text-center font-light text-(--medium-slate)">
           Sort by {sortBy.toUpperCase()} [{sortAsc ? "asc" : "desc"}]
         </p>
-        <p className="text-center font-light text-[var(--medium-slate)]">
+        <p className="text-center font-light text-(--medium-slate)">
           Filter by {filterBy ? filterBy!.toUpperCase() : "ALL"} [
           {sortedBooks.length} books]
         </p>

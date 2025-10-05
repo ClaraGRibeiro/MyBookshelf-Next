@@ -29,7 +29,7 @@ export default function Share({ screen, lightBg = false }: ShareProps) {
           element?.querySelectorAll(".special-gradient");
         specialGradientElements?.forEach((el) => {
           el.classList.remove("special-gradient");
-          el.classList.add("bg-[var(--dark-yellow)]");
+          el.classList.add("bg-(--dark-yellow)");
         });
 
         const canvas = await html2canvas(element, {
@@ -43,7 +43,7 @@ export default function Share({ screen, lightBg = false }: ShareProps) {
         });
         specialGradientElements.forEach((el) => {
           el.classList.add("special-gradient");
-          el.classList.remove("bg-[var(--dark-yellow)]");
+          el.classList.remove("bg-(--dark-yellow)");
         });
 
         const dataUrl = canvas.toDataURL("image/png");
@@ -59,17 +59,15 @@ export default function Share({ screen, lightBg = false }: ShareProps) {
     });
     toast.promise(downloadPromise, {
       loading: (
-        <span className="text-[var(--medium-slate)]">Generating image...</span>
+        <span className="text-(--medium-slate)">Generating image...</span>
       ),
       success: (
-        <span className="text-[var(--dark-slate)]">
+        <span className="text-(--dark-slate)">
           Image downloaded successfully!
         </span>
       ),
       error: (
-        <span className="text-[var(--dark-red)]">
-          Failed to generate image.
-        </span>
+        <span className="text-(--dark-red)">Failed to generate image.</span>
       ),
       icon: false,
       style: {
@@ -83,8 +81,8 @@ export default function Share({ screen, lightBg = false }: ShareProps) {
       variant="own"
       className={
         !lightBg
-          ? "hover:!bg-[var(--light-slate)] active:!bg-[var(--light-slate)]"
-          : "hover:!bg-[var(--dark-slate)] active:!bg-[var(--dark-slate)]"
+          ? "hover:!bg-(--light-slate) active:!bg-(--light-slate)"
+          : "hover:!bg-(--dark-slate) active:!bg-(--dark-slate)"
       }
       onClick={handleShare}
     >
@@ -95,8 +93,8 @@ export default function Share({ screen, lightBg = false }: ShareProps) {
               <span
                 className={
                   !lightBg
-                    ? "!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)]"
-                    : "!text-[var(--dark-slate)] group-hover:!text-[var(--light-slate)] group-active:!text-[var(--light-slate)]" +
+                    ? "!text-(--light-slate) group-hover:!text-(--dark-slate) group-active:!text-(--dark-slate)"
+                    : "!text-(--dark-slate) group-hover:!text-(--light-slate) group-active:!text-(--light-slate)" +
                       " btn-content"
                 }
               >

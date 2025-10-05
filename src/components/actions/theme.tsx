@@ -19,12 +19,12 @@ export default function Theme() {
   return (
     <Button
       variant="own"
-      className="hover:!bg-[var(--light-slate)] active:!bg-[var(--light-slate)]"
+      className="hover:!bg-(--light-slate) active:!bg-(--light-slate)"
       onClick={toggleDarkMode}
     >
       <Tooltip>
         <TooltipTrigger asChild>
-          <span className="!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)] btn-content">
+          <span className="!text-(--light-slate) group-hover:!text-(--dark-slate) group-active:!text-(--dark-slate) btn-content">
             {isDark ? (
               <Sun strokeWidth={1.5} className="md-icon cursor-pointer" />
             ) : (

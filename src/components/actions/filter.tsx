@@ -18,7 +18,7 @@ type FilterProps = {
 export default function Filter({ value, onChange }: FilterProps) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="cursor-pointer group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] hover:border-[var(--dark-slate)] active:border-[var(--dark-slate)] group flex-row gap-2 border border-[var(--medium-slate)] rounded px-2 py-1 flex justify-between items-center !duration-200">
+      <DropdownMenuTrigger className="cursor-pointer group text-(--medium-slate) hover:text-(--dark-slate) active:text-(--dark-slate) hover:border-(--dark-slate) active:border-(--dark-slate) group flex-row gap-2 border border-(--medium-slate) rounded px-2 py-1 flex justify-between items-center !duration-200">
         <span>Filter by</span>
         <ChevronDown
           strokeWidth={1.5}

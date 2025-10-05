@@ -13,7 +13,7 @@ export default function Sort({ value, onChange, type }: SortProps) {
       <TooltipTrigger asChild>
         <span
           onClick={() => onChange(type)}
-          className="cursor-pointer !duration-200 group text-[var(--medium-slate)] hover:text-[var(--dark-slate)] active:text-[var(--dark-slate)] group sm:max-w-36 flex items-center flex-row gap-1 w-fit"
+          className="cursor-pointer !duration-200 group text-(--medium-slate) hover:text-(--dark-slate) active:text-(--dark-slate) group sm:max-w-36 flex items-center flex-row gap-1 w-fit"
         >
           {type.charAt(0).toUpperCase() + type.slice(1)}
           <ChevronsUpDown

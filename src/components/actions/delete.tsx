@@ -28,11 +28,11 @@ export default function Delete({ book, onDelete, closeModal }: DeleteProps) {
       <DialogTrigger asChild>
         <Button
           variant="own"
-          className="bg-transparent hover:bg-[var(--dark-red)] active:bg-[var(--dark-red)]"
+          className="bg-transparent hover:bg-(--dark-red) active:bg-(--dark-red)"
         >
           <Tooltip>
             <TooltipTrigger asChild>
-              <span className="text-[var(--dark-red)] group-hover:text-[var(--light-slate)] group-active:text-[var(--light-slate)]">
+              <span className="text-(--dark-red) group-hover:text-(--light-slate) group-active:text-(--light-slate)">
                 <Trash strokeWidth={1.5} className="md-icon" />
               </span>
             </TooltipTrigger>
@@ -42,10 +42,10 @@ export default function Delete({ book, onDelete, closeModal }: DeleteProps) {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle className="text-[var(--medium-slate)]">
+          <DialogTitle className="text-(--medium-slate)">
             Detele '{book.title}'
           </DialogTitle>
-          <DialogDescription className="text-[var(--dark-slate)]">
+          <DialogDescription className="text-(--dark-slate)">
             Click delete to remove permanently this book.
           </DialogDescription>
         </DialogHeader>
@@ -53,7 +53,7 @@ export default function Delete({ book, onDelete, closeModal }: DeleteProps) {
           <DialogClose asChild>
             <Button
               variant="outline"
-              className="cursor-pointer text-[var(--dark-slate)]"
+              className="cursor-pointer text-(--dark-slate)"
             >
               Cancel
             </Button>
@@ -61,7 +61,7 @@ export default function Delete({ book, onDelete, closeModal }: DeleteProps) {
           <DialogClose asChild>
             <Button
               variant="own"
-              className="cursor-pointer !text-[var(--light-slate)] bg-[var(--light-red)] !duration-400 hover:bg-[var(--dark-red)] active:bg-[var(--dark-red)]"
+              className="cursor-pointer !text-(--light-slate) bg-(--light-red) !duration-400 hover:bg-(--dark-red) active:bg-(--dark-red)"
               onClick={() => {
                 onDelete(book.id);
                 closeModal && closeModal();

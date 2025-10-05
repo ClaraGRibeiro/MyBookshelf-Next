@@ -147,7 +147,7 @@
   }
 
   .md-icon {
-    @apply !w-6 !h-6;
+    @apply !w-5 !h-5;
   }
 
   .lg-icon {

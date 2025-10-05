@@ -46,11 +46,11 @@ export function Isbn({ books, handles }: IsbnProps) {
       <DialogTrigger asChild>
         <Button
           variant="own"
-          className="hover:!bg-[var(--light-slate)] active:!bg-[var(--light-slate)]"
+          className="hover:!bg-(--light-slate) active:!bg-(--light-slate)"
         >
           <Tooltip>
             <TooltipTrigger asChild>
-              <span className="!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] group-active:!text-[var(--dark-slate)] btn-content">
+              <span className="!text-(--light-slate) group-hover:!text-(--dark-slate) group-active:!text-(--dark-slate) btn-content">
                 <ScanBarcode
                   strokeWidth={1.5}
                   className={"md-icon cursor-pointer"}
@@ -119,17 +119,17 @@ export function Isbn({ books, handles }: IsbnProps) {
 
             toast.promise(fetchPromise, {
               loading: (
-                <span className="text-[var(--medium-slate)]">
+                <span className="text-(--medium-slate)">
                   Fetching book info...
                 </span>
               ),
               success: (
-                <span className="text-[var(--dark-slate)]">
+                <span className="text-(--dark-slate)">
                   Book data loaded successfully!
                 </span>
               ),
               error: (
-                <span className="text-[var(--dark-red)]">
+                <span className="text-(--dark-red)">
                   Invalid ISBN or connection error.
                 </span>
               ),

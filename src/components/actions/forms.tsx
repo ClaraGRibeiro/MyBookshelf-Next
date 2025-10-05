@@ -163,13 +163,13 @@ export default function Forms({
       <DialogTrigger asChild>
         <Button
           variant="own"
-          className={` ${large && !isEdit ? " w-full h-full object-cover " : ""} ${!lightBg && !isEdit ? " hover:!bg-[var(--light-slate)] active:!bg-[var(--light-slate)] " : ""} `}
+          className={` ${large && !isEdit ? " w-full h-full object-cover " : ""} ${!lightBg && !isEdit ? " hover:!bg-(--light-slate) active:!bg-(--light-slate) " : ""} `}
         >
           <Tooltip>
             <TooltipTrigger asChild>
               {isEdit ? (
                 <span
-                  className={`${!lightBg && !isEdit ? " !text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] !group-active:text-[var(--dark-slate)] " : ""} + ' btn-content '`}
+                  className={`${!lightBg && !isEdit ? " !text-(--light-slate) group-hover:!text-(--dark-slate) !group-active:text-(--dark-slate) " : ""} + ' btn-content '`}
                 >
                   <SquarePen
                     strokeWidth={1.5}
@@ -179,7 +179,7 @@ export default function Forms({
               ) : (
                 <span
                   className={`
-            ${!lightBg ? "!text-[var(--light-slate)] group-hover:!text-[var(--dark-slate)] !group-active:text-[var(--dark-slate)]" : ""}
+            ${!lightBg ? "!text-(--light-slate) group-hover:!text-(--dark-slate) !group-active:text-(--dark-slate)" : ""}
             btn-content
           `}
                 >
@@ -246,11 +246,9 @@ export default function Forms({
 
             {/* datas */}
             <div className="flex justify-between">
-              <span className="text-[var(--dark-slate)] ml-3 text-sm">
-                Got Date
-              </span>
+              <span className="text-(--dark-slate) ml-3 text-sm">Got Date</span>
               <Input
-                className="w-fit text-[var(--medium-slate)]"
+                className="w-fit text-(--medium-slate)"
                 type="date"
                 name="gotDate"
                 defaultValue={
@@ -261,11 +259,11 @@ export default function Forms({
               />
             </div>
             <div className="flex justify-between">
-              <span className="text-[var(--dark-slate)] ml-3 text-sm">
+              <span className="text-(--dark-slate) ml-3 text-sm">
                 Read Date
               </span>
               <Input
-                className="w-fit text-[var(--medium-slate)]"
+                className="w-fit text-(--medium-slate)"
                 type="date"
                 name="readDate"
                 value={
@@ -319,9 +317,7 @@ export default function Forms({
             {/* mode & ownership */}
             <div className="flex justify-between">
               <div>
-                <span className="text-[var(--dark-slate)] ml-3 text-sm">
-                  Mode
-                </span>
+                <span className="text-(--dark-slate) ml-3 text-sm">Mode</span>
                 <RadioGroup
                   className="mt-1"
                   value={mode}
@@ -339,7 +335,7 @@ export default function Forms({
               </div>
 
               <div>
-                <span className="text-[var(--dark-slate)] ml-3 text-sm">
+                <span className="text-(--dark-slate) ml-3 text-sm">
                   Ownership
                 </span>
                 <RadioGroup

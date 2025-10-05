@@ -19,6 +19,7 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
+import { tree } from "next/dist/build/templates/app-page";
 
 type RowsProps = {
   books: Book[];
@@ -102,17 +103,17 @@ export default function Rows({ books, handles, pinReadings }: RowsProps) {
   return (
     <>
       <div className="flex items-center justify-center md:flex-row flex-col gap-2 md:gap-12 mb-2">
-        <p className="text-center font-light text-[var(--medium-slate)]">
+        <p className="text-center font-light text-(--medium-slate)">
           Sort by {sortBy.toUpperCase()} [{sortAsc ? "asc" : "desc"}]
         </p>
-        <p className="text-center font-light text-[var(--medium-slate)]">
+        <p className="text-center font-light text-(--medium-slate)">
           Filter by {filterBy ? filterBy!.toUpperCase() : "ALL"} [
           {sortedBooks.length} books]
         </p>
       </div>
       <Table className="text-lg">
         <TableCaption>
-          <Forms isEdit={false} onAdd={handles.onAdd} />
+          <Forms isEdit={false} lightBg={true} onAdd={handles.onAdd} />
         </TableCaption>
         <TableHeader>
           <TableRow className="!text-base hover:!bg-transparent">
@@ -173,7 +174,7 @@ export default function Rows({ books, handles, pinReadings }: RowsProps) {
               </TableCell>
               <TableCell
                 className={
-                  (Number(b.price) === 0 && "text-[var(--green)] font-bold") +
+                  (Number(b.price) === 0 && "text-(--green) font-bold") +
                   " text-center w-24"
                 }
               >
@@ -186,13 +187,13 @@ export default function Rows({ books, handles, pinReadings }: RowsProps) {
                       onClick={() => toggleStatus(b)}
                       className={
                         (b.status == "Read"
-                          ? "bg-[var(--light-blue)] hover:bg-[var(--dark-blue)] active:bg-[var(--dark-blue)]"
+                          ? "bg-(--light-blue) hover:bg-(--dark-blue) active:bg-(--dark-blue)"
                           : b.status == "Unread"
-                            ? "bg-[var(--light-red)] hover:bg-[var(--dark-red)] active:bg-[var(--dark-red)]"
+                            ? "bg-(--light-red) hover:bg-(--dark-red) active:bg-(--dark-red)"
                             : b.status == "Reading"
-                              ? "bg-[var(--light-yellow)] hover:bg-[var(--dark-yellow)] active:bg-[var(--dark-yellow)]"
-                              : "bg-[var(--dark-slate)] hover:bg-[var(--medium-slate)] active:bg-[var(--medium-slate)]") +
-                        " text-sm text-[var(--light-slate)] rounded-3xl px-2 py-1 cursor-pointer flex justify-center items-center gap-2 duration-200 select-none"
+                              ? "bg-(--light-yellow) hover:bg-(--dark-yellow) active:bg-(--dark-yellow)"
+                              : "bg-(--dark-slate) hover:bg-(--medium-slate) active:bg-(--medium-slate)") +
+                        " text-sm text-(--light-slate) rounded-3xl px-2 py-1 cursor-pointer flex justify-center items-center gap-2 duration-200 select-none"
                       }
                     >
                       {b.status}

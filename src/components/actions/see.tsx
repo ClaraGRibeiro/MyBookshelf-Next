@@ -54,80 +54,77 @@ export default function See({
       )}
       <DialogContent className="sm:max-w-[425px] max-h-[90%] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-[var(--medium-slate)] max-w-[90%] m-auto text-center">
+          <DialogTitle className="text-(--medium-slate) max-w-[90%] m-auto text-center">
             See '{book.title}'
           </DialogTitle>
-          <DialogDescription className="text-[var(--dark-slate)]">
+          <DialogDescription className="text-(--dark-slate)">
             More details about this book.
           </DialogDescription>
         </DialogHeader>
         <div className="relative grid gap-2">
-          <p className="text-[var(--dark-slate)]">
-            <strong className="text-[var(--medium-slate)]">Book Title:</strong>{" "}
+          <p className="text-(--dark-slate)">
+            <strong className="text-(--medium-slate)">Book Title:</strong>{" "}
             {book.title}
           </p>
           {book.subtitle && (
-            <p className="text-[var(--dark-slate)]">
-              <strong className="text-[var(--medium-slate)]">Subtitle:</strong>{" "}
+            <p className="text-(--dark-slate)">
+              <strong className="text-(--medium-slate)">Subtitle:</strong>{" "}
               {book.subtitle}
             </p>
           )}
-          <p className="text-[var(--dark-slate)]">
-            <strong className="text-[var(--medium-slate)]">Author Name:</strong>{" "}
+          <p className="text-(--dark-slate)">
+            <strong className="text-(--medium-slate)">Author Name:</strong>{" "}
             {book.author}
           </p>
           {book.publisher && (
-            <p className="text-[var(--dark-slate)]">
-              <strong className="text-[var(--medium-slate)]">Publisher:</strong>{" "}
+            <p className="text-(--dark-slate)">
+              <strong className="text-(--medium-slate)">Publisher:</strong>{" "}
               {book.publisher}
             </p>
           )}
-          <p className="text-[var(--dark-slate)]">
-            <strong className="text-[var(--medium-slate)]">Pages:</strong>{" "}
+          <p className="text-(--dark-slate)">
+            <strong className="text-(--medium-slate)">Pages:</strong>{" "}
             {book.pages}
           </p>
           {book.gotDate && (
-            <p className="text-[var(--dark-slate)]">
-              <strong className="text-[var(--medium-slate)]">Got Date:</strong>{" "}
+            <p className="text-(--dark-slate)">
+              <strong className="text-(--medium-slate)">Got Date:</strong>{" "}
               {book.gotDate}
             </p>
           )}
           {book.readDate && (
-            <p className="text-[var(--dark-slate)]">
-              <strong className="text-[var(--medium-slate)]">Read Date:</strong>{" "}
+            <p className="text-(--dark-slate)">
+              <strong className="text-(--medium-slate)">Read Date:</strong>{" "}
               {book.readDate}
             </p>
           )}
           <p
             className={
-              book.price > 0
-                ? "text-[var(--dark-slate)]"
-                : "text-[var(--green)]"
+              book.price > 0 ? "text-(--dark-slate)" : "text-(--green)"
             }
           >
-            <strong className="text-[var(--medium-slate)]">Price:</strong>{" "}
+            <strong className="text-(--medium-slate)">Price:</strong>{" "}
             {book.price > 0 ? "R$ " + book.price.toFixed(2) : "Free"}
           </p>
-          <p className="text-[var(--dark-slate)]">
-            <strong className="text-[var(--medium-slate)]">Mode:</strong>{" "}
-            {book.mode}
+          <p className="text-(--dark-slate)">
+            <strong className="text-(--medium-slate)">Mode:</strong> {book.mode}
           </p>
-          <p className="text-[var(--dark-slate)]">
-            <strong className="text-[var(--medium-slate)]">Ownership:</strong>{" "}
+          <p className="text-(--dark-slate)">
+            <strong className="text-(--medium-slate)">Ownership:</strong>{" "}
             {book.ownership}
           </p>
-          <p className="text-[var(--dark-slate)]">
-            <strong className="text-[var(--medium-slate)]">Status:</strong>{" "}
+          <p className="text-(--dark-slate)">
+            <strong className="text-(--medium-slate)">Status:</strong>{" "}
             <span
               className={
                 (book.status == "Read"
-                  ? "bg-[var(--dark-blue)]"
+                  ? "bg-(--dark-blue)"
                   : book.status == "Unread"
-                    ? "bg-[var(--dark-red)]"
+                    ? "bg-(--dark-red)"
                     : book.status == "Reading"
-                      ? "bg-[var(--dark-yellow)]"
-                      : "bg-[var(--medium-slate)]") +
-                " text-sm text-[var(--light-slate)] rounded-3xl px-2 py-1 select-none"
+                      ? "bg-(--dark-yellow)"
+                      : "bg-(--medium-slate)") +
+                " text-sm text-(--light-slate) rounded-3xl px-2 py-1 select-none"
               }
             >
               {book.status}

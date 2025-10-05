@@ -49,7 +49,7 @@ export default function Charts({
         books.reduce((acc, b) => acc + (b.pages || 0), 0) + " pages";
       const totalBooks = books.length + " books";
       return (
-        <div className="bg-[var(--light-slate)] border rounded-lg p-2 shadow-md max-w-70">
+        <div className="bg-(--light-slate) border rounded-lg p-2 shadow-md max-w-70">
           <p className="font-bold mb-4">
             {label}
             {sortedBooks.length > 0 &&
@@ -71,7 +71,7 @@ export default function Charts({
                     title={b.status + " ~ " + b.title}
                   />
                   {!b.image && (
-                    <span className="absolute transform top-1/3 -translate-y-1/4 right-0 -translate-x-1 text-center line-clamp-2 w-[75%] max-h-[90%] select-none text-[0.5rem] break-words text-[var(--light-slate)]">
+                    <span className="absolute transform top-1/3 -translate-y-1/4 right-0 -translate-x-1 text-center line-clamp-2 w-[75%] max-h-[90%] select-none text-[0.5rem] break-words text-(--light-slate)">
                       {b.title}
                     </span>
                   )}
@@ -144,14 +144,14 @@ export default function Charts({
                       <tspan
                         x={viewBox.cx}
                         y={(viewBox.cy || 0) + 16}
-                        className="fill-[var(--dark-slate)]"
+                        className="fill-(--dark-slate)"
                       >
                         {label}
                       </tspan>
                       <tspan
                         x={viewBox.cx}
                         y={(viewBox.cy || 0) + 30}
-                        className="fill-[var(--medium-slate)]"
+                        className="fill-(--medium-slate)"
                       >
                         {safeValue}/{safeTotal}
                       </tspan>
@@ -189,7 +189,7 @@ export default function Charts({
             <LabelList
               position="top"
               offset={12}
-              className="fill-[var(--dark-slate)] text-lg"
+              className="fill-(--dark-slate) text-lg"
             />
           </Bar>
         </BarChart>
