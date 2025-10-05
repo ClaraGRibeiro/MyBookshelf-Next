@@ -14,28 +14,67 @@ type ShareProps = {
 
 export default function Share({ screen, lightBg = false }: ShareProps) {
   const handleShare = async () => {
-    const element = document.getElementById(screen);
-    if (!element) {
-      toast("❌ Error", {
-        description: "Could not find the element.",
-      });
-      return;
-    }
+    const downloadPromise = new Promise<void>(async (resolve, reject) => {
+      try {
+        const element = document.getElementById(screen);
+        if (!element) {
+          return reject(new Error("Could not find the element."));
+        }
+        const specialTextElements = element?.querySelectorAll(".special-text");
+        specialTextElements?.forEach((el) => {
+          el.classList.remove("special-text");
+          el.classList.add("text-(--medium-slate)", "stroke-1");
+        });
+        const specialGradientElements =
+          element?.querySelectorAll(".special-gradient");
+        specialGradientElements?.forEach((el) => {
+          el.classList.remove("special-gradient");
+          el.classList.add("bg-[var(--dark-yellow)]");
+        });
 
-    const canvas = await html2canvas(element, {
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: "#fff3e4",
+        const canvas = await html2canvas(element, {
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: "#fff3e4",
+        });
+        specialTextElements.forEach((el) => {
+          el.classList.add("special-text");
+          el.classList.remove("text-(--medium-slate)", "stroke-1");
+        });
+        specialGradientElements.forEach((el) => {
+          el.classList.add("special-gradient");
+          el.classList.remove("bg-[var(--dark-yellow)]");
+        });
+
+        const dataUrl = canvas.toDataURL("image/png");
+
+        const link = document.createElement("a");
+        link.href = dataUrl;
+        link.download = "nextbook-mybookshelf.png";
+        link.click();
+        resolve();
+      } catch (err) {
+        reject(err);
+      }
     });
-
-    const dataUrl = canvas.toDataURL("image/png");
-
-    const link = document.createElement("a");
-    link.href = dataUrl;
-    link.download = "nextbook-mybookshelf.png";
-    link.click();
-    toast("✅ Success", {
-      description: "Your book collection image was saved!",
+    toast.promise(downloadPromise, {
+      loading: (
+        <span className="text-[var(--medium-slate)]">Generating image...</span>
+      ),
+      success: (
+        <span className="text-[var(--dark-slate)]">
+          Image downloaded successfully!
+        </span>
+      ),
+      error: (
+        <span className="text-[var(--dark-red)]">
+          Failed to generate image.
+        </span>
+      ),
+      icon: false,
+      style: {
+        backgroundColor: "#f1f5f9",
+      },
     });
   };
 

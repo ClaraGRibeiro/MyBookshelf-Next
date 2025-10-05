@@ -28,7 +28,7 @@ export default function Header({ books, handles }: HeaderProps) {
         <div className="flex gap-4 items-center">
           <Shuffle books={books} handles={handles} />
           <Xlsx books={books} />
-          <Share screen="books" />
+          <Share screen="bookshelf" />
           <Theme />
           <Isbn books={books} handles={handles} />
         </div>

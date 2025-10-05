@@ -3,7 +3,7 @@
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
 import { ChartNoAxesCombined, ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import See from "./actions/see";
 import Card from "./card";
 import Charts from "./charts";
@@ -25,6 +25,7 @@ import {
 import { Progress } from "./ui/progress";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import Share from "./actions/share";
+import { Toaster } from "sonner";
 
 type DrawerChartsProps = {
   books: Book[];
@@ -34,12 +35,19 @@ type DrawerChartsProps = {
 export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
   const [open, setOpen] = useState(false);
   const [clickedBookId, setClickedBookId] = useState<number | null>(null);
+  const [showBy, setShowBy] = useState<"Books" | "Pages">("Books");
+
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.toLocaleString("en-US", { month: "short" });
+  const [selectedYear, setSelectedYear] = useState<number>(currentYear);
 
   useEffect(() => {
     if (!open) {
       setClickedBookId(null);
     }
   }, [open]);
+
   const handleClicked = (bId: number | null) => {
     if (bId === undefined) return;
     if (bId === clickedBookId) {
@@ -49,57 +57,89 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
       setClickedBookId(bId);
     }
   };
+
   const clickedBook = books.find((b) => b.id === clickedBookId) || null;
 
-  const currentYear = new Date().getFullYear();
-  const [selectedYear, setSelectedYear] = useState<number>(currentYear);
-  const currentMonth = new Date().toLocaleString("en-US", { month: "short" });
-  const [showBy, setShowBy] = useState<"Books" | "Pages">("Books");
+  const parseDate = (val: string): number | null => {
+    if (!val || val === "-") return null;
+    const [day, month, year] = val.split("/");
+    const d = new Date(`${year}-${month}-${day}`);
+    return isNaN(d.getTime()) ? null : d.getTime();
+  };
+
   const booksRead = books.filter((b) => b.status === "Read");
-  const allYears = Array.from(
+  const totalSpent =
+    Math.round(books.reduce((acc, b) => acc + Number(b.price || 0), 0) * 100) /
+    100;
+  const totalPagesRead = booksRead.reduce((acc, b) => acc + (b.pages || 0), 0);
+
+  const years = Array.from(
     new Set(booksRead.map((b) => Number(b.readDate?.split("/")[2]))),
   ).sort((x, y) => x - y);
-  let booksByYear = [];
-  booksByYear = allYears.map((y) => {
-    const b = booksRead.filter((b) => Number(b.readDate?.split("/")[2]) === y);
+
+  const booksByYear = years.map((y) => {
+    const books = booksRead.filter(
+      (b) => Number(b.readDate?.split("/")[2]) === y,
+    );
+    const pages = books.reduce((acc, b) => acc + (b.pages || 0), 0);
     return {
       name: y.toString(),
-      value:
-        showBy === "Books"
-          ? b.length || 0
-          : b.reduce((acc, b) => acc + (b.pages || 0), 0) || 0,
-      books: b,
+      value: showBy === "Books" ? books.length : pages,
+      books: books,
     };
   });
+
   const readThisYear =
     booksByYear.find((bY) => bY.name === currentYear.toString())?.books || [];
+
   const monthNames = Array.from({ length: 12 }, (_, i) =>
     new Date(0, i).toLocaleString("en-US", { month: "short" }),
   );
+
   const readThisSelectedYear =
     booksRead.filter(
       (b) => Number(b.readDate?.split("/")[2]) === selectedYear,
     ) || [];
+
   const booksByMonth = monthNames.map((m, i) => {
-    const b = readThisSelectedYear.filter(
+    const books = readThisSelectedYear.filter(
       (b) => Number(b.readDate?.split("/")[1]) === i + 1,
     );
+    const pages = books.reduce((acc, b) => acc + (b.pages || 0), 0);
     return {
       name: m,
-      value:
-        showBy === "Books"
-          ? b.length
-          : b.reduce((acc, b) => acc + (b.pages || 0), 0),
-      books: b,
+      value: showBy === "Books" ? books.length : pages,
+      books: books,
     };
   });
+
   const readThisMonth =
     booksByMonth.find((bM) => bM.name === currentMonth)?.books || [];
-  const totalSpent =
-    Math.round(books.reduce((acc, b) => acc + Number(b.price), 0) * 100) / 100;
-  const totalPagesRead = booksRead.reduce((acc, b) => acc + (b.pages || 0), 0);
+
+  const compareBooks = (a: Book, b: Book) => {
+    const aDate = parseDate(a.readDate as string);
+    const bDate = parseDate(b.readDate as string);
+    if (!aDate) return 1;
+    if (!bDate) return -1;
+    return bDate - aDate;
+  };
+
+  const lastReading = [...books].sort(compareBooks)[0];
+  const currentReading = books.find((b) => b.status === "Reading") || null;
+  const nextReading = books.find((b) => b.status === "Next") || null;
+
   const minutesPerPage = 3.5;
   const timeReading = Math.round((minutesPerPage * totalPagesRead) / 60);
+
+  const minutesPerDay = 30;
+  const pagesThisYear = readThisYear.reduce(
+    (acc, b) => acc + (b.pages || 0),
+    0,
+  );
+  const annualPageGoal = Math.round((minutesPerDay * 365) / minutesPerPage);
+  const pagesAvgThisYear = pagesThisYear / (readThisYear.length || 1);
+  const annualBooksGoal = Math.round(annualPageGoal / pagesAvgThisYear);
+
   const bestYear = booksByYear.reduce(
     (max, curr) => (curr.value > max.value ? curr : max),
     { name: "No reads", value: 0, books: [] },
@@ -108,34 +148,19 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
     (max, curr) => (curr.value > max.value ? curr : max),
     { name: "No reads", value: 0, books: [] },
   );
-  const minutesPerDay = 30;
-  const pagesThisYear = readThisYear.reduce(
+
+  const lastYear = currentYear - 1;
+  const readLastYear =
+    booksByYear.find((bY) => bY.name === lastYear.toString())?.books || [];
+  const pagesLastYear = readLastYear.reduce(
     (acc, b) => acc + (b.pages || 0),
     0,
   );
-  const annualPageGoal = Math.round((minutesPerDay * 365) / minutesPerPage);
-  const pagesAvgThisYear = pagesThisYear / readThisYear.length;
-  const annualBooksGoal = Math.round(annualPageGoal / pagesAvgThisYear);
-  const parseDate = (val: string): null | number => {
-    if (!val || val === "-") return null;
-    const parts = val.split("/");
-    if (parts.length !== 3) return 0;
-    const d = new Date(parts.reverse().join("-"));
-    return isNaN(d.getTime()) ? 0 : d.getTime();
-  };
-  const compareBooks = (a: Book, b: Book) => {
-    const aValue = a["readDate"] ?? "";
-    const bValue = b["readDate"] ?? "";
-    const aDate = parseDate(aValue as string);
-    const bDate = parseDate(bValue as string);
-    if (aDate === null && bDate === null) return 0;
-    if (aDate === null) return 1;
-    if (bDate === null) return -1;
-    return bDate - aDate;
-  };
-  const lastReading = books.sort(compareBooks)[0];
-  const currentReading = books.filter((b) => b.status === "Reading")[0];
-  const nextReading = books.filter((b) => b.status === "Next")[0];
+  const compareYears =
+    pagesLastYear > 0
+      ? Math.round(((pagesThisYear - pagesLastYear) * 100) / pagesLastYear)
+      : 0;
+
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger>
@@ -169,30 +194,38 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
             className="flex flex-col items-center justify-center py-8"
           >
             <div className="flex flex-col justify-center items-center gap-12 max-w-[70%] md:max-w-120 ">
+              <p className="text-center text-sm mb-2">
+                You've read{" "}
+                <span className="special-text font-bold">
+                  {" "}
+                  {compareYears}%{" "}
+                </span>{" "}
+                more pages this year than last year!
+              </p>
               <div className="grid grid-cols-2 md:grid-cols-4 md justify-items-center items-center gap-12">
                 <p className="text-center">
                   total of <br />
-                  <span className="font-bold text-3xl special-colors">
+                  <span className="font-bold text-3xl special-text">
                     {books.length}
                   </span>
                   <br /> books
                 </p>
                 <p className="text-center">
-                  <span className="font-bold text-3xl special-colors">
+                  <span className="font-bold text-3xl special-text">
                     {totalPagesRead}
                   </span>
                   <br /> pages <br /> read
                 </p>
                 <p className="text-center">
                   about <br />
-                  <span className="font-bold text-3xl special-colors">
+                  <span className="font-bold text-3xl special-text">
                     {timeReading}h
                   </span>
                   <br /> reading
                 </p>
                 <p className="text-center">
                   R$ <br />
-                  <span className="font-bold text-3xl special-colors">
+                  <span className="font-bold text-3xl special-text">
                     {totalSpent}
                   </span>
                   <br /> total
@@ -220,13 +253,12 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                     total={readThisYear.length}
                     label={
                       "In " +
-                      new Date().toLocaleString("en-US", { month: "long" })
+                      currentDate.toLocaleString("en-US", { month: "long" })
                     }
                     colors={["#FBAC0F", "#cad5e2"]}
                   />
                 </div>
               </div>
-
               <div className="flex justify-between items-start w-full mb-8">
                 <div className="flex flex-col justify-center items-center gap-2">
                   <p className="text-center mb-1 text-sm md:text-base">Last</p>
@@ -282,7 +314,6 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                   </div>
                 </div>
               </div>
-
               <div className="w-full">
                 <p className="text-center text-sm mb-8">
                   If you read just <strong>{minutesPerDay}</strong> minutes a
@@ -323,7 +354,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
               <div className="flex justify-center items-center flex-wrap gap-12">
                 <p className="text-center">
                   Best Year <br />
-                  <span className="font-bold text-3xl special-colors">
+                  <span className="font-bold text-3xl special-text">
                     {bestYear.name}
                   </span>
                   <br /> ({bestYear.value}{" "}
@@ -331,7 +362,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                 </p>
                 <p className="text-center">
                   Best Month <br />
-                  <span className="font-bold text-3xl special-colors">
+                  <span className="font-bold text-3xl special-text">
                     {bestMonth.name}
                   </span>
                   <br /> ({bestMonth.value}{" "}
@@ -345,7 +376,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                 <ChevronDown className="inline group-hover:scale-130 group-active:scale-130 duration-200" />
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                {allYears.map((y) => (
+                {years.map((y) => (
                   <DropdownMenuItem key={y} onSelect={() => setSelectedYear(y)}>
                     {y}
                   </DropdownMenuItem>
@@ -364,7 +395,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
               <Charts
                 type="bar"
                 dataChart={booksByMonth}
-                label={"Books per Month (" + new Date().getFullYear() + ")"}
+                label={"Books per Month (" + currentYear + ")"}
                 colors={["#E63431"]}
                 showBy={showBy}
               />
@@ -373,6 +404,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
           {clickedBook && (
             <See noButtonMode={true} book={clickedBook} handles={handles} />
           )}
+          <Toaster />
         </div>
       </DrawerContent>
     </Drawer>

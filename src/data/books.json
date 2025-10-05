@@ -546,5 +546,21 @@
     "ownership": "Borrowed",
     "status": "Unread",
     "link": "https://a.co/d/8jzVyzn"
+  },
+  {
+    "id": 37,
+    "title": "Diário De Um Banana",
+    "subtitle": "1 Ao 12",
+    "author": "Jeff Kinney",
+    "publisher": "Vr",
+    "pages": 2240,
+    "gotDate": "26/11/2015",
+    "readDate": "13/12/2017",
+    "price": 0,
+    "image": "https://m.media-amazon.com/images/I/61aH2LEi3bL._SY342_.jpg",
+    "link": "https://a.co/d/a1gc3R4",
+    "mode": "Physical",
+    "ownership": "Owned",
+    "status": "Read"
   }
 ]

@@ -72,48 +72,72 @@ export function Isbn({ books, handles }: IsbnProps) {
 
             if (!isbn) return;
 
-            try {
-              const url = `https://brasilapi.com.br/api/isbn/v1/${isbn}`;
-              const res = await fetch(url);
-              const resData = await res.json();
-              if (!res.ok) {
-                toast("❌ ERROR", {
-                  description: "Invalid ISBN!",
-                });
-                return;
-              }
-              const maxId = books.reduce(
-                (max, book) => Math.max(max, book.id),
-                0,
-              );
-              const today = new Date();
+            const fetchPromise = new Promise<void>(async (resolve, reject) => {
+              try {
+                const url = `https://brasilapi.com.br/api/isbn/v1/${isbn}`;
+                const res = await fetch(url);
+                const resData = await res.json();
 
-              const newBook: Book = {
-                id: maxId + 1,
-                title: formatString(resData.title ?? "-"),
-                subtitle: formatString(resData.subtitle ?? "-"),
-                author:
-                  resData.authors?.length > 0
-                    ? formatString(resData.authors.join("; "))
-                    : "no author",
-                publisher: formatString(resData.publisher ?? "-"),
-                pages: Number(resData.page_count || 0),
-                gotDate: `${String(today.getDate()).padStart(2, "0")}/${String(today.getMonth() + 1).padStart(2, "0")}/${today.getFullYear()}`,
-                readDate: undefined,
-                price: 0,
-                image: resData.cover_url || undefined,
-                link: undefined,
-                mode: "Physical",
-                ownership: "Owned",
-                status: "Unread",
-              };
-              setBookFound(newBook);
-            } catch (err) {
-              console.error(err);
-              toast("❌ ERROR", {
-                description: "Impossible to fetch ISBN!",
-              });
-            }
+                if (!res.ok) {
+                  return reject(new Error("Invalid ISBN!"));
+                }
+
+                const maxId = books.reduce(
+                  (max, book) => Math.max(max, book.id),
+                  0,
+                );
+                const today = new Date();
+
+                const newBook: Book = {
+                  id: maxId + 1,
+                  title: formatString(resData.title ?? "-"),
+                  subtitle: formatString(resData.subtitle ?? "-"),
+                  author:
+                    resData.authors?.length > 0
+                      ? formatString(resData.authors.join("; "))
+                      : "no author",
+                  publisher: formatString(resData.publisher ?? "-"),
+                  pages: Number(resData.page_count || 0),
+                  gotDate: `${String(today.getDate()).padStart(2, "0")}/${String(
+                    today.getMonth() + 1,
+                  ).padStart(2, "0")}/${today.getFullYear()}`,
+                  readDate: undefined,
+                  price: 0,
+                  image: resData.cover_url || undefined,
+                  link: undefined,
+                  mode: "Physical",
+                  ownership: "Owned",
+                  status: "Unread",
+                };
+
+                setBookFound(newBook);
+                resolve();
+              } catch (err) {
+                reject(err);
+              }
+            });
+
+            toast.promise(fetchPromise, {
+              loading: (
+                <span className="text-[var(--medium-slate)]">
+                  Fetching book info...
+                </span>
+              ),
+              success: (
+                <span className="text-[var(--dark-slate)]">
+                  Book data loaded successfully!
+                </span>
+              ),
+              error: (
+                <span className="text-[var(--dark-red)]">
+                  Invalid ISBN or connection error.
+                </span>
+              ),
+              icon: false,
+              style: {
+                backgroundColor: "#f1f5f9",
+              },
+            });
           }}
         >
           <DialogHeader>

@@ -154,8 +154,12 @@
     @apply !w-12 !h-12;
   }
 
-  .special-colors {
-    @apply bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)] bg-clip-text text-transparent;
+  .special-gradient {
+    @apply bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)];
+  }
+
+  .special-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[var(--dark-blue)] via-[var(--dark-red)] to-[var(--dark-yellow)];
   }
 
   * {
