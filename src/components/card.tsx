@@ -38,8 +38,6 @@ export default function Card({ book, onClick, drawerMode = false }: Props) {
       <img
         className="w-full h-full object-cover relative"
         src={book.image || "/nobookcover.png"}
-        alt={book.title}
-        title={`(${book.status}) ${book.title}`}
       />
       {!drawerMode && (
         <>

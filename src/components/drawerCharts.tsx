@@ -179,7 +179,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
         </Button>
       </DrawerTrigger>
       <DrawerContent>
-        <div className="mx-auto h-[90%] w-full overflow-y-auto pb-12">
+        <div className="mx-auto h-[90%] w-full overflow-y-auto pb-30">
           <div className="flex flex-wrap justify-center items-center">
             <DrawerHeader>
               <DrawerTitle>My BookShelf Stats</DrawerTitle>
@@ -194,14 +194,31 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
             className="flex flex-col items-center justify-center py-8"
           >
             <div className="flex flex-col justify-center items-center gap-12 max-w-[70%] md:max-w-120 ">
-              <p className="text-center text-sm mb-2">
-                You've read{" "}
-                <span className="special-text font-bold">
-                  {" "}
-                  {compareYears}%{" "}
-                </span>{" "}
-                more pages this year than last year!
-              </p>
+              {compareYears > 0 ? (
+                <p className="text-center text-sm mb-2">
+                  You've read{" "}
+                  <span className="special-text font-bold">
+                    {compareYears}%
+                  </span>{" "}
+                  more pages this year ({pagesThisYear}) than last year (
+                  {pagesLastYear})!
+                </p>
+              ) : compareYears < 0 ? (
+                <p className="text-center text-sm mb-2">
+                  You've read{" "}
+                  <span className="special-text font-bold">
+                    {compareYears * -1}%
+                  </span>{" "}
+                  less pages this year ({pagesThisYear}) than last year (
+                  {pagesLastYear})!
+                </p>
+              ) : (
+                <p className="text-center text-sm mb-2">
+                  You've read the{" "}
+                  <span className="special-text font-bold">same</span> number of
+                  pages as the last year ({pagesLastYear})!
+                </p>
+              )}
               <div className="grid grid-cols-2 md:grid-cols-4 md justify-items-center items-center gap-12">
                 <p className="text-center">
                   total of <br />
@@ -377,7 +394,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <div className="w-[96%] flex flex-col lg:flex-row items-center gap-12 justify-between">
+            <div className="w-[96%] flex flex-col lg:flex-row items-center gap-20 justify-between">
               <Charts
                 type="bar"
                 dataChart={booksByYear}
