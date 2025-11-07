@@ -60,44 +60,11 @@ export default function Home() {
       }
     };
 
-    // Change the status of a book by copying its properties, updating the status, and replacing the old book
-    const handleChangeStatus = async (
-      bookId: Book["id"],
-      newStatus: Book["status"],
-    ): Promise<void> => {
-      let newDate = undefined;
-      if (newStatus === "Read") {
-        const today = new Date();
-        newDate = `${String(today.getDate()).padStart(2, "0")}/${String(today.getMonth() + 1).padStart(2, "0")}/${today.getFullYear()}`;
-      }
-      setBooks((prev) =>
-        prev.map((b) =>
-          b.id === bookId ? { ...b, status: newStatus, readDate: newDate } : b,
-        ),
-      );
-      if (dev) {
-        const updatedBook = books.find((b) => b.id === bookId);
-        if (updatedBook) {
-          const bookToSave = {
-            ...updatedBook,
-            status: newStatus,
-            readDate: newDate,
-          };
-          await fetch("/api/books", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(bookToSave),
-          });
-        }
-      }
-    };
-
     // return all the handlers functions
     return {
       onAdd: handleAdd,
       onEdit: handleEdit,
       onDelete: handleDelete,
-      onChangeStatus: handleChangeStatus,
     };
   }
 

@@ -72,9 +72,9 @@ export default function Grid({ books, handles, pinReadings }: GridProps) {
         </p>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-6 justify-items-center content-start">
-        {sortedBooks.map((b) => (
-          <Card key={b.id} book={b} onClick={handleClicked} />
-        ))}
+          {sortedBooks.map((b) => (
+            <Card key={b.id} book={b} onClick={handleClicked} />
+          ))}
         <div className="aspect-[2/3] h-full w-full relative hover:scale-110 active:scale-110 duration-200 cursor-pointer group">
           <Forms
             isEdit={false}

@@ -52,36 +52,6 @@ export default function Rows({ books, handles, pinReadings }: RowsProps) {
     filterBy,
   });
 
-  const toggleStatus = (book: Book) => {
-    let num: number = -2;
-    switch (book.status) {
-      case "Unread":
-        num = -2;
-        break;
-      case "Next":
-        num = -1;
-        break;
-      case "Reading":
-        num = 0;
-        break;
-      case "Read":
-        num = 1;
-        break;
-      default:
-        break;
-    }
-    let newStatus: Book["status"];
-    num === 1 ? (num = -2) : num++;
-    num === -2
-      ? (newStatus = "Unread")
-      : num === -1
-        ? (newStatus = "Next")
-        : num === 0
-          ? (newStatus = "Reading")
-          : (newStatus = "Read");
-    handles.onChangeStatus(book.id, newStatus);
-  };
-
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     const checkIsMobile = () => {
@@ -184,7 +154,6 @@ export default function Rows({ books, handles, pinReadings }: RowsProps) {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <span
-                      onClick={() => toggleStatus(b)}
                       className={
                         (b.status == "Read"
                           ? "bg-(--light-blue) hover:bg-(--dark-blue) active:bg-(--dark-blue)"

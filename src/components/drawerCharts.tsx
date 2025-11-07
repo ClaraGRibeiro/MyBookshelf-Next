@@ -74,12 +74,12 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
   const totalPagesRead = booksRead.reduce((acc, b) => acc + (b.pages || 0), 0);
 
   const years = Array.from(
-    new Set(booksRead.map((b) => Number(b.readDate?.split("/")[2]))),
+    new Set(booksRead.map((b) => Number(b.readDate?.split("/")[2])))
   ).sort((x, y) => x - y);
 
   const booksByYear = years.map((y) => {
     const books = booksRead.filter(
-      (b) => Number(b.readDate?.split("/")[2]) === y,
+      (b) => Number(b.readDate?.split("/")[2]) === y
     );
     const pages = books.reduce((acc, b) => acc + (b.pages || 0), 0);
     return {
@@ -93,17 +93,17 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
     booksByYear.find((bY) => bY.name === currentYear.toString())?.books || [];
 
   const monthNames = Array.from({ length: 12 }, (_, i) =>
-    new Date(0, i).toLocaleString("en-US", { month: "short" }),
+    new Date(0, i).toLocaleString("en-US", { month: "short" })
   );
 
   const readThisSelectedYear =
     booksRead.filter(
-      (b) => Number(b.readDate?.split("/")[2]) === selectedYear,
+      (b) => Number(b.readDate?.split("/")[2]) === selectedYear
     ) || [];
 
   const booksByMonth = monthNames.map((m, i) => {
     const books = readThisSelectedYear.filter(
-      (b) => Number(b.readDate?.split("/")[1]) === i + 1,
+      (b) => Number(b.readDate?.split("/")[1]) === i + 1
     );
     const pages = books.reduce((acc, b) => acc + (b.pages || 0), 0);
     return {
@@ -134,7 +134,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
   const minutesPerDay = 30;
   const pagesThisYear = readThisYear.reduce(
     (acc, b) => acc + (b.pages || 0),
-    0,
+    0
   );
   const annualPageGoal = Math.round((minutesPerDay * 365) / minutesPerPage);
   const pagesAvgThisYear = pagesThisYear / (readThisYear.length || 1);
@@ -142,11 +142,11 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
 
   const bestYear = booksByYear.reduce(
     (max, curr) => (curr.value > max.value ? curr : max),
-    { name: "No reads", value: 0, books: [] },
+    { name: "No reads", value: 0, books: [] }
   );
   const bestMonth = booksByMonth.reduce(
     (max, curr) => (curr.value > max.value ? curr : max),
-    { name: "No reads", value: 0, books: [] },
+    { name: "No reads", value: 0, books: [] }
   );
 
   const lastYear = currentYear - 1;
@@ -154,7 +154,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
     booksByYear.find((bY) => bY.name === lastYear.toString())?.books || [];
   const pagesLastYear = readLastYear.reduce(
     (acc, b) => acc + (b.pages || 0),
-    0,
+    0
   );
   const compareYears =
     pagesLastYear > 0
@@ -200,8 +200,7 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                   <span className="special-text font-bold">
                     {compareYears}%
                   </span>{" "}
-                  more pages this year ({pagesThisYear}) than last year (
-                  {pagesLastYear})!
+                  more pages this year than last year!
                 </p>
               ) : compareYears < 0 ? (
                 <p className="text-center text-sm mb-2">
@@ -209,14 +208,13 @@ export default function DrawerCharts({ books, handles }: DrawerChartsProps) {
                   <span className="special-text font-bold">
                     {compareYears * -1}%
                   </span>{" "}
-                  less pages this year ({pagesThisYear}) than last year (
-                  {pagesLastYear})!
+                  less pages this year than last year!
                 </p>
               ) : (
                 <p className="text-center text-sm mb-2">
                   You've read the{" "}
                   <span className="special-text font-bold">same</span> number of
-                  pages as the last year ({pagesLastYear})!
+                  pages as the last year!
                 </p>
               )}
               <div className="grid grid-cols-2 md:grid-cols-4 md justify-items-center items-center gap-12">

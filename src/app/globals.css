@@ -3,6 +3,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
+  ::-webkit-scrollbar-track {
+    background: var(--bg-sepia); 
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--medium-slate);
+    border-radius: 10px;
+    border: 2px solid var(--bg-sepia);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--medium-slate) var(--bg-sepia);
+  }
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -137,6 +152,11 @@
     --dark-yellow: #f6c64d;
     --green: #14ad1c;
     --bg-sepia: #0f172b; /*slate-900*/
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
   }
 
   .btn-content {
