@@ -19,7 +19,6 @@ import {
   TableHeader,
   TableRow,
 } from "./ui/table";
-import { tree } from "next/dist/build/templates/app-page";
 
 type RowsProps = {
   books: Book[];
