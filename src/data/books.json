@@ -579,5 +579,19 @@
     "mode": "Physical",
     "ownership": "Borrowed",
     "status": "Unread"
+  },
+  {
+    "id": 39,
+    "title": "Estou Feliz Que Minha Mãe Morreu",
+    "author": "Jennette Mccurdy",
+    "publisher": "Nversos",
+    "pages": 304,
+    "gotDate": "31/10/2025",
+    "price": 0,
+    "image": "https://m.media-amazon.com/images/I/71CgHorskEL._SL1500_.jpg",
+    "link": "Jennette McCurdy",
+    "mode": "Digital",
+    "ownership": "Owned",
+    "status": "Unread"
   }
 ]
