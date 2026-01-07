@@ -593,5 +593,19 @@
     "mode": "Digital",
     "ownership": "Owned",
     "status": "Unread"
+  },
+  {
+    "id": 40,
+    "title": "Contos De Amor De Loucura E De Morte",
+    "author": "Horacio Quiroga",
+    "publisher": "Mojo",
+    "pages": 220,
+    "gotDate": "27/09/2025",
+    "price": 0,
+    "image": "https://m.media-amazon.com/images/I/81YQY4VlntL._SY466_.jpg",
+    "link": "https://a.co/d/cipuusy",
+    "mode": "Digital",
+    "ownership": "Owned",
+    "status": "Unread"
   }
 ]
