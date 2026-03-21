@@ -48,13 +48,13 @@ export default function Forms({
   const [open, setOpen] = useState(false);
   const [mode, setMode] = useState<Book["mode"]>(book?.mode || "Physical");
   const [status, setStatus] = useState<Book["status"]>(
-    book?.status || "Unread",
+    book?.status || "Unread"
   );
   const [ownership, setOwnership] = useState<Book["ownership"]>(
-    book?.ownership || "Owned",
+    book?.ownership || "Owned"
   );
   const [readDate, setReadDate] = useState<Book["readDate"]>(book?.readDate);
-  const [imagePreview, setImagePreview] = useState(book?.image || "");
+  const [imagePreview, setImagePreview] = useState("");
 
   useEffect(() => {
     if (open && isEdit) {
@@ -63,6 +63,12 @@ export default function Forms({
       setStatus(book?.status || "Unread");
       setReadDate(book?.readDate);
       setImagePreview(book?.image || "");
+    } else {
+      setMode("Physical");
+      setOwnership("Owned");
+      setStatus("Unread");
+      setReadDate("");
+      setImagePreview("");
     }
   }, [open, isEdit, book]);
 
@@ -132,11 +138,11 @@ export default function Forms({
       const gotDateVar =
         data.get("gotDate")?.toString().split("-").reverse().join("/") ||
         `${String(today.getDate()).padStart(2, "0")}/${String(
-          today.getMonth() + 1,
+          today.getMonth() + 1
         ).padStart(2, "0")}/${today.getFullYear()}`;
 
       const newBook: Book = {
-        id: 0,
+        id: Date.now(),
         title: titleVar!,
         subtitle: subtitleVar,
         author: authorVar!,
@@ -274,7 +280,7 @@ export default function Forms({
                     e.target.value
                       .split("-")
                       .reverse()
-                      .join("/") as Book["readDate"],
+                      .join("/") as Book["readDate"]
                   )
                 }
               />

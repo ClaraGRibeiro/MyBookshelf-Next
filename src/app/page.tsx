@@ -27,14 +27,19 @@ export default function Home() {
   // function containing all handler logic
   function allHandles(): Handles {
     // add a new book to the books array by spreading previous books and appending the new one
+
     const handleAdd = async (book: Book): Promise<void> => {
-      setBooks((prev) => [...prev, book]);
       if (dev) {
-        await fetch("/api/books", {
+        const res = await fetch("/api/books", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(book),
         });
+
+        const data = await res.json();
+        setBooks(data.books);
+      } else {
+        setBooks((prev) => [...prev, book]);
       }
     };
 
