@@ -144,12 +144,13 @@
     "publisher": "Bertrand Brasil",
     "pages": 489,
     "gotDate": "17/07/2025",
+    "readDate": "20/03/2026",
     "price": 0,
     "image": "https://m.media-amazon.com/images/I/41IzshO6ddL._SY445_SX342_.jpg",
     "link": "https://a.co/d/8Wyq8B1",
     "ownership": "Owned",
     "mode": "Physical",
-    "status": "Unread"
+    "status": "Read"
   },
   {
     "id": 11,
@@ -527,6 +528,7 @@
     "publisher": "Sextante",
     "pages": 272,
     "gotDate": "01/10/2025",
+    "readDate": "07/01/2025",
     "price": 0,
     "image": "https://m.media-amazon.com/images/I/71HuZRl-XeL._SY466_.jpg",
     "mode": "Physical",
