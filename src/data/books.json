@@ -584,13 +584,13 @@
   {
     "id": 39,
     "title": "Estou Feliz Que Minha Mãe Morreu",
-    "author": "Jennette Mccurdy",
+    "author": "Jennette McCurdy",
     "publisher": "Nversos",
     "pages": 304,
     "gotDate": "31/10/2025",
     "price": 0,
     "image": "https://m.media-amazon.com/images/I/71CgHorskEL._SL1500_.jpg",
-    "link": "Jennette McCurdy",
+    "link": "https://a.co/d/06cSNfra",
     "mode": "Digital",
     "ownership": "Owned",
     "status": "Unread"
@@ -653,7 +653,7 @@
   },
   {
     "id": 44,
-    "title": "Chá de Sumiço",
+    "title": "Chá De Sumiço",
     "author": "Marian Keyes",
     "publisher": "Bertrand Brasil",
     "pages": 160,
@@ -668,7 +668,7 @@
   {
     "id": 45,
     "title": "Mamãe Walsh:",
-    "subtitle": "Pequeno Dicionário da Família Walsh",
+    "subtitle": "Pequeno Dicionário Da Família Walsh",
     "author": "Marian Keyes",
     "publisher": "Bertrand Brasil",
     "pages": 160,
@@ -682,7 +682,7 @@
   },
   {
     "id": 46,
-    "title": "O fim das férias",
+    "title": "O Fim Das Férias",
     "author": "Marian Keyes",
     "publisher": "Bertrand Brasil",
     "pages": 588,
@@ -696,8 +696,8 @@
   },
   {
     "id": 47,
-    "title": "Quebrando o hábito de ser você mesmo",
-    "subtitle": "Como reconstruir sua mente e criar um novo eu",
+    "title": "Quebrando O Hábito De Ser Você Mesmo",
+    "subtitle": "Como Reconstruir Sua Mente E Criar Um Novo Eu",
     "author": "Joe Dispenza",
     "publisher": "Citadel",
     "pages": 352,
@@ -711,8 +711,8 @@
   },
   {
     "id": 48,
-    "title": "Como ser seu próprio terapeuta",
-    "subtitle": "Mude sua vida com a autoterapia",
+    "title": "Como Ser Seu Próprio Terapeuta",
+    "subtitle": "Mude Sua Vida Com A Autoterapia",
     "author": "Owen O'Kane",
     "publisher": "Principium",
     "pages": 224,
@@ -726,7 +726,7 @@
   },
   {
     "id": 49,
-    "title": "A arte de resolver problemas",
+    "title": "A Arte De Resolver Problemas",
     "author": "Owen O'Kane",
     "publisher": "Interciência",
     "pages": 180,
@@ -734,6 +734,20 @@
     "price": 0,
     "image": "https://m.media-amazon.com/images/I/51U5jKXtL4L._SY342_.jpg",
     "link": "https://a.co/d/0dvsFOz9",
+    "ownership": "Owned",
+    "mode": "Digital",
+    "status": "Unread"
+  },
+  {
+    "id": 50,
+    "title": "Meu Nome É Parvana",
+    "author": "Deborah Ellis",
+    "publisher": "Ática",
+    "pages": 184,
+    "gotDate": "25/09/2025",
+    "price": 0,
+    "image": "https://m.media-amazon.com/images/I/511-0xc73WL._SY445_SX342_ML2_.jpg",
+    "link": "https://a.co/d/0aNTXYMt",
     "ownership": "Owned",
     "mode": "Digital",
     "status": "Unread"
