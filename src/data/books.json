@@ -693,5 +693,20 @@
     "ownership": "Owned",
     "mode": "Digital",
     "status": "Unread"
+  },
+  {
+    "id": 47,
+    "title": "Quebrando o hábito de ser você mesmo",
+    "subtitle": "Como reconstruir sua mente e criar um novo eu",
+    "author": "Joe Dispenza",
+    "publisher": "Citadel",
+    "pages": 352,
+    "gotDate": "06/02/2026",
+    "price": 0,
+    "image": "https://m.media-amazon.com/images/I/61a6IJf2BeL._SY425_.jpg",
+    "link": "https://a.co/d/03SU3hkK",
+    "ownership": "Owned",
+    "mode": "Digital",
+    "status": "Unread"
   }
 ]
