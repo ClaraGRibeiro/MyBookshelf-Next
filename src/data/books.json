@@ -444,21 +444,6 @@
     "status": "Read"
   },
   {
-    "id": 30,
-    "title": "A Viagem De Parvana",
-    "author": "Deborah Ellis",
-    "publisher": "Ática",
-    "pages": 144,
-    "gotDate": "02/09/2025",
-    "price": 0,
-    "image": "https://m.media-amazon.com/images/I/71yLl3WXUeL._SY466_.jpg",
-    "link": "https://a.co/d/6u4Gg5s",
-    "ownership": "Owned",
-    "mode": "Digital",
-    "status": "Unread",
-    "subtitle": "Mais Histórias De Uma Garota Afegã"
-  },
-  {
     "id": 31,
     "title": "De Volta Ao Mosteiro",
     "author": "James C. Hunter",
@@ -585,6 +570,7 @@
     "id": 39,
     "title": "Estou Feliz Que Minha Mãe Morreu",
     "author": "Jennette McCurdy",
+    "readDate": "05/11/2026",
     "publisher": "Nversos",
     "pages": 304,
     "gotDate": "31/10/2025",
@@ -593,7 +579,7 @@
     "link": "https://a.co/d/06cSNfra",
     "mode": "Digital",
     "ownership": "Owned",
-    "status": "Unread"
+    "status": "Read"
   },
   {
     "id": 40,
@@ -607,91 +593,6 @@
     "link": "https://a.co/d/cipuusy",
     "mode": "Digital",
     "ownership": "Owned",
-    "status": "Unread"
-  },
-  {
-    "id": 41,
-    "title": "Férias!",
-    "author": "Marian Keyes",
-    "publisher": "Bertrand Brasil",
-    "pages": 546,
-    "gotDate": "20/03/2026",
-    "price": 0,
-    "image": "https://m.media-amazon.com/images/I/816BdS5uw0L._SY425_.jpg",
-    "link": "https://a.co/d/0ihfiKFH",
-    "ownership": "Owned",
-    "mode": "Digital",
-    "status": "Reading"
-  },
-  {
-    "id": 42,
-    "title": "Los Angeles",
-    "author": "Marian Keyes",
-    "publisher": "Bertrand Brasil",
-    "pages": 490,
-    "gotDate": "20/03/2026",
-    "price": 0,
-    "image": "https://m.media-amazon.com/images/I/71WMZKiTmBL._SY425_.jpg",
-    "link": "https://a.co/d/04i6VRz5",
-    "ownership": "Owned",
-    "mode": "Digital",
-    "status": "Next"
-  },
-  {
-    "id": 43,
-    "title": "Tem alguém aí?",
-    "author": "Marian Keyes",
-    "publisher": "Bertrand Brasil",
-    "pages": 602,
-    "gotDate": "20/03/2026",
-    "price": 0,
-    "image": "https://m.media-amazon.com/images/I/81YpukxrkLL._SY425_.jpg",
-    "link": "https://a.co/d/02hhdzlW",
-    "ownership": "Owned",
-    "mode": "Digital",
-    "status": "Unread"
-  },
-  {
-    "id": 44,
-    "title": "Chá De Sumiço",
-    "author": "Marian Keyes",
-    "publisher": "Bertrand Brasil",
-    "pages": 160,
-    "gotDate": "20/03/2026",
-    "price": 0,
-    "image": "https://m.media-amazon.com/images/I/81KDJP+80PL._SY425_.jpg",
-    "link": "https://a.co/d/0eHNu8QM",
-    "ownership": "Owned",
-    "mode": "Digital",
-    "status": "Unread"
-  },
-  {
-    "id": 45,
-    "title": "Mamãe Walsh:",
-    "subtitle": "Pequeno Dicionário Da Família Walsh",
-    "author": "Marian Keyes",
-    "publisher": "Bertrand Brasil",
-    "pages": 160,
-    "gotDate": "20/03/2026",
-    "price": 0,
-    "image": "https://m.media-amazon.com/images/I/816Ck2QJ2EL._SY425_.jpg",
-    "link": "https://a.co/d/07WiefuL",
-    "ownership": "Owned",
-    "mode": "Digital",
-    "status": "Unread"
-  },
-  {
-    "id": 46,
-    "title": "O Fim Das Férias",
-    "author": "Marian Keyes",
-    "publisher": "Bertrand Brasil",
-    "pages": 588,
-    "gotDate": "20/03/2026",
-    "price": 0,
-    "image": "https://m.media-amazon.com/images/I/41cQhJC4KGL._SY445_SX342_ML2_.jpg",
-    "link": "https://a.co/d/0dEYggCC",
-    "ownership": "Owned",
-    "mode": "Digital",
     "status": "Unread"
   },
   {
@@ -722,7 +623,7 @@
     "link": "https://a.co/d/0dvsFOz9",
     "ownership": "Owned",
     "mode": "Digital",
-    "status": "Unread"
+    "status": "Reading"
   },
   {
     "id": 49,
@@ -734,20 +635,6 @@
     "price": 0,
     "image": "https://m.media-amazon.com/images/I/51U5jKXtL4L._SY342_.jpg",
     "link": "https://a.co/d/0dvsFOz9",
-    "ownership": "Owned",
-    "mode": "Digital",
-    "status": "Unread"
-  },
-  {
-    "id": 50,
-    "title": "Meu Nome É Parvana",
-    "author": "Deborah Ellis",
-    "publisher": "Ática",
-    "pages": 184,
-    "gotDate": "25/09/2025",
-    "price": 0,
-    "image": "https://m.media-amazon.com/images/I/511-0xc73WL._SY445_SX342_ML2_.jpg",
-    "link": "https://a.co/d/0aNTXYMt",
     "ownership": "Owned",
     "mode": "Digital",
     "status": "Unread"
