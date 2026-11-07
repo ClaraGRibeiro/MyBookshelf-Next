@@ -1,6 +1,6 @@
 "use client";
 
-import { Book } from "@/types/books";
+import { Book, SortKey } from "@/types/books";
 import { Handles } from "@/types/handles";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 import { useEffect, useState } from "react";
@@ -31,10 +31,10 @@ export default function Rows({ books, handles, pinReadings }: RowsProps) {
   const [filterBy, setFilterBy] = useState<
     Book["status"] | Book["ownership"] | Book["mode"] | null
   >(null);
-  const [sortBy, setSortBy] = useState<keyof Book>("title");
+  const [sortBy, setSortBy] = useState<SortKey>("title");
   const [sortAsc, setSortAsc] = useState(true);
 
-  const handleSort = (key: keyof Book) => {
+  const handleSort = (key: SortKey) => {
     if (sortBy === key) {
       setSortAsc(!sortAsc);
     } else {

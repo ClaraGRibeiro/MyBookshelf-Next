@@ -1,7 +1,8 @@
 "use client";
 
-import { Book } from "@/types/books";
+import { Book, SortKey } from "@/types/books";
 import { Handles } from "@/types/handles";
+import { getSortLabel } from "@/lib/utils";
 import { useState } from "react";
 import Filter from "./actions/filter";
 import Forms from "./actions/forms";
@@ -21,10 +22,10 @@ export default function Grid({ books, handles, pinReadings }: GridProps) {
   const [filterBy, setFilterBy] = useState<
     Book["status"] | Book["ownership"] | Book["mode"] | null
   >(null);
-  const [sortBy, setSortBy] = useState<keyof Book>("title");
+  const [sortBy, setSortBy] = useState<SortKey>("title");
   const [sortAsc, setSortAsc] = useState(true);
 
-  const handleSort = (key: keyof Book) => {
+  const handleSort = (key: SortKey) => {
     if (sortBy === key) {
       setSortAsc(!sortAsc);
     } else {
@@ -60,11 +61,12 @@ export default function Grid({ books, handles, pinReadings }: GridProps) {
         <Sort value={sortBy} onChange={handleSort} type={"status"} />
         <Sort value={sortBy} onChange={handleSort} type={"gotDate"} />
         <Sort value={sortBy} onChange={handleSort} type={"readDate"} />
+        <Sort value={sortBy} onChange={handleSort} type={"readDays"} />
         <Filter value={filterBy} onChange={setFilterBy} />
       </div>
       <div className="flex items-center justify-center md:flex-row flex-col gap-2 md:gap-12 mb-6">
         <p className="text-center font-light text-(--medium-slate)">
-          Sort by {sortBy.toUpperCase()} [{sortAsc ? "asc" : "desc"}]
+          Sort by {getSortLabel(sortBy).toUpperCase()} [{sortAsc ? "asc" : "desc"}]
         </p>
         <p className="text-center font-light text-(--medium-slate)">
           Filter by {filterBy ? filterBy!.toUpperCase() : "ALL"} [

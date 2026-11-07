@@ -1,8 +1,9 @@
-import { Book } from "@/types/books";
+import { Book, SortKey } from "@/types/books";
+import { getReadDays } from "@/lib/utils";
 
 type orderProps = {
   books: Book[];
-  sortBy: keyof Book;
+  sortBy: SortKey;
   sortAsc: boolean;
   pinReadings: boolean;
   filterBy: Book["status"] | Book["ownership"] | Book["mode"] | null;
@@ -25,10 +26,24 @@ export default function order({
 
   const compareBooks = (a: Book, b: Book) => {
     if (!sortBy) return 0;
+
+    if (sortBy === "readDays") {
+      const aDays = getReadDays(a);
+      const bDays = getReadDays(b);
+      if (aDays === null && bDays === null) return 0;
+      if (aDays === null) return 1;
+      if (bDays === null) return -1;
+      return sortAsc ? bDays - aDays : aDays - bDays;
+    }
+
     const aValue = a[sortBy] ?? "";
     const bValue = b[sortBy] ?? "";
 
-    if (sortBy === "gotDate" || sortBy === "readDate") {
+    if (
+      sortBy === "gotDate" ||
+      sortBy === "readDate" ||
+      sortBy === "startDate"
+    ) {
       const aDate = parseDate(aValue as string);
       const bDate = parseDate(bValue as string);
       if (aDate === null && bDate === null) return 0;

@@ -2,6 +2,7 @@
 
 import { Book } from "@/types/books";
 import { Handles } from "@/types/handles";
+import { getReadDays } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import {
@@ -33,6 +34,7 @@ export default function See({
   addMode = false,
 }: SeeProps) {
   const [open, setOpen] = useState(noButtonMode);
+  const readDays = getReadDays(book);
   useEffect(() => {
     if (noButtonMode && book) setOpen(true);
   }, [noButtonMode, book]);
@@ -96,6 +98,12 @@ export default function See({
             <p className="text-(--dark-slate)">
               <strong className="text-(--medium-slate)">Read Date:</strong>{" "}
               {book.readDate}
+            </p>
+          )}
+          {readDays !== null && (
+            <p className="text-(--dark-slate)">
+              <strong className="text-(--medium-slate)">Read Days:</strong>{" "}
+              {readDays} {readDays === 1 ? "day" : "days"}
             </p>
           )}
           <p

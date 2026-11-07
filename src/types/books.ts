@@ -7,6 +7,7 @@ export type Book = {
   pages?: number | null;
   gotDate?: string | null;
   readDate?: string | null;
+  startDate?: string | null;
   price: number;
   image?: string | null;
   link?: string | null;
@@ -14,3 +15,5 @@ export type Book = {
   mode: string;
   status: string;
 };
+
+export type SortKey = keyof Book | "readDays";

@@ -1,6 +1,7 @@
 "use client";
 
 import { Book } from "@/types/books";
+import { getReadDays } from "@/lib/utils";
 import ExcelJS from "exceljs";
 import saveAs from "file-saver";
 import { toast } from "sonner";
@@ -31,6 +32,7 @@ export default function Xlsx({ books }: XlsxProps) {
       { header: "Pages", key: "pages", width: 6 },
       { header: "Got Date", key: "gotDate", width: 12 },
       { header: "Read Date", key: "readDate", width: 12 },
+      { header: "Read Days", key: "readDays", width: 10 },
       { header: "Price", key: "price", width: 6 },
       { header: "Cover", key: "image", width: 6 },
       { header: "Shop", key: "link", width: 6 },
@@ -50,6 +52,7 @@ export default function Xlsx({ books }: XlsxProps) {
         pages: b.pages ?? "-",
         gotDate: b.gotDate ? String(b.gotDate) : "-",
         readDate: b.readDate ? String(b.readDate) : "-",
+        readDays: getReadDays(b) ?? "-",
         price: b.price ?? "-",
         image: b.image ?? "-",
         link: b.link ?? "-",
@@ -64,10 +67,10 @@ export default function Xlsx({ books }: XlsxProps) {
                 ? "❌"
                 : "🎯",
       });
-      const coverCell = row.getCell("J");
+      const coverCell = row.getCell("K");
       coverCell.value = { text: "Link", hyperlink: b.image || "" };
       coverCell.font = { color: { argb: "FF0000FF" }, underline: true };
-      const shopCell = row.getCell("K");
+      const shopCell = row.getCell("L");
       shopCell.value = { text: "Link", hyperlink: b.link || "" };
       shopCell.font = { color: { argb: "FF0000FF" }, underline: true };
     }

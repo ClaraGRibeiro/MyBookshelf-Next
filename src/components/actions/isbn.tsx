@@ -102,6 +102,7 @@ export function Isbn({ books, handles }: IsbnProps) {
                     today.getMonth() + 1,
                   ).padStart(2, "0")}/${today.getFullYear()}`,
                   readDate: undefined,
+                  startDate: undefined,
                   price: 0,
                   image: resData.cover_url || undefined,
                   link: undefined,

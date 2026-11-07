@@ -109,6 +109,10 @@ export default function Forms({
     const publisherVar = data.get("publisher")
       ? formatString(data.get("publisher")!.toString())
       : undefined;
+    const startDateRaw = data.get("startDate")?.toString().trim();
+    const startDateVar = startDateRaw
+      ? startDateRaw.split("-").reverse().join("/")
+      : "";
 
     if (isEdit && book && onEdit) {
       // UPDATE
@@ -123,6 +127,7 @@ export default function Forms({
           data.get("gotDate")?.toString().split("-").reverse().join("/") ||
           book.gotDate,
         readDate: readDateVar,
+        startDate: startDateVar,
         price: Number(data.get("price")) || book.price,
         image: imagePreview || book.image,
         link: data.has("link") ? data.get("link")?.toString() : book.link,
@@ -150,6 +155,7 @@ export default function Forms({
         pages: Number(data.get("pages")),
         gotDate: gotDateVar,
         readDate: readDateVar,
+        startDate: startDateVar,
         price: Number(data.get("price")),
         image: data.get("image")?.toString().trim() || undefined,
         link: data.get("link")?.toString().trim() || undefined,
@@ -282,6 +288,21 @@ export default function Forms({
                       .reverse()
                       .join("/") as Book["readDate"]
                   )
+                }
+              />
+            </div>
+            <div className="flex justify-between">
+              <span className="text-(--dark-slate) ml-3 text-sm">
+                Start Date
+              </span>
+              <Input
+                className="w-fit text-(--medium-slate)"
+                type="date"
+                name="startDate"
+                defaultValue={
+                  book?.startDate
+                    ? book.startDate.split("/").reverse().join("-")
+                    : ""
                 }
               />
             </div>
